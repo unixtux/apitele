@@ -1,4 +1,4 @@
-[![pypi](https://img.shields.io/badge/pypi-aiotgm-blue)](https://pypi.org/project/aiotgm/) [![tele](https://img.shields.io/badge/telegram-@geko1-blue)](https://t.me/geko1) [![Documentation Status](https://readthedocs.org/projects/aiotgm/badge/?version=latest)](https://aiotgm.readthedocs.io/?badge=latest)
+[![pypi](https://img.shields.io/badge/pypi-pro_telegram-blue)](https://pypi.org/project/pro-telegram/) [![tele](https://img.shields.io/badge/telegram-@geko1-blue)](https://t.me/geko1) [![Documentation Status](https://readthedocs.org/projects/aiotgm/badge/?version=latest)](https://aiotgm.readthedocs.io/?badge=latest)
 
 <h3 align="center">Asynchronous python implementation of the Telegram Bot API <a href="https://core.telegram.org/bots/api#october-31-2024">7.11</a></h3>
 
@@ -21,13 +21,13 @@ You require a good python knowledge with the [asyncio module](https://docs.pytho
 Install the module using [pip](https://pypi.org/project/aiotgm/) with your shell.
 
 ```powershell
-$ pip install aiotgm
+$ pip install pro-telegram
 ```
 
 Update the module regurarly with the following command.
 
 ```powershell
-$ pip install -U aiotgm
+$ pip install -U pro-telegram
 ```
 
 #

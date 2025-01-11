@@ -1,5 +1,5 @@
-**aiotgm**
-===========
+**pro-telegram**
+================
 
 .. toctree::
     installation

@@ -2,7 +2,7 @@
 Client Reference
 ================
 
-This page refers to the :obj:`~aiotgm.Client` and all its methods, which are the same described in the
+This page refers to the :obj:`~pro-telegram.Client` and all its methods, which are the same described in the
 `official documentation <https://core.telegram.org/bots/api#available-methods>`_, changed from camelCase to snake_case.
 E.g. *sendMessage* becomes *send_message*.
 
@@ -10,8 +10,8 @@ They are all *asynchronous*, so you must use them in `await <https://docs.python
 
 Note: Webhook has not been implemented yet.
 
----------------------------
+----------------------------------
 
-.. autoclass:: aiotgm.Client
+.. autoclass:: pro-telegram.Client
     :members:
     :undoc-members:

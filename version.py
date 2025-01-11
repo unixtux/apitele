@@ -11,7 +11,7 @@ with open('pyproject.toml') as r:
 
 VERSION = version.group(1)
 
-with open('aiotgm/__init__.py') as r:
+with open('pro-telegram/__init__.py') as r:
     PROJECT_CONTENT = r.readlines()
 
 lines = ''
@@ -25,7 +25,7 @@ for line in PROJECT_CONTENT:
         line = "__version__ = '{}'\n".format(VERSION)
     lines += line # add line to all the lines for the final file
 
-with open('aiotgm/__init__.py', 'w') as w:
+with open('pro-telegram/__init__.py', 'w') as w:
     w.write(lines)
 
 print('Version updated to', VERSION)
