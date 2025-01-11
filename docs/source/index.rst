@@ -1,4 +1,4 @@
-**pro-telegram**
+**pro_telegram**
 ================
 
 .. toctree::

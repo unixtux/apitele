@@ -2,6 +2,6 @@
 NextFunction
 ============
 
-.. autoclass:: aiotgm.NextFunction
+.. autoclass:: pro_telegram.NextFunction
     :members:
     :undoc-members:

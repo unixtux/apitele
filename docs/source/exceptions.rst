@@ -19,7 +19,7 @@ Example:
         except (TelegramError, TimeoutError) as e:
             print(e)
 
-.. autoexception:: aiotgm.TelegramError
+.. autoexception:: pro_telegram.TelegramError
     :members:
     :undoc-members:
     :show-inheritance:

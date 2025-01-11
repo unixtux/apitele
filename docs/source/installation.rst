@@ -18,17 +18,17 @@ Dependencies
 Installation
 ------------
 
-Install the module using `pip <https://pypi.org/project/aiotgm/>`_ with your shell.
+Install the module using `pip <https://pypi.org/project/pro_telegram/>`_ with your shell.
 
 .. code-block:: bash
 
-    $ pip install aiotgm
+    $ pip install pro_telegram
 
 Update the module regurarly with the following command.
 
 .. code-block:: bash
 
-    $ pip install -U aiotgm
+    $ pip install -U pro_telegram
 
 Usage
 -----

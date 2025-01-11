@@ -10,13 +10,13 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../../'))
 
-import aiotgm
+import pro_telegram
 from datetime import datetime as dtm
 
-author = 'unixtux'
+author = 'geko1'
 year = dtm.now().year
-release = aiotgm.VERSION
-project = aiotgm.__name__
+release = pro_telegram.VERSION
+project = pro_telegram.__name__
 copyright = f'{year}, {author}'
 
 # -- General configuration ---------------------------------------------------

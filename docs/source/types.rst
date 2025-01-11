@@ -7,7 +7,7 @@ All the names of the types are exactly the same described in the `offical docume
 **Note**:
 
 * Attribute *from* of the types, has been changed to *from_user* because in python it causes conflict.
-* If the type :obj:`~aiotgm.types.Message` has not *text*, the *text* it's an empty string instead of :obj:`None`, so you can do as follows without getting an `AttributeError <https://docs.python.org/3/library/exceptions.html#AttributeError>`_.
+* If the type :obj:`~pro_telegram.types.Message` has not *text*, the *text* it's an empty string instead of :obj:`None`, so you can do as follows without getting an `AttributeError <https://docs.python.org/3/library/exceptions.html#AttributeError>`_.
 
 .. code-block:: python3
 
@@ -27,6 +27,6 @@ All the names of the types are exactly the same described in the `offical docume
 
 ---------------------------
 
-.. automodule:: aiotgm.types
+.. automodule:: pro_telegram.types
     :members:
     :undoc-members:
