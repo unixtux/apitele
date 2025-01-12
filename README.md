@@ -33,4 +33,4 @@ $ pip install -U apitele
 #
 
 * #### Documentation
-Here it is the [official documentation](https://aiotgm.readthedocs.io/).
+Here it is the [official documentation](https://apitele.readthedocs.io/).
