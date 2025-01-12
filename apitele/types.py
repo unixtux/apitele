@@ -295,7 +295,7 @@ class Animation(TelegramType):
     :param duration: Duration of the video in seconds as defined by sender.
     :type duration: :obj:`int`
     :param thumbnail: Animation thumbnail as defined by sender.
-    :type thumbnail: :obj:`~aiotgm.types.PhotoSize`, optional
+    :type thumbnail: :obj:`~apitele.types.PhotoSize`, optional
     :param file_name: Original animation filename as defined by sender.
     :type file_name: :obj:`str`, optional
     :param mime_type: MIME type of the file as defined by sender.
@@ -364,7 +364,7 @@ class Audio(TelegramType):
     :param file_size: File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
     :type file_size: :obj:`int`, optional
     :param thumbnail: Thumbnail of the album cover to which the music file belongs.
-    :type thumbnail: :obj:`~aiotgm.types.PhotoSize`, optional
+    :type thumbnail: :obj:`~apitele.types.PhotoSize`, optional
     '''
     @classmethod
     @_parse_result
@@ -517,7 +517,7 @@ class BackgroundTypeFill(TelegramType):
     The background is automatically filled based on the selected colors.
 
     :param fill: The background fill.
-    :type fill: :obj:`~aiotgm.types.BackgroundFill`
+    :type fill: :obj:`~apitele.types.BackgroundFill`
     :param dark_theme_dimming: Dimming of the background in dark themes, as a percentage; 0-100.
     :type dark_theme_dimming: :obj:`int`
     '''
@@ -547,9 +547,9 @@ class BackgroundTypePattern(TelegramType):
     “application/x-tgwallpattern”) pattern to be combined with the background fill chosen by the user.
 
     :param document: Document with the pattern.
-    :type document: :obj:`~aiotgm.types.Document`
+    :type document: :obj:`~apitele.types.Document`
     :param fill: The background fill that is combined with the pattern.
-    :type fill: :obj:`~aiotgm.types.BackgroundFill`
+    :type fill: :obj:`~apitele.types.BackgroundFill`
     :param intensity: Intensity of the pattern when it is shown above the filled background; 0-100.
     :type intensity: :obj:`int`
     :param is_inverted: :obj:`True`, if the background fill must be applied only to the pattern itself. All other pixels are black in this case. For dark themes only.
@@ -591,7 +591,7 @@ class BackgroundTypeWallpaper(TelegramType):
     The background is a wallpaper in the JPEG format.
 
     :param document: Document with the wallpaper.
-    :type document: :obj:`~aiotgm.types.Document`
+    :type document: :obj:`~apitele.types.Document`
     :param dark_theme_dimming: Dimming of the background in dark themes, as a percentage; 0-100.
     :type dark_theme_dimming: :obj:`int`
     :param is_blurred: :obj:`True`, if the wallpaper is downscaled to fit in a 450x450 square and then box-blurred with radius 12.
@@ -686,7 +686,7 @@ class BotCommandScopeAllChatAdministrators(TelegramType):
     '''
     https://core.telegram.org/bots/api#botcommandscopeallchatadministrators
 
-    Represents the :obj:`scope <aiotgm.types.BotCommandScope>` of bot commands, covering all group and supergroup chat administrators.
+    Represents the :obj:`scope <apitele.types.BotCommandScope>` of bot commands, covering all group and supergroup chat administrators.
     '''
     def __init__(self):
         self.type = DEFAULT_BOT_COMMAND_SCOPE_ALL_CHAT_ADMINISTRATORS
@@ -696,7 +696,7 @@ class BotCommandScopeAllGroupChats(TelegramType):
     '''
     https://core.telegram.org/bots/api#botcommandscopeallgroupchats
 
-    Represents the :obj:`scope <aiotgm.types.BotCommandScope>` of bot commands, covering all group and supergroup chats.
+    Represents the :obj:`scope <apitele.types.BotCommandScope>` of bot commands, covering all group and supergroup chats.
     '''
     def __init__(self):
         self.type = DEFAULT_BOT_COMMAND_SCOPE_ALL_GROUP_CHATS
@@ -706,7 +706,7 @@ class BotCommandScopeAllPrivateChats(TelegramType):
     '''
     https://core.telegram.org/bots/api#botcommandscopeallprivatechats
 
-    Represents the :obj:`scope <aiotgm.types.BotCommandScope>` of bot commands, covering all private chats.
+    Represents the :obj:`scope <apitele.types.BotCommandScope>` of bot commands, covering all private chats.
     '''
     def __init__(self):
         self.type = DEFAULT_BOT_COMMAND_SCOPE_ALL_PRIVATE_CHATS
@@ -716,7 +716,7 @@ class BotCommandScopeChat(TelegramType):
     '''
     https://core.telegram.org/bots/api#botcommandscopechat
 
-    Represents the :obj:`scope <aiotgm.types.BotCommandScope>` of bot commands, covering a specific chat.
+    Represents the :obj:`scope <apitele.types.BotCommandScope>` of bot commands, covering a specific chat.
 
     :param chat_id: Unique identifier for the target chat or username of the target supergroup (in the format ``@supergroupusername``).
     :type chat_id: :obj:`int` or :obj:`str`
@@ -733,7 +733,7 @@ class BotCommandScopeChatAdministrators(TelegramType):
     '''
     https://core.telegram.org/bots/api#botcommandscopechatadministrators
 
-    Represents the :obj:`scope <aiotgm.types.BotCommandScope>` of bot commands, covering all administrators of a specific group or supergroup chat.
+    Represents the :obj:`scope <apitele.types.BotCommandScope>` of bot commands, covering all administrators of a specific group or supergroup chat.
 
     :param chat_id: Unique identifier for the target chat or username of the target supergroup (in the format ``@supergroupusername``).
     :type chat_id: :obj:`int` or :obj:`str`
@@ -750,7 +750,7 @@ class BotCommandScopeChatMember(TelegramType):
     '''
     https://core.telegram.org/bots/api#botcommandscopechatmember
 
-    Represents the :obj:`scope <aiotgm.types.BotCommandScope>` of bot commands, covering a specific member of a group or supergroup chat.
+    Represents the :obj:`scope <apitele.types.BotCommandScope>` of bot commands, covering a specific member of a group or supergroup chat.
 
     :param chat_id: Unique identifier for the target chat or username of the target supergroup (in the format ``@supergroupusername``).
     :type chat_id: :obj:`int` or :obj:`str`
@@ -771,7 +771,7 @@ class BotCommandScopeDefault(TelegramType):
     '''
     https://core.telegram.org/bots/api#botcommandscopedefault
 
-    Represents the default :obj:`scope <aiotgm.types.BotCommandScope>` of bot commands. Default commands are used if no commands
+    Represents the default :obj:`scope <apitele.types.BotCommandScope>` of bot commands. Default commands are used if no commands
     with a `narrower scope <https://core.telegram.org/bots/api#determining-list-of-commands>`_ are specified for the user.
     '''
     def __init__(self):
@@ -856,7 +856,7 @@ class BusinessConnection(TelegramType):
     :param id: Unique identifier of the business connection.
     :type id: :obj:`str`
     :param user: Business account user that created the business connection.
-    :type user: :obj:`~aiotgm.types.User`
+    :type user: :obj:`~apitele.types.User`
     :param user_chat_id: Identifier of a private chat with the user who created the business connection. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier.
     :type user_chat_id: :obj:`int`
     :param date: Date the connection was established in Unix time.
@@ -904,7 +904,7 @@ class BusinessIntro(TelegramType):
     :param message: Message text of the business intro.
     :type message: :obj:`str`, optional
     :param sticker: Sticker of the business intro.
-    :type sticker: :obj:`~aiotgm.types.Sticker`, optional
+    :type sticker: :obj:`~apitele.types.Sticker`, optional
     '''
     @classmethod
     @_parse_result
@@ -933,7 +933,7 @@ class BusinessLocation(TelegramType):
     :param address: Address of the business.
     :type address: :obj:`str`
     :param location: Location of the business.
-    :type location: :obj:`~aiotgm.types.Location`, optional
+    :type location: :obj:`~apitele.types.Location`, optional
     '''
     @classmethod
     @_parse_result
@@ -961,7 +961,7 @@ class BusinessMessagesDeleted(TelegramType):
     :param business_connection_id: Unique identifier of the business connection.
     :type business_connection_id: :obj:`str`
     :param chat: Information about a chat in the business account. The bot may not have access to the chat or the corresponding user.
-    :type chat: :obj:`~aiotgm.types.Chat`
+    :type chat: :obj:`~apitele.types.Chat`
     :param message_ids: A JSON-serialized list of identifiers of deleted messages in the chat of the business account.
     :type message_ids: :obj:`list` of :obj:`int`
     '''
@@ -992,7 +992,7 @@ class BusinessOpeningHours(TelegramType):
     :param time_zone_name: Unique name of the time zone for which the opening hours are defined.
     :type time_zone_name: :obj:`str`
     :param opening_hours: List of time intervals describing business opening hours.
-    :type opening_hours: :obj:`list` of :obj:`~aiotgm.types.BusinessOpeningHoursInterval`
+    :type opening_hours: :obj:`list` of :obj:`~apitele.types.BusinessOpeningHoursInterval`
     '''
     @classmethod
     @_parse_result
@@ -1068,11 +1068,11 @@ class CallbackQuery(TelegramType):
     :param id: Unique identifier for this query.
     :type id: :obj:`str`
     :param from_user: Sender.
-    :type from_user: :obj:`~aiotgm.types.User`
+    :type from_user: :obj:`~apitele.types.User`
     :param chat_instance: Global identifier, uniquely corresponding to the chat to which the message with the callback button was sent. Useful for high scores in `games <https://core.telegram.org/bots/api#games>`_.
     :type chat_instance: :obj:`str`
     :param message: Message sent by the bot with the callback button that originated the query.
-    :type message: :obj:`~aiotgm.types.MaybeInaccessibleMessage`, optional
+    :type message: :obj:`~apitele.types.MaybeInaccessibleMessage`, optional
     :param inline_message_id: Identifier of the message sent via the bot in inline mode, that originated the query.
     :type inline_message_id: :obj:`str`, optional
     :param data: Data associated with the callback button. Be aware that the message originated the query can contain no callback buttons with this data.
@@ -1132,76 +1132,76 @@ class Chat(TelegramType):
     :type last_name: :obj:`str`, optional
     :param is_forum: :obj:`True`, if the supergroup chat is a forum (has `topics <https://telegram.org/blog/topics-in-groups-collectible-usernames#topics-in-groups>`_ enabled).
     :type is_forum: :obj:`True`, optional
-    :param photo: Chat photo. Returned only in :meth:`~aiotgm.Client.get_chat`.
-    :type photo: :obj:`~aiotgm.types.ChatPhoto`, optional
-    :param active_usernames: If non-empty, the list of all `active chat usernames <https://telegram.org/blog/topics-in-groups-collectible-usernames#collectible-usernames>`_; for private chats, supergroups and channels. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param photo: Chat photo. Returned only in :meth:`~apitele.Client.get_chat`.
+    :type photo: :obj:`~apitele.types.ChatPhoto`, optional
+    :param active_usernames: If non-empty, the list of all `active chat usernames <https://telegram.org/blog/topics-in-groups-collectible-usernames#collectible-usernames>`_; for private chats, supergroups and channels. Returned only in :meth:`~apitele.Client.get_chat`.
     :type active_usernames: :obj:`list` of :obj:`str`, optional
-    :param birthdate: For private chats, the date of birth of the user. Returned only in :meth:`~aiotgm.Client.get_chat`.
-    :type birthdate: :obj:`~aiotgm.types.Birthdate`, optional
-    :param business_intro: For private chats with business accounts, the intro of the business. Returned only in :meth:`~aiotgm.Client.get_chat`.
-    :type business_intro: :obj:`~aiotgm.types.BusinessIntro`
-    :param business_location: For private chats with business accounts, the location of the business. Returned only in :meth:`~aiotgm.Client.get_chat`.
-    :type business_location: :obj:`~aiotgm.types.BusinessLocation`
-    :param business_opening_hours: For private chats with business accounts, the opening hours of the business. Returned only in :meth:`~aiotgm.Client.get_chat`.
-    :type business_opening_hours: :obj:`~aiotgm.types.BusinessOpeningHours`, optional
-    :param personal_chat: For private chats, the personal channel of the user. Returned only in :meth:`~aiotgm.Client.get_chat`.
-    :type personal_chat: :obj:`~aiotgm.types.Chat`, optional
-    :param available_reactions: List of available reactions allowed in the chat. If omitted, then all :obj:`emoji reactions <aiotgm.types.ReactionTypeEmoji>` are allowed. Returned only in :meth:`~aiotgm.Client.get_chat`.
-    :type available_reactions: :obj:`list` of :obj:`~aiotgm.types.ReactionType`, optional
-    :param accent_color_id: Identifier of the accent color for the chat name and backgrounds of the chat photo, reply header, and link preview. See `accent colors <https://core.telegram.org/bots/api#accent-colors>`_ for more details. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param birthdate: For private chats, the date of birth of the user. Returned only in :meth:`~apitele.Client.get_chat`.
+    :type birthdate: :obj:`~apitele.types.Birthdate`, optional
+    :param business_intro: For private chats with business accounts, the intro of the business. Returned only in :meth:`~apitele.Client.get_chat`.
+    :type business_intro: :obj:`~apitele.types.BusinessIntro`
+    :param business_location: For private chats with business accounts, the location of the business. Returned only in :meth:`~apitele.Client.get_chat`.
+    :type business_location: :obj:`~apitele.types.BusinessLocation`
+    :param business_opening_hours: For private chats with business accounts, the opening hours of the business. Returned only in :meth:`~apitele.Client.get_chat`.
+    :type business_opening_hours: :obj:`~apitele.types.BusinessOpeningHours`, optional
+    :param personal_chat: For private chats, the personal channel of the user. Returned only in :meth:`~apitele.Client.get_chat`.
+    :type personal_chat: :obj:`~apitele.types.Chat`, optional
+    :param available_reactions: List of available reactions allowed in the chat. If omitted, then all :obj:`emoji reactions <apitele.types.ReactionTypeEmoji>` are allowed. Returned only in :meth:`~apitele.Client.get_chat`.
+    :type available_reactions: :obj:`list` of :obj:`~apitele.types.ReactionType`, optional
+    :param accent_color_id: Identifier of the accent color for the chat name and backgrounds of the chat photo, reply header, and link preview. See `accent colors <https://core.telegram.org/bots/api#accent-colors>`_ for more details. Returned only in :meth:`~apitele.Client.get_chat`.
     :type accent_color_id: :obj:`int`, optional
-    :param background_custom_emoji_id: Custom emoji identifier of emoji chosen by the chat for the reply header and link preview background. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param background_custom_emoji_id: Custom emoji identifier of emoji chosen by the chat for the reply header and link preview background. Returned only in :meth:`~apitele.Client.get_chat`.
     :type background_custom_emoji_id: :obj:`str`, optional
-    :param profile_accent_color_id: Identifier of the accent color for the chat's profile background. See `profile accent colors <https://core.telegram.org/bots/api#profile-accent-colors>`_ for more details. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param profile_accent_color_id: Identifier of the accent color for the chat's profile background. See `profile accent colors <https://core.telegram.org/bots/api#profile-accent-colors>`_ for more details. Returned only in :meth:`~apitele.Client.get_chat`.
     :type profile_accent_color_id: :obj:`int`, optional
-    :param profile_background_custom_emoji_id: Custom emoji identifier of the emoji chosen by the chat for its profile background. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param profile_background_custom_emoji_id: Custom emoji identifier of the emoji chosen by the chat for its profile background. Returned only in :meth:`~apitele.Client.get_chat`.
     :type profile_background_custom_emoji_id: :obj:`str`, optional
-    :param emoji_status_custom_emoji_id: Custom emoji identifier of the emoji status of the chat or the other party in a private chat. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param emoji_status_custom_emoji_id: Custom emoji identifier of the emoji status of the chat or the other party in a private chat. Returned only in :meth:`~apitele.Client.get_chat`.
     :type emoji_status_custom_emoji_id: :obj:`str`, optional
-    :param emoji_status_expiration_date: Expiration date of the emoji status of the chat or the other party in a private chat, in Unix time, if any. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param emoji_status_expiration_date: Expiration date of the emoji status of the chat or the other party in a private chat, in Unix time, if any. Returned only in :meth:`~apitele.Client.get_chat`.
     :type emoji_status_expiration_date: :obj:`int`, optional
-    :param bio: Bio of the other party in a private chat. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param bio: Bio of the other party in a private chat. Returned only in :meth:`~apitele.Client.get_chat`.
     :type bio: :obj:`str`, optional
-    :param has_private_forwards: :obj:`True`, if privacy settings of the other party in the private chat allows to use ``tg://user?id=<user_id>`` links only in chats with the user. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param has_private_forwards: :obj:`True`, if privacy settings of the other party in the private chat allows to use ``tg://user?id=<user_id>`` links only in chats with the user. Returned only in :meth:`~apitele.Client.get_chat`.
     :type has_private_forwards: :obj:`True`, optional
-    :param has_restricted_voice_and_video_messages: :obj:`True`, if the privacy settings of the other party restrict sending voice and video note messages in the private chat. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param has_restricted_voice_and_video_messages: :obj:`True`, if the privacy settings of the other party restrict sending voice and video note messages in the private chat. Returned only in :meth:`~apitele.Client.get_chat`.
     :type has_restricted_voice_and_video_messages: :obj:`True`, optional
-    :param join_to_send_messages: :obj:`True`, if users need to join the supergroup before they can send messages. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param join_to_send_messages: :obj:`True`, if users need to join the supergroup before they can send messages. Returned only in :meth:`~apitele.Client.get_chat`.
     :type join_to_send_messages: :obj:`True`, optional
-    :param join_by_request: :obj:`True`, if all users directly joining the supergroup need to be approved by supergroup administrators. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param join_by_request: :obj:`True`, if all users directly joining the supergroup need to be approved by supergroup administrators. Returned only in :meth:`~apitele.Client.get_chat`.
     :type join_by_request: :obj:`True`, optional
-    :param description: Description, for groups, supergroups and channel chats. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param description: Description, for groups, supergroups and channel chats. Returned only in :meth:`~apitele.Client.get_chat`.
     :type description: :obj:`str`, optional
-    :param invite_link: Primary invite link, for groups, supergroups and channel chats. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param invite_link: Primary invite link, for groups, supergroups and channel chats. Returned only in :meth:`~apitele.Client.get_chat`.
     :type invite_link: :obj:`str`, optional
-    :param pinned_message: The most recent pinned message (by sending date). Returned only in :meth:`~aiotgm.Client.get_chat`.
-    :type pinned_message: :obj:`~aiotgm.types.Message`, optional
-    :param permissions: Default chat member permissions, for groups and supergroups. Returned only in :meth:`~aiotgm.Client.get_chat`.
-    :type permissions: :obj:`~aiotgm.types.ChatPermissions`, optional
-    :param slow_mode_delay: For supergroups, the minimum allowed delay between consecutive messages sent by each unprivileged user; in seconds. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param pinned_message: The most recent pinned message (by sending date). Returned only in :meth:`~apitele.Client.get_chat`.
+    :type pinned_message: :obj:`~apitele.types.Message`, optional
+    :param permissions: Default chat member permissions, for groups and supergroups. Returned only in :meth:`~apitele.Client.get_chat`.
+    :type permissions: :obj:`~apitele.types.ChatPermissions`, optional
+    :param slow_mode_delay: For supergroups, the minimum allowed delay between consecutive messages sent by each unprivileged user; in seconds. Returned only in :meth:`~apitele.Client.get_chat`.
     :type slow_mode_delay: :obj:`int`, optional
-    :param unrestrict_boost_count: For supergroups, the minimum number of boosts that a non-administrator user needs to add in order to ignore slow mode and chat permissions. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param unrestrict_boost_count: For supergroups, the minimum number of boosts that a non-administrator user needs to add in order to ignore slow mode and chat permissions. Returned only in :meth:`~apitele.Client.get_chat`.
     :type unrestrict_boost_count: :obj:`int`, optional
-    :param message_auto_delete_time: The time after which all messages sent to the chat will be automatically deleted; in seconds. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param message_auto_delete_time: The time after which all messages sent to the chat will be automatically deleted; in seconds. Returned only in :meth:`~apitele.Client.get_chat`.
     :type message_auto_delete_time: :obj:`int`, optional
-    :param has_aggressive_anti_spam_enabled: :obj:`True`, if aggressive anti-spam checks are enabled in the supergroup. The field is only available to chat administrators. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param has_aggressive_anti_spam_enabled: :obj:`True`, if aggressive anti-spam checks are enabled in the supergroup. The field is only available to chat administrators. Returned only in :meth:`~apitele.Client.get_chat`.
     :type has_aggressive_anti_spam_enabled: :obj:`True`, optional
-    :param has_hidden_members: :obj:`True`, if non-administrators can only get the list of bots and administrators in the chat. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param has_hidden_members: :obj:`True`, if non-administrators can only get the list of bots and administrators in the chat. Returned only in :meth:`~apitele.Client.get_chat`.
     :type has_hidden_members: :obj:`True`, optional
-    :param has_protected_content: :obj:`True`, if messages from the chat can't be forwarded to other chats. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param has_protected_content: :obj:`True`, if messages from the chat can't be forwarded to other chats. Returned only in :meth:`~apitele.Client.get_chat`.
     :type has_protected_content: :obj:`True`, optional
-    :param has_visible_history: :obj:`True`, if new chat members will have access to old messages; available only to chat administrators. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param has_visible_history: :obj:`True`, if new chat members will have access to old messages; available only to chat administrators. Returned only in :meth:`~apitele.Client.get_chat`.
     :type has_visible_history: :obj:`True`, optional
-    :param sticker_set_name: For supergroups, name of group sticker set. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param sticker_set_name: For supergroups, name of group sticker set. Returned only in :meth:`~apitele.Client.get_chat`.
     :type sticker_set_name: :obj:`str`, optional
-    :param can_set_sticker_set: :obj:`True`, if the bot can change the group sticker set. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param can_set_sticker_set: :obj:`True`, if the bot can change the group sticker set. Returned only in :meth:`~apitele.Client.get_chat`.
     :type can_set_sticker_set: :obj:`True`, optional
-    :param custom_emoji_sticker_set_name: For supergroups, the name of the group's custom emoji sticker set. Custom emoji from this set can be used by all users and bots in the group. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param custom_emoji_sticker_set_name: For supergroups, the name of the group's custom emoji sticker set. Custom emoji from this set can be used by all users and bots in the group. Returned only in :meth:`~apitele.Client.get_chat`.
     :type custom_emoji_sticker_set_name: :obj:`str`, optional
-    :param linked_chat_id: Unique identifier for the linked chat, i.e. the discussion group identifier for a channel and vice versa; for supergroups and channel chats. This identifier may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier. Returned only in :meth:`~aiotgm.Client.get_chat`.
+    :param linked_chat_id: Unique identifier for the linked chat, i.e. the discussion group identifier for a channel and vice versa; for supergroups and channel chats. This identifier may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier. Returned only in :meth:`~apitele.Client.get_chat`.
     :type linked_chat_id: :obj:`int`, optional
-    :param location: For supergroups, the location to which the supergroup is connected. Returned only in :meth:`~aiotgm.Client.get_chat`.
-    :type location: :obj:`~aiotgm.types.ChatLocation`, optional
+    :param location: For supergroups, the location to which the supergroup is connected. Returned only in :meth:`~apitele.Client.get_chat`.
+    :type location: :obj:`~apitele.types.ChatLocation`, optional
     '''
     @classmethod
     @_parse_result
@@ -1440,7 +1440,7 @@ class ChatBackground(TelegramType):
     This object represents a chat background.
 
     :param type: Type of the background.
-    :type type: :obj:`~aiotgm.types.BackgroundType`
+    :type type: :obj:`~apitele.types.BackgroundType`
     '''
     @classmethod
     @_parse_result
@@ -1469,7 +1469,7 @@ class ChatBoost(TelegramType):
     :param expiration_date: Point in time (Unix timestamp) when the boost will automatically expire, unless the booster's Telegram Premium subscription is prolonged.
     :type expiration_date: :obj:`int`
     :param source: Source of the added boost.
-    :type source: :obj:`~aiotgm.types.ChatBoostSource`
+    :type source: :obj:`~apitele.types.ChatBoostSource`
     '''
     @classmethod
     @_parse_result
@@ -1524,13 +1524,13 @@ class ChatBoostRemoved(TelegramType):
     This object represents a boost removed from a chat.
 
     :param chat: Chat which was boosted.
-    :type chat: :obj:`~aiotgm.types.Chat`
+    :type chat: :obj:`~apitele.types.Chat`
     :param boost_id: Unique identifier of the boost.
     :type boost_id: :obj:`str`
     :param remove_date: Point in time (Unix timestamp) when the boost was removed.
     :type remove_date: :obj:`int`
     :param source: Source of the removed boost.
-    :type source: :obj:`~aiotgm.types.ChatBoostSource`
+    :type source: :obj:`~apitele.types.ChatBoostSource`
     '''
     @classmethod
     @_parse_result
@@ -1563,7 +1563,7 @@ class ChatBoostSourceGiftCode(TelegramType):
     code boosts the chat 4 times for the duration of the corresponding Telegram Premium subscription.
 
     :param user: User for which the gift code was created.
-    :type user: :obj:`~aiotgm.types.User`
+    :type user: :obj:`~apitele.types.User`
     '''
     @classmethod
     @_parse_result
@@ -1591,7 +1591,7 @@ class ChatBoostSourceGiveaway(TelegramType):
     :param giveaway_message_id: Identifier of a message in the chat with the giveaway; the message could have been deleted already. May be 0 if the message isn't sent yet.
     :type giveaway_message_id: :obj:`int`
     :param user: User that won the prize in the giveaway if any.
-    :type user: :obj:`~aiotgm.types.User`, optional
+    :type user: :obj:`~apitele.types.User`, optional
     :param prize_star_count: The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only.
     :type prize_star_count: :obj:`int`, optional
     :param is_unclaimed: :obj:`True`, if the giveaway was completed, but there was no user to win the prize.
@@ -1629,7 +1629,7 @@ class ChatBoostSourcePremium(TelegramType):
     by gifting a Telegram Premium subscription to another user.
 
     :param user: User that boosted the chat.
-    :type user: :obj:`~aiotgm.types.User`
+    :type user: :obj:`~apitele.types.User`
     '''
     @classmethod
     @_parse_result
@@ -1653,9 +1653,9 @@ class ChatBoostUpdated(TelegramType):
     This object represents a boost added to a chat or changed.
 
     :param chat: Chat which was boosted.
-    :type chat: :obj:`~aiotgm.types.Chat`
+    :type chat: :obj:`~apitele.types.Chat`
     :param boost: Information about the chat boost.
-    :type boost: :obj:`~aiotgm.types.ChatBoost`
+    :type boost: :obj:`~apitele.types.ChatBoost`
     '''
     @classmethod
     @_parse_result
@@ -1699,21 +1699,21 @@ class ChatFullInfo(TelegramType):
     :param is_forum: :obj:`True`, if the supergroup chat is a forum (has `topics <https://telegram.org/blog/topics-in-groups-collectible-usernames#topics-in-groups>`_ enabled).
     :type is_forum: :obj:`True`, optional
     :param photo: Chat photo.
-    :type photo: :obj:`~aiotgm.types.ChatPhoto`, optional
+    :type photo: :obj:`~apitele.types.ChatPhoto`, optional
     :param active_usernames: If non-empty, the list of all `active chat usernames <https://telegram.org/blog/topics-in-groups-collectible-usernames#collectible-usernames>`_; for private chats, supergroups and channels.
     :type active_usernames: :obj:`list` of :obj:`str`, optional
     :param birthdate: For private chats, the date of birth of the user.
-    :type birthdate: :obj:`~aiotgm.types.Birthdate`, optional
+    :type birthdate: :obj:`~apitele.types.Birthdate`, optional
     :param business_intro: For private chats with business accounts, the intro of the business.
-    :type business_intro: :obj:`~aiotgm.types.BusinessIntro`, optional
+    :type business_intro: :obj:`~apitele.types.BusinessIntro`, optional
     :param business_location: For private chats with business accounts, the location of the business.
-    :type business_location: :obj:`~aiotgm.types.BusinessLocation`, optional
+    :type business_location: :obj:`~apitele.types.BusinessLocation`, optional
     :param business_opening_hours: For private chats with business accounts, the opening hours of the business.
-    :type business_opening_hours: :obj:`~aiotgm.types.BusinessOpeningHours`, optional
+    :type business_opening_hours: :obj:`~apitele.types.BusinessOpeningHours`, optional
     :param personal_chat: For private chats, the personal channel of the user.
-    :type personal_chat: :obj:`~aiotgm.types.Chat`, optional
-    :param available_reactions: List of available reactions allowed in the chat. If omitted, then all :obj:`emoji reactions <aiotgm.types.ReactionTypeEmoji>` are allowed.
-    :type available_reactions: :obj:`list` of :obj:`~aiotgm.types.ReactionType`, optional
+    :type personal_chat: :obj:`~apitele.types.Chat`, optional
+    :param available_reactions: List of available reactions allowed in the chat. If omitted, then all :obj:`emoji reactions <apitele.types.ReactionTypeEmoji>` are allowed.
+    :type available_reactions: :obj:`list` of :obj:`~apitele.types.ReactionType`, optional
     :param background_custom_emoji_id: Custom emoji identifier of the emoji chosen by the chat for the reply header and link preview background.
     :type background_custom_emoji_id: :obj:`str`, optional
     :param profile_accent_color_id: Identifier of the accent color for the chat's profile background. See `profile accent colors <https://core.telegram.org/bots/api#profile-accent-colors>`_ for more details.
@@ -1739,11 +1739,11 @@ class ChatFullInfo(TelegramType):
     :param invite_link: Primary invite link, for groups, supergroups and channel chats.
     :type invite_link: :obj:`str`, optional
     :param pinned_message: The most recent pinned message (by sending date).
-    :type pinned_message: :obj:`~aiotgm.types.Message`, optional
+    :type pinned_message: :obj:`~apitele.types.Message`, optional
     :param can_send_paid_media: :obj:`True`, if paid media messages can be sent or forwarded to the channel chat. The field is available only for channel chats.
     :type can_send_paid_media: :obj:`True`, optional
     :param permissions: Default chat member permissions, for groups and supergroups.
-    :type permissions: :obj:`~aiotgm.types.ChatPermissions`, optional
+    :type permissions: :obj:`~apitele.types.ChatPermissions`, optional
     :param slow_mode_delay: For supergroups, the minimum allowed delay between consecutive messages sent by each unprivileged user; in seconds.
     :type slow_mode_delay: :obj:`int`, optional
     :param unrestrict_boost_count: For supergroups, the minimum number of boosts that a non-administrator user needs to add in order to ignore slow mode and chat permissions.
@@ -1767,7 +1767,7 @@ class ChatFullInfo(TelegramType):
     :param linked_chat_id: Unique identifier for the linked chat, i.e. the discussion group identifier for a channel and vice versa; for supergroups and channel chats. This identifier may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
     :type linked_chat_id: :obj:`int`, optional
     :param location: For supergroups, the location to which the supergroup is connected.
-    :type location: :obj:`~aiotgm.types.ChatLocation`, optional
+    :type location: :obj:`~apitele.types.ChatLocation`, optional
     '''
     @classmethod
     @_parse_result
@@ -1921,7 +1921,7 @@ class ChatInviteLink(TelegramType):
     :param invite_link: The invite link. If the link was created by another chat administrator, then the second part of the link will be replaced with “…”.
     :type invite_link: :obj:`str`
     :param creator: Creator of the link.
-    :type creator: :obj:`~aiotgm.types.User`
+    :type creator: :obj:`~apitele.types.User`
     :param creates_join_request: :obj:`True`, if users joining the chat via the link need to be approved by chat administrators.
     :type creates_join_request: :obj:`bool`
     :param is_primary: :obj:`True`, if the link is primary.
@@ -1982,9 +1982,9 @@ class ChatJoinRequest(TelegramType):
     Represents a join request sent to a chat.
 
     :param chat: Chat to which the request was sent.
-    :type chat: :obj:`~aiotgm.types.Chat`
+    :type chat: :obj:`~apitele.types.Chat`
     :param from_user: User that sent the join request.
-    :type from_user: :obj:`~aiotgm.types.User`
+    :type from_user: :obj:`~apitele.types.User`
     :param user_chat_id: Identifier of a private chat with the user who sent the join request. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot can use this identifier for 5 minutes to send messages until the join request is processed, assuming no other administrator contacted the user.
     :type user_chat_id: :obj:`int`
     :param date: Date the request was sent in Unix time.
@@ -1992,7 +1992,7 @@ class ChatJoinRequest(TelegramType):
     :param bio: Bio of the user.
     :type bio: :obj:`str`, optional
     :param invite_link: Chat invite link that was used by the user to send the join request.
-    :type invite_link: :obj:`~aiotgm.types.ChatInviteLink`, optional
+    :type invite_link: :obj:`~apitele.types.ChatInviteLink`, optional
     '''
     @classmethod
     @_parse_result
@@ -2030,7 +2030,7 @@ class ChatLocation(TelegramType):
     Represents a location to which a chat is connected.
 
     :param location: The location to which the supergroup is connected. Can't be a live location.
-    :type location: :obj:`~aiotgm.types.Location`
+    :type location: :obj:`~apitele.types.Location`
     :param address: Location address; 1-64 characters, as defined by the chat owner.
     :type address: :obj:`str`
     '''
@@ -2055,10 +2055,10 @@ class ChatMemberAdministrator(TelegramType):
     '''
     https://core.telegram.org/bots/api#chatmemberadministrator
 
-    Represents a :obj:`chat member <aiotgm.types.ChatMember>` that has some additional privileges.
+    Represents a :obj:`chat member <apitele.types.ChatMember>` that has some additional privileges.
 
     :param user: Information about the user.
-    :type user: :obj:`~aiotgm.types.User`
+    :type user: :obj:`~apitele.types.User`
     :param can_be_edited: :obj:`True`, if the bot is allowed to edit administrator privileges of that user.
     :type can_be_edited: :obj:`bool`
     :param is_anonymous: :obj:`True`, if the user's presence in the chat is hidden.
@@ -2164,10 +2164,10 @@ class ChatMemberBanned(TelegramType):
     '''
     https://core.telegram.org/bots/api#chatmemberbanned
 
-    Represents a :obj:`chat member <aiotgm.types.ChatMember>` that was banned in the chat and can't return to the chat or view chat messages.
+    Represents a :obj:`chat member <apitele.types.ChatMember>` that was banned in the chat and can't return to the chat or view chat messages.
 
     :param user: Information about the user.
-    :type user: :obj:`~aiotgm.types.User`
+    :type user: :obj:`~apitele.types.User`
     :param until_date: Date when restrictions will be lifted for this user; Unix time. If 0, then the user is banned forever.
     :type until_date: :obj:`int`
     '''
@@ -2193,10 +2193,10 @@ class ChatMemberLeft(TelegramType):
     '''
     https://core.telegram.org/bots/api#chatmemberleft
 
-    Represents a :obj:`chat member <aiotgm.types.ChatMember>` that isn't currently a member of the chat, but may join it themselves.
+    Represents a :obj:`chat member <apitele.types.ChatMember>` that isn't currently a member of the chat, but may join it themselves.
 
     :param user: Information about the user.
-    :type user: :obj:`~aiotgm.types.User`
+    :type user: :obj:`~apitele.types.User`
     '''
     @classmethod
     @_parse_result
@@ -2217,10 +2217,10 @@ class ChatMemberMember(TelegramType):
     '''
     https://core.telegram.org/bots/api#chatmembermember
 
-    Represents a :obj:`chat member <aiotgm.types.ChatMember>` that has no additional privileges or restrictions.
+    Represents a :obj:`chat member <apitele.types.ChatMember>` that has no additional privileges or restrictions.
 
     :param user: Information about the user.
-    :type user: :obj:`~aiotgm.types.User`
+    :type user: :obj:`~apitele.types.User`
     :param until_date: Date when the user's subscription will expire; Unix time.
     :type until_date: :obj:`int`, optional
     '''
@@ -2246,10 +2246,10 @@ class ChatMemberOwner(TelegramType):
     '''
     https://core.telegram.org/bots/api#chatmemberowner
 
-    Represents a :obj:`chat member <aiotgm.types.ChatMember>` that owns the chat and has all administrator privileges.
+    Represents a :obj:`chat member <apitele.types.ChatMember>` that owns the chat and has all administrator privileges.
 
     :param user: Information about the user.
-    :type user: :obj:`~aiotgm.types.User`
+    :type user: :obj:`~apitele.types.User`
     :param is_anonymous: :obj:`True`, if the user's presence in the chat is hidden.
     :type is_anonymous: :obj:`bool`
     :param custom_title: Custom title for this user.
@@ -2280,10 +2280,10 @@ class ChatMemberRestricted(TelegramType):
     '''
     https://core.telegram.org/bots/api#chatmemberrestricted
 
-    Represents a :obj:`chat member <aiotgm.types.ChatMember>` that is under certain restrictions in the chat. Supergroups only.
+    Represents a :obj:`chat member <apitele.types.ChatMember>` that is under certain restrictions in the chat. Supergroups only.
 
     :param user: Information about the user.
-    :type user: :obj:`~aiotgm.types.User`
+    :type user: :obj:`~apitele.types.User`
     :param is_member: :obj:`True`, if the user is a member of the chat at the moment of the request.
     :type is_member: :obj:`bool`
     :param can_send_messages: :obj:`True`, if the user is allowed to send text messages, contacts, giveaways, giveaway winners, invoices, locations and venues.
@@ -2387,17 +2387,17 @@ class ChatMemberUpdated(TelegramType):
     This object represents changes in the status of a chat member.
 
     :param chat: Chat the user belongs to.
-    :type chat: :obj:`~aiotgm.types.Chat`
+    :type chat: :obj:`~apitele.types.Chat`
     :param from_user: Performer of the action, which resulted in the change.
-    :type from_user: :obj:`~aiotgm.types.User`
+    :type from_user: :obj:`~apitele.types.User`
     :param date: Date the change was done in Unix time.
     :type date: :obj:`int`
     :param old_chat_member: Previous information about the chat member.
-    :type old_chat_member: :obj:`~aiotgm.types.ChatMember`
+    :type old_chat_member: :obj:`~apitele.types.ChatMember`
     :param new_chat_member: New information about the chat member.
-    :type new_chat_member: :obj:`~aiotgm.types.ChatMember`
+    :type new_chat_member: :obj:`~apitele.types.ChatMember`
     :param invite_link: Chat invite link, which was used by the user to join the chat; for joining by invite link events only.
-    :type invite_link: :obj:`~aiotgm.types.ChatInviteLink`, optional
+    :type invite_link: :obj:`~apitele.types.ChatInviteLink`, optional
     :param via_join_request: :obj:`True`, if the user joined the chat after sending a direct join request without using an invite link and being approved by an administrator.
     :type via_join_request: :obj:`bool`, optional
     :param via_chat_folder_invite_link: :obj:`True`, if the user joined the chat via a chat folder invite link.
@@ -2569,7 +2569,7 @@ class ChatShared(TelegramType):
     https://core.telegram.org/bots/api#chatshared
 
     This object contains information about the chat whose identifier was shared
-    with the bot using a :obj:`~aiotgm.types.KeyboardButtonRequestChat` button.
+    with the bot using a :obj:`~apitele.types.KeyboardButtonRequestChat` button.
 
     :param request_id: Identifier of the request.
     :type request_id: :obj:`int`
@@ -2580,7 +2580,7 @@ class ChatShared(TelegramType):
     :param username: Username of the chat, if the username was requested by the bot and available.
     :type username: :obj:`str`, optional
     :param photo: Available sizes of the chat photo, if the photo was requested by the bot.
-    :type photo: :obj:`list` of :obj:`~aiotgm.types.PhotoSize`, optional
+    :type photo: :obj:`list` of :obj:`~apitele.types.PhotoSize`, optional
     '''
     @classmethod
     @_parse_result
@@ -2612,7 +2612,7 @@ class ChosenInlineResult(TelegramType):
     '''
     https://core.telegram.org/bots/api#choseninlineresult
 
-    Represents a :obj:`result <aiotgm.types.InlineQueryResult>` of an
+    Represents a :obj:`result <apitele.types.InlineQueryResult>` of an
     inline query that was chosen by the user and sent to their chat partner.
 
     **Note**: It is necessary to enable
@@ -2622,12 +2622,12 @@ class ChosenInlineResult(TelegramType):
     :param result_id: The unique identifier for the result that was chosen.
     :type result_id: :obj:`str`
     :param from_user: The user that chose the result.
-    :type from_user: :obj:`~aiotgm.types.User`
+    :type from_user: :obj:`~apitele.types.User`
     :param query: The query that was used to obtain the result.
     :type query: :obj:`str`
     :param location: Sender location, only for bots that require user location.
-    :type location: :obj:`~aiotgm.types.Location`, optional
-    :param inline_message_id: Identifier of the sent inline message. Available only if there is an :obj:`inline keyboard <aiotgm.types.InlineKeyboardMarkup>` attached to the message. Will be also received in :obj:`callback queries <aiotgm.types.CallbackQuery>` and can be used to `edit <https://core.telegram.org/bots/api#updating-messages>`_ the message.
+    :type location: :obj:`~apitele.types.Location`, optional
+    :param inline_message_id: Identifier of the sent inline message. Available only if there is an :obj:`inline keyboard <apitele.types.InlineKeyboardMarkup>` attached to the message. Will be also received in :obj:`callback queries <apitele.types.CallbackQuery>` and can be used to `edit <https://core.telegram.org/bots/api#updating-messages>`_ the message.
     :type inline_message_id: :obj:`str`, optional
     '''
     @classmethod
@@ -2754,15 +2754,15 @@ class Document(TelegramType):
     '''
     https://core.telegram.org/bots/api#document
 
-    This object represents a general file (as opposed to :obj:`photos <aiotgm.types.PhotoSize>`,
-    :obj:`voice messages <aiotgm.types.Voice>` and :obj:`audio files <aiotgm.types.Audio>`).
+    This object represents a general file (as opposed to :obj:`photos <apitele.types.PhotoSize>`,
+    :obj:`voice messages <apitele.types.Voice>` and :obj:`audio files <apitele.types.Audio>`).
 
     :param file_id: Identifier for this file, which can be used to download or reuse the file.
     :type file_id: :obj:`str`
     :param file_unique_id: Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
     :type file_unique_id: :obj:`str`
     :param thumbnail: Document thumbnail as defined by sender.
-    :type thumbnail: :obj:`~aiotgm.types.PhotoSize`, optional
+    :type thumbnail: :obj:`~apitele.types.PhotoSize`, optional
     :param file_name: Original filename as defined by sender.
     :type file_name: :obj:`str`, optional
     :param mime_type: MIME type of the file as defined by sender.
@@ -2804,11 +2804,11 @@ class EncryptedCredentials(TelegramType):
     https://core.telegram.org/bots/api#encryptedcredentials
 
     Describes data required for decrypting and
-    authenticating :obj:`~aiotgm.types.EncryptedPassportElement`. See the
+    authenticating :obj:`~apitele.types.EncryptedPassportElement`. See the
     `Telegram Passport Documentation <https://core.telegram.org/passport#receiving-information>`_
     for a complete description of the data decryption and authentication processes.
 
-    :param data: Base64-encoded encrypted JSON-serialized data with unique user's payload, data hashes and secrets required for :obj:`~aiotgm.types.EncryptedPassportElement` decryption and authentication.
+    :param data: Base64-encoded encrypted JSON-serialized data with unique user's payload, data hashes and secrets required for :obj:`~apitele.types.EncryptedPassportElement` decryption and authentication.
     :type data: :obj:`str`
     :param hash: Base64-encoded data hash for data authentication.
     :type hash: :obj:`str`
@@ -2843,24 +2843,24 @@ class EncryptedPassportElement(TelegramType):
 
     :param type: Element type. One of “personal_details”, “passport”, “driver_license”, “identity_card”, “internal_passport”, “address”, “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”, “phone_number”, “email”.
     :type type: :obj:`str`
-    :param hash: Base64-encoded element hash for using in :obj:`~aiotgm.types.PassportElementErrorUnspecified`.
+    :param hash: Base64-encoded element hash for using in :obj:`~apitele.types.PassportElementErrorUnspecified`.
     :type hash: :obj:`str`
-    :param data: Base64-encoded encrypted Telegram Passport element data provided by the user; available only for “personal_details”, “passport”, “driver_license”, “identity_card”, “internal_passport” and “address” types. Can be decrypted and verified using the accompanying :obj:`~aiotgm.types.EncryptedCredentials`.
+    :param data: Base64-encoded encrypted Telegram Passport element data provided by the user; available only for “personal_details”, “passport”, “driver_license”, “identity_card”, “internal_passport” and “address” types. Can be decrypted and verified using the accompanying :obj:`~apitele.types.EncryptedCredentials`.
     :type data: :obj:`str`, optional
     :param phone_number: User's verified phone number; available only for “phone_number” type.
     :type phone_number: :obj:`str`, optional
     :param email: User's verified email address; available only for “email” type.
     :type email: :obj:`str`, optional
-    :param files: Array of encrypted files with documents provided by the user; available only for “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration” and “temporary_registration” types. Files can be decrypted and verified using the accompanying :obj:`~aiotgm.types.EncryptedCredentials`.
-    :type files: :obj:`list` of :obj:`~aiotgm.types.PassportFile`, optional
-    :param front_side: Encrypted file with the front side of the document, provided by the user; available only for “passport”, “driver_license”, “identity_card” and “internal_passport”. The file can be decrypted and verified using the accompanying :obj:`~aiotgm.types.EncryptedCredentials`.
-    :type front_side: :obj:`~aiotgm.types.PassportFile`, optional
-    :param reverse_side: Encrypted file with the reverse side of the document, provided by the user; available only for “driver_license” and “identity_card”. The file can be decrypted and verified using the accompanying :obj:`~aiotgm.types.EncryptedCredentials`.
-    :type reverse_side: :obj:`~aiotgm.types.PassportFile`, optional
-    :param selfie: Encrypted file with the selfie of the user holding a document, provided by the user; available if requested for “passport”, “driver_license”, “identity_card” and “internal_passport”. The file can be decrypted and verified using the accompanying :obj:`~aiotgm.types.EncryptedCredentials`.
-    :type selfie: :obj:`~aiotgm.types.PassportFile`, optional
-    :param translation: Array of encrypted files with translated versions of documents provided by the user; available if requested for “passport”, “driver_license”, “identity_card”, “internal_passport”, “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration” and “temporary_registration” types. Files can be decrypted and verified using the accompanying :obj:`~aiotgm.types.EncryptedCredentials`.
-    :type translation: :obj:`list` of :obj:`~aiotgm.types.PassportFile`, optional
+    :param files: Array of encrypted files with documents provided by the user; available only for “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration” and “temporary_registration” types. Files can be decrypted and verified using the accompanying :obj:`~apitele.types.EncryptedCredentials`.
+    :type files: :obj:`list` of :obj:`~apitele.types.PassportFile`, optional
+    :param front_side: Encrypted file with the front side of the document, provided by the user; available only for “passport”, “driver_license”, “identity_card” and “internal_passport”. The file can be decrypted and verified using the accompanying :obj:`~apitele.types.EncryptedCredentials`.
+    :type front_side: :obj:`~apitele.types.PassportFile`, optional
+    :param reverse_side: Encrypted file with the reverse side of the document, provided by the user; available only for “driver_license” and “identity_card”. The file can be decrypted and verified using the accompanying :obj:`~apitele.types.EncryptedCredentials`.
+    :type reverse_side: :obj:`~apitele.types.PassportFile`, optional
+    :param selfie: Encrypted file with the selfie of the user holding a document, provided by the user; available if requested for “passport”, “driver_license”, “identity_card” and “internal_passport”. The file can be decrypted and verified using the accompanying :obj:`~apitele.types.EncryptedCredentials`.
+    :type selfie: :obj:`~apitele.types.PassportFile`, optional
+    :param translation: Array of encrypted files with translated versions of documents provided by the user; available if requested for “passport”, “driver_license”, “identity_card”, “internal_passport”, “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration” and “temporary_registration” types. Files can be decrypted and verified using the accompanying :obj:`~apitele.types.EncryptedCredentials`.
+    :type translation: :obj:`list` of :obj:`~apitele.types.PassportFile`, optional
     '''
     @classmethod
     @_parse_result
@@ -2911,53 +2911,53 @@ class ExternalReplyInfo(TelegramType):
     being replied to, which may come from another chat or forum topic.
 
     :param origin: Origin of the message replied to by the given message.
-    :type origin: :obj:`~aiotgm.types.MessageOrigin`
+    :type origin: :obj:`~apitele.types.MessageOrigin`
     :param chat: Chat the original message belongs to. Available only if the chat is a supergroup or a channel.
-    :type chat: :obj:`~aiotgm.types.Chat`, optional
+    :type chat: :obj:`~apitele.types.Chat`, optional
     :param message_id: Unique message identifier inside the original chat. Available only if the original chat is a supergroup or a channel.
     :type message_id: :obj:`int`, optional
     :param link_preview_options: Options used for link preview generation for the original message, if it is a text message.
-    :type link_preview_options: :obj:`~aiotgm.types.LinkPreviewOptions`, optional
+    :type link_preview_options: :obj:`~apitele.types.LinkPreviewOptions`, optional
     :param animation: Message is an animation, information about the animation.
-    :type animation: :obj:`~aiotgm.types.Animation`, optional
+    :type animation: :obj:`~apitele.types.Animation`, optional
     :param audio: Message is an audio file, information about the file.
-    :type audio: :obj:`~aiotgm.types.Audio`, optional
+    :type audio: :obj:`~apitele.types.Audio`, optional
     :param document: Message is a general file, information about the file.
-    :type document: :obj:`~aiotgm.types.Document`, optional
+    :type document: :obj:`~apitele.types.Document`, optional
     :param paid_media: Message contains paid media; information about the paid media.
-    :type paid_media: :obj:`~aiotgm.types.PaidMediaInfo`, optional
+    :type paid_media: :obj:`~apitele.types.PaidMediaInfo`, optional
     :param photo: Message is a photo, available sizes of the photo.
-    :type photo: :obj:`list` of :obj:`~aiotgm.types.PhotoSize`, optional
+    :type photo: :obj:`list` of :obj:`~apitele.types.PhotoSize`, optional
     :param sticker: Message is a sticker, information about the sticker.
-    :type sticker: :obj:`~aiotgm.types.Sticker`, optional
+    :type sticker: :obj:`~apitele.types.Sticker`, optional
     :param story: Message is a forwarded story.
-    :type story: :obj:`~aiotgm.types.Story`, optional
+    :type story: :obj:`~apitele.types.Story`, optional
     :param video: Message is a video, information about the video.
-    :type video: :obj:`~aiotgm.types.Video`, optional
+    :type video: :obj:`~apitele.types.Video`, optional
     :param video_note: Message is a `video note <https://telegram.org/blog/video-messages-and-telescope>`_, information about the video message.
-    :type video_note: :obj:`~aiotgm.types.VideoNote`, optional
+    :type video_note: :obj:`~apitele.types.VideoNote`, optional
     :param voice: Message is a voice message, information about the file.
-    :type voice: :obj:`~aiotgm.types.Voice`, optional
+    :type voice: :obj:`~apitele.types.Voice`, optional
     :param has_media_spoiler: :obj:`True`, if the message media is covered by a spoiler animation.
     :type has_media_spoiler: :obj:`True`, optional
     :param contact: Message is a shared contact, information about the contact.
-    :type contact: :obj:`~aiotgm.types.Contact`, optional
+    :type contact: :obj:`~apitele.types.Contact`, optional
     :param dice: Message is a dice with random value.
-    :type dice: :obj:`~aiotgm.types.Dice`, optional
+    :type dice: :obj:`~apitele.types.Dice`, optional
     :param game: Message is a game, information about the game. `More about games » <https://core.telegram.org/bots/api#games>`_.
-    :type game: :obj:`~aiotgm.types.Game`, optional
+    :type game: :obj:`~apitele.types.Game`, optional
     :param giveaway: Message is a scheduled giveaway, information about the giveaway.
-    :type giveaway: :obj:`~aiotgm.types.Giveaway`, optional
+    :type giveaway: :obj:`~apitele.types.Giveaway`, optional
     :param giveaway_winners: A giveaway with public winners was completed.
-    :type giveaway_winners: :obj:`~aiotgm.types.GiveawayWinners`, optional
+    :type giveaway_winners: :obj:`~apitele.types.GiveawayWinners`, optional
     :param invoice: Message is an invoice for a `payment <https://core.telegram.org/bots/api#payments>`_, information about the invoice. `More about payments » <https://core.telegram.org/bots/api#payments>`_.
-    :type invoice: :obj:`~aiotgm.types.Invoice`, optional
+    :type invoice: :obj:`~apitele.types.Invoice`, optional
     :param location: Message is a shared location, information about the location.
-    :type location: :obj:`~aiotgm.types.Location`, optional
+    :type location: :obj:`~apitele.types.Location`, optional
     :param poll: Message is a native poll, information about the poll.
-    :type poll: :obj:`~aiotgm.types.Poll`, optional
+    :type poll: :obj:`~apitele.types.Poll`, optional
     :param venue: Message is a venue, information about the venue.
-    :type venue: :obj:`~aiotgm.types.Venue`, optional
+    :type venue: :obj:`~apitele.types.Venue`, optional
     '''
     @classmethod
     @_parse_result
@@ -3049,7 +3049,7 @@ class File(TelegramType):
     This object represents a file ready to be downloaded. The file can be
     downloaded via the link ``https://api.telegram.org/file/bot<token>/<file_path>``.
     It is guaranteed that the link will be valid for at least 1 hour. When the link
-    expires, a new one can be requested by calling :meth:`~aiotgm.Client.get_file`.
+    expires, a new one can be requested by calling :meth:`~apitele.Client.get_file`.
 
         The maximum file size to download is 20 MB
 
@@ -3102,13 +3102,13 @@ class ForceReply(TelegramType):
         - Guide the user through a step-by-step process. 'Please send me your question', 'Cool, now let's add the first answer option', 'Great. Keep adding answer options, then send /done when you're ready'.
 
         The last option is definitely more attractive. And if you
-        use :obj:`~aiotgm.types.ForceReply` in your bot's questions,
+        use :obj:`~apitele.types.ForceReply` in your bot's questions,
         it will receive the user's answers even if it only receives
         replies, commands and mentions - without any extra work for the user.
 
     :param input_field_placeholder: The placeholder to be shown in the input field when the reply is active; 1-64 characters.
     :type input_field_placeholder: :obj:`str`, optional
-    :param selective: Use this parameter if you want to force reply from specific users only. Targets: 1) users that are @mentioned in the *text* of the :obj:`~aiotgm.types.Message` object; 2) if the bot's message is a reply to a message in the same chat and forum topic, sender of the original message.
+    :param selective: Use this parameter if you want to force reply from specific users only. Targets: 1) users that are @mentioned in the *text* of the :obj:`~apitele.types.Message` object; 2) if the bot's message is a reply to a message in the same chat and forum topic, sender of the original message.
     :type selective: :obj:`bool`, optional
     '''
     def __init__(
@@ -3267,13 +3267,13 @@ class Game(TelegramType):
     :param description: Description of the game.
     :type description: :obj:`str`
     :param photo: Photo that will be displayed in the game message in chats.
-    :type photo: :obj:`list` of :obj:`~aiotgm.types.PhotoSize`
-    :param text: Brief description of the game or high scores included in the game message. Can be automatically edited to include current high scores for the game when the bot calls :meth:`~aiotgm.Client.set_game_score`, or manually edited using :meth:`~aiotgm.Client.edit_message_text`. 0-4096 characters.
+    :type photo: :obj:`list` of :obj:`~apitele.types.PhotoSize`
+    :param text: Brief description of the game or high scores included in the game message. Can be automatically edited to include current high scores for the game when the bot calls :meth:`~apitele.Client.set_game_score`, or manually edited using :meth:`~apitele.Client.edit_message_text`. 0-4096 characters.
     :type text: :obj:`str`, optional
     :param text_entities: Special entities that appear in *text*, such as usernames, URLs, bot commands, etc.
-    :type text_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type text_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param animation: Animation that will be displayed in the game message in chats. Upload via `BotFather <https://t.me/botfather>`_.
-    :type animation: :obj:`~aiotgm.types.Animation`, optional
+    :type animation: :obj:`~apitele.types.Animation`, optional
     '''
     @classmethod
     @_parse_result
@@ -3313,7 +3313,7 @@ class GameHighScore(TelegramType):
     :param position: Position in high score table for the game.
     :type position: :obj:`int`
     :param user: User.
-    :type user: :obj:`~aiotgm.types.User`
+    :type user: :obj:`~apitele.types.User`
     :param score: Score.
     :type score: :obj:`int`
     '''
@@ -3378,7 +3378,7 @@ class Giveaway(TelegramType):
     This object represents a message about a scheduled giveaway.
 
     :param chats: The list of chats which the user must join to participate in the giveaway.
-    :type chats: :obj:`list` of :obj:`~aiotgm.types.Chat`
+    :type chats: :obj:`list` of :obj:`~apitele.types.Chat`
     :param winners_selection_date: Point in time (Unix timestamp) when winners of the giveaway will be selected.
     :type winners_selection_date: :obj:`int`
     :param winner_count: The number of users which are supposed to be selected as winners of the giveaway.
@@ -3445,7 +3445,7 @@ class GiveawayCompleted(TelegramType):
     :param unclaimed_prize_count: Number of undistributed prizes.
     :type unclaimed_prize_count: :obj:`int`, optional
     :param giveaway_message: Message with the giveaway that was completed, if it wasn't deleted.
-    :type giveaway_message: :obj:`~aiotgm.types.Message`, optional
+    :type giveaway_message: :obj:`~apitele.types.Message`, optional
     :param is_star_giveaway: :obj:`True`, if the giveaway is a Telegram Star giveaway. Otherwise, currently, the giveaway is a Telegram Premium giveaway.
     :type is_star_giveaway: :obj:`True`, optional
     '''
@@ -3502,7 +3502,7 @@ class GiveawayWinners(TelegramType):
     This object represents a message about the completion of a giveaway with public winners.
 
     :param chat: The chat that created the giveaway.
-    :type chat: :obj:`~aiotgm.types.Chat`
+    :type chat: :obj:`~apitele.types.Chat`
     :param giveaway_message_id: Identifier of the message with the giveaway in the chat.
     :type giveaway_message_id: :obj:`int`
     :param winners_selection_date: Point in time (Unix timestamp) when winners of the giveaway were selected.
@@ -3510,7 +3510,7 @@ class GiveawayWinners(TelegramType):
     :param winner_count: Total number of winners in the giveaway.
     :type winner_count: :obj:`int`
     :param winners: List of up to 100 winners of the giveaway.
-    :type winners: :obj:`list` of :obj:`~aiotgm.types.User`
+    :type winners: :obj:`list` of :obj:`~apitele.types.User`
     :param additional_chat_count: The number of other chats the user had to join in order to be eligible for the giveaway.
     :type additional_chat_count: :obj:`int`, optional
     :param prize_star_count: The number of Telegram Stars that were split between giveaway winners; for Telegram Star giveaways only.
@@ -3580,7 +3580,7 @@ class InaccessibleMessage(TelegramType):
     This object describes a message that was deleted or is otherwise inaccessible to the bot.
 
     :param chat: Chat the message belonged to.
-    :type chat: :obj:`~aiotgm.types.Chat`
+    :type chat: :obj:`~apitele.types.Chat`
     :param message_id: Unique message identifier inside the chat.
     :type message_id: :obj:`int`
     :param date: Always 0. The field can be used to differentiate regular and inaccessible messages.
@@ -3617,12 +3617,12 @@ class InlineKeyboardButton(TelegramType):
     :type text: :obj:`str`
     :param url: HTTP or tg:// URL to be opened when the button is pressed. Links ``tg://user?id=<user_id>`` can be used to mention a user by their identifier without using a username, if this is allowed by their privacy settings.
     :type url: :obj:`str`, optional
-    :param callback_data: Data to be sent in a :obj:`callback query <aiotgm.types.CallbackQuery>` to the bot when button is pressed, 1-64 bytes.
+    :param callback_data: Data to be sent in a :obj:`callback query <apitele.types.CallbackQuery>` to the bot when button is pressed, 1-64 bytes.
     :type callback_data: :obj:`str`, optional
-    :param web_app: Description of the `Web App <https://core.telegram.org/bots/webapps>`_ that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method :meth:`~aiotgm.Client.answer_web_app_query`. Available only in private chats between a user and the bot.
-    :type web_app: :obj:`~aiotgm.types.WebAppInfo`, optional
+    :param web_app: Description of the `Web App <https://core.telegram.org/bots/webapps>`_ that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method :meth:`~apitele.Client.answer_web_app_query`. Available only in private chats between a user and the bot.
+    :type web_app: :obj:`~apitele.types.WebAppInfo`, optional
     :param login_url: An HTTPS URL used to automatically authorize the user. Can be used as a replacement for the `Telegram Login Widget <https://core.telegram.org/widgets/login>`_.
-    :type login_url: :obj:`~aiotgm.types.LoginUrl`, optional
+    :type login_url: :obj:`~apitele.types.LoginUrl`, optional
     :param switch_inline_query: If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot's username and the specified inline query in the input field. May be empty, in which case just the bot's username will be inserted.
     :type switch_inline_query: :obj:`str`, optional
     :param switch_inline_query_current_chat:
@@ -3631,14 +3631,14 @@ class InlineKeyboardButton(TelegramType):
         This offers a quick way for the user to open your bot in inline mode in the same chat - good for selecting something from multiple options.
     :type switch_inline_query_current_chat: :obj:`str`, optional
     :param switch_inline_query_chosen_chat: If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field.
-    :type switch_inline_query_chosen_chat: :obj:`~aiotgm.types.SwitchInlineQueryChosenChat`, optional
+    :type switch_inline_query_chosen_chat: :obj:`~apitele.types.SwitchInlineQueryChosenChat`, optional
     :param copy_text: Description of the button that copies the specified text to the clipboard.
-    :type copy_text: :obj:`~aiotgm.types.CopyTextButton`, optional
+    :type copy_text: :obj:`~apitele.types.CopyTextButton`, optional
     :param callback_game:
         Description of the game that will be launched when the user presses the button.
 
         **NOTE**: This type of button **must** always be the first button in the first row.
-    :type callback_game: :obj:`~aiotgm.types.CallbackGame`, optional
+    :type callback_game: :obj:`~apitele.types.CallbackGame`, optional
     :param pay:
         Specify :obj:`True`, to send a `Pay button <https://core.telegram.org/bots/api#payments>`_.
 
@@ -3695,8 +3695,8 @@ class InlineKeyboardMarkup(TelegramType):
 
     This object represents an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ that appears right next to the message it belongs to.
 
-    :param inline_keyboard: Array of button rows, each represented by an Array of :obj:`~aiotgm.types.InlineKeyboardButton` objects.
-    :type inline_keyboard: :obj:`list` of :obj:`list` of :obj:`~aiotgm.types.InlineKeyboardButton`, optional
+    :param inline_keyboard: Array of button rows, each represented by an Array of :obj:`~apitele.types.InlineKeyboardButton` objects.
+    :type inline_keyboard: :obj:`list` of :obj:`list` of :obj:`~apitele.types.InlineKeyboardButton`, optional
     '''
     @classmethod
     @_parse_result
@@ -3727,9 +3727,9 @@ class InlineKeyboardMarkup(TelegramType):
             # the same row, you can change the row width after the
             # object initialization using the property setter 'row_width'.
 
-        :param buttons: :obj:`InlineKeyboardButtons <aiotgm.types.InlineKeyboardButton>` to add to a new row of the *inline_keyboard*.
-        :type buttons: \*\ :obj:`~aiotgm.types.InlineKeyboardButton`
-        :rtype: :obj:`~aiotgm.types.InlineKeyboardMarkup`
+        :param buttons: :obj:`InlineKeyboardButtons <apitele.types.InlineKeyboardButton>` to add to a new row of the *inline_keyboard*.
+        :type buttons: \*\ :obj:`~apitele.types.InlineKeyboardButton`
+        :rtype: :obj:`~apitele.types.InlineKeyboardMarkup`
         '''
         self.inline_keyboard.append(buttons)
         return self
@@ -3778,7 +3778,7 @@ class InlineQuery(TelegramType):
     :param id: Unique identifier for this query.
     :type id: :obj:`str`
     :param from_user: Sender.
-    :type from_user: :obj:`~aiotgm.types.User`
+    :type from_user: :obj:`~apitele.types.User`
     :param query: Text of the query (up to 256 characters).
     :type query: :obj:`str`
     :param offset: Offset of the results to be returned, can be controlled by the bot.
@@ -3786,7 +3786,7 @@ class InlineQuery(TelegramType):
     :param chat_type: Type of the chat from which the inline query was sent. Can be either “sender” for a private chat with the inline query sender, “private”, “group”, “supergroup”, or “channel”. The chat type should be always known for requests sent from official clients and most third-party clients, unless the request was sent from a secret chat.
     :type chat_type: :obj:`str`, optional
     :param location: Sender location, only for bots that request user location.
-    :type location: :obj:`~aiotgm.types.Location`, optional
+    :type location: :obj:`~apitele.types.Location`, optional
     '''
     @classmethod
     @_parse_result
@@ -3828,9 +3828,9 @@ class InlineQueryResultArticle(TelegramType):
     :param title: Title of the result.
     :type title: :obj:`str`
     :param input_message_content: Content of the message to be sent.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param url: URL of the result.
     :type url: :obj:`str`, optional
     :param hide_url: Pass :obj:`True` if you don't want the URL to be shown in the message.
@@ -3890,15 +3890,15 @@ class InlineQueryResultAudio(TelegramType):
     :param parse_mode: Mode for parsing entities in the audio caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param performer: Performer.
     :type performer: :obj:`str`, optional
     :param audio_duration: Audio duration in seconds.
     :type audio_duration: :obj:`int`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the audio.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     '''
     def __init__(
         self,
@@ -3943,11 +3943,11 @@ class InlineQueryResultCachedAudio(TelegramType):
     :param parse_mode: Mode for parsing entities in the audio caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the audio.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     '''
     def __init__(
         self,
@@ -3991,11 +3991,11 @@ class InlineQueryResultCachedDocument(TelegramType):
     :param parse_mode: Mode for parsing entities in the document caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the file.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     '''
     def __init__(
         self,
@@ -4041,13 +4041,13 @@ class InlineQueryResultCachedGif(TelegramType):
     :param parse_mode: Mode for parsing entities in the caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
     :type show_caption_above_media: :obj:`bool`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the GIF animation.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     '''
     def __init__(
         self,
@@ -4093,13 +4093,13 @@ class InlineQueryResultCachedMpeg4Gif(TelegramType):
     :param parse_mode: Mode for parsing entities in the caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
     :type show_caption_above_media: :obj:`bool`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the video animation.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     '''
     def __init__(
         self,
@@ -4147,13 +4147,13 @@ class InlineQueryResultCachedPhoto(TelegramType):
     :param parse_mode: Mode for parsing entities in the photo caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
     :type show_caption_above_media: :obj:`bool`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the photo.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     '''
     def __init__(
         self,
@@ -4194,9 +4194,9 @@ class InlineQueryResultCachedSticker(TelegramType):
     :param sticker_file_id: A valid file identifier of the sticker.
     :type sticker_file_id: :obj:`str`
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the sticker.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     '''
     def __init__(
         self,
@@ -4234,13 +4234,13 @@ class InlineQueryResultCachedVideo(TelegramType):
     :param parse_mode: Mode for parsing entities in the video caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
     :type show_caption_above_media: :obj:`bool`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the video.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     '''
     def __init__(
         self,
@@ -4287,11 +4287,11 @@ class InlineQueryResultCachedVoice(TelegramType):
     :param parse_mode: Mode for parsing entities in the voice message caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the voice message.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     '''
     def __init__(
         self,
@@ -4334,9 +4334,9 @@ class InlineQueryResultContact(TelegramType):
     :param vcard: Additional data about the contact in the form of a `vCard <https://en.wikipedia.org/wiki/VCard>`_, 0-2048 bytes.
     :type vcard: :obj:`str`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the contact.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     :param thumbnail_url: Url of the thumbnail for the result.
     :type thumbnail_url: :obj:`str`, optional
     :param thumbnail_width: Thumbnail width.
@@ -4391,13 +4391,13 @@ class InlineQueryResultDocument(TelegramType):
     :param parse_mode: Mode for parsing entities in the document caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param description: Short description of the result.
     :type description: :obj:`str`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the file.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     :param thumbnail_url: URL of the thumbnail (JPEG only) for the file.
     :type thumbnail_url: :obj:`str`, optional
     :param thumbnail_width: Thumbnail width.
@@ -4448,7 +4448,7 @@ class InlineQueryResultGame(TelegramType):
     :param game_short_name: Short name of the game.
     :type game_short_name: :obj:`str`
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     '''
     def __init__(
         self,
@@ -4491,13 +4491,13 @@ class InlineQueryResultGif(TelegramType):
     :param parse_mode: Mode for parsing entities in the caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
     :type show_caption_above_media: :obj:`bool`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the GIF animation.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     '''
     def __init__(
         self,
@@ -4557,9 +4557,9 @@ class InlineQueryResultLocation(TelegramType):
     :param proximity_alert_radius: For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
     :type proximity_alert_radius: :obj:`int`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the location.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     :param thumbnail_url: Url of the thumbnail for the result.
     :type thumbnail_url: :obj:`str`, optional
     :param thumbnail_width: Thumbnail width.
@@ -4629,13 +4629,13 @@ class InlineQueryResultMpeg4Gif(TelegramType):
     :param parse_mode: Mode for parsing entities in the caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
     :type show_caption_above_media: :obj:`bool`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the video animation.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     '''
     def __init__(
         self,
@@ -4698,13 +4698,13 @@ class InlineQueryResultPhoto(TelegramType):
     :param parse_mode: Mode for parsing entities in the photo caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
     :type show_caption_above_media: :obj:`bool`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the photo.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     '''
     def __init__(
         self,
@@ -4765,9 +4765,9 @@ class InlineQueryResultVenue(TelegramType):
     :param google_place_type: Google Places type of the venue. (See `supported types <https://developers.google.com/places/web-service/supported_types>`_.)
     :type google_place_type: :obj:`str`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the venue.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     :param thumbnail_url: Url of the thumbnail for the result.
     :type thumbnail_url: :obj:`str`, optional
     :param thumbnail_width: Thumbnail width.
@@ -4818,7 +4818,7 @@ class InlineQueryResultVideo(TelegramType):
     Alternatively, you can use *input_message_content* to send a message with the
     specified content instead of the video.
 
-        If an :obj:`~aiotgm.types.InlineQueryResultVideo` message contains an embedded
+        If an :obj:`~apitele.types.InlineQueryResultVideo` message contains an embedded
         video (e.g., YouTube), you **must** replace its content using *input_message_content*.
 
     :param id: Unique identifier for this result, 1-64 bytes.
@@ -4836,7 +4836,7 @@ class InlineQueryResultVideo(TelegramType):
     :param parse_mode: Mode for parsing entities in the video caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
     :type show_caption_above_media: :obj:`bool`, optional
     :param video_width: Video width.
@@ -4848,9 +4848,9 @@ class InlineQueryResultVideo(TelegramType):
     :param description: Short description of the result.
     :type description: :obj:`str`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
-    :param input_message_content: Content of the message to be sent instead of the video. This field is **required** if :obj:`~aiotgm.types.InlineQueryResultVideo` is used to send an HTML-page as a result (e.g., a YouTube video).
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
+    :param input_message_content: Content of the message to be sent instead of the video. This field is **required** if :obj:`~apitele.types.InlineQueryResultVideo` is used to send an HTML-page as a result (e.g., a YouTube video).
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     '''
     def __init__(
         self,
@@ -4908,13 +4908,13 @@ class InlineQueryResultVoice(TelegramType):
     :param parse_mode: Mode for parsing entities in the voice message caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param voice_duration: Recording duration in seconds.
     :type voice_duration: :obj:`int`, optional
     :param reply_markup: `Inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_ attached to the message.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param input_message_content: Content of the message to be sent instead of the voice recording.
-    :type input_message_content: :obj:`~aiotgm.types.InputMessageContent`, optional
+    :type input_message_content: :obj:`~apitele.types.InputMessageContent`, optional
     '''
     def __init__(
         self,
@@ -4950,13 +4950,13 @@ class InlineQueryResultsButton(TelegramType):
     :param text: Label text on the button.
     :type text: :obj:`str`
     :param web_app: Description of the `Web App <https://core.telegram.org/bots/webapps>`_ that will be launched when the user presses the button. The Web App will be able to switch back to the inline mode using the method `switchInlineQuery <https://core.telegram.org/bots/webapps#initializing-mini-apps>`_ inside the Web App.
-    :type web_app: :obj:`~aiotgm.types.WebAppInfo`, optional
+    :type web_app: :obj:`~apitele.types.WebAppInfo`, optional
     :param start_parameter:
         `Deep-linking <https://core.telegram.org/bots/features#deep-linking>`_ parameter for the /start message sent to the bot when a user presses the button. 1-64 characters, only ``A-Z``, ``a-z``, ``0-9``, ``_`` and ``-`` are allowed.
 
         *Example*: An inline bot that sends YouTube videos can ask the user to connect the bot to their YouTube account to adapt search results accordingly. To do this, it displays a 'Connect your YouTube account' button above the
         results, or even before showing any. The user presses the button, switches to a private chat with the bot and, in doing so, passes a start parameter that instructs the bot to return an OAuth link. Once done, the bot can offer
-        a :obj:`switch_inline <aiotgm.types.InlineKeyboardMarkup>` button so that the user can easily return to the chat where they wanted to use the bot's inline capabilities.
+        a :obj:`switch_inline <apitele.types.InlineKeyboardMarkup>` button so that the user can easily return to the chat where they wanted to use the bot's inline capabilities.
     :type start_parameter: :obj:`str`, optional
     '''
     def __init__(
@@ -4974,7 +4974,7 @@ class InputContactMessageContent(TelegramType):
     '''
     https://core.telegram.org/bots/api#inputcontactmessagecontent
 
-    Represents the :obj:`content <aiotgm.types.InputMessageContent>`
+    Represents the :obj:`content <apitele.types.InputMessageContent>`
     of a contact message to be sent as the result of an inline query.
 
     :param phone_number: Contact's phone number.
@@ -5036,7 +5036,7 @@ class InputInvoiceMessageContent(TelegramType):
     '''
     https://core.telegram.org/bots/api#inputinvoicemessagecontent
 
-    Represents the :obj:`content <aiotgm.types.InputMessageContent>` of an invoice message to be sent as the result of an inline query.
+    Represents the :obj:`content <apitele.types.InputMessageContent>` of an invoice message to be sent as the result of an inline query.
 
     :param title: Product name, 1-32 characters.
     :type title: :obj:`str`
@@ -5047,7 +5047,7 @@ class InputInvoiceMessageContent(TelegramType):
     :param currency: Three-letter ISO 4217 currency code, see `more on currencies <https://core.telegram.org/bots/payments#supported-currencies>`_. Pass “XTR” for payments in `Telegram Stars <https://t.me/BotNews/90>`_.
     :type currency: :obj:`str`
     :param prices: Price breakdown, a JSON-serialized list of components. (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.). Must contain exactly one item for payments in `Telegram Stars <https://t.me/BotNews/90>`_.
-    :type prices: :obj:`list` of :obj:`~aiotgm.types.LabeledPrice`
+    :type prices: :obj:`list` of :obj:`~apitele.types.LabeledPrice`
     :param provider_token: Payment provider token, obtained via `@BotFather <https://t.me/botfather>`_. Pass an empty string for payments in `Telegram Stars <https://t.me/BotNews/90>`_.
     :type provider_token: :obj:`str`, optional
     :param max_tip_amount: The maximum accepted amount for tips in the *smallest units* of the currency (integer, **not** float/double). For example, for a maximum tip of ``US$ 1.45`` pass ``max_tip_amount = 145``. See the *exp* parameter in `currencies.json <https://core.telegram.org/bots/payments/currencies.json>`_, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to :obj:`0`. Not supported for payments in `Telegram Stars <https://t.me/BotNews/90>`_.
@@ -5128,7 +5128,7 @@ class InputLocationMessageContent(TelegramType):
     '''
     https://core.telegram.org/bots/api#inputlocationmessagecontent
 
-    Represents the :obj:`content <aiotgm.types.InputMessageContent>`
+    Represents the :obj:`content <apitele.types.InputMessageContent>`
     of a location message to be sent as the result of an inline query.
 
     :param latitude: Latitude of the location in degrees.
@@ -5170,13 +5170,13 @@ class InputMediaAnimation(TelegramType):
     :param media: File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
     :type media: :obj:`str`
     :param thumbnail: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-    :type thumbnail: :obj:`~aiotgm.types.InputFile` or :obj:`str`, optional
+    :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
     :param caption: Caption of the animation to be sent, 0-1024 characters after entities parsing.
     :type caption: :obj:`str`, optional
     :param parse_mode: Mode for parsing entities in the animation caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
     :type show_caption_above_media: :obj:`bool`, optional
     :param width: Animation width.
@@ -5223,13 +5223,13 @@ class InputMediaAudio(TelegramType):
     :param media: File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
     :type media: :obj:`str`
     :param thumbnail: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-    :type thumbnail: :obj:`~aiotgm.types.InputFile` or :obj:`str`, optional
+    :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
     :param caption: Caption of the audio to be sent, 0-1024 characters after entities parsing.
     :type caption: :obj:`str`, optional
     :param parse_mode: Mode for parsing entities in the audio caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param duration: Duration of the audio in seconds.
     :type duration: :obj:`int`, optional
     :param performer: Performer of the audio.
@@ -5268,13 +5268,13 @@ class InputMediaDocument(TelegramType):
     :param media: File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
     :type media: :obj:`str`
     :param thumbnail: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-    :type thumbnail: :obj:`~aiotgm.types.InputFile` or :obj:`str`, optional
+    :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
     :param caption: Caption of the document to be sent, 0-1024 characters after entities parsing.
     :type caption: :obj:`str`, optional
     :param parse_mode: Mode for parsing entities in the document caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param disable_content_type_detection: Disables automatic server-side content type detection for files uploaded using multipart/form-data. Always :obj:`True`, if the document is sent as part of an album.
     :type disable_content_type_detection: :obj:`bool`, optional
     '''
@@ -5309,7 +5309,7 @@ class InputMediaPhoto(TelegramType):
     :param parse_mode: Mode for parsing entities in the photo caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
     :type show_caption_above_media: :obj:`bool`, optional
     :param has_spoiler: Pass :obj:`True` if the photo needs to be covered with a spoiler animation.
@@ -5342,13 +5342,13 @@ class InputMediaVideo(TelegramType):
     :param media: File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
     :type media: :obj:`str`
     :param thumbnail: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-    :type thumbnail: :obj:`~aiotgm.types.InputFile` or :obj:`str`, optional
+    :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
     :param caption: Caption of the video to be sent, 0-1024 characters after entities parsing.
     :type caption: :obj:`str`, optional
     :param parse_mode: Mode for parsing entities in the video caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param caption_entities: List of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-    :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
     :type show_caption_above_media: :obj:`bool`, optional
     :param width: Video width.
@@ -5416,7 +5416,7 @@ class InputPaidMediaVideo(TelegramType):
     :param media: File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
     :type media: :obj:`str`
     :param thumbnail: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-    :type thumbnail: :obj:`~aiotgm.types.InputFile` or :obj:`str`, optional
+    :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
     :param width: Video width.
     :type width: :obj:`int`, optional
     :param height: Video height.
@@ -5455,7 +5455,7 @@ class InputPollOption(TelegramType):
     :param text_parse_mode: Mode for parsing entities in the text. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details. Currently, only custom emoji entities are allowed.
     :type text_parse_mode: :obj:`str`, optional
     :param text_entities: A JSON-serialized list of special entities that appear in the poll option text. It can be specified instead of *text_parse_mode*.
-    :type text_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type text_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     '''
     def __init__(
         self,
@@ -5475,13 +5475,13 @@ class InputSticker(TelegramType):
     This object describes a sticker to be added to a sticker set.
 
     :param sticker: The added sticker. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, upload a new one using multipart/form-data, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. Animated and video stickers can't be uploaded via HTTP URL. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-    :type sticker: :obj:`~aiotgm.types.InputFile` or :obj:`str`
+    :type sticker: :obj:`~apitele.types.InputFile` or :obj:`str`
     :param format: Format of the added sticker, must be one of “static” for a **.WEBP** or **.PNG** image, “animated” for a **.TGS** animation, “video” for a **WEBM** video.
     :type format: :obj:`str`
     :param emoji_list: List of 1-20 emoji associated with the sticker.
     :type emoji_list: :obj:`list` of :obj:`str`
     :param mask_position: Position where the mask should be placed on faces. For “mask” stickers only.
-    :type mask_position: :obj:`~aiotgm.types.MaskPosition`, optional
+    :type mask_position: :obj:`~apitele.types.MaskPosition`, optional
     :param keywords: List of 0-20 search keywords for the sticker with total length of up to 64 characters. For “regular” and “custom_emoji” stickers only.
     :type keywords: :obj:`list` of :obj:`str`, optional
     '''
@@ -5504,7 +5504,7 @@ class InputTextMessageContent(TelegramType):
     '''
     https://core.telegram.org/bots/api#inputtextmessagecontent
 
-    Represents the :obj:`content <aiotgm.types.InputMessageContent>`
+    Represents the :obj:`content <apitele.types.InputMessageContent>`
     of a text message to be sent as the result of an inline query.
 
     :param message_text: Text of the message to be sent, 1-4096 characters.
@@ -5512,9 +5512,9 @@ class InputTextMessageContent(TelegramType):
     :param parse_mode: Mode for parsing entities in the message text. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type parse_mode: :obj:`str`, optional
     :param entities: List of special entities that appear in message text, which can be specified instead of *parse_mode*.
-    :type entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param link_preview_options: Link preview generation options for the message.
-    :type link_preview_options: :obj:`~aiotgm.types.LinkPreviewOptions`, optional
+    :type link_preview_options: :obj:`~apitele.types.LinkPreviewOptions`, optional
     '''
     def __init__(
         self,
@@ -5533,7 +5533,7 @@ class InputVenueMessageContent(TelegramType):
     '''
     https://core.telegram.org/bots/api#inputvenuemessagecontent
 
-    Represents the :obj:`content <aiotgm.types.InputMessageContent>`
+    Represents the :obj:`content <apitele.types.InputMessageContent>`
     of a venue message to be sent as the result of an inline query.
 
     :param latitude: Latitude of the venue in degrees.
@@ -5628,17 +5628,17 @@ class KeyboardButton(TelegramType):
     :param text: Text of the button. If none of the optional fields are used, it will be sent as a message when the button is pressed.
     :type text: :obj:`str`
     :param request_users: If specified, pressing the button will open a list of suitable users. Identifiers of selected users will be sent to the bot in a “users_shared” service message. Available in private chats only.
-    :type request_users: :obj:`~aiotgm.types.KeyboardButtonRequestUsers`, optional
+    :type request_users: :obj:`~apitele.types.KeyboardButtonRequestUsers`, optional
     :param request_chat: If specified, pressing the button will open a list of suitable chats. Tapping on a chat will send its identifier to the bot in a “chat_shared” service message. Available in private chats only.
-    :type request_chat: :obj:`~aiotgm.types.KeyboardButtonRequestChat`, optional
+    :type request_chat: :obj:`~apitele.types.KeyboardButtonRequestChat`, optional
     :param request_contact: If :obj:`True`, the user's phone number will be sent as a contact when the button is pressed. Available in private chats only.
     :type request_contact: :obj:`bool`, optional
     :param request_location: If :obj:`True`, the user's current location will be sent when the button is pressed. Available in private chats only.
     :type request_location: :obj:`bool`, optional
     :param request_poll: If specified, the user will be asked to create a poll and send it to the bot when the button is pressed. Available in private chats only.
-    :type request_poll: :obj:`~aiotgm.types.KeyboardButtonPollType`, optional
+    :type request_poll: :obj:`~apitele.types.KeyboardButtonPollType`, optional
     :param web_app: If specified, the described `Web App <https://core.telegram.org/bots/webapps>`_ will be launched when the button is pressed. The Web App will be able to send a “web_app_data” service message. Available in private chats only.
-    :type web_app: :obj:`~aiotgm.types.WebAppInfo`, optional
+    :type web_app: :obj:`~apitele.types.WebAppInfo`, optional
     '''
     def __init__(
         self,
@@ -5684,7 +5684,7 @@ class KeyboardButtonRequestChat(TelegramType):
     selected chat will be shared with the bot when the corresponding button is pressed. The bot
     will be granted requested rights in the chat if appropriate `More about requesting chats » <https://core.telegram.org/bots/features#chat-and-user-selection>`_.
 
-    :param request_id: Signed 32-bit identifier of the request, which will be received back in the :obj:`~aiotgm.types.ChatShared` object. Must be unique within the message.
+    :param request_id: Signed 32-bit identifier of the request, which will be received back in the :obj:`~apitele.types.ChatShared` object. Must be unique within the message.
     :type request_id: :obj:`int`
     :param chat_is_channel: Pass :obj:`True` to request a channel chat, pass :obj:`False` to request a group or a supergroup chat.
     :type chat_is_channel: :obj:`bool`
@@ -5695,9 +5695,9 @@ class KeyboardButtonRequestChat(TelegramType):
     :param chat_is_created: Pass :obj:`True` to request a chat owned by the user. Otherwise, no additional restrictions are applied.
     :type chat_is_created: :obj:`bool`, optional
     :param user_administrator_rights: A JSON-serialized object listing the required administrator rights of the user in the chat. The rights must be a superset of *bot_administrator_rights*. If not specified, no additional restrictions are applied.
-    :type user_administrator_rights: :obj:`~aiotgm.types.ChatAdministratorRights`, optional
+    :type user_administrator_rights: :obj:`~apitele.types.ChatAdministratorRights`, optional
     :param bot_administrator_rights: A JSON-serialized object listing the required administrator rights of the bot in the chat. The rights must be a subset of *user_administrator_rights*. If not specified, no additional restrictions are applied.
-    :type bot_administrator_rights: :obj:`~aiotgm.types.ChatAdministratorRights`, optional
+    :type bot_administrator_rights: :obj:`~apitele.types.ChatAdministratorRights`, optional
     :param bot_is_member: Pass :obj:`True` to request a chat with the bot as a member. Otherwise, no additional restrictions are applied.
     :type bot_is_member: :obj:`bool`, optional
     :param request_title: Pass :obj:`True` to request the chat's title.
@@ -5742,7 +5742,7 @@ class KeyboardButtonRequestUsers(TelegramType):
     selected users will be shared with the bot when the corresponding button is pressed.
     `More about requesting users » <https://core.telegram.org/bots/features#chat-and-user-selection>`_.
 
-    :param request_id: Signed 32-bit identifier of the request that will be received back in the :obj:`~aiotgm.types.UsersShared` object. Must be unique within the message.
+    :param request_id: Signed 32-bit identifier of the request that will be received back in the :obj:`~apitele.types.UsersShared` object. Must be unique within the message.
     :type request_id: :obj:`int`
     :param user_is_bot: Pass :obj:`True` to request bots, pass :obj:`False` to request regular users. If not specified, no additional restrictions are applied.
     :type user_is_bot: :obj:`bool`, optional
@@ -6012,8 +6012,8 @@ class MenuButtonWebApp(TelegramType):
 
     :param text: Text on the button.
     :type text: :obj:`str`
-    :param web_app: Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method :meth:`~aiotgm.Client.answer_web_app_query`. Alternatively, a ``t.me`` link to a Web App of the bot can be specified in the object instead of the Web App's URL, in which case the Web App will be opened as if the user pressed the link.
-    :type web_app: :obj:`~aiotgm.types.WebAppInfo`
+    :param web_app: Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method :meth:`~apitele.Client.answer_web_app_query`. Alternatively, a ``t.me`` link to a Web App of the bot can be specified in the object instead of the Web App's URL, in which case the Web App will be opened as if the user pressed the link.
+    :type web_app: :obj:`~apitele.types.WebAppInfo`
     '''
     @classmethod
     @_parse_result
@@ -6044,35 +6044,35 @@ class Message(TelegramType):
     :param date: Date the message was sent in Unix time. It is always a positive number, representing a valid date.
     :type date: :obj:`int`
     :param chat: Chat the message belongs to.
-    :type chat: :obj:`~aiotgm.types.Chat`
+    :type chat: :obj:`~apitele.types.Chat`
     :param message_thread_id: Unique identifier of a message thread to which the message belongs; for supergroups only.
     :type message_thread_id: :obj:`int`, optional
     :param from_user: Sender of the message; empty for messages sent to channels. For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
-    :type from_user: :obj:`~aiotgm.types.User`, optional
+    :type from_user: :obj:`~apitele.types.User`, optional
     :param sender_chat: Sender of the message, sent on behalf of a chat. For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group. For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
-    :type sender_chat: :obj:`~aiotgm.types.Chat`, optional
+    :type sender_chat: :obj:`~apitele.types.Chat`, optional
     :param sender_boost_count: If the sender of the message boosted the chat, the number of boosts added by the user.
     :type sender_boost_count: :obj:`int`, optional
     :param sender_business_bot: The bot that actually sent the message on behalf of the business account. Available only for outgoing messages sent on behalf of the connected business account.
-    :type sender_business_bot: :obj:`~aiotgm.types.User`, optional
+    :type sender_business_bot: :obj:`~apitele.types.User`, optional
     :param business_connection_id: Unique identifier of the business connection from which the message was received. If non-empty, the message belongs to a chat of the corresponding business account that is independent from any potential bot chat which might share the same identifier.
     :type business_connection_id: :obj:`str`, optional
     :param forward_origin: Information about the original message for forwarded messages.
-    :type forward_origin: :obj:`~aiotgm.types.MessageOrigin`, optional
+    :type forward_origin: :obj:`~apitele.types.MessageOrigin`, optional
     :param is_topic_message: :obj:`True`, if the message is sent to a forum topic.
     :type is_topic_message: :obj:`True`, optional
     :param is_automatic_forward: :obj:`True`, if the message is a channel post that was automatically forwarded to the connected discussion group.
     :type is_automatic_forward: :obj:`True`, optional
     :param reply_to_message: For replies in the same chat and message thread, the original message. Note that the Message object in this field will not contain further *reply_to_message* fields even if it itself is a reply.
-    :type reply_to_message: :obj:`~aiotgm.types.Message`, optional
+    :type reply_to_message: :obj:`~apitele.types.Message`, optional
     :param external_reply: Information about the message that is being replied to, which may come from another chat or forum topic.
-    :type external_reply: :obj:`~aiotgm.types.ExternalReplyInfo`, optional
+    :type external_reply: :obj:`~apitele.types.ExternalReplyInfo`, optional
     :param quote: For replies that quote part of the original message, the quoted part of the message.
-    :type quote: :obj:`~aiotgm.types.TextQuote`, optional
+    :type quote: :obj:`~apitele.types.TextQuote`, optional
     :param reply_to_story: For replies to a story, the original story.
-    :type reply_to_story: :obj:`~aiotgm.types.Story`, optional
+    :type reply_to_story: :obj:`~apitele.types.Story`, optional
     :param via_bot: Bot through which the message was sent.
-    :type via_bot: :obj:`~aiotgm.types.User`, optional
+    :type via_bot: :obj:`~apitele.types.User`, optional
     :param edit_date: Date the message was last edited in Unix time.
     :type edit_date: :obj:`int`, optional
     :param has_protected_content: :obj:`True`, if the message can't be forwarded.
@@ -6086,31 +6086,31 @@ class Message(TelegramType):
     :param text: For text messages, the actual UTF-8 text of the message.
     :type text: :obj:`str`, optional
     :param entities: For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text.
-    :type entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param link_preview_options: Options used for link preview generation for the message, if it is a text message and link preview options were changed.
-    :type link_preview_options: :obj:`~aiotgm.types.LinkPreviewOptions`, optional
+    :type link_preview_options: :obj:`~apitele.types.LinkPreviewOptions`, optional
     :param effect_id: Unique identifier of the message effect added to the message.
     :type effect_id: :obj:`str`, optional
     :param animation: Message is an animation, information about the animation. For backward compatibility, when this field is set, the document field will also be set.
-    :type animation: :obj:`~aiotgm.types.Animation`, optional
+    :type animation: :obj:`~apitele.types.Animation`, optional
     :param audio: Message is an audio file, information about the file.
-    :type audio: :obj:`~aiotgm.types.Audio`, optional
+    :type audio: :obj:`~apitele.types.Audio`, optional
     :param document: Message is a general file, information about the file.
-    :type document: :obj:`~aiotgm.types.Document`, optional
+    :type document: :obj:`~apitele.types.Document`, optional
     :param paid_media: Message contains paid media; information about the paid media.
-    :type paid_media: :obj:`~aiotgm.types.PaidMediaInfo`, optional
+    :type paid_media: :obj:`~apitele.types.PaidMediaInfo`, optional
     :param photo: Message is a photo, available sizes of the photo.
-    :type photo: :obj:`list` of :obj:`~aiotgm.types.PhotoSize`, optional
+    :type photo: :obj:`list` of :obj:`~apitele.types.PhotoSize`, optional
     :param sticker: Message is a sticker, information about the sticker.
-    :type sticker: :obj:`~aiotgm.types.Sticker`, optional
+    :type sticker: :obj:`~apitele.types.Sticker`, optional
     :param story: Message is a forwarded story.
-    :type story: :obj:`~aiotgm.types.Story`, optional
+    :type story: :obj:`~apitele.types.Story`, optional
     :param video: Message is a video, information about the video.
-    :type video: :obj:`~aiotgm.types.Video`, optional
+    :type video: :obj:`~apitele.types.Video`, optional
     :param video_note: Message is a `video note <https://telegram.org/blog/video-messages-and-telescope>`_, information about the video message.
-    :type video_note: :obj:`~aiotgm.types.VideoNote`, optional
+    :type video_note: :obj:`~apitele.types.VideoNote`, optional
     :param voice: Message is a voice message, information about the file.
-    :type voice: :obj:`~aiotgm.types.Voice`, optional
+    :type voice: :obj:`~apitele.types.Voice`, optional
     :param caption: Caption for the animation, audio, document, photo, video or voice.
     :type caption: :obj:`str`, optional
     :param caption_entities: For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption.
@@ -6120,25 +6120,25 @@ class Message(TelegramType):
     :param has_media_spoiler: :obj:`True`, if the message media is covered by a spoiler animation.
     :type has_media_spoiler: :obj:`True`, optional
     :param contact: Message is a shared contact, information about the contact.
-    :type contact: :obj:`~aiotgm.types.Contact`, optional
+    :type contact: :obj:`~apitele.types.Contact`, optional
     :param dice: Message is a dice with random value.
-    :type dice: :obj:`~aiotgm.types.Dice`, optional
+    :type dice: :obj:`~apitele.types.Dice`, optional
     :param game: Message is a game, information about the game. `More about games » <https://core.telegram.org/bots/api#games>`_.
-    :type game: :obj:`~aiotgm.types.Game`, optional
+    :type game: :obj:`~apitele.types.Game`, optional
     :param poll: Message is a native poll, information about the poll.
-    :type poll: :obj:`~aiotgm.types.Poll`, optional
+    :type poll: :obj:`~apitele.types.Poll`, optional
     :param venue: Message is a venue, information about the venue. For backward compatibility, when this field is set, the location field will also be set.
-    :type venue: :obj:`~aiotgm.types.Venue`, optional
+    :type venue: :obj:`~apitele.types.Venue`, optional
     :param location: Message is a shared location, information about the location.
-    :type location: :obj:`~aiotgm.types.Location`, optional
+    :type location: :obj:`~apitele.types.Location`, optional
     :param new_chat_members: New members that were added to the group or supergroup and information about them (the bot itself may be one of these members).
-    :type new_chat_members: :obj:`list` of :obj:`~aiotgm.types.User`, optional
+    :type new_chat_members: :obj:`list` of :obj:`~apitele.types.User`, optional
     :param left_chat_member: A member was removed from the group, information about them (this member may be the bot itself).
-    :type left_chat_member: :obj:`~aiotgm.types.User`, optional
+    :type left_chat_member: :obj:`~apitele.types.User`, optional
     :param new_chat_title: A chat title was changed to this value.
     :type new_chat_title: :obj:`str`, optional
     :param new_chat_photo: A chat photo was change to this value.
-    :type new_chat_photo: :obj:`list` of :obj:`~aiotgm.types.PhotoSize`, optional
+    :type new_chat_photo: :obj:`list` of :obj:`~apitele.types.PhotoSize`, optional
     :param delete_chat_photo: Service message: the chat photo was deleted.
     :type delete_chat_photo: :obj:`True`, optional
     :param group_chat_created: Service message: the group has been created.
@@ -6148,67 +6148,67 @@ class Message(TelegramType):
     :param channel_chat_created: Service message: the channel has been created. This field can't be received in a message coming through updates, because bot can't be a member of a channel when it is created. It can only be found in reply_to_message if someone replies to a very first message in a channel.
     :type channel_chat_created: :obj:`True`, optional
     :param message_auto_delete_timer_changed: Service message: auto-delete timer settings changed in the chat.
-    :type message_auto_delete_timer_changed: :obj:`~aiotgm.types.MessageAutoDeleteTimerChanged`, optional
+    :type message_auto_delete_timer_changed: :obj:`~apitele.types.MessageAutoDeleteTimerChanged`, optional
     :param migrate_to_chat_id: The group has been migrated to a supergroup with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
     :type migrate_to_chat_id: :obj:`int`, optional
     :param migrate_from_chat_id: The supergroup has been migrated from a group with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
     :type migrate_from_chat_id: :obj:`int`, optional
     :param pinned_message: Specified message was pinned. Note that the Message object in this field will not contain further *reply_to_message* fields even if it itself is a reply.
-    :type pinned_message: :obj:`~aiotgm.types.MaybeInaccessibleMessage`, optional
+    :type pinned_message: :obj:`~apitele.types.MaybeInaccessibleMessage`, optional
     :param invoice: Message is an invoice for a `payment <https://core.telegram.org/bots/api#payments>`_, information about the invoice. `More about payments » <https://core.telegram.org/bots/api#payments>`_.
-    :type invoice: :obj:`~aiotgm.types.Invoice`, optional
+    :type invoice: :obj:`~apitele.types.Invoice`, optional
     :param successful_payment: Message is a service message about a successful payment, information about the payment. `More about payments » <https://core.telegram.org/bots/api#payments>`_.
-    :type successful_payment: :obj:`~aiotgm.types.SuccessfulPayment`, optional
+    :type successful_payment: :obj:`~apitele.types.SuccessfulPayment`, optional
     :param refunded_payment: Message is a service message about a refunded payment, information about the payment. `More about payments » <https://core.telegram.org/bots/api#payments>`_.
-    :type refunded_payment: :obj:`~aiotgm.types.RefundedPayment`, optional
+    :type refunded_payment: :obj:`~apitele.types.RefundedPayment`, optional
     :param users_shared: Service message: users were shared with the bot.
-    :type users_shared: :obj:`~aiotgm.types.UsersShared`, optional
+    :type users_shared: :obj:`~apitele.types.UsersShared`, optional
     :param chat_shared: Service message: a chat was shared with the bot.
-    :type chat_shared: :obj:`~aiotgm.types.ChatShared`, optional
+    :type chat_shared: :obj:`~apitele.types.ChatShared`, optional
     :param connected_website: The domain name of the website on which the user has logged in. `More about Telegram Login » <https://core.telegram.org/widgets/login>`_.
     :type connected_website: :obj:`str`, optional
     :param write_access_allowed: Service message: the user allowed the bot to write messages after adding it to the attachment or side menu, launching a Web App from a link, or accepting an explicit request from a Web App sent by the method `requestWriteAccess <https://core.telegram.org/bots/webapps#initializing-mini-apps>`_.
-    :type write_access_allowed: :obj:`~aiotgm.types.WriteAccessAllowed`, optional
+    :type write_access_allowed: :obj:`~apitele.types.WriteAccessAllowed`, optional
     :param passport_data: Telegram Passport data.
-    :type passport_data: :obj:`~aiotgm.types.PassportData`, optional
+    :type passport_data: :obj:`~apitele.types.PassportData`, optional
     :param proximity_alert_triggered: Service message. A user in the chat triggered another user's proximity alert while sharing Live Location.
-    :type proximity_alert_triggered: :obj:`~aiotgm.types.ProximityAlertTriggered`, optional
+    :type proximity_alert_triggered: :obj:`~apitele.types.ProximityAlertTriggered`, optional
     :param boost_added: Service message: user boosted the chat.
-    :type boost_added: :obj:`~aiotgm.types.ChatBoostAdded`, optional
+    :type boost_added: :obj:`~apitele.types.ChatBoostAdded`, optional
     :param chat_background_set: Service message: chat background set.
-    :type chat_background_set: :obj:`~aiotgm.types.ChatBackground`, optional
+    :type chat_background_set: :obj:`~apitele.types.ChatBackground`, optional
     :param forum_topic_created: Service message: forum topic created.
-    :type forum_topic_created: :obj:`~aiotgm.types.ForumTopicCreated`, optional
+    :type forum_topic_created: :obj:`~apitele.types.ForumTopicCreated`, optional
     :param forum_topic_edited: Service message: forum topic edited.
-    :type forum_topic_edited: :obj:`~aiotgm.types.ForumTopicEdited`, optional
+    :type forum_topic_edited: :obj:`~apitele.types.ForumTopicEdited`, optional
     :param forum_topic_closed: Service message: forum topic closed.
-    :type forum_topic_closed: :obj:`~aiotgm.types.ForumTopicClosed`, optional
+    :type forum_topic_closed: :obj:`~apitele.types.ForumTopicClosed`, optional
     :param forum_topic_reopened: Service message: forum topic reopened.
-    :type forum_topic_reopened: :obj:`~aiotgm.types.ForumTopicReopened`, optional
+    :type forum_topic_reopened: :obj:`~apitele.types.ForumTopicReopened`, optional
     :param general_forum_topic_hidden: Service message: the 'General' forum topic hidden.
-    :type general_forum_topic_hidden: :obj:`~aiotgm.types.GeneralForumTopicHidden`, optional
+    :type general_forum_topic_hidden: :obj:`~apitele.types.GeneralForumTopicHidden`, optional
     :param general_forum_topic_unhidden: Service message: the 'General' forum topic unhidden.
-    :type general_forum_topic_unhidden: :obj:`~aiotgm.types.GeneralForumTopicUnhidden`, optional
+    :type general_forum_topic_unhidden: :obj:`~apitele.types.GeneralForumTopicUnhidden`, optional
     :param giveaway_created: Service message: a scheduled giveaway was created.
-    :type giveaway_created: :obj:`~aiotgm.types.GiveawayCreated`, optional
+    :type giveaway_created: :obj:`~apitele.types.GiveawayCreated`, optional
     :param giveaway: The message is a scheduled giveaway message.
-    :type giveaway: :obj:`~aiotgm.types.Giveaway`, optional
+    :type giveaway: :obj:`~apitele.types.Giveaway`, optional
     :param giveaway_winners: A giveaway with public winners was completed.
-    :type giveaway_winners: :obj:`~aiotgm.types.GiveawayWinners`, optional
+    :type giveaway_winners: :obj:`~apitele.types.GiveawayWinners`, optional
     :param giveaway_completed: Service message: a giveaway without public winners was completed.
-    :type giveaway_completed: :obj:`~aiotgm.types.GiveawayCompleted`, optional
+    :type giveaway_completed: :obj:`~apitele.types.GiveawayCompleted`, optional
     :param video_chat_scheduled: Service message: video chat scheduled.
-    :type video_chat_scheduled: :obj:`~aiotgm.types.VideoChatScheduled`, optional
+    :type video_chat_scheduled: :obj:`~apitele.types.VideoChatScheduled`, optional
     :param video_chat_started: Service message: video chat started.
-    :type video_chat_started: :obj:`~aiotgm.types.VideoChatStarted`, optional
+    :type video_chat_started: :obj:`~apitele.types.VideoChatStarted`, optional
     :param video_chat_ended: Service message: video chat ended.
-    :type video_chat_ended: :obj:`~aiotgm.types.VideoChatEnded`, optional
+    :type video_chat_ended: :obj:`~apitele.types.VideoChatEnded`, optional
     :param video_chat_participants_invited: Service message: new participants invited to a video chat.
-    :type video_chat_participants_invited: :obj:`~aiotgm.types.VideoChatParticipantsInvited`, optional
+    :type video_chat_participants_invited: :obj:`~apitele.types.VideoChatParticipantsInvited`, optional
     :param web_app_data: Service message: data sent by a Web App.
-    :type web_app_data: :obj:`~aiotgm.types.WebAppData`, optional
+    :type web_app_data: :obj:`~apitele.types.WebAppData`, optional
     :param reply_markup: Inline keyboard attached to the message. ``login_url`` buttons are represented as ordinary ``url`` buttons.
-    :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
+    :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     '''
     @classmethod
     @_parse_result
@@ -6515,10 +6515,10 @@ class MessageEntity(TelegramType):
     :param url: For “text_link” only, URL that will be opened after user taps on the text.
     :type url: :obj:`str`, optional
     :param user: For “text_mention” only, the mentioned user.
-    :type user: :obj:`~aiotgm.types.User`, optional
+    :type user: :obj:`~apitele.types.User`, optional
     :param language: For “pre” only, the programming language of the entity text.
     :type language: :obj:`str`, optional
-    :param custom_emoji_id: For “custom_emoji” only, unique identifier of the custom emoji. Use :meth:`~aiotgm.Client.get_custom_emoji_stickers` to get full information about the sticker.
+    :param custom_emoji_id: For “custom_emoji” only, unique identifier of the custom emoji. Use :meth:`~apitele.Client.get_custom_emoji_stickers` to get full information about the sticker.
     :type custom_emoji_id: :obj:`str`, optional
     '''
     @classmethod
@@ -6585,7 +6585,7 @@ class MessageOriginChannel(TelegramType):
     :param date: Date the message was sent originally in Unix time.
     :type date: :obj:`int`
     :param chat: Channel chat to which the message was originally sent.
-    :type chat: :obj:`~aiotgm.types.Chat`
+    :type chat: :obj:`~apitele.types.Chat`
     :param message_id: Unique message identifier inside the chat.
     :type message_id: :obj:`int`
     :param author_signature: Signature of the original post author.
@@ -6624,7 +6624,7 @@ class MessageOriginChat(TelegramType):
     :param date: Date the message was sent originally in Unix time.
     :type date: :obj:`int`
     :param sender_chat: Chat that sent the message originally.
-    :type sender_chat: :obj:`~aiotgm.types.Chat`
+    :type sender_chat: :obj:`~apitele.types.Chat`
     :param author_signature: For messages originally sent by an anonymous chat administrator, original message author signature.
     :type author_signature: :obj:`str`, optional
     '''
@@ -6687,7 +6687,7 @@ class MessageOriginUser(TelegramType):
     :param date: Date the message was sent originally in Unix time.
     :type date: :obj:`int`
     :param sender_user: User that sent the message originally.
-    :type sender_user: :obj:`~aiotgm.types.User`
+    :type sender_user: :obj:`~apitele.types.User`
     '''
     @classmethod
     @_parse_result
@@ -6714,13 +6714,13 @@ class MessageReactionCountUpdated(TelegramType):
     This object represents reaction changes on a message with anonymous reactions.
 
     :param chat: The chat containing the message.
-    :type chat: :obj:`~aiotgm.types.Chat`
+    :type chat: :obj:`~apitele.types.Chat`
     :param message_id: Unique message identifier inside the chat.
     :type message_id: :obj:`int`
     :param date: Date of the change in Unix time.
     :type date: :obj:`int`
     :param reactions: List of reactions that are present on the message.
-    :type reactions: :obj:`list` of :obj:`~aiotgm.types.ReactionCount`
+    :type reactions: :obj:`list` of :obj:`~apitele.types.ReactionCount`
     '''
     @classmethod
     @_parse_result
@@ -6752,19 +6752,19 @@ class MessageReactionUpdated(TelegramType):
     This object represents a change of a reaction on a message performed by a user.
 
     :param chat: The chat containing the message the user reacted to.
-    :type chat: :obj:`~aiotgm.types.Chat`
+    :type chat: :obj:`~apitele.types.Chat`
     :param message_id: Unique identifier of the message inside the chat.
     :type message_id: :obj:`int`
     :param date: Date of the change in Unix time.
     :type date: :obj:`int`
     :param old_reaction: Previous list of reaction types that were set by the user.
-    :type old_reaction: :obj:`list` of :obj:`~aiotgm.types.ReactionType`
+    :type old_reaction: :obj:`list` of :obj:`~apitele.types.ReactionType`
     :param new_reaction: New list of reaction types that have been set by the user.
-    :type new_reaction: :obj:`list` of :obj:`~aiotgm.types.ReactionType`
+    :type new_reaction: :obj:`list` of :obj:`~apitele.types.ReactionType`
     :param user: The user that changed the reaction, if the user isn't anonymous.
-    :type user: :obj:`~aiotgm.types.User`, optional
+    :type user: :obj:`~apitele.types.User`, optional
     :param actor_chat: The chat on behalf of which the reaction was changed, if the user is anonymous.
-    :type actor_chat: :obj:`~aiotgm.types.Chat`, optional
+    :type actor_chat: :obj:`~apitele.types.Chat`, optional
     '''
     @classmethod
     @_parse_result
@@ -6811,7 +6811,7 @@ class OrderInfo(TelegramType):
     :param email: User email.
     :type email: :obj:`str`, optional
     :param shipping_address: User shipping address.
-    :type shipping_address: :obj:`~aiotgm.types.ShippingAddress`, optional
+    :type shipping_address: :obj:`~apitele.types.ShippingAddress`, optional
     '''
     @classmethod
     @_parse_result
@@ -6845,7 +6845,7 @@ class PaidMediaInfo(TelegramType):
     :param star_count: The number of Telegram Stars that must be paid to buy access to the media.
     :type star_count: :obj:`int`
     :param paid_media: Information about the paid media.
-    :type paid_media: :obj:`list` of :obj:`~aiotgm.types.PaidMedia`
+    :type paid_media: :obj:`list` of :obj:`~apitele.types.PaidMedia`
     '''
     @classmethod
     @_parse_result
@@ -6871,7 +6871,7 @@ class PaidMediaPhoto(TelegramType):
     The paid media is a photo.
 
     :param photo: The photo.
-    :type photo: :obj:`list` of :obj:`~aiotgm.types.PhotoSize`
+    :type photo: :obj:`list` of :obj:`~apitele.types.PhotoSize`
     '''
     @classmethod
     @_parse_result
@@ -6927,7 +6927,7 @@ class PaidMediaPurchased(TelegramType):
     This object contains information about a paid media purchase.
 
     :param from_user: User who purchased the media.
-    :type from_user: :obj:`~aiotgm.types.User`
+    :type from_user: :obj:`~apitele.types.User`
     :param paid_media_payload: Bot-specified paid media payload.
     :type paid_media_payload: :obj:`str`
     '''
@@ -6955,7 +6955,7 @@ class PaidMediaVideo(TelegramType):
     The paid media is a video.
 
     :param video: The video.
-    :type video: :obj:`~aiotgm.types.Video`
+    :type video: :obj:`~apitele.types.Video`
     '''
     @classmethod
     @_parse_result
@@ -6978,9 +6978,9 @@ class PassportData(TelegramType):
     Describes Telegram Passport data shared with the bot by the user.
 
     :param data: Array with information about documents and other Telegram Passport elements that was shared with the bot.
-    :type data: :obj:`list` of :obj:`~aiotgm.types.EncryptedPassportElement`
+    :type data: :obj:`list` of :obj:`~apitele.types.EncryptedPassportElement`
     :param credentials: Encrypted credentials required to decrypt the data.
-    :type credentials: :obj:`~aiotgm.types.EncryptedCredentials`
+    :type credentials: :obj:`~apitele.types.EncryptedCredentials`
     '''
     @classmethod
     @_parse_result
@@ -7281,7 +7281,7 @@ class PhotoSize(TelegramType):
     https://core.telegram.org/bots/api#photosize
 
     This object represents one size of a photo or a
-    :obj:`file <aiotgm.types.Document>` / :obj:`sticker <aiotgm.types.Sticker>` thumbnail.
+    :obj:`file <apitele.types.Document>` / :obj:`sticker <apitele.types.Sticker>` thumbnail.
 
     :param file_id: Identifier for this file, which can be used to download or reuse the file.
     :type file_id: :obj:`str`
@@ -7331,7 +7331,7 @@ class Poll(TelegramType):
     :param question: Poll question, 1-300 characters.
     :type question: :obj:`str`
     :param options: List of poll options.
-    :type options: :obj:`list` of :obj:`~aiotgm.types.PollOption`
+    :type options: :obj:`list` of :obj:`~apitele.types.PollOption`
     :param total_voter_count: Total number of users that voted in the poll.
     :type total_voter_count: :obj:`int`
     :param is_closed: :obj:`True`, if the poll is closed.
@@ -7343,13 +7343,13 @@ class Poll(TelegramType):
     :param allows_multiple_answers: :obj:`True`, if the poll allows multiple answers.
     :type allows_multiple_answers: :obj:`bool`
     :param question_entities: Special entities that appear in the question. Currently, only custom emoji entities are allowed in poll questions.
-    :type question_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type question_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param correct_option_id: 0-based identifier of the correct answer option. Available only for polls in the quiz mode, which are closed, or was sent (not forwarded) by the bot or to the private chat with the bot.
     :type correct_option_id: :obj:`int`, optional
     :param explanation: Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters.
     :type explanation: :obj:`str`, optional
     :param explanation_entities: Special entities like usernames, URLs, bot commands, etc. that appear in the *explanation*.
-    :type explanation_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type explanation_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param open_period: Amount of time in seconds the poll will be active after creation.
     :type open_period: :obj:`int`, optional
     :param close_date: Point in time (Unix timestamp) when the poll will be automatically closed.
@@ -7419,9 +7419,9 @@ class PollAnswer(TelegramType):
     :param option_ids: 0-based identifiers of chosen answer options. May be empty if the vote was retracted.
     :type option_ids: :obj:`list` of :obj:`int`
     :param voter_chat: The chat that changed the answer to the poll, if the voter is anonymous.
-    :type voter_chat: :obj:`~aiotgm.types.Chat`, optional
+    :type voter_chat: :obj:`~apitele.types.Chat`, optional
     :param user: The user that changed the answer to the poll, if the voter isn't anonymous.
-    :type user: :obj:`~aiotgm.types.User`, optional
+    :type user: :obj:`~apitele.types.User`, optional
     '''
     @classmethod
     @_parse_result
@@ -7457,7 +7457,7 @@ class PollOption(TelegramType):
     :param voter_count: Number of users that voted for this option.
     :type voter_count: :obj:`int`
     :param text_entities: Special entities that appear in the option *text*. Currently, only custom emoji entities are allowed in poll option texts.
-    :type text_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type text_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     '''
     @classmethod
     @_parse_result
@@ -7488,7 +7488,7 @@ class PreCheckoutQuery(TelegramType):
     :param id: Unique query identifier.
     :type id: :obj:`str`
     :param from_user: User who sent the query.
-    :type from_user: :obj:`~aiotgm.types.User`
+    :type from_user: :obj:`~apitele.types.User`
     :param currency: Three-letter ISO 4217 `currency <https://core.telegram.org/bots/payments#supported-currencies>`_ code.
     :type currency: :obj:`str`
     :param total_amount: Total price in the *smallest units* of the currency (integer, **not** float/double). For example, for a price of ``US$ 1.45`` pass ``amount = 145``. See the *exp* parameter in `currencies.json <https://core.telegram.org/bots/payments/currencies.json>`_, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).
@@ -7498,7 +7498,7 @@ class PreCheckoutQuery(TelegramType):
     :param shipping_option_id: Identifier of the shipping option chosen by the user.
     :type shipping_option_id: :obj:`str`, optional
     :param order_info: Order information provided by the user.
-    :type order_info: :obj:`~aiotgm.types.OrderInfo`, optional
+    :type order_info: :obj:`~apitele.types.OrderInfo`, optional
     '''
     @classmethod
     @_parse_result
@@ -7540,9 +7540,9 @@ class ProximityAlertTriggered(TelegramType):
     a user in the chat triggers a proximity alert set by another user.
 
     :param traveler: User that triggered the alert.
-    :type traveler: :obj:`~aiotgm.types.User`
+    :type traveler: :obj:`~apitele.types.User`
     :param watcher: User that set the alert.
-    :type watcher: :obj:`~aiotgm.types.User`
+    :type watcher: :obj:`~apitele.types.User`
     :param distance: The distance between the users.
     :type distance: :obj:`int`
     '''
@@ -7573,7 +7573,7 @@ class ReactionCount(TelegramType):
     Represents a reaction added to a message along with the number of times it was added.
 
     :param type: Type of the reaction.
-    :type type: :obj:`~aiotgm.types.ReactionType`
+    :type type: :obj:`~apitele.types.ReactionType`
     :param total_count: Number of times the reaction was added.
     :type total_count: :obj:`int`
     '''
@@ -7708,8 +7708,8 @@ class ReplyKeyboardMarkup(TelegramType):
     This object represents a `custom keyboard <https://core.telegram.org/bots/features#keyboards>`_ with reply
     options (see `Introduction to bots <https://core.telegram.org/bots/features#keyboards>`_ for details and examples).
 
-    :param keyboard: Array of button rows, each represented by an Array of :obj:`~aiotgm.types.KeyboardButton` objects.
-    :type keyboard: :obj:`list` of :obj:`list` of :obj:`~aiotgm.types.KeyboardButton`, optional
+    :param keyboard: Array of button rows, each represented by an Array of :obj:`~apitele.types.KeyboardButton` objects.
+    :type keyboard: :obj:`list` of :obj:`list` of :obj:`~apitele.types.KeyboardButton`, optional
     :param is_persistent: Requests clients to always show the keyboard when the regular keyboard is hidden. Defaults to :obj:`False`, in which case the custom keyboard can be hidden and opened with a keyboard icon.
     :type is_persistent: :obj:`bool`, optional
     :param resize_keyboard: Requests clients to resize the keyboard vertically for optimal fit (e.g., make the keyboard smaller if there are just two rows of buttons). Defaults to :obj:`False`, in which case the custom keyboard is always of the same height as the app's standard keyboard.
@@ -7719,7 +7719,7 @@ class ReplyKeyboardMarkup(TelegramType):
     :param input_field_placeholder: The placeholder to be shown in the input field when the keyboard is active; 1-64 characters.
     :type input_field_placeholder: :obj:`str`, optional
     :param selective:
-        Use this parameter if you want to show the keyboard to specific users only. Targets: 1) users that are @mentioned in the *text* of the :obj:`~aiotgm.types.Message` object; 2) if the bot's message is a reply to a message in the same chat and forum topic, sender of the original message.
+        Use this parameter if you want to show the keyboard to specific users only. Targets: 1) users that are @mentioned in the *text* of the :obj:`~apitele.types.Message` object; 2) if the bot's message is a reply to a message in the same chat and forum topic, sender of the original message.
 
         *Example*: A user requests to change the bot's language, bot replies to the request with a keyboard to select the new language. Other users in the group don't see the keyboard.
     :type selective: :obj:`bool`, optional
@@ -7756,9 +7756,9 @@ class ReplyKeyboardMarkup(TelegramType):
             # the same row, you can change the row width after the
             # object initialization using the property setter 'row_width'.
 
-        :param buttons: :obj:`KeyboardButtons <aiotgm.types.KeyboardButton>` to add to a new row of the *keyboard*. For simple text buttons, you can pass a :obj:`String` instead of a :obj:`~aiotgm.types.KeyboardButton` object to specify the button text.
-        :type buttons: \*\ :obj:`~aiotgm.types.KeyboardButton` or \*\ :obj:`str`
-        :rtype: :obj:`~aiotgm.types.ReplyKeyboardMarkup`
+        :param buttons: :obj:`KeyboardButtons <apitele.types.KeyboardButton>` to add to a new row of the *keyboard*. For simple text buttons, you can pass a :obj:`String` instead of a :obj:`~apitele.types.KeyboardButton` object to specify the button text.
+        :type buttons: \*\ :obj:`~apitele.types.KeyboardButton` or \*\ :obj:`str`
+        :rtype: :obj:`~apitele.types.ReplyKeyboardMarkup`
         '''
         self.keyboard.append(buttons)
         return self
@@ -7804,10 +7804,10 @@ class ReplyKeyboardRemove(TelegramType):
     Upon receiving a message with this object, Telegram clients will remove the current custom keyboard
     and display the default letter-keyboard. By default, custom keyboards are displayed until a new
     keyboard is sent by a bot. An exception is made for one-time keyboards that are hidden immediately
-    after the user presses a button (see :obj:`~aiotgm.types.ReplyKeyboardMarkup`).
+    after the user presses a button (see :obj:`~apitele.types.ReplyKeyboardMarkup`).
 
     :param selective:
-        Use this parameter if you want to remove the keyboard for specific users only. Targets: 1) users that are @mentioned in the *text* of the :obj:`~aiotgm.types.Message` object; 2) if the bot's message is a reply to a message in the same chat and forum topic, sender of the original message.
+        Use this parameter if you want to remove the keyboard for specific users only. Targets: 1) users that are @mentioned in the *text* of the :obj:`~apitele.types.Message` object; 2) if the bot's message is a reply to a message in the same chat and forum topic, sender of the original message.
 
         *Example*: A user votes in a poll, bot returns confirmation message in reply to the vote and removes the keyboard for that user, while still showing the keyboard with poll options to users who haven't voted yet.
     :type selective: :obj:`bool`, optional
@@ -7837,7 +7837,7 @@ class ReplyParameters(TelegramType):
     :param quote_parse_mode: Mode for parsing entities in the quote. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
     :type quote_parse_mode: :obj:`str`, optional
     :param quote_entities: A JSON-serialized list of special entities that appear in the quote. It can be specified instead of *quote_parse_mode*.
-    :type quote_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type quote_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param quote_position: Position of the quote in the original message in UTF-16 code units.
     :type quote_position: :obj:`int`, optional
     '''
@@ -7955,7 +7955,7 @@ class SentWebAppMessage(TelegramType):
 
     Describes an inline message sent by a `Web App <https://core.telegram.org/bots/webapps>`_ on behalf of a user.
 
-    :param inline_message_id: Identifier of the sent inline message. Available only if there is an :obj:`inline keyboard <aiotgm.types.InlineKeyboardMarkup>` attached to the message.
+    :param inline_message_id: Identifier of the sent inline message. Available only if there is an :obj:`inline keyboard <apitele.types.InlineKeyboardMarkup>` attached to the message.
     :type inline_message_id: :obj:`str`, optional
     '''
     @classmethod
@@ -7977,7 +7977,7 @@ class SharedUser(TelegramType):
     https://core.telegram.org/bots/api#shareduser
 
     This object contains information about a user that was shared with
-    the bot using a :obj:`~aiotgm.types.KeyboardButtonRequestUsers` button.
+    the bot using a :obj:`~apitele.types.KeyboardButtonRequestUsers` button.
 
     :param user_id: Identifier of the shared user. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so 64-bit integers or double-precision float types are safe for storing these identifiers. The bot may not have access to the user and could be unable to use this identifier, unless the user is already known to the bot by some other means.
     :type user_id: :obj:`int`
@@ -7988,7 +7988,7 @@ class SharedUser(TelegramType):
     :param username: Username of the user, if the username was requested by the bot.
     :type username: :obj:`str`, optional
     :param photo: Available sizes of the chat photo, if the photo was requested by the bot.
-    :type photo: :obj:`list` of :obj:`~aiotgm.types.PhotoSize`, optional
+    :type photo: :obj:`list` of :obj:`~apitele.types.PhotoSize`, optional
     '''
     @classmethod
     @_parse_result
@@ -8075,7 +8075,7 @@ class ShippingOption(TelegramType):
     :param title: Option title.
     :type title: :obj:`str`
     :param prices: List of price portions.
-    :type prices: :obj:`list` of :obj:`~aiotgm.types.LabeledPrice`
+    :type prices: :obj:`list` of :obj:`~apitele.types.LabeledPrice`
     '''
     def __init__(
         self,
@@ -8097,11 +8097,11 @@ class ShippingQuery(TelegramType):
     :param id: Unique query identifier.
     :type id: :obj:`str`
     :param from_user: User who sent the query.
-    :type from_user: :obj:`~aiotgm.types.User`
+    :type from_user: :obj:`~apitele.types.User`
     :param invoice_payload: Bot specified invoice payload.
     :type invoice_payload: :obj:`str`
     :param shipping_address: User specified shipping address.
-    :type shipping_address: :obj:`~aiotgm.types.ShippingAddress`
+    :type shipping_address: :obj:`~apitele.types.ShippingAddress`
     '''
     @classmethod
     @_parse_result
@@ -8132,16 +8132,16 @@ class StarTransaction(TelegramType):
 
     Describes a Telegram Star transaction.
 
-    :param id: Unique identifier of the transaction. Coincides with the identifer of the original transaction for refund transactions. Coincides with :obj:`~aiotgm.types.SuccessfulPayment`.telegram_payment_charge_id for successful incoming payments from users.
+    :param id: Unique identifier of the transaction. Coincides with the identifer of the original transaction for refund transactions. Coincides with :obj:`~apitele.types.SuccessfulPayment`.telegram_payment_charge_id for successful incoming payments from users.
     :type id: :obj:`str`
     :param amount: Number of Telegram Stars transferred by the transaction.
     :type amount: :obj:`int`
     :param date: Date the transaction was created in Unix time.
     :type date: :obj:`int`
     :param source: Source of an incoming transaction (e.g., a user purchasing goods or services, Fragment refunding a failed withdrawal). Only for incoming transactions.
-    :type source: :obj:`~aiotgm.types.TransactionPartner`, optional
+    :type source: :obj:`~apitele.types.TransactionPartner`, optional
     :param receiver: Receiver of an outgoing transaction (e.g., a user for a purchase refund, Fragment for a withdrawal). Only for outgoing transactions.
-    :type receiver: :obj:`~aiotgm.types.TransactionPartner`, optional
+    :type receiver: :obj:`~apitele.types.TransactionPartner`, optional
     '''
     @classmethod
     @_parse_result
@@ -8176,7 +8176,7 @@ class StarTransactions(TelegramType):
     Contains a list of Telegram Star transactions.
 
     :param transactions: The list of transactions.
-    :type transactions: :obj:`list` of :obj:`~aiotgm.types.StarTransaction`
+    :type transactions: :obj:`list` of :obj:`~apitele.types.StarTransaction`
     '''
     @classmethod
     @_parse_result
@@ -8213,15 +8213,15 @@ class Sticker(TelegramType):
     :param is_video: :obj:`True`, if the sticker is a `video sticker <https://telegram.org/blog/video-stickers-better-reactions>`_.
     :type is_video: :obj:`bool`
     :param thumbnail: Sticker thumbnail in the .WEBP or .JPG format.
-    :type thumbnail: :obj:`~aiotgm.types.PhotoSize`, optional
+    :type thumbnail: :obj:`~apitele.types.PhotoSize`, optional
     :param emoji: Emoji associated with the sticker.
     :type emoji: :obj:`str`, optional
     :param set_name: Name of the sticker set to which the sticker belongs.
     :type set_name: :obj:`str`, optional
     :param premium_animation: For premium regular stickers, premium animation for the sticker.
-    :type premium_animation: :obj:`~aiotgm.types.File`, optional
+    :type premium_animation: :obj:`~apitele.types.File`, optional
     :param mask_position: For mask stickers, the position where the mask should be placed.
-    :type mask_position: :obj:`~aiotgm.types.MaskPosition`, optional
+    :type mask_position: :obj:`~apitele.types.MaskPosition`, optional
     :param custom_emoji_id: For custom emoji stickers, unique identifier of the custom emoji.
     :type custom_emoji_id: :obj:`str`, optional
     :param needs_repainting: :obj:`True`, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places.
@@ -8298,9 +8298,9 @@ class StickerSet(TelegramType):
     :param sticker_type: Type of stickers in the set, currently one of “regular”, “mask”, “custom_emoji”.
     :type sticker_type: :obj:`str`
     :param stickers: List of all set stickers.
-    :type stickers: :obj:`list` of :obj:`~aiotgm.types.Sticker`
+    :type stickers: :obj:`list` of :obj:`~apitele.types.Sticker`
     :param thumbnail: Sticker set thumbnail in the .WEBP, .TGS, or .WEBM format.
-    :type thumbnail: :obj:`~aiotgm.types.PhotoSize`, optional
+    :type thumbnail: :obj:`~apitele.types.PhotoSize`, optional
     '''
     @classmethod
     @_parse_result
@@ -8335,7 +8335,7 @@ class Story(TelegramType):
     This object represents a story.
 
     :param chat: Chat that posted the story.
-    :type chat: :obj:`~aiotgm.types.Chat`
+    :type chat: :obj:`~apitele.types.Chat`
     :param id: Unique identifier for the story in the chat.
     :type id: :obj:`int`
     '''
@@ -8375,7 +8375,7 @@ class SuccessfulPayment(TelegramType):
     :param shipping_option_id: Identifier of the shipping option chosen by the user.
     :type shipping_option_id: :obj:`str`, optional
     :param order_info: Order information provided by the user.
-    :type order_info: :obj:`~aiotgm.types.OrderInfo`, optional
+    :type order_info: :obj:`~apitele.types.OrderInfo`, optional
     '''
     @classmethod
     @_parse_result
@@ -8465,7 +8465,7 @@ class TextQuote(TelegramType):
     :param position: Approximate quote position in the original message in UTF-16 code units as specified by the sender.
     :type position: :obj:`int`
     :param entities: Special entities that appear in the quote. Currently, only *bold*, *italic*, *underline*, *strikethrough*, *spoiler*, and *custom_emoji entities* are kept in quotes.
-    :type entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+    :type entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param is_manual: :obj:`True`, if the quote was chosen manually by the message sender. Otherwise, the quote was added automatically by the server.
     :type is_manual: :obj:`True`, optional
     '''
@@ -8499,7 +8499,7 @@ class TransactionPartnerFragment(TelegramType):
     Describes a withdrawal transaction with Fragment.
 
     :param withdrawal_state: State of the transaction if the transaction is outgoing.
-    :type withdrawal_state: :obj:`~aiotgm.types.RevenueWithdrawalState`, optional
+    :type withdrawal_state: :obj:`~apitele.types.RevenueWithdrawalState`, optional
     '''
     @classmethod
     @_parse_result
@@ -8580,11 +8580,11 @@ class TransactionPartnerUser(TelegramType):
     Describes a transaction with a user.
 
     :param user: Information about the user.
-    :type user: :obj:`~aiotgm.types.User`
+    :type user: :obj:`~apitele.types.User`
     :param invoice_payload: Bot-specified invoice payload.
     :type invoice_payload: :obj:`str`, optional
     :param paid_media: Information about the paid media bought by the user.
-    :type paid_media: :obj:`list` of :obj:`~aiotgm.types.PaidMedia`, optional
+    :type paid_media: :obj:`list` of :obj:`~apitele.types.PaidMedia`, optional
     :param paid_media_payload: Bot-specified paid media payload.
     :type paid_media_payload: :obj:`str`, optional
     '''
@@ -8622,51 +8622,51 @@ class Update(TelegramType):
     :param update_id: The update's unique identifier. Update identifiers start from a certain positive number and increase sequentially. This identifier becomes especially handy if you're using `webhooks <https://core.telegram.org/bots/api#setwebhook>`_, since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order. If there are no new updates for at least a week, then identifier of the next update will be chosen randomly instead of sequentially.
     :type update_id: :obj:`int`
     :param message: New incoming message of any kind - text, photo, sticker, etc.
-    :type message: :obj:`~aiotgm.types.Message`, optional
+    :type message: :obj:`~apitele.types.Message`, optional
     :param edited_message: New version of a message that is known to the bot and was edited. This update may at times be triggered by changes to message fields that are either unavailable or not actively used by your bot.
-    :type edited_message: :obj:`~aiotgm.types.Message`, optional
+    :type edited_message: :obj:`~apitele.types.Message`, optional
     :param channel_post: New incoming channel post of any kind - text, photo, sticker, etc.
-    :type channel_post: :obj:`~aiotgm.types.Message`, optional
+    :type channel_post: :obj:`~apitele.types.Message`, optional
     :param edited_channel_post: New version of a channel post that is known to the bot and was edited. This update may at times be triggered by changes to message fields that are either unavailable or not actively used by your bot.
-    :type edited_channel_post: :obj:`~aiotgm.types.Message`, optional
+    :type edited_channel_post: :obj:`~apitele.types.Message`, optional
     :param business_connection: The bot was connected to or disconnected from a business account, or a user edited an existing connection with the bot.
-    :type business_connection: :obj:`~aiotgm.types.BusinessConnection`, optional
+    :type business_connection: :obj:`~apitele.types.BusinessConnection`, optional
     :param business_message: New non-service message from a connected business account.
-    :type business_message: :obj:`~aiotgm.types.Message`, optional
+    :type business_message: :obj:`~apitele.types.Message`, optional
     :param edited_business_message: New version of a message from a connected business account.
-    :type edited_business_message: :obj:`~aiotgm.types.Message`, optional
+    :type edited_business_message: :obj:`~apitele.types.Message`, optional
     :param deleted_business_messages: Messages were deleted from a connected business account.
-    :type deleted_business_messages: :obj:`~aiotgm.types.BusinessMessagesDeleted`, optional
+    :type deleted_business_messages: :obj:`~apitele.types.BusinessMessagesDeleted`, optional
     :param message_reaction: A reaction to a message was changed by a user. The bot must be an administrator in the chat and must explicitly specify ``"message_reaction"`` in the list of *allowed_updates* to receive these updates. The update isn't received for reactions set by bots.
-    :type message_reaction: :obj:`~aiotgm.types.MessageReactionUpdated`, optional
+    :type message_reaction: :obj:`~apitele.types.MessageReactionUpdated`, optional
     :param message_reaction_count: Reactions to a message with anonymous reactions were changed. The bot must be an administrator in the chat and must explicitly specify ``"message_reaction_count"`` in the list of *allowed_updates* to receive these updates. The updates are grouped and can be sent with delay up to a few minutes.
-    :type message_reaction_count: :obj:`~aiotgm.types.MessageReactionCountUpdated`, optional
+    :type message_reaction_count: :obj:`~apitele.types.MessageReactionCountUpdated`, optional
     :param inline_query: New incoming `inline <https://core.telegram.org/bots/api#inline-mode>`_ query.
-    :type inline_query: :obj:`~aiotgm.types.InlineQuery`, optional
+    :type inline_query: :obj:`~apitele.types.InlineQuery`, optional
     :param chosen_inline_result: The result of an `inline <https://core.telegram.org/bots/api#inline-mode>`_ query that was chosen by a user and sent to their chat partner. Please see our documentation on the `feedback collecting <https://core.telegram.org/bots/inline#collecting-feedback>`_ for details on how to enable these updates for your bot.
-    :type chosen_inline_result: :obj:`~aiotgm.types.ChosenInlineResult`, optional
+    :type chosen_inline_result: :obj:`~apitele.types.ChosenInlineResult`, optional
     :param callback_query: New incoming callback query.
-    :type callback_query: :obj:`~aiotgm.types.CallbackQuery`, optional
+    :type callback_query: :obj:`~apitele.types.CallbackQuery`, optional
     :param shipping_query: New incoming shipping query. Only for invoices with flexible price.
-    :type shipping_query: :obj:`~aiotgm.types.ShippingQuery`, optional
+    :type shipping_query: :obj:`~apitele.types.ShippingQuery`, optional
     :param pre_checkout_query: New incoming pre-checkout query. Contains full information about checkout.
-    :type pre_checkout_query: :obj:`~aiotgm.types.PreCheckoutQuery`, optional
+    :type pre_checkout_query: :obj:`~apitele.types.PreCheckoutQuery`, optional
     :param purchased_paid_media: A user purchased paid media with a non-empty payload sent by the bot in a non-channel chat.
-    :type purchased_paid_media: :obj:`~aiotgm.types.PaidMediaPurchased`, optional
+    :type purchased_paid_media: :obj:`~apitele.types.PaidMediaPurchased`, optional
     :param poll: New poll state. Bots receive only updates about manually stopped polls and polls, which are sent by the bot.
-    :type poll: :obj:`~aiotgm.types.Poll`, optional
+    :type poll: :obj:`~apitele.types.Poll`, optional
     :param poll_answer: A user changed their answer in a non-anonymous poll. Bots receive new votes only in polls that were sent by the bot itself.
-    :type poll_answer: :obj:`~aiotgm.types.PollAnswer`, optional
+    :type poll_answer: :obj:`~apitele.types.PollAnswer`, optional
     :param my_chat_member: The bot's chat member status was updated in a chat. For private chats, this update is received only when the bot is blocked or unblocked by the user.
-    :type my_chat_member: :obj:`~aiotgm.types.ChatMemberUpdated`, optional
+    :type my_chat_member: :obj:`~apitele.types.ChatMemberUpdated`, optional
     :param chat_member: A chat member's status was updated in a chat. The bot must be an administrator in the chat and must explicitly specify ``"chat_member"`` in the list of *allowed_updates* to receive these updates.
-    :type chat_member: :obj:`~aiotgm.types.ChatMemberUpdated`, optional
+    :type chat_member: :obj:`~apitele.types.ChatMemberUpdated`, optional
     :param chat_join_request: A request to join the chat has been sent. The bot must have the *can_invite_users* administrator right in the chat to receive these updates.
-    :type chat_join_request: :obj:`~aiotgm.types.ChatJoinRequest`, optional
+    :type chat_join_request: :obj:`~apitele.types.ChatJoinRequest`, optional
     :param chat_boost: A chat boost was added or changed. The bot must be an administrator in the chat to receive these updates.
-    :type chat_boost: :obj:`~aiotgm.types.ChatBoostUpdated`, optional
+    :type chat_boost: :obj:`~apitele.types.ChatBoostUpdated`, optional
     :param removed_chat_boost: A boost was removed from a chat. The bot must be an administrator in the chat to receive these updates.
-    :type removed_chat_boost: :obj:`~aiotgm.types.ChatBoostRemoved`, optional
+    :type removed_chat_boost: :obj:`~apitele.types.ChatBoostRemoved`, optional
     '''
     @classmethod
     @_parse_result
@@ -8773,15 +8773,15 @@ class User(TelegramType):
     :type is_premium: :obj:`True`, optional
     :param added_to_attachment_menu: :obj:`True`, if this user added the bot to the attachment menu.
     :type added_to_attachment_menu: :obj:`True`, optional
-    :param can_join_groups: :obj:`True`, if the bot can be invited to groups. Returned only in :meth:`~aiotgm.Client.get_me`.
+    :param can_join_groups: :obj:`True`, if the bot can be invited to groups. Returned only in :meth:`~apitele.Client.get_me`.
     :type can_join_groups: :obj:`bool`, optional
-    :param can_read_all_group_messages: :obj:`True`, if privacy mode is disabled for the bot. Returned only in :meth:`~aiotgm.Client.get_me`.
+    :param can_read_all_group_messages: :obj:`True`, if privacy mode is disabled for the bot. Returned only in :meth:`~apitele.Client.get_me`.
     :type can_read_all_group_messages: :obj:`bool`, optional
-    :param supports_inline_queries: :obj:`True`, if the bot supports inline queries. Returned only in :meth:`~aiotgm.Client.get_me`.
+    :param supports_inline_queries: :obj:`True`, if the bot supports inline queries. Returned only in :meth:`~apitele.Client.get_me`.
     :type supports_inline_queries: :obj:`bool`, optional
-    :param can_connect_to_business: :obj:`True`, if the bot can be connected to a Telegram Business account to receive its messages. Returned only in :meth:`~aiotgm.Client.get_me`.
+    :param can_connect_to_business: :obj:`True`, if the bot can be connected to a Telegram Business account to receive its messages. Returned only in :meth:`~apitele.Client.get_me`.
     :type can_connect_to_business: :obj:`bool`, optional
-    :param has_main_web_app: :obj:`True`, if the bot has a main Web App. Returned only in :meth:`~aiotgm.Client.get_me`.
+    :param has_main_web_app: :obj:`True`, if the bot has a main Web App. Returned only in :meth:`~apitele.Client.get_me`.
     :type has_main_web_app: :obj:`bool`, optional
     '''
     @classmethod
@@ -8841,7 +8841,7 @@ class UserChatBoosts(TelegramType):
     This object represents a list of boosts added to a chat by a user.
 
     :param boosts: The list of boosts added to the chat by the user.
-    :type boosts: :obj:`list` of :obj:`~aiotgm.types.ChatBoost`
+    :type boosts: :obj:`list` of :obj:`~apitele.types.ChatBoost`
     '''
     @classmethod
     @_parse_result
@@ -8866,7 +8866,7 @@ class UserProfilePhotos(TelegramType):
     :param total_count: Total number of profile pictures the target user has.
     :type total_count: :obj:`int`
     :param photos: Requested profile pictures (in up to 4 sizes each).
-    :type photos: :obj:`list` of :obj:`list` of :obj:`~aiotgm.types.PhotoSize`
+    :type photos: :obj:`list` of :obj:`list` of :obj:`~apitele.types.PhotoSize`
     '''
     @classmethod
     @_parse_result
@@ -8890,12 +8890,12 @@ class UsersShared(TelegramType):
     https://core.telegram.org/bots/api#usersshared
 
     This object contains information about the users whose identifiers
-    were shared with the bot using a :obj:`~aiotgm.types.KeyboardButtonRequestUsers` button.
+    were shared with the bot using a :obj:`~apitele.types.KeyboardButtonRequestUsers` button.
 
     :param request_id: Identifier of the request.
     :type request_id: :obj:`int`
     :param users: Information about users shared with the bot.
-    :type users: :obj:`list` of :obj:`~aiotgm.types.SharedUser`
+    :type users: :obj:`list` of :obj:`~apitele.types.SharedUser`
     '''
     @classmethod
     @_parse_result
@@ -8921,7 +8921,7 @@ class Venue(TelegramType):
     This object represents a venue.
 
     :param location: Venue location. Can't be a live location.
-    :type location: :obj:`~aiotgm.types.Location`
+    :type location: :obj:`~apitele.types.Location`
     :param title: Name of the venue.
     :type title: :obj:`str`
     :param address: Address of the venue.
@@ -8984,7 +8984,7 @@ class Video(TelegramType):
     :param duration: Duration of the video in seconds as defined by sender.
     :type duration: :obj:`int`
     :param thumbnail: Video thumbnail.
-    :type thumbnail: :obj:`~aiotgm.types.PhotoSize`, optional
+    :type thumbnail: :obj:`~apitele.types.PhotoSize`, optional
     :param file_name: Original filename as defined by sender.
     :type file_name: :obj:`str`, optional
     :param mime_type: MIME type of the file as defined by sender.
@@ -9060,7 +9060,7 @@ class VideoChatParticipantsInvited(TelegramType):
     This object represents a service message about new members invited to a video chat.
 
     :param users: New members that were invited to the video chat.
-    :type users: :obj:`list` of :obj:`~aiotgm.types.User`
+    :type users: :obj:`list` of :obj:`~apitele.types.User`
     '''
     @classmethod
     @_parse_result
@@ -9132,7 +9132,7 @@ class VideoNote(TelegramType):
     :param duration: Duration of the video in seconds as defined by sender.
     :type duration: :obj:`int`
     :param thumbnail: Video thumbnail.
-    :type thumbnail: :obj:`~aiotgm.types.PhotoSize`, optional
+    :type thumbnail: :obj:`~apitele.types.PhotoSize`, optional
     :param file_size: File size in bytes.
     :type file_size: :obj:`int`, optional
     '''
@@ -9299,10 +9299,10 @@ REPLY_MARKUP_TYPES = Union[InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeybo
 '''
 One of the following reply markups:
 
-- :obj:`~aiotgm.types.InlineKeyboardMarkup`
-- :obj:`~aiotgm.types.ReplyKeyboardMarkup`
-- :obj:`~aiotgm.types.ReplyKeyboardRemove`
-- :obj:`~aiotgm.types.ForceReply`
+- :obj:`~apitele.types.InlineKeyboardMarkup`
+- :obj:`~apitele.types.ReplyKeyboardMarkup`
+- :obj:`~apitele.types.ReplyKeyboardRemove`
+- :obj:`~apitele.types.ForceReply`
 '''
 
 
@@ -9316,9 +9316,9 @@ https://core.telegram.org/bots/api#backgroundfill
 
 This object describes the way a background is filled based on the selected colors. Currently, it can be one of:
 
-- :obj:`~aiotgm.types.BackgroundFillSolid`
-- :obj:`~aiotgm.types.BackgroundFillGradient`
-- :obj:`~aiotgm.types.BackgroundFillFreeformGradient`
+- :obj:`~apitele.types.BackgroundFillSolid`
+- :obj:`~apitele.types.BackgroundFillGradient`
+- :obj:`~apitele.types.BackgroundFillFreeformGradient`
 '''
 
 def _dese_background_fill(res: Optional[dict], /) -> Optional[BackgroundFill]:
@@ -9356,10 +9356,10 @@ https://core.telegram.org/bots/api#backgroundtype
 
 This object describes the type of a background. Currently, it can be one of:
 
-- :obj:`~aiotgm.types.BackgroundTypeFill`
-- :obj:`~aiotgm.types.BackgroundTypeWallpaper`
-- :obj:`~aiotgm.types.BackgroundTypePattern`
-- :obj:`~aiotgm.types.BackgroundTypeChatTheme`
+- :obj:`~apitele.types.BackgroundTypeFill`
+- :obj:`~apitele.types.BackgroundTypeWallpaper`
+- :obj:`~apitele.types.BackgroundTypePattern`
+- :obj:`~apitele.types.BackgroundTypeChatTheme`
 '''
 
 def _dese_background_type(res: Optional[dict], /) -> Optional[BackgroundType]:
@@ -9404,13 +9404,13 @@ https://core.telegram.org/bots/api#botcommandscope
 This object represents the scope to which bot commands are applied.
 Currently, the following 7 scopes are supported:
 
-- :obj:`~aiotgm.types.BotCommandScopeDefault`
-- :obj:`~aiotgm.types.BotCommandScopeAllPrivateChats`
-- :obj:`~aiotgm.types.BotCommandScopeAllGroupChats`
-- :obj:`~aiotgm.types.BotCommandScopeAllChatAdministrators`
-- :obj:`~aiotgm.types.BotCommandScopeChat`
-- :obj:`~aiotgm.types.BotCommandScopeChatAdministrators`
-- :obj:`~aiotgm.types.BotCommandScopeChatMember`
+- :obj:`~apitele.types.BotCommandScopeDefault`
+- :obj:`~apitele.types.BotCommandScopeAllPrivateChats`
+- :obj:`~apitele.types.BotCommandScopeAllGroupChats`
+- :obj:`~apitele.types.BotCommandScopeAllChatAdministrators`
+- :obj:`~apitele.types.BotCommandScopeChat`
+- :obj:`~apitele.types.BotCommandScopeChatAdministrators`
+- :obj:`~apitele.types.BotCommandScopeChatMember`
 
 **Determining list of commands**
 
@@ -9418,27 +9418,27 @@ The following algorithm is used to determine the list of commands for a particul
 
 **Commands in the chat with the bot**
 
-- :obj:`~aiotgm.types.BotCommandScopeChat` + language_code
-- :obj:`~aiotgm.types.BotCommandScopeChat`
-- :obj:`~aiotgm.types.BotCommandScopeAllPrivateChats` + language_code
-- :obj:`~aiotgm.types.BotCommandScopeAllPrivateChats`
-- :obj:`~aiotgm.types.BotCommandScopeDefault` + language_code
-- :obj:`~aiotgm.types.BotCommandScopeDefault`
+- :obj:`~apitele.types.BotCommandScopeChat` + language_code
+- :obj:`~apitele.types.BotCommandScopeChat`
+- :obj:`~apitele.types.BotCommandScopeAllPrivateChats` + language_code
+- :obj:`~apitele.types.BotCommandScopeAllPrivateChats`
+- :obj:`~apitele.types.BotCommandScopeDefault` + language_code
+- :obj:`~apitele.types.BotCommandScopeDefault`
 
 **Commands in group and supergroup chats**
 
-- :obj:`~aiotgm.types.BotCommandScopeChatMember` + language_code
-- :obj:`~aiotgm.types.BotCommandScopeChatMember`
-- :obj:`~aiotgm.types.BotCommandScopeChatAdministrators` + language_code (administrators only)
-- :obj:`~aiotgm.types.BotCommandScopeChatAdministrators` (administrators only)
-- :obj:`~aiotgm.types.BotCommandScopeChat` + language_code
-- :obj:`~aiotgm.types.BotCommandScopeChat`
-- :obj:`~aiotgm.types.BotCommandScopeAllChatAdministrators` + language_code (administrators only)
-- :obj:`~aiotgm.types.BotCommandScopeAllChatAdministrators` (administrators only)
-- :obj:`~aiotgm.types.BotCommandScopeAllGroupChats` + language_code
-- :obj:`~aiotgm.types.BotCommandScopeAllGroupChats`
-- :obj:`~aiotgm.types.BotCommandScopeDefault` + language_code
-- :obj:`~aiotgm.types.BotCommandScopeDefault`
+- :obj:`~apitele.types.BotCommandScopeChatMember` + language_code
+- :obj:`~apitele.types.BotCommandScopeChatMember`
+- :obj:`~apitele.types.BotCommandScopeChatAdministrators` + language_code (administrators only)
+- :obj:`~apitele.types.BotCommandScopeChatAdministrators` (administrators only)
+- :obj:`~apitele.types.BotCommandScopeChat` + language_code
+- :obj:`~apitele.types.BotCommandScopeChat`
+- :obj:`~apitele.types.BotCommandScopeAllChatAdministrators` + language_code (administrators only)
+- :obj:`~apitele.types.BotCommandScopeAllChatAdministrators` (administrators only)
+- :obj:`~apitele.types.BotCommandScopeAllGroupChats` + language_code
+- :obj:`~apitele.types.BotCommandScopeAllGroupChats`
+- :obj:`~apitele.types.BotCommandScopeDefault` + language_code
+- :obj:`~apitele.types.BotCommandScopeDefault`
 
 '''
 
@@ -9449,9 +9449,9 @@ https://core.telegram.org/bots/api#chatboostsource
 
 This object describes the source of a chat boost. It can be one of:
 
-- :obj:`~aiotgm.types.ChatBoostSourcePremium`
-- :obj:`~aiotgm.types.ChatBoostSourceGiftCode`
-- :obj:`~aiotgm.types.ChatBoostSourceGiveaway`
+- :obj:`~apitele.types.ChatBoostSourcePremium`
+- :obj:`~apitele.types.ChatBoostSourceGiftCode`
+- :obj:`~apitele.types.ChatBoostSourceGiveaway`
 '''
 
 def _dese_chat_boost_source(res: Optional[dict], /) -> Optional[ChatBoostSource]:
@@ -9492,12 +9492,12 @@ https://core.telegram.org/bots/api#chatmember
 This object contains information about one member of a chat.
 Currently, the following 6 types of chat members are supported:
 
-- :obj:`~aiotgm.types.ChatMemberOwner`
-- :obj:`~aiotgm.types.ChatMemberAdministrator`
-- :obj:`~aiotgm.types.ChatMemberMember`
-- :obj:`~aiotgm.types.ChatMemberRestricted`
-- :obj:`~aiotgm.types.ChatMemberLeft`
-- :obj:`~aiotgm.types.ChatMemberBanned`
+- :obj:`~apitele.types.ChatMemberOwner`
+- :obj:`~apitele.types.ChatMemberAdministrator`
+- :obj:`~apitele.types.ChatMemberMember`
+- :obj:`~apitele.types.ChatMemberRestricted`
+- :obj:`~apitele.types.ChatMemberLeft`
+- :obj:`~apitele.types.ChatMemberBanned`
 '''
 
 def _dese_chat_member(res: Optional[dict], /) -> Optional[ChatMember]:
@@ -9561,26 +9561,26 @@ https://core.telegram.org/bots/api#inlinequeryresult
 This object represents one result of an inline query.
 Telegram clients currently support results of the following 20 types:
 
-- :obj:`~aiotgm.types.InlineQueryResultCachedAudio`
-- :obj:`~aiotgm.types.InlineQueryResultCachedDocument`
-- :obj:`~aiotgm.types.InlineQueryResultCachedGif`
-- :obj:`~aiotgm.types.InlineQueryResultCachedMpeg4Gif`
-- :obj:`~aiotgm.types.InlineQueryResultCachedPhoto`
-- :obj:`~aiotgm.types.InlineQueryResultCachedSticker`
-- :obj:`~aiotgm.types.InlineQueryResultCachedVideo`
-- :obj:`~aiotgm.types.InlineQueryResultCachedVoice`
-- :obj:`~aiotgm.types.InlineQueryResultArticle`
-- :obj:`~aiotgm.types.InlineQueryResultAudio`
-- :obj:`~aiotgm.types.InlineQueryResultContact`
-- :obj:`~aiotgm.types.InlineQueryResultGame`
-- :obj:`~aiotgm.types.InlineQueryResultDocument`
-- :obj:`~aiotgm.types.InlineQueryResultGif`
-- :obj:`~aiotgm.types.InlineQueryResultLocation`
-- :obj:`~aiotgm.types.InlineQueryResultMpeg4Gif`
-- :obj:`~aiotgm.types.InlineQueryResultPhoto`
-- :obj:`~aiotgm.types.InlineQueryResultVenue`
-- :obj:`~aiotgm.types.InlineQueryResultVideo`
-- :obj:`~aiotgm.types.InlineQueryResultVoice`
+- :obj:`~apitele.types.InlineQueryResultCachedAudio`
+- :obj:`~apitele.types.InlineQueryResultCachedDocument`
+- :obj:`~apitele.types.InlineQueryResultCachedGif`
+- :obj:`~apitele.types.InlineQueryResultCachedMpeg4Gif`
+- :obj:`~apitele.types.InlineQueryResultCachedPhoto`
+- :obj:`~apitele.types.InlineQueryResultCachedSticker`
+- :obj:`~apitele.types.InlineQueryResultCachedVideo`
+- :obj:`~apitele.types.InlineQueryResultCachedVoice`
+- :obj:`~apitele.types.InlineQueryResultArticle`
+- :obj:`~apitele.types.InlineQueryResultAudio`
+- :obj:`~apitele.types.InlineQueryResultContact`
+- :obj:`~apitele.types.InlineQueryResultGame`
+- :obj:`~apitele.types.InlineQueryResultDocument`
+- :obj:`~apitele.types.InlineQueryResultGif`
+- :obj:`~apitele.types.InlineQueryResultLocation`
+- :obj:`~apitele.types.InlineQueryResultMpeg4Gif`
+- :obj:`~apitele.types.InlineQueryResultPhoto`
+- :obj:`~apitele.types.InlineQueryResultVenue`
+- :obj:`~apitele.types.InlineQueryResultVideo`
+- :obj:`~apitele.types.InlineQueryResultVoice`
 
 **Note**: All URLs passed in inline query results will be
 available to end users and therefore must be assumed to be **public**.
@@ -9599,11 +9599,11 @@ https://core.telegram.org/bots/api#inputmedia
 
 This object represents the content of a media message to be sent. It should be one of:
 
-- :obj:`~aiotgm.types.InputMediaAnimation`
-- :obj:`~aiotgm.types.InputMediaDocument`
-- :obj:`~aiotgm.types.InputMediaAudio`
-- :obj:`~aiotgm.types.InputMediaPhoto`
-- :obj:`~aiotgm.types.InputMediaVideo`
+- :obj:`~apitele.types.InputMediaAnimation`
+- :obj:`~apitele.types.InputMediaDocument`
+- :obj:`~apitele.types.InputMediaAudio`
+- :obj:`~apitele.types.InputMediaPhoto`
+- :obj:`~apitele.types.InputMediaVideo`
 '''
 
 
@@ -9620,11 +9620,11 @@ https://core.telegram.org/bots/api#inputmessagecontent
 This object represents the content of a message to be sent as a result of an inline query.
 Telegram clients currently support the following 5 types:
 
-- :obj:`~aiotgm.types.InputTextMessageContent`
-- :obj:`~aiotgm.types.InputLocationMessageContent`
-- :obj:`~aiotgm.types.InputVenueMessageContent`
-- :obj:`~aiotgm.types.InputContactMessageContent`
-- :obj:`~aiotgm.types.InputInvoiceMessageContent`
+- :obj:`~apitele.types.InputTextMessageContent`
+- :obj:`~apitele.types.InputLocationMessageContent`
+- :obj:`~apitele.types.InputVenueMessageContent`
+- :obj:`~apitele.types.InputContactMessageContent`
+- :obj:`~apitele.types.InputInvoiceMessageContent`
 '''
 
 
@@ -9634,8 +9634,8 @@ https://core.telegram.org/bots/api#inputpaidmedia
 
 This object describes the paid media to be sent. Currently, it can be one of:
 
-- :obj:`~aiotgm.types.InputPaidMediaPhoto`
-- :obj:`~aiotgm.types.InputPaidMediaVideo`
+- :obj:`~apitele.types.InputPaidMediaPhoto`
+- :obj:`~apitele.types.InputPaidMediaVideo`
 '''
 
 
@@ -9645,8 +9645,8 @@ https://core.telegram.org/bots/api#maybeinaccessiblemessage
 
 This object describes a message that can be inaccessible to the bot. It can be one of:
 
-- :obj:`~aiotgm.types.Message`
-- :obj:`~aiotgm.types.InaccessibleMessage`
+- :obj:`~apitele.types.Message`
+- :obj:`~apitele.types.InaccessibleMessage`
 '''
 
 def _dese_maybe_inaccessible_message(res: Optional[dict], /) -> Optional[MaybeInaccessibleMessage]:
@@ -9668,16 +9668,16 @@ https://core.telegram.org/bots/api#menubutton
 
 This object describes the bot's menu button in a private chat. It should be one of
 
-- :obj:`~aiotgm.types.MenuButtonCommands`
-- :obj:`~aiotgm.types.MenuButtonWebApp`
-- :obj:`~aiotgm.types.MenuButtonDefault`
+- :obj:`~apitele.types.MenuButtonCommands`
+- :obj:`~apitele.types.MenuButtonWebApp`
+- :obj:`~apitele.types.MenuButtonDefault`
 
-If a menu button other than :obj:`~aiotgm.types.MenuButtonDefault` is set for a private
+If a menu button other than :obj:`~apitele.types.MenuButtonDefault` is set for a private
 chat, then it is applied in the chat. Otherwise the default menu button is applied. By
 default, the menu button opens the list of bot commands.
 '''
 
-def _dese_menu_button(res: Optional[dict], /) -> Optional[MenuButton]: # used in aiotgm.__init__
+def _dese_menu_button(res: Optional[dict], /) -> Optional[MenuButton]: # used in apitele.__init__
     '''
     Function to deserialize MenuButton.
     '''
@@ -9712,10 +9712,10 @@ https://core.telegram.org/bots/api#messageorigin
 
 This object describes the origin of a message. It can be one of:
 
-- :obj:`~aiotgm.types.MessageOriginUser`
-- :obj:`~aiotgm.types.MessageOriginHiddenUser`
-- :obj:`~aiotgm.types.MessageOriginChat`
-- :obj:`~aiotgm.types.MessageOriginChannel`
+- :obj:`~apitele.types.MessageOriginUser`
+- :obj:`~apitele.types.MessageOriginHiddenUser`
+- :obj:`~apitele.types.MessageOriginChat`
+- :obj:`~apitele.types.MessageOriginChannel`
 '''
 
 def _dese_message_origin(res: Optional[dict], /) -> Optional[MessageOrigin]:
@@ -9751,9 +9751,9 @@ https://core.telegram.org/bots/api#paidmedia
 
 This object describes paid media. Currently, it can be one of:
 
-- :obj:`~aiotgm.types.PaidMediaPreview`
-- :obj:`~aiotgm.types.PaidMediaPhoto`
-- :obj:`~aiotgm.types.PaidMediaVideo`
+- :obj:`~apitele.types.PaidMediaPreview`
+- :obj:`~apitele.types.PaidMediaPhoto`
+- :obj:`~apitele.types.PaidMediaVideo`
 '''
 
 def _dese_paid_media(res: Optional[dict], /) -> Optional[PaidMedia]:
@@ -9797,15 +9797,15 @@ https://core.telegram.org/bots/api#passportelementerror
 This object represents an error in the Telegram Passport element which
 was submitted that should be resolved by the user. It should be one of:
 
-- :obj:`~aiotgm.types.PassportElementErrorDataField`
-- :obj:`~aiotgm.types.PassportElementErrorFrontSide`
-- :obj:`~aiotgm.types.PassportElementErrorReverseSide`
-- :obj:`~aiotgm.types.PassportElementErrorSelfie`
-- :obj:`~aiotgm.types.PassportElementErrorFile`
-- :obj:`~aiotgm.types.PassportElementErrorFiles`
-- :obj:`~aiotgm.types.PassportElementErrorTranslationFile`
-- :obj:`~aiotgm.types.PassportElementErrorTranslationFiles`
-- :obj:`~aiotgm.types.PassportElementErrorUnspecified`
+- :obj:`~apitele.types.PassportElementErrorDataField`
+- :obj:`~apitele.types.PassportElementErrorFrontSide`
+- :obj:`~apitele.types.PassportElementErrorReverseSide`
+- :obj:`~apitele.types.PassportElementErrorSelfie`
+- :obj:`~apitele.types.PassportElementErrorFile`
+- :obj:`~apitele.types.PassportElementErrorFiles`
+- :obj:`~apitele.types.PassportElementErrorTranslationFile`
+- :obj:`~apitele.types.PassportElementErrorTranslationFiles`
+- :obj:`~apitele.types.PassportElementErrorUnspecified`
 '''
 
 
@@ -9819,9 +9819,9 @@ https://core.telegram.org/bots/api#reactiontype
 
 This object describes the type of a reaction. Currently, it can be one of:
 
-- :obj:`~aiotgm.types.ReactionTypeEmoji`
-- :obj:`~aiotgm.types.ReactionTypeCustomEmoji`
-- :obj:`~aiotgm.types.ReactionTypePaid`
+- :obj:`~apitele.types.ReactionTypeEmoji`
+- :obj:`~apitele.types.ReactionTypeCustomEmoji`
+- :obj:`~apitele.types.ReactionTypePaid`
 '''
 
 def _dese_reaction_type(res: Optional[dict], /) -> Optional[ReactionType]:
@@ -9859,9 +9859,9 @@ https://core.telegram.org/bots/api#revenuewithdrawalstate
 This object describes the state of a revenue withdrawal operation.
 Currently, it can be one of:
 
-- :obj:`~aiotgm.types.RevenueWithdrawalStatePending`
-- :obj:`~aiotgm.types.RevenueWithdrawalStateSucceeded`
-- :obj:`~aiotgm.types.RevenueWithdrawalStateFailed`
+- :obj:`~apitele.types.RevenueWithdrawalStatePending`
+- :obj:`~apitele.types.RevenueWithdrawalStateSucceeded`
+- :obj:`~apitele.types.RevenueWithdrawalStateFailed`
 '''
 
 def _dese_revenue_withdrawal_state(res: Optional[dict], /) -> Optional[RevenueWithdrawalState]:
@@ -9899,9 +9899,9 @@ https://core.telegram.org/bots/api#transactionpartner
 This object describes the source of a transaction, or its recipient for outgoing transactions.
 Currently, it can be one of:
 
-- :obj:`~aiotgm.types.TransactionPartnerFragment`
-- :obj:`~aiotgm.types.TransactionPartnerUser`
-- :obj:`~aiotgm.types.TransactionPartnerOther`
+- :obj:`~apitele.types.TransactionPartnerFragment`
+- :obj:`~apitele.types.TransactionPartnerUser`
+- :obj:`~apitele.types.TransactionPartnerOther`
 '''
 
 def _dese_transaction_partner(res: Optional[dict], /) -> Optional[TransactionPartner]:

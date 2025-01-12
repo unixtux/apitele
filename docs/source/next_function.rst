@@ -2,6 +2,6 @@
 NextFunction
 ============
 
-.. autoclass:: pro_telegram.NextFunction
+.. autoclass:: apitele.NextFunction
     :members:
     :undoc-members:

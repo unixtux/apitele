@@ -2,7 +2,7 @@
 Client Reference
 ================
 
-This page refers to the :obj:`~pro_telegram.Client` and all its methods, which are the same described in the
+This page refers to the :obj:`~apitele.Client` and all its methods, which are the same described in the
 `official documentation <https://core.telegram.org/bots/api#available-methods>`_, changed from camelCase to snake_case.
 E.g. *sendMessage* becomes *send_message*.
 
@@ -12,6 +12,6 @@ Note: Webhook has not been implemented yet.
 
 ----------------------------------
 
-.. autoclass:: pro_telegram.Client
+.. autoclass:: apitele.Client
     :members:
     :undoc-members:

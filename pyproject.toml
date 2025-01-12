@@ -3,8 +3,8 @@ requires = ["setuptools >= 61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pro-telegram"
-version = "0.5.7"
+name = "apitele"
+version = "0.0.1"
 requires-python = ">= 3.8"
 license = {file = "LICENSE"}
 readme = "README.md"
@@ -18,7 +18,7 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/unixtux/pro-telegram"
+Repository = "https://github.com/unixtux/apitele"
 
 [tool.setuptools]
-packages = ["pro-telegram"]
+packages = ["apitele"]

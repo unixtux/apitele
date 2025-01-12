@@ -112,19 +112,19 @@ class Client(TelegramApi):
     def manage_message(self, checker: Callable[[Message], Any] = lambda message: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *message* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.Message`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.Message` update.
+        inside this decorator to manage an incoming *message* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.Message`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.Message` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import Message
+            from apitele.types import Message
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_message(lambda message: message.chat.id == xyz)
             async def foo(message: Message):
@@ -132,7 +132,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker:  A function that takes only one argument to check an incoming *message* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker:  A function that takes only one argument to check an incoming *message* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[Message], Any]`
         '''
         def wrap(coroutine: Callable[[Message], Awaitable]):
@@ -142,19 +142,19 @@ class Client(TelegramApi):
     def manage_edited_message(self, checker: Callable[[Message], Any] = lambda edited_message: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *edited_message* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.Message`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.Message` update.
+        inside this decorator to manage an incoming *edited_message* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.Message`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.Message` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import Message
+            from apitele.types import Message
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_edited_message(lambda edited_message: edited_message.chat.id == xyz)
             async def foo(edited_message: Message):
@@ -162,7 +162,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *edited_message* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *edited_message* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[Message], Any]`
         '''
         def wrap(coroutine: Callable[[Message], Awaitable]):
@@ -172,19 +172,19 @@ class Client(TelegramApi):
     def manage_channel_post(self, checker: Callable[[Message], Any] = lambda channel_post: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *channel_post* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.Message`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.Message` update.
+        inside this decorator to manage an incoming *channel_post* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.Message`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.Message` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import Message
+            from apitele.types import Message
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_channel_post(lambda channel_post: channel_post.chat.id == xyz)
             async def foo(channel_post: Message):
@@ -192,7 +192,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *channel_post* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *channel_post* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[Message], Any]`
         '''
         def wrap(coroutine: Callable[[Message], Awaitable]):
@@ -202,19 +202,19 @@ class Client(TelegramApi):
     def manage_edited_channel_post(self, checker: Callable[[Message], Any] = lambda edited_channel_post: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *edited_channel_post* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.Message`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.Message` update.
+        inside this decorator to manage an incoming *edited_channel_post* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.Message`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.Message` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import Message
+            from apitele.types import Message
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_edited_channel_post(lambda edited_channel_post: edited_channel_post.chat.id == xyz)
             async def foo(edited_channel_post: Message):
@@ -222,7 +222,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *edited_channel_post* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *edited_channel_post* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[Message], Any]`
         '''
         def wrap(coroutine: Callable[[Message], Awaitable]):
@@ -232,19 +232,19 @@ class Client(TelegramApi):
     def manage_business_connection(self, checker: Callable[[BusinessConnection], Any] = lambda business_connection: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *business_connection* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.BusinessConnection`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.BusinessConnection` update.
+        inside this decorator to manage an incoming *business_connection* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.BusinessConnection`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.BusinessConnection` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import BusinessConnection
+            from apitele.types import BusinessConnection
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_business_connection(lambda business_connection: business_connection.user.id == xyz)
             async def foo(business_connection: BusinessConnection):
@@ -252,7 +252,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *business_connection* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *business_connection* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[BusinessConnection], Any]`
         '''
         def wrap(coroutine: Callable[[BusinessConnection], Awaitable]):
@@ -262,19 +262,19 @@ class Client(TelegramApi):
     def manage_business_message(self, checker: Callable[[Message], Any] = lambda business_message: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *business_message* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.Message`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.Message` update.
+        inside this decorator to manage an incoming *business_message* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.Message`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.Message` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import Message
+            from apitele.types import Message
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_business_message(lambda business_message: business_message.chat.id == xyz)
             async def foo(business_message: Message):
@@ -282,7 +282,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *business_message* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *business_message* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[Message], Any]`
         '''
         def wrap(coroutine: Callable[[Message], Awaitable]):
@@ -292,19 +292,19 @@ class Client(TelegramApi):
     def manage_edited_business_message(self, checker: Callable[[Message], Any] = lambda edited_business_message: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *edited_business_message* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.Message`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.Message` update.
+        inside this decorator to manage an incoming *edited_business_message* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.Message`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.Message` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import Message
+            from apitele.types import Message
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_business_message(lambda edited_business_message: edited_business_message.chat.id == xyz)
             async def foo(edited_business_message: Message):
@@ -312,7 +312,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *edited_business_message* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *edited_business_message* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[Message], Any]`
         '''
         def wrap(coroutine: Callable[[Message], Awaitable]):
@@ -322,19 +322,19 @@ class Client(TelegramApi):
     def manage_deleted_business_messages(self, checker: Callable[[BusinessMessagesDeleted], Any] = lambda deleted_business_messages: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *deleted_business_messages* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.BusinessMessagesDeleted`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.BusinessMessagesDeleted` update.
+        inside this decorator to manage an incoming *deleted_business_messages* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.BusinessMessagesDeleted`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.BusinessMessagesDeleted` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import BusinessMessagesDeleted
+            from apitele.types import BusinessMessagesDeleted
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_deleted_business_messages(lambda deleted_business_messages: deleted_business_messages.chat.id == xyz)
             async def foo(deleted_business_messages: BusinessMessagesDeleted):
@@ -342,7 +342,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *deleted_business_messages* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *deleted_business_messages* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[BusinessMessagesDeleted], Any]`
         '''
         def wrap(coroutine: Callable[[BusinessMessagesDeleted], Awaitable]):
@@ -352,19 +352,19 @@ class Client(TelegramApi):
     def manage_message_reaction(self, checker: Callable[[MessageReactionUpdated], Any] = lambda message_reaction: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *message_reaction* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.MessageReactionUpdated`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.MessageReactionUpdated` update.
+        inside this decorator to manage an incoming *message_reaction* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.MessageReactionUpdated`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.MessageReactionUpdated` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import MessageReactionUpdated
+            from apitele.types import MessageReactionUpdated
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_message_reaction(lambda message_reaction: message_reaction.chat.id == xyz)
             async def foo(message_reaction: MessageReactionUpdated):
@@ -372,7 +372,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *message_reaction* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *message_reaction* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[MessageReactionUpdated], Any]`
         '''
         def wrap(coroutine: Callable[[MessageReactionUpdated], Awaitable]):
@@ -382,19 +382,19 @@ class Client(TelegramApi):
     def manage_message_reaction_count(self, checker: Callable[[MessageReactionCountUpdated], Any] = lambda message_reaction_count: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *message_reaction_count* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.MessageReactionCountUpdated`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.MessageReactionCountUpdated` update.
+        inside this decorator to manage an incoming *message_reaction_count* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.MessageReactionCountUpdated`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.MessageReactionCountUpdated` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import MessageReactionCountUpdated
+            from apitele.types import MessageReactionCountUpdated
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_message_reaction_count(lambda message_reaction_count: message_reaction_count.chat.id == xyz)
             async def foo(message_reaction_count: MessageReactionCountUpdated):
@@ -402,7 +402,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *message_reaction_count* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *message_reaction_count* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[MessageReactionCountUpdated], Any]`
         '''
         def wrap(coroutine: Callable[[MessageReactionCountUpdated], Awaitable]):
@@ -412,19 +412,19 @@ class Client(TelegramApi):
     def manage_inline_query(self, checker: Callable[[InlineQuery], Any] = lambda inline_query: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *inline_query* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.InlineQuery`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.InlineQuery` update.
+        inside this decorator to manage an incoming *inline_query* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.InlineQuery`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.InlineQuery` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import InlineQuery
+            from apitele.types import InlineQuery
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_inline_query(lambda inline_query: inline_query.from_user.id == xyz)
             async def foo(inline_query: InlineQuery):
@@ -432,7 +432,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *inline_query* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *inline_query* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[InlineQuery], Any]`
         '''
         def wrap(coroutine: Callable[[InlineQuery], Awaitable]):
@@ -442,19 +442,19 @@ class Client(TelegramApi):
     def manage_chosen_inline_result(self, checker: Callable[[ChosenInlineResult], Any] = lambda chosen_inline_result: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *chosen_inline_result* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.ChosenInlineResult`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.ChosenInlineResult` update.
+        inside this decorator to manage an incoming *chosen_inline_result* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.ChosenInlineResult`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.ChosenInlineResult` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import ChosenInlineResult
+            from apitele.types import ChosenInlineResult
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_chosen_inline_result(lambda chosen_inline_result: chosen_inline_result.from_user.id == xyz)
             async def foo(chosen_inline_result: ChosenInlineResult):
@@ -462,7 +462,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *chosen_inline_result* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *chosen_inline_result* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[ChosenInlineResult], Any]`
         '''
         def wrap(coroutine: Callable[[ChosenInlineResult], Awaitable]):
@@ -472,19 +472,19 @@ class Client(TelegramApi):
     def manage_callback_query(self, checker: Callable[[CallbackQuery], Any] = lambda callback_query: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *callback_query* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.CallbackQuery`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.CallbackQuery` update.
+        inside this decorator to manage an incoming *callback_query* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.CallbackQuery`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.CallbackQuery` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import CallbackQuery
+            from apitele.types import CallbackQuery
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_callback_query(lambda callback_query: callback_query.from_user.id == xyz)
             async def foo(callback_query: CallbackQuery):
@@ -492,7 +492,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *callback_query* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *callback_query* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[CallbackQuery], Any]`
         '''
         def wrap(coroutine: Callable[[CallbackQuery], Awaitable]):
@@ -502,19 +502,19 @@ class Client(TelegramApi):
     def manage_shipping_query(self, checker: Callable[[ShippingQuery], Any] = lambda shipping_query: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *shipping_query* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.ShippingQuery`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.ShippingQuery` update.
+        inside this decorator to manage an incoming *shipping_query* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.ShippingQuery`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.ShippingQuery` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import ShippingQuery
+            from apitele.types import ShippingQuery
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_shipping_query(lambda shipping_query: shipping_query.from_user.id == xyz)
             async def foo(shipping_query: ShippingQuery):
@@ -522,7 +522,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *shipping_query* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *shipping_query* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[ShippingQuery], Any]`
         '''
         def wrap(coroutine: Callable[[ShippingQuery], Awaitable]):
@@ -532,19 +532,19 @@ class Client(TelegramApi):
     def manage_pre_checkout_query(self, checker: Callable[[PreCheckoutQuery], Any] = lambda pre_checkout_query: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *pre_checkout_query* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.PreCheckoutQuery`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.PreCheckoutQuery` update.
+        inside this decorator to manage an incoming *pre_checkout_query* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.PreCheckoutQuery`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.PreCheckoutQuery` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import PreCheckoutQuery
+            from apitele.types import PreCheckoutQuery
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_pre_checkout_query(lambda pre_checkout_query: pre_checkout_query.from_user.id == xyz)
             async def foo(pre_checkout_query: PreCheckoutQuery):
@@ -552,7 +552,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *pre_checkout_query* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *pre_checkout_query* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[PreCheckoutQuery], Any]`
         '''
         def wrap(coroutine: Callable[[PreCheckoutQuery], Awaitable]):
@@ -562,19 +562,19 @@ class Client(TelegramApi):
     def manage_purchased_paid_media(self, checker: Callable[[PaidMediaPurchased], Any], /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *purchased_paid_media* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.PaidMediaPurchased`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.PaidMediaPurchased` update.
+        inside this decorator to manage an incoming *purchased_paid_media* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.PaidMediaPurchased`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.PaidMediaPurchased` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import PaidMediaPurchased
+            from apitele.types import PaidMediaPurchased
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_purchased_paid_media(lambda purchased_paid_media: purchased_paid_media.from_user.id == xyz)
             async def foo(purchased_paid_media: PaidMediaPurchased):
@@ -582,7 +582,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *purchased_paid_media* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *purchased_paid_media* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[PaidMediaPurchased], Any]`
         '''
         def wrap(coroutine: Callable[[PaidMediaPurchased], Awaitable]):
@@ -592,19 +592,19 @@ class Client(TelegramApi):
     def manage_poll(self, checker: Callable[[Poll], Any] = lambda poll: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *poll* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.Poll`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.Poll` update.
+        inside this decorator to manage an incoming *poll* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.Poll`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.Poll` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import Poll
+            from apitele.types import Poll
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_poll(lambda poll: poll.id == xyz)
             async def foo(poll: Poll):
@@ -612,7 +612,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *poll* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *poll* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[Poll], Any]`
         '''
         def wrap(coroutine: Callable[[Poll], Awaitable]):
@@ -622,19 +622,19 @@ class Client(TelegramApi):
     def manage_poll_answer(self, checker: Callable[[PollAnswer], Any] = lambda poll_answer: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *poll_answer* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.PollAnswer`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.PollAnswer` update.
+        inside this decorator to manage an incoming *poll_answer* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.PollAnswer`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.PollAnswer` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import PollAnswer
+            from apitele.types import PollAnswer
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_poll_answer(lambda poll_answer: poll_answer.poll_id == xyz)
             async def foo(poll_answer: PollAnswer):
@@ -642,7 +642,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *poll_answer* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *poll_answer* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[PollAnswer], Any]`
         '''
         def wrap(coroutine: Callable[[PollAnswer], Awaitable]):
@@ -652,19 +652,19 @@ class Client(TelegramApi):
     def manage_my_chat_member(self, checker: Callable[[ChatMemberUpdated], Any] = lambda my_chat_member: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *my_chat_member* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.ChatMemberUpdated`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.ChatMemberUpdated` update.
+        inside this decorator to manage an incoming *my_chat_member* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.ChatMemberUpdated`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.ChatMemberUpdated` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import ChatMemberUpdated
+            from apitele.types import ChatMemberUpdated
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_my_chat_member(lambda my_chat_member: my_chat_member.chat.id == xyz)
             async def foo(my_chat_member: ChatMemberUpdated):
@@ -672,7 +672,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *my_chat_member* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *my_chat_member* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[ChatMemberUpdated], Any]`
         '''
         def wrap(coroutine: Callable[[ChatMemberUpdated], Awaitable]):
@@ -682,19 +682,19 @@ class Client(TelegramApi):
     def manage_chat_member(self, checker: Callable[[ChatMemberUpdated], Any] = lambda chat_member: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *chat_member* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.ChatMemberUpdated`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.ChatMemberUpdated` update.
+        inside this decorator to manage an incoming *chat_member* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.ChatMemberUpdated`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.ChatMemberUpdated` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import ChatMemberUpdated
+            from apitele.types import ChatMemberUpdated
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_chat_member(lambda chat_member: chat_member.chat.id == xyz)
             async def foo(chat_member: ChatMemberUpdated):
@@ -702,7 +702,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *chat_member* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *chat_member* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[ChatMemberUpdated], Any]`
         '''
         def wrap(coroutine: Callable[[ChatMemberUpdated], Awaitable]):
@@ -712,19 +712,19 @@ class Client(TelegramApi):
     def manage_chat_join_request(self, checker: Callable[[ChatJoinRequest], Any] = lambda chat_join_request: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *chat_join_request* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.ChatJoinRequest`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.ChatJoinRequest` update.
+        inside this decorator to manage an incoming *chat_join_request* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.ChatJoinRequest`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.ChatJoinRequest` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import ChatJoinRequest
+            from apitele.types import ChatJoinRequest
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_chat_join_request(lambda chat_join_request: chat_join_request.chat.id == xyz)
             async def foo(chat_join_request: ChatJoinRequest):
@@ -732,7 +732,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *chat_join_request* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *chat_join_request* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[ChatJoinRequest], Any]`
         '''
         def wrap(coroutine: Callable[[ChatJoinRequest], Awaitable]):
@@ -742,19 +742,19 @@ class Client(TelegramApi):
     def manage_chat_boost(self, checker: Callable[[ChatBoostUpdated], Any] = lambda chat_boost: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *chat_boost* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.ChatBoostUpdated`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.ChatBoostUpdated` update.
+        inside this decorator to manage an incoming *chat_boost* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.ChatBoostUpdated`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.ChatBoostUpdated` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import ChatBoostUpdated
+            from apitele.types import ChatBoostUpdated
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_chat_boost(lambda chat_boost: chat_boost.chat.id == xyz)
             async def foo(chat_boost: ChatBoostUpdated):
@@ -762,7 +762,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *chat_boost* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *chat_boost* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[ChatBoostUpdated], Any]`
         '''
         def wrap(coroutine: Callable[[ChatBoostUpdated], Awaitable]):
@@ -772,19 +772,19 @@ class Client(TelegramApi):
     def manage_removed_chat_boost(self, checker: Callable[[ChatBoostRemoved], Any] = lambda removed_chat_boost: ..., /):
         '''
         You must wrap a `coroutine <https://docs.python.org/3/library/asyncio-task.html#coroutines>`_
-        inside this decorator to manage an incoming *removed_chat_boost* :obj:`~aiotgm.types.Update`.
-        The coroutine must takes only one argument, it will be processed as :obj:`~aiotgm.types.ChatBoostRemoved`.
-        Then you need to call the method :meth:`~aiotgm.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~aiotgm.types.ChatBoostRemoved` update.
+        inside this decorator to manage an incoming *removed_chat_boost* :obj:`~apitele.types.Update`.
+        The coroutine must takes only one argument, it will be processed as :obj:`~apitele.types.ChatBoostRemoved`.
+        Then you need to call the method :meth:`~apitele.Client.long_polling` using the function `asyncio.run() <https://docs.python.org/3/library/asyncio-runner.html#asyncio.run>`_ to process the :obj:`~apitele.types.ChatBoostRemoved` update.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import ChatBoostRemoved
+            from apitele.types import ChatBoostRemoved
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_removed_chat_boost(lambda removed_chat_boost: removed_chat_boost.chat.id == xyz)
             async def foo(removed_chat_boost: ChatBoostRemoved):
@@ -792,7 +792,7 @@ class Client(TelegramApi):
 
             asyncio.run(bot.long_polling())
 
-        :param checker: A function that takes only one argument to check an incoming *removed_chat_boost* :obj:`~aiotgm.types.Update`. E.g. a lambda function.
+        :param checker: A function that takes only one argument to check an incoming *removed_chat_boost* :obj:`~apitele.types.Update`. E.g. a lambda function.
         :type checker: :obj:`Callable[[ChatBoostRemoved], Any]`
         '''
         def wrap(coroutine: Callable[[ChatBoostRemoved], Awaitable]):
@@ -811,18 +811,18 @@ class Client(TelegramApi):
     ):
         '''
         Use this method with the `asyncio <https://docs.python.org/3/library/asyncio.html>`_
-        module, to receive :obj:`updates <aiotgm.types.Update>` from the Telegram Bot API Server
-        and manage them using decorators method like :meth:`~aiotgm.Client.manage_message`.
+        module, to receive :obj:`updates <apitele.types.Update>` from the Telegram Bot API Server
+        and manage them using decorators method like :meth:`~apitele.Client.manage_message`.
 
         Usage:
 
         .. code-block:: python3
 
-            import aiotgm
+            import apitele
             import asyncio
-            from aiotgm.types import Message
+            from apitele.types import Message
 
-            bot = aiotgm.Client('<your_api_token>')
+            bot = apitele.Client('<your_api_token>')
 
             @bot.manage_message()
             async def foo(msg: Message):
@@ -835,9 +835,9 @@ class Client(TelegramApi):
         :param limit: Limits the number of updates to be retrieved. Values between 1-100 are accepted. Defaults to :obj:`100`.
         :type limit: :obj:`int`, optional
         :param allowed_updates:
-            A JSON-serialized list of the update types you want your bot to receive. For example, specify ``["message", "edited_channel_post", "callback_query"]`` to only receive updates of these types. See :obj:`~aiotgm.types.Update` for a complete list of available update types. Specify an empty list to receive all update types except *chat_member*, *message_reaction*, and *message_reaction_count* (default). If not specified, the previous setting will be used.
+            A JSON-serialized list of the update types you want your bot to receive. For example, specify ``["message", "edited_channel_post", "callback_query"]`` to only receive updates of these types. See :obj:`~apitele.types.Update` for a complete list of available update types. Specify an empty list to receive all update types except *chat_member*, *message_reaction*, and *message_reaction_count* (default). If not specified, the previous setting will be used.
 
-            Please note that this parameter doesn't affect updates created before the call to the :meth:`~aiotgm.Client.get_updates`, so unwanted updates may be received for a short period of time.
+            Please note that this parameter doesn't affect updates created before the call to the :meth:`~apitele.Client.get_updates`, so unwanted updates may be received for a short period of time.
         :type allowed_updates: :obj:`list` of :obj:`str`, optional
         '''
         if not type(timeout) in (int, float):
@@ -1067,7 +1067,7 @@ class Client(TelegramApi):
         :param name: Sticker set name.
         :type name: :obj:`str`
         :param sticker: A JSON-serialized object with information about the added sticker. If exactly the same sticker had already been added to the set, then the set isn't changed.
-        :type sticker: :obj:`~aiotgm.types.InputSticker`
+        :type sticker: :obj:`~apitele.types.InputSticker`
         :rtype: :obj:`True`
         '''
         params = {
@@ -1105,7 +1105,7 @@ class Client(TelegramApi):
         :param show_alert: If :obj:`True`, an alert will be shown by the client instead of a notification at the top of the chat screen. Defaults to :obj:`False`.
         :type show_alert: :obj:`bool`, optional
         :param url:
-            URL that will be opened by the user's client. If you have created a :obj:`~aiotgm.types.Game` and accepted the conditions via `@BotFather <https://t.me/botfather>`_, specify the URL that opens your game - note that this will only work if the query comes from a :obj:`callback_game <aiotgm.types.InlineKeyboardButton>` button.
+            URL that will be opened by the user's client. If you have created a :obj:`~apitele.types.Game` and accepted the conditions via `@BotFather <https://t.me/botfather>`_, specify the URL that opens your game - note that this will only work if the query comes from a :obj:`callback_game <apitele.types.InlineKeyboardButton>` button.
 
             Otherwise, you may use links like ``t.me/your_bot?start=XXXX`` that open your bot with a parameter.
         :type url: :obj:`str`, optional
@@ -1141,7 +1141,7 @@ class Client(TelegramApi):
         :param inline_query_id: Unique identifier for the answered query.
         :type inline_query_id: :obj:`str`
         :param results: A JSON-serialized array of results for the inline query.
-        :type results: :obj:`list` of :obj:`~aiotgm.types.InlineQueryResult`
+        :type results: :obj:`list` of :obj:`~apitele.types.InlineQueryResult`
         :param cache_time: The maximum amount of time in seconds that the result of the inline query may be cached on the server. Defaults to :obj:`300`.
         :type cache_time: :obj:`int`, optional
         :param is_personal: Pass :obj:`True` if results may be cached on the server side only for the user that sent the query. By default, results may be returned to any user who sends the same query.
@@ -1149,7 +1149,7 @@ class Client(TelegramApi):
         :param next_offset: Pass the offset that a client should send in the next query with the same text to receive more results. Pass an empty string if there are no more results or if you don't support pagination. Offset length can't exceed 64 bytes.
         :type next_offset: :obj:`str`, optional
         :param button: A JSON-serialized object describing a button to be shown above inline query results.
-        :type button: :obj:`~aiotgm.types.InlineQueryResultsButton`, optional
+        :type button: :obj:`~apitele.types.InlineQueryResultsButton`, optional
         :rtype: :obj:`True`
         '''
         params = {
@@ -1173,7 +1173,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#answerprecheckoutquery
 
         Once the user has confirmed their payment and shipping details, the Bot API sends the
-        final confirmation in the form of an :obj:`~aiotgm.types.Update` with the field *pre_checkout_query*. Use this
+        final confirmation in the form of an :obj:`~apitele.types.Update` with the field *pre_checkout_query*. Use this
         method to respond to such pre-checkout queries. On success, :obj:`True` is returned. **Note**: The
         Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.
 
@@ -1204,7 +1204,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#answershippingquery
 
         If you sent an invoice requesting a shipping address and the parameter *is_flexible*
-        was specified, the Bot API will send an :obj:`~aiotgm.types.Update` with a *shipping_query* field to the
+        was specified, the Bot API will send an :obj:`~apitele.types.Update` with a *shipping_query* field to the
         bot. Use this method to reply to shipping queries. On success, :obj:`True` is returned.
 
         :param shipping_query_id: Unique identifier for the query to be answered.
@@ -1212,7 +1212,7 @@ class Client(TelegramApi):
         :param ok: Pass :obj:`True` if delivery to the specified address is possible and :obj:`False` if there are any problems (for example, if delivery to the specified address is not possible).
         :type ok: :obj:`bool`
         :param shipping_options: Required if *ok* is :obj:`True`. A JSON-serialized array of available shipping options.
-        :type shipping_options: :obj:`list` of :obj:`~aiotgm.types.ShippingOption`, optional
+        :type shipping_options: :obj:`list` of :obj:`~apitele.types.ShippingOption`, optional
         :param error_message: Required if *ok* is :obj:`False`. Error message in human readable form that explains why it is impossible to complete the order (e.g. "Sorry, delivery to your desired address is unavailable”). Telegram will display this message to the user.
         :type error_message: :obj:`str`, optional
         :rtype: :obj:`True`
@@ -1236,13 +1236,13 @@ class Client(TelegramApi):
 
         Use this method to set the result of an interaction with a
         `Web App <https://core.telegram.org/bots/webapps>`_ and send a corresponding message on behalf of
-        the user to the chat from which the query originated. On success, a :obj:`~aiotgm.types.SentWebAppMessage` object is returned.
+        the user to the chat from which the query originated. On success, a :obj:`~apitele.types.SentWebAppMessage` object is returned.
 
         :param web_app_query_id: Unique identifier for the query to be answered.
         :type web_app_query_id: :obj:`str`
         :param result: A JSON-serialized object describing the message to be sent.
-        :type result: :obj:`~aiotgm.types.InlineQueryResult`
-        :rtype: :obj:`~aiotgm.types.SentWebAppMessage`
+        :type result: :obj:`~apitele.types.InlineQueryResult`
+        :rtype: :obj:`~apitele.types.SentWebAppMessage`
         '''
         params = {
             'web_app_query_id': web_app_query_id,
@@ -1288,7 +1288,7 @@ class Client(TelegramApi):
 
         Use this method to ban a user in a group, a supergroup or a channel. In the case of
         supergroups and channels, the user will not be able to return to the chat on their own using
-        invite links, etc., unless :meth:`unbanned <aiotgm.Client.unban_chat_member>` first. The bot must be an administrator
+        invite links, etc., unless :meth:`unbanned <apitele.Client.unban_chat_member>` first. The bot must be an administrator
         in the chat for this to work and must have the appropriate administrator rights. Returns :obj:`True` on success.
 
         :param chat_id: Unique identifier for the target group or username of the target supergroup or channel (in the format ``@channelusername``).
@@ -1319,7 +1319,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#banchatsenderchat
 
         Use this method to ban a channel chat in a supergroup or a channel. Until the chat
-        is :meth:`unbanned <aiotgm.Client.unban_chat_sender_chat>`, the owner of the banned chat won't be able to
+        is :meth:`unbanned <apitele.Client.unban_chat_sender_chat>`, the owner of the banned chat won't be able to
         send messages on behalf of **any of their channels**. The bot must be an administrator in the supergroup or
         channel for this to work and must have the appropriate administrator rights. Returns :obj:`True` on success.
 
@@ -1415,8 +1415,8 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#copymessage
 
         Use this method to copy messages of any kind. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied.
-        A quiz :obj:`poll <aiotgm.types.Poll>` can be copied only if the value of the field *correct_option_id* is known to the bot. The method is analogous to the method
-        :meth:`~aiotgm.Client.forward_message`, but the copied message doesn't have a link to the original message. Returns the :obj:`~aiotgm.types.MessageId` of the sent message on success.
+        A quiz :obj:`poll <apitele.types.Poll>` can be copied only if the value of the field *correct_option_id* is known to the bot. The method is analogous to the method
+        :meth:`~apitele.Client.forward_message`, but the copied message doesn't have a link to the original message. Returns the :obj:`~apitele.types.MessageId` of the sent message on success.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -1431,7 +1431,7 @@ class Client(TelegramApi):
         :param parse_mode: Mode for parsing entities in the new caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
         :type parse_mode: :obj:`str`, optional
         :param caption_entities: A JSON-serialized list of special entities that appear in the new caption, which can be specified instead of *parse_mode*.
-        :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+        :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
         :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media. Ignored if a new caption isn't specified.
         :type show_caption_above_media: :obj:`bool`, optional
         :param disable_notification: Sends the message `silently <https://telegram.org/blog/channels-2-0#silent-messages>`_. Users will receive a notification with no sound.
@@ -1441,10 +1441,10 @@ class Client(TelegramApi):
         :param allow_paid_broadcast: Pass :obj:`True` to allow up to 1000 messages per second, ignoring `broadcasting limits <https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once>`_ for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance.
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.MessageId`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.MessageId`
         '''
         params = {
             'chat_id': chat_id,
@@ -1479,9 +1479,9 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#copymessages
 
         Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, paid media messages,
-        giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz :obj:`poll <aiotgm.types.Poll>` can be copied only if the value
-        of the field *correct_option_id* is known to the bot. The method is analogous to the method :meth:`~aiotgm.Client.forward_messages`, but the copied messages don't have
-        a link to the original message. Album grouping is kept for copied messages. On success, an array of :obj:`~aiotgm.types.MessageId` of the sent messages is returned.
+        giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz :obj:`poll <apitele.types.Poll>` can be copied only if the value
+        of the field *correct_option_id* is known to the bot. The method is analogous to the method :meth:`~apitele.Client.forward_messages`, but the copied messages don't have
+        a link to the original message. Album grouping is kept for copied messages. On success, an array of :obj:`~apitele.types.MessageId` of the sent messages is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -1497,7 +1497,7 @@ class Client(TelegramApi):
         :type protect_content: :obj:`bool`, optional
         :param remove_caption: Pass :obj:`True` to copy the messages without their captions.
         :type remove_caption: :obj:`bool`, optional
-        :rtype: :obj:`list` of :obj:`~aiotgm.types.MessageId`
+        :rtype: :obj:`list` of :obj:`~apitele.types.MessageId`
         '''
         params = {
             'chat_id': chat_id,
@@ -1525,7 +1525,7 @@ class Client(TelegramApi):
 
         Use this method to create an additional invite link for a chat. The bot must be an administrator
         in the chat for this to work and must have the appropriate administrator rights. The link can be revoked using the
-        method :meth:`~aiotgm.Client.revoke_chat_invite_link`. Returns the new invite link as :obj:`~aiotgm.types.ChatInviteLink` object.
+        method :meth:`~apitele.Client.revoke_chat_invite_link`. Returns the new invite link as :obj:`~apitele.types.ChatInviteLink` object.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -1537,7 +1537,7 @@ class Client(TelegramApi):
         :type member_limit: :obj:`int`, optional
         :param creates_join_request: :obj:`True`, if users joining the chat via the link need to be approved by chat administrators. If :obj:`True`, *member_limit* can't be specified.
         :type creates_join_request: :obj:`bool`, optional
-        :rtype: :obj:`~aiotgm.types.ChatInviteLink`
+        :rtype: :obj:`~apitele.types.ChatInviteLink`
         '''
         params = {
             'chat_id': chat_id
@@ -1561,8 +1561,8 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#createchatsubscriptioninvitelink
 
         Use this method to create a `subscription invite link <https://telegram.org/blog/superchannels-star-reactions-subscriptions#star-subscriptions>`_ for a channel chat.
-        The bot must have the *can_invite_users* administrator rights. The link can be edited using the method :meth:`~aiotgm.Client.edit_chat_subscription_invite_link`
-        or revoked using the method :meth:`~aiotgm.Client.revoke_chat_invite_link`. Returns the new invite link as a :obj:`~aiotgm.types.ChatInviteLink` object.
+        The bot must have the *can_invite_users* administrator rights. The link can be edited using the method :meth:`~apitele.Client.edit_chat_subscription_invite_link`
+        or revoked using the method :meth:`~apitele.Client.revoke_chat_invite_link`. Returns the new invite link as a :obj:`~apitele.types.ChatInviteLink` object.
 
         :param chat_id: Unique identifier for the target channel chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -1572,7 +1572,7 @@ class Client(TelegramApi):
         :type subscription_price: :obj:`int`
         :param name: Invite link name; 0-32 characters.
         :type name: :obj:`str`, optional
-        :rtype: :obj:`~aiotgm.types.ChatInviteLink`
+        :rtype: :obj:`~apitele.types.ChatInviteLink`
         '''
         params = {
             'chat_id': chat_id,
@@ -1596,7 +1596,7 @@ class Client(TelegramApi):
 
         Use this method to create a topic in a forum supergroup chat. The bot must be an
         administrator in the chat for this to work and must have the *can_manage_topics* administrator
-        rights. Returns information about the created topic as a :obj:`~aiotgm.types.ForumTopic` object.
+        rights. Returns information about the created topic as a :obj:`~apitele.types.ForumTopic` object.
 
         :param chat_id: Unique identifier for the target chat or username of the target supergroup (in the format ``@supergroupusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -1604,9 +1604,9 @@ class Client(TelegramApi):
         :type name: :obj:`str`
         :param icon_color: Color of the topic icon in RGB format. Currently, must be one of 7322096 (0x6FB9F0), 16766590 (0xFFD67E), 13338331 (0xCB86DB), 9367192 (0x8EEE98), 16749490 (0xFF93B2), or 16478047 (0xFB6F5F).
         :type icon_color: :obj:`int`, optional
-        :param icon_custom_emoji_id: Unique identifier of the custom emoji shown as the topic icon. Use :meth:`~aiotgm.Client.get_forum_topic_icon_stickers` to get all allowed custom emoji identifiers.
+        :param icon_custom_emoji_id: Unique identifier of the custom emoji shown as the topic icon. Use :meth:`~apitele.Client.get_forum_topic_icon_stickers` to get all allowed custom emoji identifiers.
         :type icon_custom_emoji_id: :obj:`str`, optional
-        :rtype: :obj:`~aiotgm.types.ForumTopic`
+        :rtype: :obj:`~apitele.types.ForumTopic`
         '''
         params = {
             'chat_id': chat_id,
@@ -1655,7 +1655,7 @@ class Client(TelegramApi):
         :param currency: Three-letter ISO 4217 currency code, see `more on currencies <https://core.telegram.org/bots/payments#supported-currencies>`_. Pass “XTR” for payments in `Telegram Stars <https://t.me/BotNews/90>`_.
         :type currency: :obj:`str`
         :param prices: Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.). Must contain exactly one item for payments in `Telegram Stars <https://t.me/BotNews/90>`_
-        :type prices: :obj:`list` of :obj:`~aiotgm.types.LabeledPrice`
+        :type prices: :obj:`list` of :obj:`~apitele.types.LabeledPrice`
         :param provider_token: Payment provider token, obtained via `BotFather <https://t.me/botfather>`_. Pass an empty string for payments in `Telegram Stars <https://t.me/BotNews/90>`_
         :type provider_token: :obj:`str`, optional
         :param max_tip_amount: The maximum accepted amount for tips in the *smallest units* of the currency (integer, **not** float/double). For example, for a maximum tip of ``US$ 1.45`` pass ``max_tip_amount = 145``. See the *exp* parameter in `currencies.json <https://core.telegram.org/bots/payments/currencies.json>`_, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to :obj:`0`. Not supported for payments in `Telegram Stars <https://t.me/BotNews/90>`_
@@ -1735,7 +1735,7 @@ class Client(TelegramApi):
         :param title: Sticker set title, 1-64 characters.
         :type title: :obj:`str`
         :param stickers: A JSON-serialized list of 1-50 initial stickers to be added to the sticker set.
-        :type stickers: :obj:`list` of :obj:`~aiotgm.types.InputSticker`
+        :type stickers: :obj:`list` of :obj:`~apitele.types.InputSticker`
         :param sticker_type: Type of stickers in the set, pass “regular”, “mask”, or “custom_emoji”. By default, a regular sticker set is created.
         :type sticker_type: :obj:`str`, optional
         :param needs_repainting: Pass :obj:`True` if stickers in the sticker set must be repainted to the color of text when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context; for custom emoji sticker sets only.
@@ -1807,7 +1807,7 @@ class Client(TelegramApi):
 
         Use this method to delete a group sticker set from a supergroup. The bot must be an administrator in the chat
         for this to work and must have the appropriate administrator rights. Use the field *can_set_sticker_set* optionally
-        returned in :meth:`~aiotgm.Client.get_chat` requests to check if the bot can use this method. Returns :obj:`True` on success.
+        returned in :meth:`~apitele.Client.get_chat` requests to check if the bot can use this method. Returns :obj:`True` on success.
 
         :param chat_id: Unique identifier for the target chat or username of the target supergroup (in the format ``@supergroupusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -1891,7 +1891,7 @@ class Client(TelegramApi):
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
-        :param message_ids: A JSON-serialized list of 1-100 identifiers of messages to delete. See :meth:`~aiotgm.Client.delete_message` for limitations on which messages can be deleted.
+        :param message_ids: A JSON-serialized list of 1-100 identifiers of messages to delete. See :meth:`~apitele.Client.delete_message` for limitations on which messages can be deleted.
         :type message_ids: :obj:`list` of :obj:`int`
         :rtype: :obj:`True`
         '''
@@ -1913,8 +1913,8 @@ class Client(TelegramApi):
         Use this method to delete the list of the bot's commands for the given scope and user language.
         After deletion, `higher level commands <https://core.telegram.org/bots/api#determining-list-of-commands>`_ will be shown to affected users. Returns :obj:`True` on success.
 
-        :param scope: A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to :obj:`~aiotgm.types.BotCommandScopeDefault`.
-        :type scope: :obj:`~aiotgm.types.BotCommandScope`, optional
+        :param scope: A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to :obj:`~apitele.types.BotCommandScopeDefault`.
+        :type scope: :obj:`~apitele.types.BotCommandScope`, optional
         :param language_code: A two-letter ISO 639-1 language code. If empty, commands will be applied to all users from the given scope, for whose language there are no dedicated commands.
         :type language_code: :obj:`str`, optional
         :rtype: :obj:`True`
@@ -1977,7 +1977,7 @@ class Client(TelegramApi):
 
         Use this method to edit a non-primary invite link created by the bot. The bot
         must be an administrator in the chat for this to work and must have the appropriate
-        administrator rights. Returns the edited invite link as a :obj:`~aiotgm.types.ChatInviteLink` object.
+        administrator rights. Returns the edited invite link as a :obj:`~apitele.types.ChatInviteLink` object.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -1991,7 +1991,7 @@ class Client(TelegramApi):
         :type member_limit: :obj:`int`, optional
         :param creates_join_request: :obj:`True`, if users joining the chat via the link need to be approved by chat administrators. If :obj:`True`, *member_limit* can't be specified.
         :type creates_join_request: :obj:`bool`, optional
-        :rtype: :obj:`~aiotgm.types.ChatInviteLink`
+        :rtype: :obj:`~apitele.types.ChatInviteLink`
         '''
         params = {
             'chat_id': chat_id,
@@ -2016,7 +2016,7 @@ class Client(TelegramApi):
 
         Use this method to edit a subscription invite link created by the bot.
         The bot must have the *can_invite_users* administrator rights.
-        Returns the edited invite link as a :obj:`~aiotgm.types.ChatInviteLink` object.
+        Returns the edited invite link as a :obj:`~apitele.types.ChatInviteLink` object.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -2024,7 +2024,7 @@ class Client(TelegramApi):
         :type invite_link: :obj:`str`
         :param name: Invite link name; 0-32 characters.
         :type name: :obj:`str`, optional
-        :rtype: :obj:`~aiotgm.types.ChatInviteLink`
+        :rtype: :obj:`~apitele.types.ChatInviteLink`
         '''
         params = {
             'chat_id': chat_id,
@@ -2055,7 +2055,7 @@ class Client(TelegramApi):
         :type message_thread_id: :obj:`int`
         :param name: New topic name, 0-128 characters. If not specified or empty, the current name of the topic will be kept.
         :type name: :obj:`str`, optional
-        :param icon_custom_emoji_id: New unique identifier of the custom emoji shown as the topic icon. Use :meth:`~aiotgm.Client.get_forum_topic_icon_stickers` to get all allowed custom emoji identifiers. Pass an empty string to remove the icon. If not specified, the current icon will be kept.
+        :param icon_custom_emoji_id: New unique identifier of the custom emoji shown as the topic icon. Use :meth:`~apitele.Client.get_forum_topic_icon_stickers` to get all allowed custom emoji identifiers. Pass an empty string to remove the icon. If not specified, the current icon will be kept.
         :type icon_custom_emoji_id: :obj:`str`, optional
         :rtype: :obj:`True`
         '''
@@ -2109,7 +2109,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#editmessagecaption
 
         Use this method to edit captions of messages. On success, if the edited message is
-        not an inline message, the edited :obj:`~aiotgm.types.Message` is returned, otherwise :obj:`True` is returned.
+        not an inline message, the edited :obj:`~apitele.types.Message` is returned, otherwise :obj:`True` is returned.
         Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
         
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message to be edited was sent.
@@ -2125,12 +2125,12 @@ class Client(TelegramApi):
         :param parse_mode: Mode for parsing entities in the message caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
         :type parse_mode: :obj:`str`, optional
         :param caption_entities: A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-        :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+        :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
         :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media. Supported only for animation, photo and video messages.
         :type show_caption_above_media: :obj:`bool`, optional
         :param reply_markup: A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_.
-        :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
-        :rtype: :obj:`~aiotgm.types.Message` or :obj:`True`
+        :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
+        :rtype: :obj:`~apitele.types.Message` or :obj:`True`
         '''
         params = {}
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
@@ -2164,8 +2164,8 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#editmessagelivelocation
 
         Use this method to edit live location messages. A location can be edited until its *live_period* expires or editing
-        is explicitly disabled by a call to :meth:`~aiotgm.Client.stop_message_live_location`. On success, if the edited
-        message is not an inline message, the edited :obj:`~aiotgm.types.Message` is returned, otherwise :obj:`True` is returned.
+        is explicitly disabled by a call to :meth:`~apitele.Client.stop_message_live_location`. On success, if the edited
+        message is not an inline message, the edited :obj:`~apitele.types.Message` is returned, otherwise :obj:`True` is returned.
 
         :param latitude: Latitude of new location.
         :type latitude: :obj:`float`
@@ -2188,8 +2188,8 @@ class Client(TelegramApi):
         :param proximity_alert_radius: The maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
         :type proximity_alert_radius: :obj:`int`, optional
         :param reply_markup: A JSON-serialized object for a new `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_.
-        :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
-        :rtype: :obj:`~aiotgm.types.Message` or :obj:`True`
+        :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
+        :rtype: :obj:`~apitele.types.Message` or :obj:`True`
         '''
         params = {
             'latitude': latitude,
@@ -2224,11 +2224,11 @@ class Client(TelegramApi):
         of a message album, then it can be edited only to an audio for audio albums, only to a document for
         document albums and to a photo or a video otherwise. When an inline message is edited, a new file
         can't be uploaded; use a previously uploaded file via its file_id or specify a URL. On success, if the edited
-        message is not an inline message, the edited :obj:`~aiotgm.types.Message` is returned, otherwise :obj:`True` is returned.
+        message is not an inline message, the edited :obj:`~apitele.types.Message` is returned, otherwise :obj:`True` is returned.
         Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
         
         :param media: A JSON-serialized object for a new media content of the message.
-        :type media: :obj:`~aiotgm.types.InputMedia`
+        :type media: :obj:`~apitele.types.InputMedia`
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message to be edited was sent.
         :type business_connection_id: :obj:`str`, optional
         :param chat_id: Required if *inline_message_id* is not specified. Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
@@ -2238,8 +2238,8 @@ class Client(TelegramApi):
         :param inline_message_id: Required if *chat_id* and *message_id* are not specified. Identifier of the inline message.
         :type inline_message_id: :obj:`str`, optional
         :param reply_markup: A JSON-serialized object for a new `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_.
-        :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
-        :rtype: :obj:`~aiotgm.types.Message` or :obj:`True`
+        :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
+        :rtype: :obj:`~apitele.types.Message` or :obj:`True`
         '''
         params = {
             'media': media
@@ -2265,7 +2265,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#editmessagereplymarkup
 
         Use this method to edit only the reply markup of messages. On success, if the edited message is not an
-        inline message, the edited :obj:`~aiotgm.types.Message` is returned, otherwise :obj:`True` is returned.
+        inline message, the edited :obj:`~apitele.types.Message` is returned, otherwise :obj:`True` is returned.
         Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
 
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message to be edited was sent.
@@ -2277,8 +2277,8 @@ class Client(TelegramApi):
         :param inline_message_id: Required if *chat_id* and *message_id* are not specified. Identifier of the inline message.
         :type inline_message_id: :obj:`str`, optional
         :param reply_markup: A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_.
-        :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
-        :rtype: :obj:`~aiotgm.types.Message` or :obj:`True`
+        :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
+        :rtype: :obj:`~apitele.types.Message` or :obj:`True`
         '''
         params = {}
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
@@ -2306,7 +2306,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#editmessagetext
 
         Use this method to edit text and `game <https://core.telegram.org/bots/api#games>`_ messages.
-        On success, if the edited message is not an inline message, the edited :obj:`~aiotgm.types.Message` is returned, otherwise :obj:`True` is returned.
+        On success, if the edited message is not an inline message, the edited :obj:`~apitele.types.Message` is returned, otherwise :obj:`True` is returned.
         Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
 
         :param text: New text of the message, 1-4096 characters after entities parsing.
@@ -2320,14 +2320,14 @@ class Client(TelegramApi):
         :param parse_mode: Mode for parsing entities in the message text. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
         :type parse_mode: :obj:`str`, optional
         :param entities: A JSON-serialized list of special entities that appear in message text, which can be specified instead of *parse_mode*.
-        :type entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+        :type entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
         :param link_preview_options: Link preview generation options for the message.
-        :type link_preview_options: :obj:`~aiotgm.types.LinkPreviewOptions`, optional
+        :type link_preview_options: :obj:`~apitele.types.LinkPreviewOptions`, optional
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message to be edited was sent.
         :type business_connection_id: :obj:`str`, optional
         :param reply_markup: A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_.
-        :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
-        :rtype: :obj:`~aiotgm.types.Message` or :obj:`True`
+        :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
+        :rtype: :obj:`~apitele.types.Message` or :obj:`True`
         '''
         params = {
             'text': text
@@ -2356,8 +2356,8 @@ class Client(TelegramApi):
         have the appropriate administrator rights. Returns the new invite link as :obj:`String` on success.
 
             Note: Each administrator in a chat generates their own invite links. Bots can't use invite links generated by other administrators. If you want
-            your bot to work with invite links, it will need to generate its own link using :meth:`~aiotgm.Client.export_chat_invite_link` or by calling the
-            :meth:`~aiotgm.Client.get_chat` method. If your bot needs to generate a new primary invite link replacing its previous one, use :meth:`~aiotgm.Client.export_chat_invite_link` again.
+            your bot to work with invite links, it will need to generate its own link using :meth:`~apitele.Client.export_chat_invite_link` or by calling the
+            :meth:`~apitele.Client.get_chat` method. If your bot needs to generate a new primary invite link replacing its previous one, use :meth:`~apitele.Client.export_chat_invite_link` again.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -2382,7 +2382,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#forwardmessage
 
         Use this method to forward messages of any kind. Service messages and messages with
-        protected content can't be forwarded. On success, the sent :obj:`~aiotgm.types.Message` is returned.
+        protected content can't be forwarded. On success, the sent :obj:`~apitele.types.Message` is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -2396,7 +2396,7 @@ class Client(TelegramApi):
         :type disable_notification: :obj:`bool`, optional
         :param protect_content: Protects the contents of the forwarded message from forwarding and saving.
         :type protect_content: :obj:`bool`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -2424,7 +2424,7 @@ class Client(TelegramApi):
 
         Use this method to forward multiple messages of any kind. If some of the specified messages can't be found
         or forwarded, they are skipped. Service messages and messages with protected content can't be forwarded. Album
-        grouping is kept for forwarded messages. On success, an array of :obj:`~aiotgm.types.MessageId` of the sent messages is returned.
+        grouping is kept for forwarded messages. On success, an array of :obj:`~apitele.types.MessageId` of the sent messages is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -2438,7 +2438,7 @@ class Client(TelegramApi):
         :type disable_notification: :obj:`bool`, optional
         :param protect_content: Protects the contents of the forwarded messages from forwarding and saving.
         :type protect_content: :obj:`bool`, optional
-        :rtype: :obj:`list` of :obj:`~aiotgm.types.MessageId`
+        :rtype: :obj:`list` of :obj:`~apitele.types.MessageId`
         '''
         params = {
             'chat_id': chat_id,
@@ -2460,11 +2460,11 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getbusinessconnection
 
         Use this method to get information about the connection of the bot with a business account.
-        Returns a :obj:`~aiotgm.types.BusinessConnection` object on success.
+        Returns a :obj:`~apitele.types.BusinessConnection` object on success.
 
         :param business_connection_id: Unique identifier of the business connection.
         :type business_connection_id: :obj:`str`
-        :rtype: :obj:`~aiotgm.types.BusinessConnection`
+        :rtype: :obj:`~apitele.types.BusinessConnection`
         '''
         params = {
             'business_connection_id': business_connection_id
@@ -2481,11 +2481,11 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getchat
 
         Use this method to get up-to-date information about the chat.
-        Returns a :obj:`~aiotgm.types.ChatFullInfo` object on success.
+        Returns a :obj:`~apitele.types.ChatFullInfo` object on success.
 
         :param chat_id: Unique identifier for the target chat or username of the target supergroup or channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
-        :rtype: :obj:`~aiotgm.types.ChatFullInfo`
+        :rtype: :obj:`~apitele.types.ChatFullInfo`
         '''
         params = {
             'chat_id': chat_id
@@ -2502,11 +2502,11 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getchatadministrators
 
         Use this method to get a list of administrators in a chat, which aren't bots.
-        Returns an Array of :obj:`~aiotgm.types.ChatMember` objects.
+        Returns an Array of :obj:`~apitele.types.ChatMember` objects.
 
         :param chat_id: Unique identifier for the target chat or username of the target supergroup or channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
-        :rtype: :obj:`list` of :obj:`~aiotgm.types.ChatMember`
+        :rtype: :obj:`list` of :obj:`~apitele.types.ChatMember`
         '''
         params = {
             'chat_id': chat_id
@@ -2524,13 +2524,13 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getchatmember
 
         Use this method to get information about a member of a chat. The method is only guaranteed to work for other
-        users if the bot is an administrator in the chat. Returns a :obj:`~aiotgm.types.ChatMember` object on success.
+        users if the bot is an administrator in the chat. Returns a :obj:`~apitele.types.ChatMember` object on success.
 
         :param chat_id: Unique identifier for the target chat or username of the target supergroup or channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param user_id: Unique identifier of the target user.
         :type user_id: :obj:`int`
-        :rtype: :obj:`~aiotgm.types.ChatMember`
+        :rtype: :obj:`~apitele.types.ChatMember`
         '''
         params = {
             'chat_id': chat_id,
@@ -2567,11 +2567,11 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getchatmenubutton
 
         Use this method to get the current value of the bot's menu button in a private
-        chat, or the default menu button. Returns :obj:`~aiotgm.types.MenuButton` on success.
+        chat, or the default menu button. Returns :obj:`~apitele.types.MenuButton` on success.
 
         :param chat_id: Unique identifier for the target private chat. If not specified, default bot's menu button will be returned.
         :type chat_id: :obj:`int`, optional
-        :rtype: :obj:`~aiotgm.types.MenuButton`
+        :rtype: :obj:`~apitele.types.MenuButton`
         '''
         params = {}
         if chat_id is not None: params['chat_id'] = chat_id
@@ -2587,11 +2587,11 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getcustomemojistickers
 
         Use this method to get information about custom emoji stickers by their
-        identifiers. Returns an Array of :obj:`~aiotgm.types.Sticker` objects.
+        identifiers. Returns an Array of :obj:`~apitele.types.Sticker` objects.
 
         :param custom_emoji_ids: A JSON-serialized list of custom emoji identifiers. At most 200 custom emoji identifiers can be specified.
         :type custom_emoji_ids: :obj:`list` of :obj:`str`
-        :rtype: :obj:`list` of :obj:`~aiotgm.types.Sticker`
+        :rtype: :obj:`list` of :obj:`~apitele.types.Sticker`
         '''
         params = {
             'custom_emoji_ids': custom_emoji_ids
@@ -2609,17 +2609,17 @@ class Client(TelegramApi):
 
         Use this method to get basic information about a file and prepare it for
         downloading. For the moment, bots can download files of up to 20MB in size.
-        On success, a :obj:`~aiotgm.types.File` object is returned. The file can then be
+        On success, a :obj:`~apitele.types.File` object is returned. The file can then be
         downloaded via the link ``https://api.telegram.org/file/bot<token>/<file_path>``, where
         ``<file_path>`` is taken from the response. It is guaranteed that the link will be valid for at least 1 hour.
-        When the link expires, a new one can be requested by calling :meth:`~aiotgm.Client.get_file` again.
+        When the link expires, a new one can be requested by calling :meth:`~apitele.Client.get_file` again.
 
             Note: This function may not preserve the original file name and MIME type.
             You should save the file's MIME type and name (if available) when the File object is received.
 
         :param file_id: File identifier to get information about.
         :type file_id: :obj:`str`
-        :rtype: :obj:`~aiotgm.types.File`
+        :rtype: :obj:`~apitele.types.File`
         '''
         params = {
             'file_id': file_id
@@ -2633,9 +2633,9 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getforumtopiciconstickers
 
         Use this method to get custom emoji stickers, which can be used as a forum topic icon by
-        any user. Requires no parameters. Returns an Array of :obj:`~aiotgm.types.Sticker` objects.
+        any user. Requires no parameters. Returns an Array of :obj:`~apitele.types.Sticker` objects.
 
-        :rtype: :obj:`list` of :obj:`~aiotgm.types.Sticker`
+        :rtype: :obj:`list` of :obj:`~apitele.types.Sticker`
         '''
         result = await super().get_forum_topic_icon_stickers()
         return [Sticker._dese(sticker) for sticker in result]
@@ -2652,7 +2652,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getgamehighscores
 
         Use this method to get data for high score tables. Will return the score of the specified user and
-        several of their neighbors in a game. Returns an Array of :obj:`~aiotgm.types.GameHighScore` objects.
+        several of their neighbors in a game. Returns an Array of :obj:`~apitele.types.GameHighScore` objects.
 
             This method will currently return scores for the target user, plus two of their closest neighbors on each side.
             Will also return the top three users if the user and their neighbors are not among them. Please note that this behavior is subject to change.
@@ -2665,7 +2665,7 @@ class Client(TelegramApi):
         :type message_id: :obj:`int`, optional
         :param inline_message_id: Required if *chat_id* and *message_id* are not specified. Identifier of the inline message.
         :type inline_message_id: :obj:`str`, optional
-        :rtype: :obj:`list` of :obj:`~aiotgm.types.GameHighScore`
+        :rtype: :obj:`list` of :obj:`~apitele.types.GameHighScore`
         '''
         params = {
             'user_id': user_id
@@ -2682,9 +2682,9 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getme
 
         A simple method for testing your bot's authentication token. Requires no parameters.
-        Returns basic information about the bot in form of a :obj:`~aiotgm.types.User` object.
+        Returns basic information about the bot in form of a :obj:`~apitele.types.User` object.
 
-        :rtype: :obj:`~aiotgm.types.User`
+        :rtype: :obj:`~apitele.types.User`
         '''
         if isinstance(self.user, User):
             return self.user
@@ -2702,13 +2702,13 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getmycommands
 
         Use this method to get the current list of the bot's commands for the given scope and user language.
-        Returns an Array of :obj:`~aiotgm.types.BotCommand` objects. If commands aren't set, an empty list is returned.
+        Returns an Array of :obj:`~apitele.types.BotCommand` objects. If commands aren't set, an empty list is returned.
 
         :param scope: 
-        :type scope: :obj:`~aiotgm.types.BotCommandScope`, optional
+        :type scope: :obj:`~apitele.types.BotCommandScope`, optional
         :param language_code: 
         :type language_code: :obj:`str`, optional
-        :rtype: :obj:`list` of :obj:`~aiotgm.types.BotCommand`
+        :rtype: :obj:`list` of :obj:`~apitele.types.BotCommand`
         '''
         params = {}
         if scope is not None: params['scope'] = scope
@@ -2725,11 +2725,11 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getmydefaultadministratorrights
 
         Use this method to get the current default administrator rights of the bot.
-        Returns :obj:`~aiotgm.types.ChatAdministratorRights` on success.
+        Returns :obj:`~apitele.types.ChatAdministratorRights` on success.
 
         :param for_channels: Pass :obj:`True` to get default administrator rights of the bot in channels. Otherwise, default administrator rights of the bot for groups and supergroups will be returned.
         :type for_channels: :obj:`bool`, optional
-        :rtype: :obj:`~aiotgm.types.ChatAdministratorRights`
+        :rtype: :obj:`~apitele.types.ChatAdministratorRights`
         '''
         params = {}
         if for_channels is not None: params['for_channels'] = for_channels
@@ -2745,11 +2745,11 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getmydescription
 
         Use this method to get the current bot description for the given
-        user language. Returns :obj:`~aiotgm.types.BotDescription` on success.
+        user language. Returns :obj:`~apitele.types.BotDescription` on success.
 
         :param language_code: A two-letter ISO 639-1 language code or an empty string.
         :type language_code: :obj:`str`, optional
-        :rtype: :obj:`~aiotgm.types.BotDescription`
+        :rtype: :obj:`~apitele.types.BotDescription`
         '''
         params = {}
         if language_code is not None: params['language_code'] = language_code
@@ -2765,11 +2765,11 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getmyname
 
         Use this method to get the current bot name for the given user language.
-        Returns :obj:`~aiotgm.types.BotName` on success.
+        Returns :obj:`~apitele.types.BotName` on success.
 
         :param language_code: A two-letter ISO 639-1 language code or an empty string.
         :type language_code: :obj:`str`, optional
-        :rtype: :obj:`~aiotgm.types.BotName`
+        :rtype: :obj:`~apitele.types.BotName`
         '''
         params = {}
         if language_code is not None: params['language_code'] = language_code
@@ -2785,11 +2785,11 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getmyshortdescription
 
         Use this method to get the current bot short description for the given
-        user language. Returns :obj:`~aiotgm.types.BotShortDescription` on success.
+        user language. Returns :obj:`~apitele.types.BotShortDescription` on success.
 
         :param language_code: A two-letter ISO 639-1 language code or an empty string.
         :type language_code: :obj:`str`, optional
-        :rtype: :obj:`~aiotgm.types.BotShortDescription`
+        :rtype: :obj:`~apitele.types.BotShortDescription`
         '''
         params = {}
         if language_code is not None: params['language_code'] = language_code
@@ -2806,13 +2806,13 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getstartransactions
 
         Returns the bot's Telegram Star transactions in chronological order.
-        On success, returns a :obj:`~aiotgm.types.StarTransactions` object.
+        On success, returns a :obj:`~apitele.types.StarTransactions` object.
 
         :param offset: Number of transactions to skip in the response.
         :type offset: :obj:`int`, optional
         :param limit: The maximum number of transactions to be retrieved. Values between 1-100 are accepted. Defaults to :obj:`100`.
         :type limit: :obj:`int`, optional
-        :rtype: :obj:`~aiotgm.types.StarTransactions`
+        :rtype: :obj:`~apitele.types.StarTransactions`
         '''
         params = {}
         if offset is not None: params['offset'] = offset
@@ -2829,11 +2829,11 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getstickerset
 
         Use this method to get a sticker set.
-        On success, a :obj:`~aiotgm.types.StickerSet` object is returned.
+        On success, a :obj:`~apitele.types.StickerSet` object is returned.
 
         :param name: Name of the sticker set.
         :type name: :obj:`str`
-        :rtype: :obj:`~aiotgm.types.StickerSet`
+        :rtype: :obj:`~apitele.types.StickerSet`
         '''
         params = {
             'name': name
@@ -2853,24 +2853,24 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getupdates
 
         Use this method to receive incoming updates using long polling (`wiki <https://en.wikipedia.org/wiki/Push_technology#Long_polling>`_).
-        Returns an Array of :obj:`~aiotgm.types.Update` objects.
+        Returns an Array of :obj:`~apitele.types.Update` objects.
 
             | **Notes**
             | **1.** This method will not work if an outgoing webhook is set up.
             | **2.** In order to avoid getting duplicate updates, recalculate *offset* after each server response.
 
-        :param offset: Identifier of the first update to be returned. Must be greater by one than the highest among the identifiers of previously received updates. By default, updates starting with the earliest unconfirmed update are returned. An update is considered confirmed as soon as :meth:`~aiotgm.Client.get_updates` is called with an *offset* higher than its *update_id*. The negative offset can be specified to retrieve updates starting from -*offset* update from the end of the updates queue. All previous updates will be forgotten.
+        :param offset: Identifier of the first update to be returned. Must be greater by one than the highest among the identifiers of previously received updates. By default, updates starting with the earliest unconfirmed update are returned. An update is considered confirmed as soon as :meth:`~apitele.Client.get_updates` is called with an *offset* higher than its *update_id*. The negative offset can be specified to retrieve updates starting from -*offset* update from the end of the updates queue. All previous updates will be forgotten.
         :type offset: :obj:`int`, optional
         :param limit: Limits the number of updates to be retrieved. Values between 1-100 are accepted. Defaults to :obj:`100`.
         :type limit: :obj:`int`, optional
         :param timeout: Timeout in seconds for long polling. Defaults to :obj:`0`, i.e. usual short polling. Should be positive, short polling should be used for testing purposes only.
         :type timeout: :obj:`int`, optional
         :param allowed_updates:
-            A JSON-serialized list of the update types you want your bot to receive. For example, specify ``["message", "edited_channel_post", "callback_query"]`` to only receive updates of these types. See :obj:`~aiotgm.types.Update` for a complete list of available update types. Specify an empty list to receive all update types except *chat_member*, *message_reaction*, and *message_reaction_count* (default). If not specified, the previous setting will be used.
+            A JSON-serialized list of the update types you want your bot to receive. For example, specify ``["message", "edited_channel_post", "callback_query"]`` to only receive updates of these types. See :obj:`~apitele.types.Update` for a complete list of available update types. Specify an empty list to receive all update types except *chat_member*, *message_reaction*, and *message_reaction_count* (default). If not specified, the previous setting will be used.
 
-            Please note that this parameter doesn't affect updates created before the call to the :meth:`~aiotgm.Client.get_updates`, so unwanted updates may be received for a short period of time.
+            Please note that this parameter doesn't affect updates created before the call to the :meth:`~apitele.Client.get_updates`, so unwanted updates may be received for a short period of time.
         :type allowed_updates: :obj:`list` of :obj:`str`, optional
-        :rtype: :obj:`list` of :obj:`~aiotgm.types.Update`
+        :rtype: :obj:`list` of :obj:`~apitele.types.Update`
         '''
         params = {}
         if offset is not None: params['offset'] = offset
@@ -2890,13 +2890,13 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getuserchatboosts
 
         Use this method to get the list of boosts added to a chat by a user. Requires
-        administrator rights in the chat. Returns a :obj:`~aiotgm.types.UserChatBoosts` object.
+        administrator rights in the chat. Returns a :obj:`~apitele.types.UserChatBoosts` object.
 
         :param chat_id: Unique identifier for the chat or username of the channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param user_id: Unique identifier of the target user.
         :type user_id: :obj:`int`
-        :rtype: :obj:`~aiotgm.types.UserChatBoosts`
+        :rtype: :obj:`~apitele.types.UserChatBoosts`
         '''
         params = {
             'chat_id': chat_id,
@@ -2916,7 +2916,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#getuserprofilephotos
 
         Use this method to get a list of profile pictures for a user.
-        Returns a :obj:`~aiotgm.types.UserProfilePhotos` object.
+        Returns a :obj:`~apitele.types.UserProfilePhotos` object.
 
         :param user_id: Unique identifier of the target user.
         :type user_id: :obj:`int`
@@ -2924,7 +2924,7 @@ class Client(TelegramApi):
         :type offset: :obj:`int`, optional
         :param limit: Limits the number of photos to be retrieved. Values between 1-100 are accepted. Defaults to :obj:`100`.
         :type limit: :obj:`int`, optional
-        :rtype: :obj:`~aiotgm.types.UserProfilePhotos`
+        :rtype: :obj:`~apitele.types.UserProfilePhotos`
         '''
         params = {
             'user_id': user_id
@@ -3188,8 +3188,8 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#replacestickerinset
 
         Use this method to replace an existing sticker in a sticker set with a new one.
-        The method is equivalent to calling :meth:`~aiotgm.Client.delete_sticker_from_set`,
-        then :meth:`~aiotgm.Client.add_sticker_to_set`, then :meth:`~aiotgm.Client.set_sticker_position_in_set`.
+        The method is equivalent to calling :meth:`~apitele.Client.delete_sticker_from_set`,
+        then :meth:`~apitele.Client.add_sticker_to_set`, then :meth:`~apitele.Client.set_sticker_position_in_set`.
         Returns :obj:`True` on success.
 
         :param user_id: User identifier of the sticker set owner.
@@ -3199,7 +3199,7 @@ class Client(TelegramApi):
         :param old_sticker: File identifier of the replaced sticker.
         :type old_sticker: :obj:`str`
         :param sticker: A JSON-serialized object with information about the added sticker. If exactly the same sticker had already been added to the set, then the set remains unchanged.
-        :type sticker: :obj:`~aiotgm.types.InputSticker`
+        :type sticker: :obj:`~apitele.types.InputSticker`
         :rtype: :obj:`True`
         '''
         params = {
@@ -3231,7 +3231,7 @@ class Client(TelegramApi):
         :param user_id: Unique identifier of the target user.
         :type user_id: :obj:`int`
         :param permissions: A JSON-serialized object for new user permissions.
-        :type permissions: :obj:`~aiotgm.types.ChatPermissions`
+        :type permissions: :obj:`~apitele.types.ChatPermissions`
         :param use_independent_chat_permissions: Pass :obj:`True` if chat permissions are set independently. Otherwise, the *can_send_other_messages* and *can_add_web_page_previews* permissions will imply the *can_send_messages*, *can_send_audios*, *can_send_documents*, *can_send_photos*, *can_send_videos*, *can_send_video_notes*, and *can_send_voice_notes* permissions; the *can_send_polls* permission will imply the *can_send_messages* permission.
         :type use_independent_chat_permissions: :obj:`bool`, optional
         :param until_date: Date when restrictions will be lifted for the user; Unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, they are considered to be restricted forever.
@@ -3258,13 +3258,13 @@ class Client(TelegramApi):
 
         Use this method to revoke an invite link created by the bot. If the primary link is revoked, a new
         link is automatically generated. The bot must be an administrator in the chat for this to work and must have
-        the appropriate administrator rights. Returns the revoked invite link as :obj:`~aiotgm.types.ChatInviteLink` object.
+        the appropriate administrator rights. Returns the revoked invite link as :obj:`~apitele.types.ChatInviteLink` object.
 
         :param chat_id: Unique identifier of the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param invite_link: The invite link to revoke.
         :type invite_link: :obj:`str`
-        :rtype: :obj:`~aiotgm.types.ChatInviteLink`
+        :rtype: :obj:`~apitele.types.ChatInviteLink`
         '''
         params = {
             'chat_id': chat_id,
@@ -3300,13 +3300,13 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#sendanimation
 
         Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).
-        On success, the sent :obj:`~aiotgm.types.Message` is returned. Bots can currently
+        On success, the sent :obj:`~apitele.types.Message` is returned. Bots can currently
         send animation files of up to 50 MB in size, this limit may be changed in the future.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param animation: Animation to send. Pass a file_id as String to send an animation that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an animation from the Internet, or upload a new animation using multipart/form-data. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-        :type animation: :obj:`~aiotgm.types.InputFile` or :obj:`str`
+        :type animation: :obj:`~apitele.types.InputFile` or :obj:`str`
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message will be sent.
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
@@ -3318,13 +3318,13 @@ class Client(TelegramApi):
         :param height: Animation height.
         :type height: :obj:`int`, optional
         :param thumbnail: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-        :type thumbnail: :obj:`~aiotgm.types.InputFile` or :obj:`str`, optional
+        :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
         :param caption: Animation caption (may also be used when resending animation by *file_id*), 0-1024 characters after entities parsing.
         :type caption: :obj:`str`, optional
         :param parse_mode: Mode for parsing entities in the animation caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
         :type parse_mode: :obj:`str`, optional
         :param caption_entities: A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-        :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+        :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
         :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
         :type show_caption_above_media: :obj:`bool`, optional
         :param has_spoiler: Pass :obj:`True` if the animation needs to be covered with a spoiler animation.
@@ -3338,10 +3338,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -3392,14 +3392,14 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#sendaudio
 
         Use this method to send audio files, if you want Telegram clients to display them in the music
-        player. Your audio must be in the .MP3 or .M4A format. On success, the sent :obj:`~aiotgm.types.Message`
+        player. Your audio must be in the .MP3 or .M4A format. On success, the sent :obj:`~apitele.types.Message`
         is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the
-        future. For sending voice messages, use the :meth:`~aiotgm.Client.send_voice` method instead.
+        future. For sending voice messages, use the :meth:`~apitele.Client.send_voice` method instead.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param audio: Audio file to send. Pass a file_id as String to send an audio file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an audio file from the Internet, or upload a new one using multipart/form-data. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-        :type audio: :obj:`~aiotgm.types.InputFile` or :obj:`str`
+        :type audio: :obj:`~apitele.types.InputFile` or :obj:`str`
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message will be sent.
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
@@ -3409,7 +3409,7 @@ class Client(TelegramApi):
         :param parse_mode: Mode for parsing entities in the audio caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
         :type parse_mode: :obj:`str`, optional
         :param caption_entities: A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-        :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+        :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
         :param duration: Duration of the audio in seconds.
         :type duration: :obj:`int`, optional
         :param performer: Performer.
@@ -3417,7 +3417,7 @@ class Client(TelegramApi):
         :param title: Track name.
         :type title: :obj:`str`, optional
         :param thumbnail: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-        :type thumbnail: :obj:`~aiotgm.types.InputFile` or :obj:`str`, optional
+        :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
         :param disable_notification: Sends the message `silently <https://telegram.org/blog/channels-2-0#silent-messages>`_. Users will receive a notification with no sound.
         :type disable_notification: :obj:`bool`, optional
         :param protect_content: Protects the contents of the sent message from forwarding and saving.
@@ -3427,10 +3427,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -3471,14 +3471,14 @@ class Client(TelegramApi):
 
             Example: The `ImageBot <https://t.me/imagebot>`_ needs some time to process a request
             and upload the image. Instead of sending a text message along the lines of “Retrieving
-            image, please wait…”, the bot may use :meth:`~aiotgm.Client.send_chat_action` with
+            image, please wait…”, the bot may use :meth:`~apitele.Client.send_chat_action` with
             *action = upload_photo*. The user will see a “sending photo” status for the bot.
 
         We only recommend using this method when a response from the bot will take a **noticeable** amount of time to arrive.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
-        :param action: Type of action to broadcast. Choose one, depending on what the user is about to receive: *typing* for :obj:`text messages <aiotgm.Client.send_message>`, *upload_photo* for :obj:`photos <aiotgm.Client.send_photo>`, *record_video* or *upload_video* for :obj:`videos <aiotgm.Client.send_video>`, *record_voice* or *upload_voice* for :obj:`voice notes <aiotgm.Client.send_voice>`, *upload_document* for :obj:`general files <aiotgm.Client.send_document>`, *choose_sticker* for :obj:`stickers <aiotgm.Client.send_sticker>`, *find_location* for :obj:`location data <aiotgm.Client.send_location>`, *record_video_note* or *upload_video_note* for :obj:`video notes <aiotgm.Client.send_video_note>`.
+        :param action: Type of action to broadcast. Choose one, depending on what the user is about to receive: *typing* for :obj:`text messages <apitele.Client.send_message>`, *upload_photo* for :obj:`photos <apitele.Client.send_photo>`, *record_video* or *upload_video* for :obj:`videos <apitele.Client.send_video>`, *record_voice* or *upload_voice* for :obj:`voice notes <apitele.Client.send_voice>`, *upload_document* for :obj:`general files <apitele.Client.send_document>`, *choose_sticker* for :obj:`stickers <apitele.Client.send_sticker>`, *find_location* for :obj:`location data <apitele.Client.send_location>`, *record_video_note* or *upload_video_note* for :obj:`video notes <apitele.Client.send_video_note>`.
         :type action: :obj:`str`
         :param business_connection_id: Unique identifier of the business connection on behalf of which the action will be sent.
         :type business_connection_id: :obj:`str`, optional
@@ -3515,7 +3515,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#sendcontact
 
         Use this method to send phone contacts.
-        On success, the sent :obj:`~aiotgm.types.Message` is returned.
+        On success, the sent :obj:`~apitele.types.Message` is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -3540,10 +3540,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -3581,7 +3581,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#senddice
 
         Use this method to send an animated emoji that will display a random
-        value. On success, the sent :obj:`~aiotgm.types.Message` is returned.
+        value. On success, the sent :obj:`~apitele.types.Message` is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -3600,10 +3600,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id
@@ -3643,25 +3643,25 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#senddocument
 
         Use this method to send general files.
-        On success, the sent :obj:`~aiotgm.types.Message` is returned.
+        On success, the sent :obj:`~apitele.types.Message` is returned.
         Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param document: File to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-        :type document: :obj:`~aiotgm.types.InputFile` or :obj:`str`
+        :type document: :obj:`~apitele.types.InputFile` or :obj:`str`
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message will be sent.
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
         :param thumbnail: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-        :type thumbnail: :obj:`~aiotgm.types.InputFile` or :obj:`str`, optional
+        :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
         :param caption: Document caption (may also be used when resending documents by *file_id*), 0-1024 characters after entities parsing.
         :type caption: :obj:`str`, optional
         :param parse_mode: Mode for parsing entities in the document caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
         :type parse_mode: :obj:`str`, optional
         :param caption_entities: A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-        :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+        :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
         :param disable_content_type_detection: Disables automatic server-side content type detection for files uploaded using multipart/form-data.
         :type disable_content_type_detection: :obj:`bool`, optional
         :param disable_notification: Sends the message `silently <https://telegram.org/blog/channels-2-0#silent-messages>`_. Users will receive a notification with no sound.
@@ -3673,10 +3673,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -3716,7 +3716,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#sendgame
 
         Use this method to send a game.
-        On success, the sent :obj:`~aiotgm.types.Message` is returned.
+        On success, the sent :obj:`~apitele.types.Message` is returned.
 
         :param chat_id: Unique identifier for the target chat.
         :type chat_id: :obj:`int`
@@ -3735,10 +3735,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_. If empty, one 'Play game_title' button will be shown. If not empty, the first button must launch the game.
-        :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -3792,7 +3792,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#sendinvoice
 
         Use this method to send invoices.
-        On success, the sent :obj:`~aiotgm.types.Message` is returned.
+        On success, the sent :obj:`~apitele.types.Message` is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -3805,7 +3805,7 @@ class Client(TelegramApi):
         :param currency: Three-letter ISO 4217 currency code, see `more on currencies <https://core.telegram.org/bots/payments#supported-currencies>`_. Pass “XTR” for payments in `Telegram Stars <https://t.me/BotNews/90>`_.
         :type currency: :obj:`str`
         :param prices: Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.). Must contain exactly one item for payments in `Telegram Stars <https://t.me/BotNews/90>`_.
-        :type prices: :obj:`list` of :obj:`~aiotgm.types.LabeledPrice`
+        :type prices: :obj:`list` of :obj:`~apitele.types.LabeledPrice`
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
         :param provider_token: Payment provider token, obtained via `@BotFather <https://t.me/botfather>`_. Pass an empty string for payments in `Telegram Stars <https://t.me/BotNews/90>`_.
@@ -3849,10 +3849,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_. If empty, one 'Pay ``total price``' button will be shown. If not empty, the first button must be a Pay button.
-        :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -3911,7 +3911,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#sendlocation
 
         Use this method to send point on the map.
-        On success, the sent :obj:`~aiotgm.types.Message` is returned.
+        On success, the sent :obj:`~apitele.types.Message` is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -3940,10 +3940,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -3983,12 +3983,12 @@ class Client(TelegramApi):
 
         Use this method to send a group of photos, videos, documents or audios as an album.
         Documents and audio files can be only grouped in an album with messages of the same type.
-        On success, an array of :obj:`Messages <aiotgm.types.Message>` that were sent is returned.
+        On success, an array of :obj:`Messages <apitele.types.Message>` that were sent is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param media: A JSON-serialized array describing messages to be sent, must include 2-10 items.
-        :type media: :obj:`list` of :obj:`~aiotgm.types.InputMediaAudio`, :obj:`~aiotgm.types.InputMediaDocument`, :obj:`~aiotgm.types.InputMediaPhoto` and :obj:`~aiotgm.types.InputMediaVideo`
+        :type media: :obj:`list` of :obj:`~apitele.types.InputMediaAudio`, :obj:`~apitele.types.InputMediaDocument`, :obj:`~apitele.types.InputMediaPhoto` and :obj:`~apitele.types.InputMediaVideo`
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message will be sent.
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
@@ -4002,8 +4002,8 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
-        :rtype: :obj:`list` of :obj:`~aiotgm.types.Message`
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
+        :rtype: :obj:`list` of :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -4040,7 +4040,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#sendmessage
 
         Use this method to send text messages.
-        On success, the sent :obj:`~aiotgm.types.Message` is returned.
+        On success, the sent :obj:`~apitele.types.Message` is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -4053,9 +4053,9 @@ class Client(TelegramApi):
         :param parse_mode: Mode for parsing entities in the message text. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
         :type parse_mode: :obj:`str`, optional
         :param entities: A JSON-serialized list of special entities that appear in message text, which can be specified instead of *parse_mode*.
-        :type entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+        :type entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
         :param link_preview_options: Link preview generation options for the message.
-        :type link_preview_options: :obj:`~aiotgm.types.LinkPreviewOptions`, optional
+        :type link_preview_options: :obj:`~apitele.types.LinkPreviewOptions`, optional
         :param disable_notification: Sends the message `silently <https://telegram.org/blog/channels-2-0#silent-messages>`_. Users will receive a notification with no sound.
         :type disable_notification: :obj:`bool`, optional
         :param protect_content: Protects the contents of the sent message from forwarding and saving.
@@ -4065,10 +4065,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -4110,14 +4110,14 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#sendpaidmedia
 
         Use this method to send paid media to channel chats.
-        On success, the sent :obj:`~aiotgm.types.Message` is returned.
+        On success, the sent :obj:`~apitele.types.Message` is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param star_count: The number of Telegram Stars that must be paid to buy access to the media.
         :type star_count: :obj:`int`
         :param media: A JSON-serialized array describing the media to be sent; up to 10 items.
-        :type media: :obj:`list` of :obj:`~aiotgm.types.InputPaidMedia`
+        :type media: :obj:`list` of :obj:`~apitele.types.InputPaidMedia`
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message will be sent.
         :type business_connection_id: :obj:`str`, optional
         :param payload: Bot-defined paid media payload, 0-128 bytes. This will not be displayed to the user, use it for your internal processes.
@@ -4127,7 +4127,7 @@ class Client(TelegramApi):
         :param parse_mode: Mode for parsing entities in the media caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
         :type parse_mode: :obj:`str`, optional
         :param caption_entities: A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-        :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+        :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
         :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
         :type show_caption_above_media: :obj:`bool`, optional
         :param disable_notification: Sends the message `silently <https://telegram.org/blog/channels-2-0#silent-messages>`_. Users will receive a notification with no sound.
@@ -4137,10 +4137,10 @@ class Client(TelegramApi):
         :param allow_paid_broadcast: Pass :obj:`True` to allow up to 1000 messages per second, ignoring `broadcasting limits <https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once>`_ for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance.
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove a reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -4184,12 +4184,12 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#sendphoto
 
         Use this method to send photos.
-        On success, the sent :obj:`~aiotgm.types.Message` is returned.
+        On success, the sent :obj:`~apitele.types.Message` is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param photo: Photo to send. Pass a file_id as String to send a photo that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a photo from the Internet, or upload a new photo using multipart/form-data. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-        :type photo: :obj:`~aiotgm.types.InputFile` or :obj:`str`
+        :type photo: :obj:`~apitele.types.InputFile` or :obj:`str`
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message will be sent.
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
@@ -4199,7 +4199,7 @@ class Client(TelegramApi):
         :param parse_mode: Mode for parsing entities in the photo caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
         :type parse_mode: :obj:`str`, optional
         :param caption_entities: A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-        :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+        :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
         :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
         :type show_caption_above_media: :obj:`bool`, optional
         :param has_spoiler: Pass :obj:`True` if the photo needs to be covered with a spoiler animation.
@@ -4213,10 +4213,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -4269,14 +4269,14 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#sendpoll
 
         Use this method to send a native poll.
-        On success, the sent :obj:`~aiotgm.types.Message` is returned.
+        On success, the sent :obj:`~apitele.types.Message` is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param question: Poll question, 1-300 characters.
         :type question: :obj:`str`
         :param options: A JSON-serialized list of 2-10 answer options.
-        :type options: :obj:`list` of :obj:`~aiotgm.types.InputPollOption`
+        :type options: :obj:`list` of :obj:`~apitele.types.InputPollOption`
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message will be sent.
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
@@ -4284,7 +4284,7 @@ class Client(TelegramApi):
         :param question_parse_mode: Mode for parsing entities in the question. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details. Currently, only custom emoji entities are allowed.
         :type question_parse_mode: :obj:`str`, optional
         :param question_entities: A JSON-serialized list of special entities that appear in the poll question. It can be specified instead of *question_parse_mode*.
-        :type question_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+        :type question_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
         :param is_anonymous: :obj:`True`, if the poll needs to be anonymous, defaults to :obj:`True`.
         :type is_anonymous: :obj:`bool`, optional
         :param type: Poll type, “quiz” or “regular”, defaults to “regular”.
@@ -4298,7 +4298,7 @@ class Client(TelegramApi):
         :param explanation_parse_mode: Mode for parsing entities in the explanation. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
         :type explanation_parse_mode: :obj:`str`, optional
         :param explanation_entities: A JSON-serialized list of special entities that appear in the poll explanation, which can be specified instead of *parse_mode*.
-        :type explanation_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+        :type explanation_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
         :param open_period: Amount of time in seconds the poll will be active after creation, 5-600. Can't be used together with *close_date*.
         :type open_period: :obj:`int`, optional
         :param close_date: Point in time (Unix timestamp) when the poll will be automatically closed. Must be at least 5 and no more than 600 seconds in the future. Can't be used together with *open_period*.
@@ -4314,10 +4314,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -4366,12 +4366,12 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#sendsticker
 
         Use this method to send static .WEBP, `animated <https://telegram.org/blog/animated-stickers>`_ .TGS, or `video <https://telegram.org/blog/video-stickers-better-reactions>`_ .WEBM stickers.
-        On success, the sent :obj:`~aiotgm.types.Message` is returned.
+        On success, the sent :obj:`~apitele.types.Message` is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param sticker: Sticker to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP sticker from the Internet, or upload a new .WEBP or .TGS sticker using multipart/form-data. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_. Video stickers can only be sent by a file_id. Animated stickers can't be sent via an HTTP URL.
-        :type sticker: :obj:`~aiotgm.types.InputFile` or :obj:`str`
+        :type sticker: :obj:`~apitele.types.InputFile` or :obj:`str`
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message will be sent.
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
@@ -4387,10 +4387,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -4433,7 +4433,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#sendvenue
 
         Use this method to send information about a venue.
-        On success, the sent :obj:`~aiotgm.types.Message` is returned.
+        On success, the sent :obj:`~apitele.types.Message` is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -4466,10 +4466,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -4521,14 +4521,14 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#sendvideo
 
         Use this method to send video files, Telegram clients support MPEG4 videos
-        (other formats may be sent as :obj:`~aiotgm.types.Document`). On success,
-        the sent :obj:`~aiotgm.types.Message` is returned. Bots can currently send
+        (other formats may be sent as :obj:`~apitele.types.Document`). On success,
+        the sent :obj:`~apitele.types.Message` is returned. Bots can currently send
         video files of up to 50 MB in size, this limit may be changed in the future.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param video: Video to send. Pass a file_id as String to send a video that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a video from the Internet, or upload a new video using multipart/form-data. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-        :type video: :obj:`~aiotgm.types.InputFile` or :obj:`str`
+        :type video: :obj:`~apitele.types.InputFile` or :obj:`str`
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message will be sent.
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
@@ -4540,13 +4540,13 @@ class Client(TelegramApi):
         :param height: Video height.
         :type height: :obj:`int`, optional
         :param thumbnail: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-        :type thumbnail: :obj:`~aiotgm.types.InputFile` or :obj:`str`, optional
+        :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
         :param caption: Video caption (may also be used when resending videos by *file_id*), 0-1024 characters after entities parsing.
         :type caption: :obj:`str`, optional
         :param parse_mode: Mode for parsing entities in the video caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
         :type parse_mode: :obj:`str`, optional
         :param caption_entities: A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-        :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+        :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
         :param show_caption_above_media: Pass :obj:`True`, if the caption must be shown above the message media.
         :type show_caption_above_media: :obj:`bool`, optional
         :param has_spoiler: Pass :obj:`True` if the video needs to be covered with a spoiler animation.
@@ -4562,10 +4562,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -4614,12 +4614,12 @@ class Client(TelegramApi):
 
         As of `v.4.0 <https://telegram.org/blog/video-messages-and-telescope>`_,
         Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this
-        method to send video messages. On success, the sent :obj:`~aiotgm.types.Message` is returned.
+        method to send video messages. On success, the sent :obj:`~apitele.types.Message` is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param video_note: Video note to send. Pass a file_id as String to send a video note that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_. Sending video notes by a URL is currently unsupported.
-        :type video_note: :obj:`~aiotgm.types.InputFile` or :obj:`str`
+        :type video_note: :obj:`~apitele.types.InputFile` or :obj:`str`
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message will be sent.
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
@@ -4629,7 +4629,7 @@ class Client(TelegramApi):
         :param length: Video width and height, i.e. diameter of the video message.
         :type length: :obj:`int`, optional
         :param thumbnail: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-        :type thumbnail: :obj:`~aiotgm.types.InputFile` or :obj:`str`, optional
+        :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
         :param disable_notification: Sends the message `silently <https://telegram.org/blog/channels-2-0#silent-messages>`_. Users will receive a notification with no sound.
         :type disable_notification: :obj:`bool`, optional
         :param protect_content: Protects the contents of the sent message from forwarding and saving.
@@ -4639,10 +4639,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -4685,14 +4685,14 @@ class Client(TelegramApi):
 
         Use this method to send audio files, if you want Telegram clients to display the file as
         a playable voice message. For this to work, your audio must be in an .OGG file encoded with
-        OPUS, or in .MP3 format, or in .M4A (other formats may be sent as :obj:`~aiotgm.types.Audio` or :obj:`~aiotgm.types.Document`).
-        On success, the sent :obj:`~aiotgm.types.Message` is returned. Bots can currently send voice
+        OPUS, or in .MP3 format, or in .M4A (other formats may be sent as :obj:`~apitele.types.Audio` or :obj:`~apitele.types.Document`).
+        On success, the sent :obj:`~apitele.types.Message` is returned. Bots can currently send voice
         messages of up to 50 MB in size, this limit may be changed in the future.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param voice: Audio file to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-        :type voice: :obj:`~aiotgm.types.InputFile` or :obj:`str`
+        :type voice: :obj:`~apitele.types.InputFile` or :obj:`str`
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message will be sent.
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
@@ -4702,7 +4702,7 @@ class Client(TelegramApi):
         :param parse_mode: Mode for parsing entities in the voice message caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
         :type parse_mode: :obj:`str`, optional
         :param caption_entities: A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse_mode*.
-        :type caption_entities: :obj:`list` of :obj:`~aiotgm.types.MessageEntity`, optional
+        :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
         :param duration: Duration of the voice message in seconds.
         :type duration: :obj:`int`, optional
         :param disable_notification: Sends the message `silently <https://telegram.org/blog/channels-2-0#silent-messages>`_. Users will receive a notification with no sound.
@@ -4714,10 +4714,10 @@ class Client(TelegramApi):
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
         :param reply_parameters: Description of the message to reply to.
-        :type reply_parameters: :obj:`~aiotgm.types.ReplyParameters`, optional
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
-        :type reply_markup: :obj:`~aiotgm.types.REPLY_MARKUP_TYPES`, optional
-        :rtype: :obj:`~aiotgm.types.Message`
+        :type reply_markup: :obj:`~apitele.types.REPLY_MARKUP_TYPES`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'chat_id': chat_id,
@@ -4805,8 +4805,8 @@ class Client(TelegramApi):
 
         :param chat_id: Unique identifier for the target private chat. If not specified, default bot's menu button will be changed.
         :type chat_id: :obj:`int`, optional
-        :param menu_button: A JSON-serialized object for the bot's new menu button. Defaults to :obj:`~aiotgm.types.MenuButtonDefault`.
-        :type menu_button: :obj:`~aiotgm.types.MenuButton`, optional
+        :param menu_button: A JSON-serialized object for the bot's new menu button. Defaults to :obj:`~apitele.types.MenuButtonDefault`.
+        :type menu_button: :obj:`~apitele.types.MenuButton`, optional
         :rtype: :obj:`True`
         '''
         params = {}
@@ -4831,7 +4831,7 @@ class Client(TelegramApi):
         :param chat_id: Unique identifier for the target chat or username of the target supergroup (in the format ``@supergroupusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param permissions: A JSON-serialized object for new default chat permissions.
-        :type permissions: :obj:`~aiotgm.types.ChatPermissions`
+        :type permissions: :obj:`~apitele.types.ChatPermissions`
         :param use_independent_chat_permissions: Pass :obj:`True` if chat permissions are set independently. Otherwise, the *can_send_other_messages* and *can_add_web_page_previews* permissions will imply the *can_send_messages*, *can_send_audios*, *can_send_documents*, *can_send_photos*, *can_send_videos*, *can_send_video_notes*, and *can_send_voice_notes* permissions; the *can_send_polls* permission will imply the *can_send_messages* permission.
         :type use_independent_chat_permissions: :obj:`bool`, optional
         :rtype: :obj:`True`
@@ -4859,7 +4859,7 @@ class Client(TelegramApi):
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
         :param photo: New chat photo, uploaded using multipart/form-data.
-        :type photo: :obj:`~aiotgm.types.InputFile`
+        :type photo: :obj:`~apitele.types.InputFile`
         :rtype: :obj:`True`
         '''
         params = {
@@ -4880,7 +4880,7 @@ class Client(TelegramApi):
         Use this method to set a new group sticker set for a supergroup.
         The bot must be an administrator in the chat for this to work and
         must have the appropriate administrator rights. Use the field
-        *can_set_sticker_set* optionally returned in :meth:`~aiotgm.Client.get_chat`
+        *can_set_sticker_set* optionally returned in :meth:`~apitele.Client.get_chat`
         requests to check if the bot can use this method. Returns :obj:`True` on success.
 
         :param chat_id: Unique identifier for the target chat or username of the target supergroup (in the format ``@supergroupusername``).
@@ -4959,7 +4959,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#setgamescore
 
         Use this method to set the score of the specified user in a game message.
-        On success, if the message is not an inline message, the :obj:`~aiotgm.types.Message`
+        On success, if the message is not an inline message, the :obj:`~apitele.types.Message`
         is returned, otherwise :obj:`True` is returned. Returns an error, if the new score
         is not greater than the user's current score in the chat and *force* is :obj:`False`.
 
@@ -4977,7 +4977,7 @@ class Client(TelegramApi):
         :type message_id: :obj:`int`, optional
         :param inline_message_id: Required if *chat_id* and *message_id* are not specified. Identifier of the inline message.
         :type inline_message_id: :obj:`str`, optional
-        :rtype: :obj:`~aiotgm.types.Message` or :obj:`True`
+        :rtype: :obj:`~apitele.types.Message` or :obj:`True`
         '''
         params = {
             'user_id': user_id,
@@ -5011,7 +5011,7 @@ class Client(TelegramApi):
         :param message_id: Identifier of the target message. If the message belongs to a media group, the reaction is set to the first non-deleted message in the group instead.
         :type message_id: :obj:`int`
         :param reaction: A JSON-serialized list of reaction types to set on the message. Currently, as non-premium users, bots can set up to one reaction per message. A custom emoji reaction can be used if it is either already present on the message or explicitly allowed by chat administrators.
-        :type reaction: :obj:`list` of :obj:`~aiotgm.types.ReactionType`, optional
+        :type reaction: :obj:`list` of :obj:`~apitele.types.ReactionType`, optional
         :param is_big: Pass :obj:`True` to set the reaction with a big animation.
         :type is_big: :obj:`bool`, optional
         :rtype: :obj:`True`
@@ -5039,9 +5039,9 @@ class Client(TelegramApi):
         for more details about bot commands. Returns :obj:`True` on success.
 
         :param commands: A JSON-serialized list of bot commands to be set as the list of the bot's commands. At most 100 commands can be specified.
-        :type commands: :obj:`list` of :obj:`~aiotgm.types.BotCommand`
-        :param scope: A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to :obj:`~aiotgm.types.BotCommandScopeDefault`.
-        :type scope: :obj:`~aiotgm.types.BotCommandScope`, optional
+        :type commands: :obj:`list` of :obj:`~apitele.types.BotCommand`
+        :param scope: A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to :obj:`~apitele.types.BotCommandScopeDefault`.
+        :type scope: :obj:`~apitele.types.BotCommandScope`, optional
         :param language_code: A two-letter ISO 639-1 language code. If empty, commands will be applied to all users from the given scope, for whose language there are no dedicated commands.
         :type language_code: :obj:`str`, optional
         :rtype: :obj:`True`
@@ -5067,7 +5067,7 @@ class Client(TelegramApi):
         users, but they are free to modify the list before adding the bot. Returns :obj:`True` on success.
 
         :param rights: A JSON-serialized object describing new default administrator rights. If not specified, the default administrator rights will be cleared.
-        :type rights: :obj:`~aiotgm.types.ChatAdministratorRights`, optional
+        :type rights: :obj:`~apitele.types.ChatAdministratorRights`, optional
         :param for_channels: Pass :obj:`True` to change the default administrator rights of the bot in channels. Otherwise, the default administrator rights of the bot for groups and supergroups will be changed.
         :type for_channels: :obj:`bool`, optional
         :rtype: :obj:`True`
@@ -5165,7 +5165,7 @@ class Client(TelegramApi):
         :param user_id: User identifier.
         :type user_id: :obj:`int`
         :param errors: A JSON-serialized array describing the errors.
-        :type errors: :obj:`list` of :obj:`~aiotgm.types.PassportElementError`
+        :type errors: :obj:`list` of :obj:`~apitele.types.PassportElementError`
         :rtype: :obj:`True`
         '''
         params = {
@@ -5232,13 +5232,13 @@ class Client(TelegramApi):
         '''
         https://core.telegram.org/bots/api#setstickermaskposition
 
-        Use this method to change the :obj:`mask position <aiotgm.types.MaskPosition>` of a mask sticker.
+        Use this method to change the :obj:`mask position <apitele.types.MaskPosition>` of a mask sticker.
         The sticker must belong to a sticker set that was created by the bot. Returns :obj:`True` on success.
 
         :param sticker: File identifier of the sticker.
         :type sticker: :obj:`str`
         :param mask_position: A JSON-serialized object with the position where the mask should be placed on faces. Omit the parameter to remove the mask position.
-        :type mask_position: :obj:`~aiotgm.types.MaskPosition`, optional
+        :type mask_position: :obj:`~apitele.types.MaskPosition`, optional
         :rtype: :obj:`True`
         '''
         params = {
@@ -5292,7 +5292,7 @@ class Client(TelegramApi):
         :param format: Format of the thumbnail, must be one of “static” for a **.WEBP** or **.PNG** image, “animated” for a **.TGS** animation, or “video” for a **WEBM** video.
         :type format: :obj:`str`
         :param thumbnail: A **.WEBP** or **.PNG** image with the thumbnail, must be up to 128 kilobytes in size and have a width and height of exactly 100px, or a **.TGS** animation with a thumbnail up to 32 kilobytes in size (see https://core.telegram.org/stickers#animated-sticker-requirements for animated sticker technical requirements), or a **WEBM** video with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#video-sticker-requirements for video sticker technical requirements. Pass a *file_id* as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_. Animated and video sticker set thumbnails can't be uploaded via HTTP URL. If omitted, then the thumbnail is dropped and the first sticker is used as the thumbnail.
-        :type thumbnail: :obj:`~aiotgm.types.InputFile` or :obj:`str`, optional
+        :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
         :rtype: :obj:`True`
         '''
         params = {
@@ -5340,7 +5340,7 @@ class Client(TelegramApi):
 
         Use this method to stop updating a live location message before *live_period*
         expires. On success, if the message is not an inline message, the edited
-        :obj:`~aiotgm.types.Message` is returned, otherwise :obj:`True` is returned.
+        :obj:`~apitele.types.Message` is returned, otherwise :obj:`True` is returned.
 
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message to be edited was sent.
         :type business_connection_id: :obj:`str`, optional
@@ -5351,8 +5351,8 @@ class Client(TelegramApi):
         :param inline_message_id: Required if *chat_id* and *message_id* are not specified. Identifier of the inline message.
         :type inline_message_id: :obj:`str`, optional
         :param reply_markup: A JSON-serialized object for a new `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_.
-        :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
-        :rtype: :obj:`~aiotgm.types.Message` or :obj:`True`
+        :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
+        :rtype: :obj:`~apitele.types.Message` or :obj:`True`
         '''
         params = {}
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
@@ -5375,7 +5375,7 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#stoppoll
 
         Use this method to stop a poll which was sent by the bot.
-        On success, the stopped :obj:`~aiotgm.types.Poll` is returned.
+        On success, the stopped :obj:`~apitele.types.Poll` is returned.
 
         :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
         :type chat_id: :obj:`int` or :obj:`str`
@@ -5384,8 +5384,8 @@ class Client(TelegramApi):
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message to be edited was sent.
         :type business_connection_id: :obj:`str`, optional
         :param reply_markup: A JSON-serialized object for a new `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_.
-        :type reply_markup: :obj:`~aiotgm.types.InlineKeyboardMarkup`, optional
-        :rtype: :obj:`~aiotgm.types.Poll`
+        :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
+        :rtype: :obj:`~apitele.types.Poll`
         '''
         params = {
             'chat_id': chat_id,
@@ -5583,16 +5583,16 @@ class Client(TelegramApi):
         https://core.telegram.org/bots/api#uploadstickerfile
 
         Use this method to upload a file with a sticker for later use in the
-        :meth:`~aiotgm.Client.create_new_sticker_set` and :meth:`~aiotgm.Client.add_sticker_to_set` methods
-        (the file can be used multiple times). Returns the uploaded :obj:`~aiotgm.types.File` on success.
+        :meth:`~apitele.Client.create_new_sticker_set` and :meth:`~apitele.Client.add_sticker_to_set` methods
+        (the file can be used multiple times). Returns the uploaded :obj:`~apitele.types.File` on success.
 
         :param user_id: User identifier of sticker file owner.
         :type user_id: :obj:`int`
         :param sticker: A file with the sticker in .WEBP, .PNG, .TGS, or .WEBM format. See https://core.telegram.org/stickers for technical requirements. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
-        :type sticker: :obj:`~aiotgm.types.InputFile`
+        :type sticker: :obj:`~apitele.types.InputFile`
         :param sticker_format: Format of the sticker, must be one of “static”, “animated”, “video”.
         :type sticker_format: :obj:`str`
-        :rtype: :obj:`~aiotgm.types.File`
+        :rtype: :obj:`~apitele.types.File`
         '''
         params = {
             'user_id': user_id,
