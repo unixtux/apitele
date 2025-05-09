@@ -515,6 +515,10 @@ class TelegramApi:
         method = 'editMessageText'
         return await self._request(method, params)
 
+    async def edit_user_star_subscription(self, params: dict):
+        method = 'editUserStarSubscription'
+        return await self._request(method, params)
+
     async def export_chat_invite_link(self, params: dict):
         method = 'exportChatInviteLink'
         return await self._request(method, params)
@@ -526,6 +530,10 @@ class TelegramApi:
     async def forward_messages(self, params: dict):
         method = 'forwardMessages'
         return await self._request(method, params)
+
+    async def get_available_gifts(self):
+        method = 'getAvailableGifts'
+        return await self._request(method)
 
     async def get_business_connection(self, params: dict):
         method = 'getBusinessConnection'
@@ -655,6 +663,10 @@ class TelegramApi:
         method = 'revokeChatInviteLink'
         return await self._request(method, params)
 
+    async def save_prepared_inline_message(self, params: dict):
+        method = 'savePreparedInlineMessage'
+        return await self._request(method, params)
+
     async def send_animation(self, params: dict):
         method = 'sendAnimation'
         files = _get_files(params, 'animation', 'thumbnail')
@@ -684,6 +696,10 @@ class TelegramApi:
 
     async def send_game(self, params: dict):
         method = 'sendGame'
+        return await self._request(method, params)
+
+    async def send_gift(self, params: dict):
+        method = 'sendGift'
         return await self._request(method, params)
 
     async def send_invoice(self, params: dict):
@@ -837,6 +853,10 @@ class TelegramApi:
 
     async def set_sticker_set_title(self, params: dict):
         method = 'setStickerSetTitle'
+        return await self._request(method, params)
+
+    async def set_user_emoji_status(self, params: dict):
+        method = 'setUserEmojiStatus'
         return await self._request(method, params)
 
     async def stop_message_live_location(self, params: dict):

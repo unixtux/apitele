@@ -1625,7 +1625,9 @@ class Client(TelegramApi):
         payload: str,
         currency: str,
         prices: list[LabeledPrice],
+        business_connection_id: Optional[str] = None,
         provider_token: Optional[str] = None,
+        subscription_period: Optional[int] = None,
         max_tip_amount: Optional[int] = None,
         suggested_tip_amounts: Optional[list[int]] = None,
         provider_data: Optional[str] = None,
@@ -1656,8 +1658,12 @@ class Client(TelegramApi):
         :type currency: :obj:`str`
         :param prices: Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.). Must contain exactly one item for payments in `Telegram Stars <https://t.me/BotNews/90>`_
         :type prices: :obj:`list` of :obj:`~apitele.types.LabeledPrice`
+        :param business_connection_id: Unique identifier of the business connection on behalf of which the link will be created. For payments in `Telegram Stars <https://t.me/BotNews/90>`_ only.
+        :type business_connection_id: :obj:`str`, optional
         :param provider_token: Payment provider token, obtained via `BotFather <https://t.me/botfather>`_. Pass an empty string for payments in `Telegram Stars <https://t.me/BotNews/90>`_
         :type provider_token: :obj:`str`, optional
+        :param subscription_period: The number of seconds the subscription will be active for before the next payment. The currency must be set to “XTR” (Telegram Stars) if the parameter is used. Currently, it must always be 2592000 (30 days) if specified. Any number of subscriptions can be active for a given bot at the same time, including multiple concurrent subscriptions from the same user. Subscription price must no exceed 10000 Telegram Stars.
+        :type subscription_period: :obj:`int`, optional
         :param max_tip_amount: The maximum accepted amount for tips in the *smallest units* of the currency (integer, **not** float/double). For example, for a maximum tip of ``US$ 1.45`` pass ``max_tip_amount = 145``. See the *exp* parameter in `currencies.json <https://core.telegram.org/bots/payments/currencies.json>`_, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to :obj:`0`. Not supported for payments in `Telegram Stars <https://t.me/BotNews/90>`_
         :type max_tip_amount: :obj:`int`, optional
         :param suggested_tip_amounts: A JSON-serialized array of suggested amounts of tips in the *smallest units* of the currency (integer, **not** float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed *max_tip_amount*.
@@ -1692,10 +1698,12 @@ class Client(TelegramApi):
             'title': title,
             'description': description,
             'payload': payload,
-            'provider_token': provider_token,
             'currency': currency,
             'prices': prices
         }
+        if business_connection_id is not None: params['business_connection_id'] = business_connection_id
+        if provider_token is not None: params['provider_token'] = provider_token
+        if subscription_period is not None: params['subscription_period'] = subscription_period
         if max_tip_amount is not None: params['max_tip_amount'] = max_tip_amount
         if suggested_tip_amounts is not None: params['suggested_tip_amounts'] = suggested_tip_amounts
         if provider_data is not None: params['provider_data'] = provider_data
@@ -2344,6 +2352,33 @@ class Client(TelegramApi):
         return Message._dese(result) if result is not True else True
 
 
+    async def edit_user_star_subscription(
+        self,
+        user_id: int,
+        telegram_payment_charge_id: str,
+        is_canceled: bool
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#edituserstarsubscription
+
+        Allows the bot to cancel or re-enable extension of a subscription paid in Telegram Stars. Returns :obj:`True` on success.
+
+        :param user_id: Identifier of the user whose subscription will be edited.
+        :type user_id: 
+        :param telegram_payment_charge_id: Telegram payment identifier for the subscription.
+        :type telegram_payment_charge_id: 
+        :param is_canceled: Pass :obj:`True` to cancel extension of the user subscription; the subscription must be active up to the end of the current subscription period. Pass :obj:`False` to allow the user to re-enable a subscription that was previously canceled by the bot.
+        :type is_canceled: 
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'user_id': user_id,
+            'telegram_payment_charge_id': telegram_payment_charge_id,
+            'is_canceled': is_canceled
+        }
+        return await super().edit_user_star_subscription(params)
+
+
     async def export_chat_invite_link(
         self,
         chat_id: Union[int, str]
@@ -2450,6 +2485,18 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         result = await super().forward_messages(params)
         return [MessageId._dese(mid) for mid in result]
+
+
+    async def get_available_gifts(self) -> Gifts:
+        '''
+        https://core.telegram.org/bots/api#getavailablegifts
+
+        Returns the list of gifts that can be sent by the bot to users and channel chats. Requires no parameters. Returns a :obj:`~apitele.types.Gifts` object.
+
+        :rtype: :obj:`~apitele.types.Gifts`
+        '''
+        result = await super().get_available_gifts()
+        return Gifts._dese(result)
 
 
     async def get_business_connection(
@@ -3274,6 +3321,46 @@ class Client(TelegramApi):
         return ChatInviteLink._dese(result)
 
 
+    async def save_prepared_inline_message(
+        self,
+        user_id: int,
+        result: InlineQueryResult,
+        allow_user_chats: Optional[bool] = None,
+        allow_bot_chats: Optional[bool] = None,
+        allow_group_chats: Optional[bool] = None,
+        allow_channel_chats: Optional[bool] = None
+    ) -> PreparedInlineMessage:
+        '''
+        https://core.telegram.org/bots/api#savepreparedinlinemessage
+
+        Stores a message that can be sent by a user of a Mini App. Returns a :obj:`~apitele.types.PreparedInlineMessage` object.
+
+        :param user_id: Unique identifier of the target user that can use the prepared message.
+        :type user_id: :obj:`int`
+        :param result: A JSON-serialized object describing the message to be sent.
+        :type result: :obj:`~apitele.types.InlineQueryResult`
+        :param allow_user_chats: Pass :obj:`True` if the message can be sent to private chats with users.
+        :type allow_user_chats: :obj:`bool`, optional
+        :param allow_bot_chats: Pass :obj:`True` if the message can be sent to private chats with bots.
+        :type allow_bot_chats: :obj:`bool`, optional
+        :param allow_group_chats: Pass :obj:`True` if the message can be sent to group and supergroup chats.
+        :type allow_group_chats: :obj:`bool`, optional
+        :param allow_channel_chats: Pass :obj:`True` if the message can be sent to channel chats.
+        :type allow_channel_chats: :obj:`bool`, optional
+        :rtype: :obj:`~apitele.types.PreparedInlineMessage`
+        '''
+        params = {
+            'user_id': user_id,
+            'result': result
+        }
+        if allow_user_chats is not None: params['allow_user_chats'] = allow_user_chats
+        if allow_bot_chats is not None: params['allow_bot_chats'] = allow_bot_chats
+        if allow_group_chats is not None: params['allow_group_chats'] = allow_group_chats
+        if allow_channel_chats is not None: params['allow_channel_chats'] = allow_channel_chats
+        result = await super().save_prepared_inline_message(params)
+        return PreparedInlineMessage._dese(result)
+
+
     async def send_animation(
         self,
         chat_id: Union[int, str],
@@ -3754,6 +3841,49 @@ class Client(TelegramApi):
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_game(params)
         return Message._dese(result)
+
+
+    async def send_gift(
+        self,
+        gift_id: str,
+        user_id: Optional[int] = None,
+        chat_id: Optional[Union[int, str]] = None,
+        pay_for_upgrade: Optional[bool] = None,
+        text: Optional[str] = None,
+        text_parse_mode: Optional[str] = None,
+        text_entities: Optional[list[MessageEntity]] = None
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#sendgift
+
+        Sends a gift to the given user or channel chat. The gift can't be converted to Telegram Stars by the receiver. Returns :obj:`True` on success.
+
+        :param gift_id: Identifier of the gift.
+        :type gift_id: :obj:`str`
+        :param user_id: Required if *chat_id* is not specified. Unique identifier of the target user who will receive the gift.
+        :type user_id: :obj:`int`, optional
+        :param chat_id: Required if *user_id* is not specified. Unique identifier for the chat or username of the channel (in the format ``@channelusername``) that will receive the gift.
+        :type chat_id: :obj:`int` or :obj:`str`, optional
+        :param pay_for_upgrade: Pass :obj:`True` to pay for the gift upgrade from the bot's balance, thereby making the upgrade free for the receiver.
+        :type pay_for_upgrade: :obj:`bool`, optional
+        :param text: Text that will be shown along with the gift; 0-128 characters.
+        :type text: :obj:`str`, optional
+        :param text_parse_mode: Mode for parsing entities in the text. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details. Entities other than “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, and “custom_emoji” are ignored.
+        :type text_parse_mode: :obj:`str`, optional
+        :param text_entities: A JSON-serialized list of special entities that appear in the gift text. It can be specified instead of *text_parse_mode*. Entities other than “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, and “custom_emoji” are ignored.
+        :type text_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'gift_id': gift_id
+        }
+        if user_id is not None: params['user_id'] = user_id
+        if chat_id is not None: params['chat_id'] = chat_id
+        if pay_for_upgrade is not None: params['pay_for_upgrade'] = pay_for_upgrade
+        if text is not None: params['text'] = text
+        if text_parse_mode is not None: params['text_parse_mode'] = text_parse_mode
+        if text_entities is not None: params['text_entities'] = text_entities
+        return await super().send_gift(params)
 
 
     async def send_invoice(
@@ -5325,6 +5455,33 @@ class Client(TelegramApi):
             'title': title
         }
         return await super().set_sticker_set_title(params)
+
+
+    async def set_user_emoji_status(
+        self,
+        user_id: int,
+        emoji_status_custom_emoji_id: Optional[str] = None,
+        emoji_status_expiration_date: Optional[int] = None
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#setuseremojistatus
+
+        Changes the emoji status for a given user that previously allowed the bot to manage their emoji status via the Mini App method `requestEmojiStatusAccess <https://core.telegram.org/bots/webapps#initializing-mini-apps>`_. Returns :obj:`True` on success.
+
+        :param user_id: Unique identifier of the target user.
+        :type user_id: :obj:`int`
+        :param emoji_status_custom_emoji_id: Custom emoji identifier of the emoji status to set. Pass an empty string to remove the status.
+        :type emoji_status_custom_emoji_id: :obj:`str`, optional
+        :param emoji_status_expiration_date: Expiration date of the emoji status, if any.
+        :type emoji_status_expiration_date: :obj:`int`, optional
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'user_id': user_id
+        }
+        if emoji_status_custom_emoji_id is not None: params['emoji_status_custom_emoji_id'] = emoji_status_custom_emoji_id
+        if emoji_status_expiration_date is not None: params['emoji_status_expiration_date'] = emoji_status_expiration_date
+        return await super().set_user_emoji_status(params)
 
 
     async def stop_message_live_location(

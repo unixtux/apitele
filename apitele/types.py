@@ -81,6 +81,8 @@ __all__ = (
     'GameHighScore',
     'GeneralForumTopicHidden',
     'GeneralForumTopicUnhidden',
+    'Gift',
+    'Gifts',
     'Giveaway',
     'GiveawayCompleted',
     'GiveawayCreated',
@@ -179,6 +181,7 @@ __all__ = (
     'PollAnswer',
     'PollOption',
     'PreCheckoutQuery',
+    'PreparedInlineMessage',
     'ProximityAlertTriggered',
     'ReactionCount',
     'ReactionType', # Deserialized in _dese_reaction_type()
@@ -3369,6 +3372,77 @@ class GeneralForumTopicUnhidden(TelegramType):
 
     def __init__(self):
         ...
+
+
+class Gift(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#gift
+
+    This object represents a gift that can be sent by the bot.
+
+    :param id: Unique identifier of the gift.
+    :type id: :obj:`str`
+    :param sticker: The sticker that represents the gift.
+    :type sticker: :obj:`~apitele.types.Sticker`
+    :param star_count: The number of Telegram Stars that must be paid to send the sticker.
+    :type star_count: :obj:`int`
+    :param upgrade_star_count: The number of Telegram Stars that must be paid to upgrade the gift to a unique one.
+    :type upgrade_star_count: :obj:`int`, optional
+    :param total_count: The total number of the gifts of this type that can be sent; for limited gifts only.
+    :type total_count: :obj:`int`, optional
+    :param remaining_count: The number of remaining gifts of this type that can be sent; for limited gifts only.
+    :type remaining_count: :obj:`int`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['id'] = res.get('id')
+        obj['sticker'] = Sticker._dese(res.get('sticker'))
+        obj['star_count'] = res.get('star_count')
+        obj['upgrade_star_count'] = res.get('upgrade_star_count')
+        obj['total_count'] = res.get('total_count')
+        obj['remaining_count'] = res.get('remaining_count')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        id: str,
+        sticker: Sticker,
+        star_count: int,
+        upgrade_star_count: Optional[int] = None,
+        total_count: Optional[int] = None,
+        remaining_count: Optional[int] = None
+    ):
+        self.id = id
+        self.sticker = sticker
+        self.star_count = star_count
+        self.upgrade_star_count = upgrade_star_count
+        self.total_count = total_count
+        self.remaining_count = remaining_count
+
+
+class Gifts(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#gifts
+
+    This object represent a list of gifts.
+
+    :param gifts: The list of gifts
+    :type gifts: :obj:`list` of :obj:`~apitele.types.Gift`
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['gifts'] = [Gift._dese(kwargs) for kwargs in res.get('gifts')]
+        return cls(**obj)
+
+    def __init__(
+        self,
+        gifts: list[Gift]
+    ):
+        self.gifts = gifts
 
 
 class Giveaway(TelegramType):
@@ -7532,6 +7606,34 @@ class PreCheckoutQuery(TelegramType):
         self.order_info = order_info
 
 
+class PreparedInlineMessage(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#preparedinlinemessage
+
+    Describes an inline message to be sent by a user of a Mini App.
+
+    :param id: Unique identifier of the prepared message.
+    :type id: :obj:`str`
+    :param expiration_date: Expiration date of the prepared message, in Unix time. Expired prepared messages can no longer be used.
+    :type expiration_date: :obj:`int`
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res:dict):
+        obj = {}
+        obj['id'] = res.get('id')
+        obj['expiration_date'] = res.get('expiration_date')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        id: str,
+        expiration_date: int
+    ):
+        self.id = id
+        self.expiration_date  = expiration_date
+
+
 class ProximityAlertTriggered(TelegramType):
     '''
     https://core.telegram.org/bots/api#proximityalerttriggered
@@ -8372,6 +8474,12 @@ class SuccessfulPayment(TelegramType):
     :type telegram_payment_charge_id: :obj:`str`
     :param provider_payment_charge_id: Provider payment identifier.
     :type provider_payment_charge_id: :obj:`str`
+    :param subscription_expiration_date: Expiration date of the subscription, in Unix time; for recurring payments only.
+    :type subscription_expiration_date: :obj:`int`, optional
+    :param is_recurring: :obj:`True`, if the payment is a recurring payment for a subscription.
+    :type is_recurring: :obj:`True`, optional
+    :param is_first_recurring: :obj:`True`, if the payment is the first payment for a subscription.
+    :type is_first_recurring: :obj:`True`, optional
     :param shipping_option_id: Identifier of the shipping option chosen by the user.
     :type shipping_option_id: :obj:`str`, optional
     :param order_info: Order information provided by the user.
@@ -8384,10 +8492,13 @@ class SuccessfulPayment(TelegramType):
         obj['currency'] = res.get('currency')
         obj['total_amount'] = res.get('total_amount')
         obj['invoice_payload'] = res.get('invoice_payload')
-        obj['shipping_option_id'] = res.get('shipping_option_id')
-        obj['order_info'] = OrderInfo._dese(res.get('order_info'))
         obj['telegram_payment_charge_id'] = res.get('telegram_payment_charge_id')
         obj['provider_payment_charge_id'] = res.get('provider_payment_charge_id')
+        obj['subscription_expiration_date'] = res.get('subscription_expiration_date')
+        obj['is_recurring'] = res.get('is_recurring')
+        obj['is_first_recurring'] = res.get('is_first_recurring')
+        obj['shipping_option_id'] = res.get('shipping_option_id')
+        obj['order_info'] = OrderInfo._dese(res.get('order_info'))
         return cls(**obj)
 
     def __init__(
@@ -8397,6 +8508,9 @@ class SuccessfulPayment(TelegramType):
         invoice_payload: str,
         telegram_payment_charge_id: str,
         provider_payment_charge_id: str,
+        subscription_expiration_date: Optional[int] = None,
+        is_recurring: Optional[Literal[True]] = None,
+        is_first_recurring: Optional[Literal[True]] = None,
         shipping_option_id: Optional[str] = None,
         order_info: Optional[OrderInfo] = None
     ):
@@ -8405,6 +8519,9 @@ class SuccessfulPayment(TelegramType):
         self.invoice_payload = invoice_payload
         self.telegram_payment_charge_id = telegram_payment_charge_id
         self.provider_payment_charge_id = provider_payment_charge_id
+        self.subscription_expiration_date = subscription_expiration_date
+        self.is_recurring = is_recurring
+        self.is_first_recurring = is_first_recurring
         self.shipping_option_id = shipping_option_id
         self.order_info = order_info
 
@@ -8583,10 +8700,14 @@ class TransactionPartnerUser(TelegramType):
     :type user: :obj:`~apitele.types.User`
     :param invoice_payload: Bot-specified invoice payload.
     :type invoice_payload: :obj:`str`, optional
+    :param subscription_period: The duration of the paid subscription. Can be available only for “invoice_payment” transactions.
+    :type subscription_period: :obj:`int`, optional
     :param paid_media: Information about the paid media bought by the user.
     :type paid_media: :obj:`list` of :obj:`~apitele.types.PaidMedia`, optional
     :param paid_media_payload: Bot-specified paid media payload.
     :type paid_media_payload: :obj:`str`, optional
+    :param gift: The gift sent to the user by the bot; for “gift_purchase” transactions only
+    :type gift: :obj:`~apitele.types.Gift`, optional
     '''
     @classmethod
     @_parse_result
@@ -8594,22 +8715,28 @@ class TransactionPartnerUser(TelegramType):
         obj = {}
         obj['user'] = User._dese(res.get('user'))
         obj['invoice_payload'] = res.get('invoice_payload')
+        obj['subscription_period'] = res.get('subscription_period')
         obj['paid_media'] = [_dese_paid_media(kwargs) for kwargs in res.get('paid_media')] if 'paid_media' in res else None
         obj['paid_media_payload'] = res.get('paid_media_payload')
+        obj['gift'] = Gift._dese(res.get('gift'))
         return cls(**obj)
 
     def __init__(
         self,
         user: User,
         invoice_payload: Optional[str] = None,
+        subscription_period: Optional[int] = None,
         paid_media: Optional[list[PaidMedia]] = None,
-        paid_media_payload: Optional[str] = None
+        paid_media_payload: Optional[str] = None,
+        gift: Optional[Gift] = None
     ):
         self.type = DEFAULT_TRANSACTION_PARTNER_USER
         self.user = user
         self.invoice_payload = invoice_payload
+        self.subscription_period = subscription_period
         self.paid_media = paid_media
         self.paid_media_payload = paid_media_payload
+        self.gift = gift
 
 
 class Update(TelegramType):
