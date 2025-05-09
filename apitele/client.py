@@ -2364,11 +2364,11 @@ class Client(TelegramApi):
         Allows the bot to cancel or re-enable extension of a subscription paid in Telegram Stars. Returns :obj:`True` on success.
 
         :param user_id: Identifier of the user whose subscription will be edited.
-        :type user_id: 
+        :type user_id: :obj:`int`
         :param telegram_payment_charge_id: Telegram payment identifier for the subscription.
-        :type telegram_payment_charge_id: 
+        :type telegram_payment_charge_id: :obj:`str`
         :param is_canceled: Pass :obj:`True` to cancel extension of the user subscription; the subscription must be active up to the end of the current subscription period. Pass :obj:`False` to allow the user to re-enable a subscription that was previously canceled by the bot.
-        :type is_canceled: 
+        :type is_canceled: :obj:`bool`
         :rtype: :obj:`True`
         '''
         params = {
