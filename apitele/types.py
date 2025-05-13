@@ -4,6 +4,7 @@ from __future__ import annotations
 
 __all__ = (
     'REPLY_MARKUP_TYPES', # Union of all the reply markups
+    'AffiliateInfo',
     'Animation',
     'Audio',
     'Birthdate',
@@ -211,6 +212,7 @@ __all__ = (
     'SwitchInlineQueryChosenChat',
     'TextQuote',
     'TransactionPartner', # Deserialized in _dese_transaction_partner()
+    'TransactionPartnerAffiliateProgram',
     'TransactionPartnerFragment',
     'TransactionPartnerOther',
     'TransactionPartnerTelegramAds',
@@ -279,6 +281,49 @@ def _parse_result(_dese):
             return _dese(cls, res)
 
     return wrap
+
+
+class AffiliateInfo(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#affiliateinfo
+
+    Contains information about the affiliate that received a commission via this transaction.
+
+    :param commission_per_mille: The number of Telegram Stars received by the affiliate for each 1000 Telegram Stars received by the bot from referred users.
+    :type commission_per_mille: :obj:`int`
+    :param amount: Integer amount of Telegram Stars received by the affiliate from the transaction, rounded to 0; can be negative for refunds.
+    :type amount: :obj:`int`
+    :param affiliate_user: The bot or the user that received an affiliate commission if it was received by a bot or a user.
+    :type affiliate_user: :obj:`~apitele.types.User`, optional
+    :param affiliate_chat: The chat that received an affiliate commission if it was received by a chat.
+    :type affiliate_chat: :obj:`~apitele.types.Chat`, optional
+    :param nanostar_amount: The number of 1/1000000000 shares of Telegram Stars received by the affiliate; from -999999999 to 999999999; can be negative for refunds.
+    :type nanostar_amount: :obj:`int`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res:dict):
+        obj = {}
+        obj['commission_per_mille'] = res.get('commission_per_mille')
+        obj['amount'] = res.get('amount')
+        obj['affiliate_user'] = User._dese(res.get('affiliate_user'))
+        obj['affiliate_chat'] = Chat._dese(res.get('affiliate_chat'))
+        obj['nanostar_amount'] = res.get('nanostar_amount')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        commission_per_mille: int,
+        amount: int,
+        affiliate_user: Optional[User] = None,
+        affiliate_chat: Optional[Chat] = None,
+        nanostar_amount: Optional[int] = None
+    ):
+        self.commission_per_mille = commission_per_mille
+        self.amount = amount
+        self.affiliate_user = affiliate_user
+        self.affiliate_chat = affiliate_chat
+        self.nanostar_amount = nanostar_amount
 
 
 class Animation(TelegramType):
@@ -8614,6 +8659,35 @@ class TextQuote(TelegramType):
         self.is_manual = is_manual
 
 
+class TransactionPartnerAffiliateProgram(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#transactionpartneraffiliateprogram
+
+    Describes the affiliate program that issued the affiliate commission received via this transaction.
+
+    :param commission_per_mille: The number of Telegram Stars received by the bot for each 1000 Telegram Stars received by the affiliate program sponsor from referred users.
+    :type commission_per_mille: :obj:`int`
+    :param sponsor_user: Information about the bot that sponsored the affiliate program.
+    :type sponsor_user: :obj:`~apitele.types.User`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res:dict):
+        obj = {}
+        obj['commission_per_mille'] = res.get('commission_per_mille')
+        obj['sponsor_user'] = User._dese(res.get('sponsor_user'))
+        return cls(**obj)
+
+    def __init__(
+        self,
+        commission_per_mille: int,
+        sponsor_user: Optional[User] = None
+    ):
+        self.type = DEFAULT_TRANSACTION_PARTNER_AFFILIATE_PROGRAM
+        self.commission_per_mille = commission_per_mille
+        self.sponsor_user = sponsor_user
+
+
 class TransactionPartnerFragment(TelegramType):
     '''
     https://core.telegram.org/bots/api#transactionpartnerfragment
@@ -8703,6 +8777,8 @@ class TransactionPartnerUser(TelegramType):
 
     :param user: Information about the user.
     :type user: :obj:`~apitele.types.User`
+    :param affiliate: Information about the affiliate that received a commission via this transaction. Can be available only for “invoice_payment” and “paid_media_payment” transactions.
+    :type affiliate: :obj:`~apitele.types.AffiliateInfo`
     :param invoice_payload: Bot-specified invoice payload.
     :type invoice_payload: :obj:`str`, optional
     :param subscription_period: The duration of the paid subscription. Can be available only for “invoice_payment” transactions.
@@ -8719,6 +8795,7 @@ class TransactionPartnerUser(TelegramType):
     def _dese(cls, res: dict):
         obj = {}
         obj['user'] = User._dese(res.get('user'))
+        obj['affiliate'] = AffiliateInfo._dese(res.get('affiliate'))
         obj['invoice_payload'] = res.get('invoice_payload')
         obj['subscription_period'] = res.get('subscription_period')
         obj['paid_media'] = [_dese_paid_media(kwargs) for kwargs in res.get('paid_media')] if 'paid_media' in res else None
@@ -8729,6 +8806,7 @@ class TransactionPartnerUser(TelegramType):
     def __init__(
         self,
         user: User,
+        affiliate: Optional[AffiliateInfo] = None,
         invoice_payload: Optional[str] = None,
         subscription_period: Optional[int] = None,
         paid_media: Optional[list[PaidMedia]] = None,
@@ -8737,6 +8815,7 @@ class TransactionPartnerUser(TelegramType):
     ):
         self.type = DEFAULT_TRANSACTION_PARTNER_USER
         self.user = user
+        self.affiliate = affiliate
         self.invoice_payload = invoice_payload
         self.subscription_period = subscription_period
         self.paid_media = paid_media
@@ -10021,6 +10100,7 @@ def _dese_revenue_withdrawal_state(res: Optional[dict], /) -> Optional[RevenueWi
 
 
 TransactionPartner = Union[
+    TransactionPartnerAffiliateProgram,
     TransactionPartnerFragment,
     TransactionPartnerUser,
     TransactionPartnerOther
@@ -10031,6 +10111,7 @@ https://core.telegram.org/bots/api#transactionpartner
 This object describes the source of a transaction, or its recipient for outgoing transactions.
 Currently, it can be one of:
 
+- :obj:`~apitele.types.TransactionPartnerAffiliateProgram`
 - :obj:`~apitele.types.TransactionPartnerFragment`
 - :obj:`~apitele.types.TransactionPartnerUser`
 - :obj:`~apitele.types.TransactionPartnerOther`
@@ -10045,7 +10126,10 @@ def _dese_transaction_partner(res: Optional[dict], /) -> Optional[TransactionPar
 
     type = obj.pop('type')
 
-    if type == DEFAULT_TRANSACTION_PARTNER_FRAGMENT:
+    if type == DEFAULT_TRANSACTION_PARTNER_AFFILIATE_PROGRAM:
+        return TransactionPartnerAffiliateProgram._dese(obj, check_dict=False)
+
+    elif type == DEFAULT_TRANSACTION_PARTNER_FRAGMENT:
         return TransactionPartnerFragment._dese(obj, check_dict=False)
 
     elif type == DEFAULT_TRANSACTION_PARTNER_USER:
