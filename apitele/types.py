@@ -8240,6 +8240,8 @@ class StarTransaction(TelegramType):
     :type amount: :obj:`int`
     :param date: Date the transaction was created in Unix time.
     :type date: :obj:`int`
+    :param nanostar_amount: The number of 1/1000000000 shares of Telegram Stars transferred by the transaction; from 0 to 999999999.
+    :type nanostar_amount: :obj:`int`, optional
     :param source: Source of an incoming transaction (e.g., a user purchasing goods or services, Fragment refunding a failed withdrawal). Only for incoming transactions.
     :type source: :obj:`~apitele.types.TransactionPartner`, optional
     :param receiver: Receiver of an outgoing transaction (e.g., a user for a purchase refund, Fragment for a withdrawal). Only for outgoing transactions.
@@ -8252,6 +8254,7 @@ class StarTransaction(TelegramType):
         obj['id'] = res.get('id')
         obj['amount'] = res.get('amount')
         obj['date'] = res.get('date')
+        obj['nanostar_amount'] = res.get('nanostar_amount')
         obj['source'] = _dese_transaction_partner(res.get('source'))
         obj['receiver'] = _dese_transaction_partner(res.get('receiver'))
         return cls(**obj)
@@ -8261,12 +8264,14 @@ class StarTransaction(TelegramType):
         id: str,
         amount: int,
         date: int,
+        nanostar_amount: Optional[int] = None,
         source: Optional[TransactionPartner] = None,
         receiver: Optional[TransactionPartner] = None
     ):
         self.id = id
         self.amount = amount
         self.date = date
+        self.nanostar_amount = nanostar_amount
         self.source = source
         self.receiver = receiver
 
