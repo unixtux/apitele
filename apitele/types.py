@@ -213,6 +213,7 @@ __all__ = (
     'TextQuote',
     'TransactionPartner', # Deserialized in _dese_transaction_partner()
     'TransactionPartnerAffiliateProgram',
+    'TransactionPartnerChat',
     'TransactionPartnerFragment',
     'TransactionPartnerOther',
     'TransactionPartnerTelegramAds',
@@ -8684,6 +8685,35 @@ class TransactionPartnerAffiliateProgram(TelegramType):
         self.sponsor_user = sponsor_user
 
 
+class TransactionPartnerChat(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#transactionpartnerchat
+
+    Describes a transaction with a chat.
+
+    :param chat: Information about the chat.
+    :type chat: :obj:`~apitele.types.Chat`
+    :param gift: The gift sent to the chat by the bot.
+    :type gift: :obj:`~apitele.types.Gift`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res:dict):
+        obj = {}
+        obj['chat'] = Chat._dese(res.get('chat'))
+        obj['gift'] = Gift._dese(res.get('gift'))
+        return cls(**obj)
+
+    def __init__(
+        self,
+        chat: Chat,
+        gift: Optional[Gift] = None
+    ):
+        self.type = DEFAULT_TRANSACTION_PARTNER_CHAT
+        self.chat = chat
+        self.gift = gift
+
+
 class TransactionPartnerFragment(TelegramType):
     '''
     https://core.telegram.org/bots/api#transactionpartnerfragment
@@ -10097,6 +10127,7 @@ def _dese_revenue_withdrawal_state(res: Optional[dict], /) -> Optional[RevenueWi
 
 TransactionPartner = Union[
     TransactionPartnerAffiliateProgram,
+    TransactionPartnerChat,
     TransactionPartnerFragment,
     TransactionPartnerUser,
     TransactionPartnerOther
@@ -10108,6 +10139,7 @@ This object describes the source of a transaction, or its recipient for outgoing
 Currently, it can be one of:
 
 - :obj:`~apitele.types.TransactionPartnerAffiliateProgram`
+- :obj:`~apitele.types.TransactionPartnerChat`
 - :obj:`~apitele.types.TransactionPartnerFragment`
 - :obj:`~apitele.types.TransactionPartnerUser`
 - :obj:`~apitele.types.TransactionPartnerOther`
@@ -10124,6 +10156,9 @@ def _dese_transaction_partner(res: Optional[dict], /) -> Optional[TransactionPar
 
     if type == DEFAULT_TRANSACTION_PARTNER_AFFILIATE_PROGRAM:
         return TransactionPartnerAffiliateProgram._dese(obj, check_dict=False)
+
+    elif type == DEFAULT_TRANSACTION_PARTNER_CHAT:
+        return TransactionPartnerChat._dese(obj, check_dict=False)
 
     elif type == DEFAULT_TRANSACTION_PARTNER_FRAGMENT:
         return TransactionPartnerFragment._dese(obj, check_dict=False)
