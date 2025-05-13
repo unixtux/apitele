@@ -3474,7 +3474,7 @@ class Gifts(TelegramType):
 
     This object represent a list of gifts.
 
-    :param gifts: The list of gifts
+    :param gifts: The list of gifts.
     :type gifts: :obj:`list` of :obj:`~apitele.types.Gift`
     '''
     @classmethod
@@ -5459,6 +5459,10 @@ class InputMediaVideo(TelegramType):
     :type media: :obj:`str`
     :param thumbnail: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
     :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
+    :param cover: Cover for the video in the message. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
+    :type cover: :obj:`str`, optional
+    :param start_timestamp: Start timestamp for the video in the message.
+    :type start_timestamp: :obj:`int`, optional
     :param caption: Caption of the video to be sent, 0-1024 characters after entities parsing.
     :type caption: :obj:`str`, optional
     :param parse_mode: Mode for parsing entities in the video caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
@@ -5482,6 +5486,8 @@ class InputMediaVideo(TelegramType):
         self,
         media: str,
         thumbnail: Optional[Union[InputFile, str]] = None,
+        cover: Optional[str] = None,
+        start_timestamp: Optional[int] = None,
         caption: Optional[str] = None,
         parse_mode: Optional[str] = None,
         caption_entities: Optional[list[MessageEntity]] = None,
@@ -5495,6 +5501,8 @@ class InputMediaVideo(TelegramType):
         self.type = DEFAULT_INPUT_MEDIA_VIDEO
         self.media = media
         self.thumbnail = thumbnail
+        self.cover = cover
+        self.start_timestamp = start_timestamp
         self.caption = caption
         self.parse_mode = parse_mode
         self.caption_entities = caption_entities
@@ -5533,6 +5541,10 @@ class InputPaidMediaVideo(TelegramType):
     :type media: :obj:`str`
     :param thumbnail: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
     :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
+    :param cover: Cover for the video in the message. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
+    :type cover: :obj:`str`, optional
+    :param start_timestamp: Start timestamp for the video in the message.
+    :type start_timestamp: :obj:`int`, optional
     :param width: Video width.
     :type width: :obj:`int`, optional
     :param height: Video height.
@@ -5546,6 +5558,8 @@ class InputPaidMediaVideo(TelegramType):
         self,
         media: str,
         thumbnail: Optional[Union[InputFile, str]] = None,
+        cover: Optional[str] = None,
+        start_timestamp: Optional[int] = None,
         width: Optional[int] = None,
         height: Optional[int] = None,
         duration: Optional[int] = None,
@@ -5554,6 +5568,8 @@ class InputPaidMediaVideo(TelegramType):
         self.type = DEFAULT_INPUT_PAID_MEDIA_VIDEO
         self.media = media
         self.thumbnail = thumbnail
+        self.cover = cover
+        self.start_timestamp = start_timestamp
         self.width = width
         self.height = height
         self.duration = duration
@@ -9222,6 +9238,10 @@ class Video(TelegramType):
     :type duration: :obj:`int`
     :param thumbnail: Video thumbnail.
     :type thumbnail: :obj:`~apitele.types.PhotoSize`, optional
+    :param cover: Available sizes of the cover of the video in the message.
+    :type cover: :obj:`list` of :obj:`~apitele.types.PhotoSize`, optional
+    :param start_timestamp: Timestamp in seconds from which the video will play in the message.
+    :type start_timestamp: :obj:`int`, optional
     :param file_name: Original filename as defined by sender.
     :type file_name: :obj:`str`, optional
     :param mime_type: MIME type of the file as defined by sender.
@@ -9239,6 +9259,8 @@ class Video(TelegramType):
         obj['height'] = res.get('height')
         obj['duration'] = res.get('duration')
         obj['thumbnail'] = PhotoSize._dese(res.get('thumbnail'))
+        obj['cover'] = [PhotoSize._dese(kwargs) for kwargs in res.get('cover')] if 'cover' in res else None
+        obj['start_timestamp'] = res.get('start_timestamp')
         obj['file_name'] = res.get('file_name')
         obj['mime_type'] = res.get('mime_type')
         obj['file_size'] = res.get('file_size')
@@ -9252,6 +9274,8 @@ class Video(TelegramType):
         height: int,
         duration: int,
         thumbnail: Optional[PhotoSize] = None,
+        cover: Optional[list[PhotoSize]] = None,
+        start_timestamp: Optional[int] = None,
         file_name: Optional[str] = None,
         mime_type: Optional[str] = None,
         file_size: Optional[int] = None
@@ -9262,6 +9286,8 @@ class Video(TelegramType):
         self.height = height
         self.duration = duration
         self.thumbnail = thumbnail
+        self.cover = cover
+        self.start_timestamp = start_timestamp
         self.file_name = file_name
         self.mime_type = mime_type
         self.file_size = file_size

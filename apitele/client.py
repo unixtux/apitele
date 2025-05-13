@@ -1401,6 +1401,7 @@ class Client(TelegramApi):
         from_chat_id: Union[int, str],
         message_id: int,
         message_thread_id: Optional[int] = None,
+        video_start_timestamp: Optional[int] = None,
         caption: Optional[str] = None,
         parse_mode: Optional[str] = None,
         caption_entities: Optional[list[MessageEntity]] = None,
@@ -1426,6 +1427,8 @@ class Client(TelegramApi):
         :type message_id: :obj:`int`
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param video_start_timestamp: New start timestamp for the copied video in the message.
+        :type video_start_timestamp: :obj:`int`, optional
         :param caption: New caption for media, 0-1024 characters after entities parsing. If not specified, the original caption is kept.
         :type caption: :obj:`str`, optional
         :param parse_mode: Mode for parsing entities in the new caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
@@ -1452,6 +1455,7 @@ class Client(TelegramApi):
             'message_id': message_id
         }
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if video_start_timestamp is not None: params['video_start_timestamp'] = video_start_timestamp
         if caption is not None: params['caption'] = caption
         if parse_mode is not None: params['parse_mode'] = parse_mode
         if caption_entities is not None: params['caption_entities'] = caption_entities
@@ -2410,6 +2414,7 @@ class Client(TelegramApi):
         from_chat_id: Union[int, str],
         message_id: int,
         message_thread_id: Optional[int] = None,
+        video_start_timestamp: Optional[int] = None,
         disable_notification: Optional[bool] = None,
         protect_content: Optional[bool] = None
     ) -> Message:
@@ -2427,6 +2432,8 @@ class Client(TelegramApi):
         :type message_id: :obj:`int`
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param video_start_timestamp: New start timestamp for the forwarded video in the message.
+        :type video_start_timestamp: :obj:`int`, optional
         :param disable_notification: Sends the message `silently <https://telegram.org/blog/channels-2-0#silent-messages>`_. Users will receive a notification with no sound.
         :type disable_notification: :obj:`bool`, optional
         :param protect_content: Protects the contents of the forwarded message from forwarding and saving.
@@ -2439,6 +2446,7 @@ class Client(TelegramApi):
             'message_id': message_id
         }
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if video_start_timestamp is not None: params['video_start_timestamp'] = video_start_timestamp
         if disable_notification is not None: params['disable_notification'] = disable_notification
         if protect_content is not None: params['protect_content'] = protect_content
         result = await super().forward_message(params)
@@ -4672,6 +4680,8 @@ class Client(TelegramApi):
         width: Optional[int] = None,
         height: Optional[int] = None,
         thumbnail: Optional[Union[InputFile, str]] = None,
+        cover: Optional[Union[InputFile, str]] = None,
+        start_timestamp: Optional[int] = None,
         caption: Optional[str] = None,
         parse_mode: Optional[str] = None,
         caption_entities: Optional[list[MessageEntity]] = None,
@@ -4709,6 +4719,10 @@ class Client(TelegramApi):
         :type height: :obj:`int`, optional
         :param thumbnail: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
         :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
+        :param cover: Cover for the video in the message. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
+        :type cover: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
+        :param start_timestamp: Start timestamp for the video in the message.
+        :type start_timestamp: :obj:`int`, optional
         :param caption: Video caption (may also be used when resending videos by *file_id*), 0-1024 characters after entities parsing.
         :type caption: :obj:`str`, optional
         :param parse_mode: Mode for parsing entities in the video caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
@@ -4745,6 +4759,8 @@ class Client(TelegramApi):
         if width is not None: params['width'] = width
         if height is not None: params['height'] = height
         if thumbnail is not None: params['thumbnail'] = thumbnail
+        if cover is not None: params['cover'] = cover
+        if start_timestamp is not None: params['start_timestamp'] = start_timestamp
         if caption is not None: params['caption'] = caption
         if parse_mode is not None: params['parse_mode'] = parse_mode
         if caption_entities is not None: params['caption_entities'] = caption_entities
