@@ -3178,6 +3178,44 @@ class Client(TelegramApi):
         return await super().refund_star_payment(params)
 
 
+    async def remove_chat_verification(
+        self,
+        chat_id: Union[int, str]
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#removechatverification
+
+        Removes verification from a chat that is currently verified `on behalf of the organization <https://telegram.org/verify#third-party-verification>`_ represented by the bot. Returns :obj:`True` on success.
+
+        :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
+        :type chat_id: :obj:`int` or :obj:`str`
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'chat_id': chat_id
+        }
+        return await super().remove_chat_verification(params)
+
+
+    async def remove_user_verification(
+        self,
+        user_id: int
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#removeuserverification
+
+        Removes verification from a user who is currently verified `on behalf of the organization <https://telegram.org/verify#third-party-verification>`_ represented by the bot. Returns :obj:`True` on success.
+
+        :param user_id: Unique identifier of the target user.
+        :type user_id: :obj:`int`
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'user_id': user_id
+        }
+        return await super().remove_user_verification(params)
+
+
     async def reopen_forum_topic(
         self,
         chat_id: Union[int, str],
@@ -5758,3 +5796,50 @@ class Client(TelegramApi):
         }
         result = await super().upload_sticker_file(params)
         return File._dese(result)
+
+
+    async def verify_chat(
+        self,
+        chat_id: Union[int, str],
+        custom_description: Optional[str] = None
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#verifychat
+
+        Verifies a chat `on behalf of the organization <https://telegram.org/verify#third-party-verification>`_ which is represented by the bot. Returns :obj:`True` on success.
+
+        :param chat_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
+        :type chat_id: :obj:`int` or :obj:`str`
+        :param custom_description: Custom description for the verification; 0-70 characters. Must be empty if the organization isn't allowed to provide a custom verification description.
+        :type custom_description: :obj:`str`, optional
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'chat_id': chat_id
+        }
+        if custom_description is not None: params['custom_description'] = custom_description
+        return await super().verify_chat(params)
+
+
+    async def verify_user(
+        self,
+        user_id: Union[int, str],
+        custom_description: Optional[str] = None
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#verifyuser
+
+        Verifies a user `on behalf of the organization <https://telegram.org/verify#third-party-verification>`_ which is represented by the bot. Returns :obj:`True` on success.
+
+        :param user_id: Unique identifier for the target chat or username of the target channel (in the format ``@channelusername``).
+        :type user_id: :obj:`int` or :obj:`str`
+        :param custom_description: Custom description for the verification; 0-70 characters. Must be empty if the organization isn't allowed to provide a custom verification description.
+        :type custom_description: :obj:`str`, optional
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'user_id': user_id
+        }
+        if custom_description is not None: params['custom_description'] = custom_description
+        return await super().verify_user(params)
+

@@ -643,6 +643,14 @@ class TelegramApi:
         method = 'refundStarPayment'
         return await self._request(method, params)
 
+    async def remove_chat_verification(self, params: dict):
+        method = 'removeChatVerification'
+        return await self._request(method, params)
+
+    async def remove_user_verification(self, params: dict):
+        method = 'removeUserVerification'
+        return await self._request(method, params)
+
     async def reopen_forum_topic(self, params: dict):
         method = 'reopenForumTopic'
         return await self._request(method, params)
@@ -899,3 +907,11 @@ class TelegramApi:
         method = 'uploadStickerFile'
         files = _get_files(params, 'sticker')
         return await self._request(method, params, files)
+
+    async def verify_chat(self, params: dict):
+        method = 'verifyChat'
+        return await self._request(method, params)
+
+    async def verify_user(self, params: dict):
+        method = 'verifyUser'
+        return await self._request(method, params)

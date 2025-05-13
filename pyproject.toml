@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "apitele"
-version = "0.0.7"
+version = "0.0.8"
 requires-python = ">= 3.8"
 license = {file = "LICENSE"}
 readme = "README.md"

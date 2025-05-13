@@ -3952,8 +3952,6 @@ class InlineQueryResultArticle(TelegramType):
     :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
     :param url: URL of the result.
     :type url: :obj:`str`, optional
-    :param hide_url: Pass :obj:`True` if you don't want the URL to be shown in the message.
-    :type hide_url: :obj:`bool`, optional
     :param description: Short description of the result.
     :type description: :obj:`str`, optional
     :param thumbnail_url: Url of the thumbnail for the result.
@@ -3970,7 +3968,6 @@ class InlineQueryResultArticle(TelegramType):
         input_message_content: InputMessageContent,
         reply_markup: Optional[InlineKeyboardMarkup] = None,
         url: Optional[str] = None,
-        hide_url: Optional[bool] = None,
         description: Optional[str] = None,
         thumbnail_url: Optional[str] = None,
         thumbnail_width: Optional[int] = None,
@@ -3982,7 +3979,6 @@ class InlineQueryResultArticle(TelegramType):
         self.input_message_content = input_message_content
         self.reply_markup = reply_markup
         self.url = url
-        self.hide_url = hide_url
         self.description = description
         self.thumbnail_url = thumbnail_url
         self.thumbnail_width = thumbnail_width
