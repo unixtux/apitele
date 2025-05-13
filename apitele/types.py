@@ -8778,7 +8778,7 @@ class TransactionPartnerUser(TelegramType):
     :param user: Information about the user.
     :type user: :obj:`~apitele.types.User`
     :param affiliate: Information about the affiliate that received a commission via this transaction. Can be available only for “invoice_payment” and “paid_media_payment” transactions.
-    :type affiliate: :obj:`~apitele.types.AffiliateInfo`
+    :type affiliate: :obj:`~apitele.types.AffiliateInfo`, optional
     :param invoice_payload: Bot-specified invoice payload.
     :type invoice_payload: :obj:`str`, optional
     :param subscription_period: The duration of the paid subscription. Can be available only for “invoice_payment” transactions.
