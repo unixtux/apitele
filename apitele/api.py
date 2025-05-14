@@ -781,6 +781,10 @@ class TelegramApi:
         files = _get_files(params, 'voice')
         return await self._request(method, params, files)
 
+    async def set_business_account_name(self, params: dict):
+        method = 'setBusinessAccountName'
+        return await self._request(method, params)
+
     async def set_chat_administrator_custom_title(self, params: dict):
         method = 'setChatAdministratorCustomTitle'
         return await self._request(method, params)
