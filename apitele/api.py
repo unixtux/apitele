@@ -639,6 +639,10 @@ class TelegramApi:
         method = 'promoteChatMember'
         return await self._request(method, params)
 
+    async def read_business_message(self, params: dict):
+        method = 'readBusinessMessage'
+        return await self._request(method, params)
+
     async def refund_star_payment(self, params: dict):
         method = 'refundStarPayment'
         return await self._request(method, params)

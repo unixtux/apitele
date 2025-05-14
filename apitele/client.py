@@ -3163,6 +3163,33 @@ class Client(TelegramApi):
         return await super().promote_chat_member(params)
 
 
+    async def read_business_message(
+        self,
+        business_connection_id: str,
+        chat_id: int,
+        message_id: int
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#readbusinessmessage
+
+        Marks incoming message as read on behalf of a business account. Requires the *can_read_messages* business bot right. Returns :obj:`True` on success.
+
+        :param business_connection_id: Unique identifier of the business connection on behalf of which to read the message.
+        :type business_connection_id: :obj:`str`
+        :param chat_id: Unique identifier of the chat in which the message was received. The chat must have been active in the last 24 hours.
+        :type chat_id: :obj:`int`
+        :param message_id: Unique identifier of the message to mark as read.
+        :type message_id: :obj:`int`
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'business_connection_id': business_connection_id,
+            'chat_id': chat_id,
+            'message_id': message_id
+        }
+        return await super().read_business_message(params)
+
+
     async def refund_star_payment(
         self,
         user_id: int,
