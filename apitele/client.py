@@ -5001,6 +5001,29 @@ class Client(TelegramApi):
         return await super().set_business_account_name(params)
 
 
+    async def set_business_account_username(
+        self,
+        business_connection_id: str,
+        username: Optional[str] = None
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#setbusinessaccountusername
+
+        Changes the username of a managed business account. Requires the *can_change_username* business bot right. Returns :obj:`True` on success.
+
+        :param business_connection_id: Unique identifier of the business connection.
+        :type business_connection_id: :obj:`str`
+        :param username: The new value of the username for the business account; 0-32 characters.
+        :type username: :obj:`str`, optional
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'business_connection_id': business_connection_id
+        }
+        if username is not None: params['username'] = username
+        return await super().set_business_account_username(params)
+
+
     async def set_chat_administrator_custom_title(
         self,
         chat_id: Union[int, str],
