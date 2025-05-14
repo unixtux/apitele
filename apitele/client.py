@@ -1789,6 +1789,30 @@ class Client(TelegramApi):
         return await super().decline_chat_join_request(params)
 
 
+    async def delete_business_messages(
+        self,
+        business_connection_id: str,
+        message_ids: list[int]
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#deletebusinessmessages
+
+        Delete messages on behalf of a business account. Requires the *can_delete_sent_messages* business bot right to delete messages
+        sent by the bot itself, or the *can_delete_all_messages* business bot right to delete any message. Returns :obj:`True` on success.
+
+        :param business_connection_id: Unique identifier of the business connection on behalf of which to delete the messages.
+        :type business_connection_id: :obj:`str`
+        :param message_ids: A JSON-serialized list of 1-100 identifiers of messages to delete. All messages must be from the same chat. See `deleteMessage <https://core.telegram.org/bots/api#deletemessage>`_ for limitations on which messages can be deleted.
+        :type message_ids: :obj:`list` of :obj:`int`
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'business_connection_id': business_connection_id,
+            'message_ids': message_ids
+        }
+        return await super().delete_business_messages(params)
+
+
     async def delete_chat_photo(
         self,
         chat_id: Union[int, str]
