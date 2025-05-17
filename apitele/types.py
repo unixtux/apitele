@@ -130,6 +130,9 @@ __all__ = (
     'InputPaidMediaPhoto',
     'InputPaidMediaVideo',
     'InputPollOption',
+    'InputProfilePhoto',
+    'InputProfilePhotoAnimated',
+    'InputProfilePhotoStatic',
     'InputSticker',
     'InputTextMessageContent',
     'InputVenueMessageContent',
@@ -5689,6 +5692,44 @@ class InputPollOption(TelegramType):
         self.text_entities = text_entities
 
 
+class InputProfilePhotoStatic(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#inputprofilephotostatic
+
+    A static profile photo in the .JPG format.
+
+    :param photo: The static profile photo. Profile photos can't be reused and can only be uploaded as a new file, so you can pass “attach://<file_attach_name>” if the photo was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
+    :type photo: :obj:`str`
+    '''
+    def __init__(
+        self,
+        photo: str
+    ):
+        self.type = DEFAULT_INPUT_PROFILE_PHOTO_STATIC
+        self.photo = photo
+
+
+class InputProfilePhotoAnimated(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#inputprofilephotoanimated
+
+    An animated profile photo in the MPEG4 format.
+
+    :param animation: The animated profile photo. Profile photos can't be reused and can only be uploaded as a new file, so you can pass “attach://<file_attach_name>” if the photo was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
+    :type animation: :obj:`obj`
+    :param main_frame_timestamp: Timestamp in seconds of the frame that will be used as the static profile photo. Defaults to 0.0.
+    :type main_frame_timestamp: :obj:`float`, optional
+    '''
+    def __init__(
+        self,
+        animation: str,
+        main_frame_timestamp: Optional[float] = None
+    ):
+        self.type = DEFAULT_INPUT_PROFILE_PHOTO_ANIMATED
+        self.animation = animation
+        self.main_frame_timestamp = main_frame_timestamp
+
+
 class InputSticker(TelegramType):
     '''
     https://core.telegram.org/bots/api#inputsticker
@@ -9988,6 +10029,16 @@ This object describes the paid media to be sent. Currently, it can be one of:
 
 - :obj:`~apitele.types.InputPaidMediaPhoto`
 - :obj:`~apitele.types.InputPaidMediaVideo`
+'''
+
+InputProfilePhoto = [Union[InputProfilePhotoStatic, InputProfilePhotoAnimated]]
+'''
+https://core.telegram.org/bots/api#inputprofilephoto
+
+This object describes a profile photo to set. Currently, it can be one of:
+
+- :obj:`~apitele.types.InputProfilePhotoStatic`
+- :obj:`~apitele.types.InputProfilePhotoAnimated`
 '''
 
 
