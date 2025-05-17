@@ -4976,18 +4976,18 @@ class Client(TelegramApi):
 
     async def set_business_account_bio(
         self,
-        business_connection_id,
-        bio
+        business_connection_id: str,
+        bio: Optional[str] = None
     ) -> Literal[True]:
         '''
         https://core.telegram.org/bots/api#setbusinessaccountbio
 
         Changes the bio of a managed business account. Requires the *can_change_bio* business bot right. Returns :obj:`True` on success.
 
-        :param business_connection_id: 
-        :type business_connection_id: 
-        :param bio: 
-        :type bio: 
+        :param business_connection_id: Unique identifier of the business connection.
+        :type business_connection_id: :obj:`str`
+        :param bio: The new value of the bio for the business account; 0-140 characters.
+        :type bio: :obj:`str`, optional
         :rtype: :obj:`True`
         '''
         params = {
