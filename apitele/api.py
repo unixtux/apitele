@@ -212,24 +212,32 @@ def _convert_input_profile_photo(
             'Expected one of the following types:'
             f' {available_types}, got {media.__class__.__name__}.'
         )
-    if isinstance(media.photo, str):
-        media_file = re.match(r'attach://(.*)', media.media)
-        if media_file:
-            path = media_file.group(1)
-            try:
-                with open(path, 'rb') as rb:
-                    content = rb.read()
-            except FileNotFoundError:
-                raise FileNotFoundError(
-                    f'No such file {path!r},'
-                    ' media attribute must be in the'
-                    ' format "attach://<file_name>" to'
-                    ' post a file using multipart/form-data.'
-                )
-            files[path] = {
-                'content': content,
-                'file_name': path
-            }
+    media_file = None
+
+    if hasattr(media, 'photo'):
+        if isinstance(media.photo, str):
+            media_file = re.match(r'attach://(.*)', media.photo)
+
+    elif hasattr(media, 'animation'):
+        if isinstance(media.animation, str):
+            media_file = re.match(r'attach://(.*)', media.animation)
+
+    if media_file:
+        path = media_file.group(1)
+        try:
+            with open(path, 'rb') as rb:
+                content = rb.read()
+        except FileNotFoundError:
+            raise FileNotFoundError(
+                f'No such file {path!r},'
+                ' media attribute must be in the'
+                ' format "attach://<file_name>" to'
+                ' post a file using multipart/form-data.'
+            )
+        files[path] = {
+            'content': content,
+            'file_name': path
+        }
 
 def _get_input_profile_photo_files(
     params: dict,
