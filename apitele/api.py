@@ -32,6 +32,7 @@ from .types import (
     InputMediaDocument,
     InputMediaPhoto,
     InputMediaVideo,
+    InputProfilePhoto
 )
 try:
     import ssl
@@ -192,6 +193,59 @@ def _get_input_media_files(
                     _convert_input_media(tp, files, types_check)
             else:
                 _convert_input_media(obj, files, types_check)
+
+    return files or None
+
+
+def _convert_input_profile_photo(
+    media: InputProfilePhoto,
+    files: FilesDict,
+    types_check: UnionType,
+    /
+) -> None:
+    '''
+    Used in _get_input_profile_photo_files() to add InputProfilePhoto types to FilesDict.
+    '''
+    if not isinstance(media, types_check):
+        available_types = ', '.join([t.__name__ for t in types_check.__args__])
+        raise TypeError(
+            'Expected one of the following types:'
+            f' {available_types}, got {media.__class__.__name__}.'
+        )
+    if isinstance(media.photo, str):
+        media_file = re.match(r'attach://(.*)', media.media)
+        if media_file:
+            path = media_file.group(1)
+            try:
+                with open(path, 'rb') as rb:
+                    content = rb.read()
+            except FileNotFoundError:
+                raise FileNotFoundError(
+                    f'No such file {path!r},'
+                    ' media attribute must be in the'
+                    ' format "attach://<file_name>" to'
+                    ' post a file using multipart/form-data.'
+                )
+            files[path] = {
+                'content': content,
+                'file_name': path
+            }
+
+def _get_input_profile_photo_files(
+    params: dict,
+    *file_keys,
+    types_check: UnionType,
+) -> Optional[FilesDict]:
+
+    files = {}
+    for key in file_keys:
+        if key in params:
+            obj = params[key]
+            if isinstance(obj, Iterable):
+                for tp in obj:
+                    _convert_input_profile_photo(tp, files, types_check)
+            else:
+                _convert_input_profile_photo(obj, files, types_check)
 
     return files or None
 
@@ -651,6 +705,10 @@ class TelegramApi:
         method = 'refundStarPayment'
         return await self._request(method, params)
 
+    async def remove_business_account_profile_photo(self, params: dict):
+        method = 'removeBusinessAccountProfilePhoto'
+        return await self._request(method, params)
+
     async def remove_chat_verification(self, params: dict):
         method = 'removeChatVerification'
         return await self._request(method, params)
@@ -788,6 +846,15 @@ class TelegramApi:
     async def set_business_account_name(self, params: dict):
         method = 'setBusinessAccountName'
         return await self._request(method, params)
+
+    async def set_business_account_profile_photo(self, params: dict):
+        method = 'setBusinessAccountProfilePhoto'
+        files = _get_input_profile_photo_files(
+            params,
+            'photo',
+            types_check=InputProfilePhoto
+        )
+        return await self._request(method, params, files)
 
     async def set_business_account_username(self, params: dict):
         method = 'setBusinessAccountUsername'
