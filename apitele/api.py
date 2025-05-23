@@ -216,10 +216,12 @@ def _convert_input_profile_photo(
 
     if hasattr(media, 'photo'):
         if isinstance(media.photo, str):
+            attribute = 'photo'
             media_file = re.match(r'attach://(.*)', media.photo)
 
     elif hasattr(media, 'animation'):
         if isinstance(media.animation, str):
+            attribute = 'animation'
             media_file = re.match(r'attach://(.*)', media.animation)
 
     if media_file:
@@ -230,7 +232,7 @@ def _convert_input_profile_photo(
         except FileNotFoundError:
             raise FileNotFoundError(
                 f'No such file {path!r},'
-                ' media attribute must be in the'
+                f' {attribute} attribute must be in the'
                 ' format "attach://<file_name>" to'
                 ' post a file using multipart/form-data.'
             )
