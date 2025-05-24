@@ -853,6 +853,10 @@ class TelegramApi:
         method = 'setBusinessAccountBio'
         return await self._request(method, params)
 
+    async def set_business_account_gift_settings(self, params: dict):
+        method = 'setBusinessAccountGiftSettings'
+        return await self._request(method, params)
+
     async def set_business_account_name(self, params: dict):
         method = 'setBusinessAccountName'
         return await self._request(method, params)
