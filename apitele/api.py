@@ -603,6 +603,10 @@ class TelegramApi:
         method = 'getAvailableGifts'
         return await self._request(method)
 
+    async def get_business_account_star_balance(self, params: dict):
+        method = 'getBusinessAccountStarBalance'
+        return await self._request(method, params)
+
     async def get_business_connection(self, params: dict):
         method = 'getBusinessConnection'
         return await self._request(method, params)

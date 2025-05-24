@@ -208,6 +208,7 @@ __all__ = (
     'ShippingAddress',
     'ShippingOption',
     'ShippingQuery',
+    'StarAmount',
     'StarTransaction',
     'StarTransactions',
     'Sticker',
@@ -8453,6 +8454,34 @@ class ShippingQuery(TelegramType):
         self.from_user = from_user
         self.invoice_payload = invoice_payload
         self.shipping_address = shipping_address
+
+
+class StarAmount(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#staramount
+
+    Describes an amount of Telegram Stars.
+
+    :param amount: Integer amount of Telegram Stars, rounded to 0; can be negative.
+    :type amount: :obj:`int`
+    :param nanostar_amount: The number of 1/1000000000 shares of Telegram Stars; from -999999999 to 999999999; can be negative if and only if amount is non-positive.
+    :type nanostar_amount: :obj:`int`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['amount'] = res.get('amount')
+        obj['nanostar_amount'] = res.get('nanostar_amount')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        amount: int,
+        nanostar_amount: Optional[int] = None
+    ):
+        self.amount = amount
+        self.nanostar_amount = nanostar_amount
 
 
 class StarTransaction(TelegramType):

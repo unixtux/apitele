@@ -2531,6 +2531,27 @@ class Client(TelegramApi):
         return Gifts._dese(result)
 
 
+    async def get_business_account_star_balance(
+        self,
+        business_connection_id: str
+    ) -> StarAmount:
+        '''
+        https://core.telegram.org/bots/api#getbusinessaccountstarbalance
+
+        Returns the amount of Telegram Stars owned by a managed business account.
+        Requires the *can_view_gifts_and_stars* business bot right. Returns :obj:`~apitele.types.StarAmount` on success.
+
+        :param business_connection_id: Unique identifier of the business connection.
+        :type business_connection_id: :obj:`str`
+        :rtype: :obj:`~apitele.types.StarAmount`
+        '''
+        params = {
+            'business_connection_id': business_connection_id
+        }
+        result = await super().get_business_account_star_balance(params)
+        return StarAmount._dese(result)
+
+
     async def get_business_connection(
         self,
         business_connection_id: str
