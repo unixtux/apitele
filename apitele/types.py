@@ -4,6 +4,7 @@ from __future__ import annotations
 
 __all__ = (
     'REPLY_MARKUP_TYPES', # Union of all the reply markups
+    'AcceptedGiftTypes',
     'AffiliateInfo',
     'Animation',
     'Audio',
@@ -286,6 +287,44 @@ def _parse_result(_dese):
             return _dese(cls, res)
 
     return wrap
+
+
+class AcceptedGiftTypes(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#acceptedgifttypes
+
+    This object describes the types of gifts that can be gifted to a user or a chat.
+
+    :param unlimited_gifts: :obj:`True`, if unlimited regular gifts are accepted.
+    :type unlimited_gifts: :obj:`bool`
+    :param limited_gifts: :obj:`True`, if limited regular gifts are accepted.
+    :type limited_gifts: :obj:`bool`
+    :param unique_gifts: :obj:`True`, if unique gifts or gifts that can be upgraded to unique for free are accepted.
+    :type unique_gifts: :obj:`bool`
+    :param premium_subscription: :obj:`True`, if a Telegram Premium subscription is accepted.
+    :type premium_subscription: :obj:`bool`
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['unlimited_gifts'] = res.get('unlimited_gifts')
+        obj['limited_gifts'] = res.get('limited_gifts')
+        obj['unique_gifts'] = res.get('unique_gifts')
+        obj['premium_subscription'] = res.get('premium_subscription')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        unlimited_gifts: bool,
+        limited_gifts: bool,
+        unique_gifts: bool,
+        premium_subscription: bool
+    ):
+        self.unlimited_gifts = unlimited_gifts
+        self.limited_gifts = limited_gifts
+        self.unique_gifts = unique_gifts
+        self.premium_subscription = premium_subscription
 
 
 class AffiliateInfo(TelegramType):
