@@ -7280,37 +7280,6 @@ class OwnedGiftUnique(TelegramType):
         self.transfer_star_count = transfer_star_count
 
 
-OwnedGift = Union[OwnedGiftRegular, OwnedGiftUnique]
-'''
-https://core.telegram.org/bots/api#ownedgift
-
-This object describes a gift received and owned by a user or a chat. Currently, it can be one of:
-
-- :obj:`~apitele.types.OwnedGiftRegular`
-- :obj:`~apitele.types.OwnedGiftUnique`
-'''
-
-def _dese_owned_gift(res: Optional[dict], /) -> Optional[OwnedGift]:
-    '''
-    Function to deserialize OwnedGift.
-    '''
-    if res is None: return None
-    obj = _check_dict(res)
-
-    type = obj.pop('type')
-
-    if type == DEFAULT_OWNED_GIFT_REGULAR:
-        return OwnedGiftRegular._dese(obj, check_dict=False)
-
-    elif type == DEFAULT_OWNED_GIFT_UNIQUE:
-        return OwnedGiftUnique._dese(obj, check_dict=False)
-    else:
-        raise ValueError(
-            'An error occurred during the deserialization'
-            f' of the type OwnedGift. Invalid type: {type!r}.'
-        )
-
-
 class OwnedGifts(TelegramType):
     '''
     https://core.telegram.org/bots/api#ownedgifts
@@ -10604,6 +10573,37 @@ def _dese_message_origin(res: Optional[dict], /) -> Optional[MessageOrigin]:
         raise ValueError(
             'An error occurred during the deserialization'
             f' of the type MessageOrigin. Invalid type: {type!r}.'
+        )
+
+
+OwnedGift = Union[OwnedGiftRegular, OwnedGiftUnique]
+'''
+https://core.telegram.org/bots/api#ownedgift
+
+This object describes a gift received and owned by a user or a chat. Currently, it can be one of:
+
+- :obj:`~apitele.types.OwnedGiftRegular`
+- :obj:`~apitele.types.OwnedGiftUnique`
+'''
+
+def _dese_owned_gift(res: Optional[dict], /) -> Optional[OwnedGift]:
+    '''
+    Function to deserialize OwnedGift.
+    '''
+    if res is None: return None
+    obj = _check_dict(res)
+
+    type = obj.pop('type')
+
+    if type == DEFAULT_OWNED_GIFT_REGULAR:
+        return OwnedGiftRegular._dese(obj, check_dict=False)
+
+    elif type == DEFAULT_OWNED_GIFT_UNIQUE:
+        return OwnedGiftUnique._dese(obj, check_dict=False)
+    else:
+        raise ValueError(
+            'An error occurred during the deserialization'
+            f' of the type OwnedGift. Invalid type: {type!r}.'
         )
 
 
