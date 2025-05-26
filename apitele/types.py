@@ -135,6 +135,9 @@ __all__ = (
     'InputProfilePhotoAnimated',
     'InputProfilePhotoStatic',
     'InputSticker',
+    'InputStoryContent',
+    'InputStoryContentPhoto',
+    'InputStoryContentVideo',
     'InputTextMessageContent',
     'InputVenueMessageContent',
     'Invoice',
@@ -5811,6 +5814,52 @@ class InputSticker(TelegramType):
         self.keywords = keywords
 
 
+class InputStoryContentPhoto(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#inputstorycontentphoto
+
+    Describes a photo to post as a story.
+
+    :param photo: The photo to post as a story. The photo must be of the size 1080x1920 and must not exceed 10 MB. The photo can't be reused and can only be uploaded as a new file, so you can pass “attach://<file_attach_name>” if the photo was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
+    :type photo: :obj:`str`
+    '''
+    def __init__(
+        self,
+        photo: str
+    ):
+        self.type = DEFAULT_INPUT_STORY_CONTENT_PHOTO
+        self.photo = photo
+
+
+class InputStoryContentVideo(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#inputstorycontentvideo
+
+    Describes a video to post as a story.
+
+    :param video: The video to post as a story. The video must be of the size 720x1280, streamable, encoded with H.265 codec, with key frames added each second in the MPEG4 format, and must not exceed 30 MB. The video can't be reused and can only be uploaded as a new file, so you can pass “attach://<file_attach_name>” if the video was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
+    :type video: :obj:`str`
+    :param duration: Precise duration of the video in seconds; 0-60.
+    :type duration: :obj:`float`, optional
+    :param cover_frame_timestamp: Timestamp in seconds of the frame that will be used as the static cover for the story. Defaults to 0.0.
+    :type cover_frame_timestamp: :obj:`float`, optional
+    :param is_animation: Pass :obj:`True` if the video has no sound.
+    :type is_animation: :obj:`bool`, optional
+    '''
+    def __init__(
+        self,
+        video: str,
+        duration: Optional[float] = None,
+        cover_frame_timestamp: Optional[float] = None,
+        is_animation: Optional[bool] = None
+    ):
+        self.type = DEFAULT_INPUT_STORY_CONTENT_VIDEO
+        self.video = video
+        self.duration = duration
+        self.cover_frame_timestamp = cover_frame_timestamp
+        self.is_animation = is_animation
+
+
 class InputTextMessageContent(TelegramType):
     '''
     https://core.telegram.org/bots/api#inputtextmessagecontent
@@ -10469,6 +10518,15 @@ This object describes a profile photo to set. Currently, it can be one of:
 - :obj:`~apitele.types.InputProfilePhotoAnimated`
 '''
 
+InputStoryContent = Union[InputStoryContentPhoto, InputStoryContentVideo]
+'''
+https://core.telegram.org/bots/api#inputstorycontent
+
+This object describes the content of a story to post. Currently, it can be one of:
+
+- :obj:`~apitele.types.InputStoryContentPhoto`
+- :obj:`~apitele.types.InputStoryContentVideo`
+'''
 
 MaybeInaccessibleMessage = Union[Message, InaccessibleMessage]
 '''
