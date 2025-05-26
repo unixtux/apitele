@@ -1396,14 +1396,25 @@ class Client(TelegramApi):
 
 
     async def convert_gift_to_stars(
-        self
+        self,
+        business_connection_id: str,
+        owned_gift_id: str
     ) -> Literal[True]:
         '''
         https://core.telegram.org/bots/api#convertgifttostars
 
         Converts a given regular gift to Telegram Stars. Requires the *can_convert_gifts_to_stars* business bot right. Returns :obj:`True` on success.
 
+        :param business_connection_id: Unique identifier of the business connection.
+        :type business_connection_id: :obj:`str`
+        :param owned_gift_id: Unique identifier of the regular gift that should be converted to Telegram Stars.
+        :type owned_gift_id: :obj:`str`
+        :rtype: :obj:`True`
         '''
+        params = {
+            'business_connection_id': business_connection_id,
+            'owned_gift_id': owned_gift_id
+        }
         return await super().convert_gift_to_stars(params)
 
 
