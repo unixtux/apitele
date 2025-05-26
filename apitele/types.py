@@ -134,7 +134,7 @@ __all__ = (
     'InputProfilePhoto', # No deserialization.
     'InputProfilePhotoAnimated',
     'InputProfilePhotoStatic',
-    'InputSticker',
+    'InputSticker', # No deserialization
     'InputStoryContent',
     'InputStoryContentPhoto',
     'InputStoryContentVideo',
