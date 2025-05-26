@@ -5831,6 +5831,29 @@ class Client(TelegramApi):
         return Poll._dese(result)
 
 
+    async def transfer_business_account_stars(
+        self,
+        business_connection_id: str,
+        star_count: int
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#transferbusinessaccountstars
+
+        Transfers Telegram Stars from the business account balance to the bot's balance. Requires the *can_transfer_stars* business bot right. Returns :obj:`True` on success.
+
+        :param business_connection_id: Unique identifier of the business connection.
+        :type business_connection_id: :obj:`str`
+        :param star_count: Number of Telegram Stars to transfer; 1-10000.
+        :type star_count: :obj:`int`
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'business_connection_id': business_connection_id,
+            'star_count': star_count
+        }
+        return await super().transfer_business_account_stars(params)
+
+
     async def unban_chat_member(
         self,
         chat_id: Union[int, str],

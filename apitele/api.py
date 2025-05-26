@@ -980,6 +980,10 @@ class TelegramApi:
         method = 'stopPoll'
         return await self._request(method, params)
 
+    async def transfer_business_account_stars(self, params: dict):
+        method = 'transferBusinessAccountStars'
+        return await self._request(method, params)
+
     async def unban_chat_member(self, params: dict):
         method = 'unbanChatMember'
         return await self._request(method, params)
