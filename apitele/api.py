@@ -32,7 +32,8 @@ from .types import (
     InputMediaDocument,
     InputMediaPhoto,
     InputMediaVideo,
-    InputProfilePhoto
+    InputProfilePhoto,
+    InputStoryContent,
 )
 try:
     import ssl
@@ -168,7 +169,7 @@ def _convert_input_media(
             except FileNotFoundError:
                 raise FileNotFoundError(
                     f'No such file {path!r},'
-                    ' media attribute must be in the'
+                    ' \'media\' attribute must be in the'
                     ' format "attach://<file_name>" to'
                     ' post a file using multipart/form-data.'
                 )
@@ -232,7 +233,7 @@ def _convert_input_profile_photo(
         except FileNotFoundError:
             raise FileNotFoundError(
                 f'No such file {path!r},'
-                f' {attribute} attribute must be in the'
+                f' {attribute!r} attribute must be in the'
                 ' format "attach://<file_name>" to'
                 ' post a file using multipart/form-data.'
             )
@@ -243,7 +244,7 @@ def _convert_input_profile_photo(
 
 def _get_input_profile_photo_files(
     params: dict,
-    *file_keys,
+    *file_keys: str,
     types_check: UnionType,
 ) -> Optional[FilesDict]:
 
@@ -256,6 +257,70 @@ def _get_input_profile_photo_files(
                     _convert_input_profile_photo(tp, files, types_check)
             else:
                 _convert_input_profile_photo(obj, files, types_check)
+
+    return files or None
+
+
+def _convert_input_story_content(
+    media: InputStoryContent,
+    files: FilesDict,
+    types_check: UnionType,
+    /
+) -> None:
+    '''
+    Used in _get_input_profile_photo_files() to add InputProfilePhoto types to FilesDict.
+    '''
+    if not isinstance(media, types_check):
+        available_types = ', '.join([t.__name__ for t in types_check.__args__])
+        raise TypeError(
+            'Expected one of the following types:'
+            f' {available_types}, got {media.__class__.__name__}.'
+        )
+    media_file = None
+
+    if hasattr(media, 'photo'):
+        if isinstance(media.photo, str):
+            attribute = 'photo'
+            media_file = re.match(r'attach://(.*)', media.photo)
+
+    elif hasattr(media, 'video'):
+        if isinstance(media.video, str):
+            attribute = 'video'
+            media_file = re.match(r'attach://(.*)', media.video)
+
+    if media_file:
+        path = media_file.group(1)
+        try:
+            with open(path, 'rb') as rb:
+                content = rb.read()
+        except FileNotFoundError:
+            raise FileNotFoundError(
+                f'No such file {path!r},'
+                f' {attribute!r} attribute must be in the'
+                ' format "attach://<file_name>" to'
+                ' post a file using multipart/form-data.'
+            )
+        files[path] = {
+            'content': content,
+            'file_name': path
+        }
+
+
+def _get_input_story_content_files(
+    params: dict,
+    *file_keys: str,
+    types_check: UnionType,
+) -> Optional[FilesDict]:
+
+    files = {}
+    for key in file_keys:
+        if key in params:
+            obj = params[key]
+            if isinstance(obj, Iterable):
+                for tp in obj:
+                    _convert_input_story_content(tp, files, types_check)
+            else:
+                _convert_input_story_content(obj, files, types_check)
 
     return files or None
 
@@ -715,6 +780,15 @@ class TelegramApi:
         method = 'pinChatMessage'
         return await self._request(method, params)
 
+    async def post_story(self, params: dict):
+        method = 'postStory'
+        files = _get_input_story_content_files(
+            params,
+            'content',
+            types_check=InputStoryContent
+        )
+        return await self._request(method, params, files)
+
     async def promote_chat_member(self, params: dict):
         method = 'promoteChatMember'
         return await self._request(method, params)
@@ -878,7 +952,6 @@ class TelegramApi:
         files = _get_input_profile_photo_files(
             params,
             'photo',
-            'animation',
             types_check=InputProfilePhoto
         )
         return await self._request(method, params, files)

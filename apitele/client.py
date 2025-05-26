@@ -3198,6 +3198,59 @@ class Client(TelegramApi):
         return await super().pin_chat_message(params)
 
 
+    async def post_story(
+        self,
+        business_connection_id: str,
+        content: InputStoryContent,
+        active_period: int,
+        caption: Optional[str] = None,
+        parse_mode: Optional[str] = None,
+        caption_entities: Optional[list[MessageEntity]] = None,
+        areas: Optional[list[StoryArea]] = None,
+        post_to_chat_page: Optional[bool] = None,
+        protect_content: Optional[bool] = None
+    ) -> Story:
+        '''
+        https://core.telegram.org/bots/api#poststory
+
+        Posts a story on behalf of a managed business account.
+        Requires the *can_manage_stories* business bot right. Returns :obj:`~apitele.types.Story` on success.
+
+        :param business_connection_id: Unique identifier of the business connection.
+        :type business_connection_id: :obj:`str`
+        :param content: Content of the story.
+        :type content: :obj:`~apitele.types.InputStoryContent`
+        :param active_period: Period after which the story is moved to the archive, in seconds; must be one of ``6 * 3600``, ``12 * 3600``, ``86400``, or ``2 * 86400``.
+        :type active_period: :obj:`int`
+        :param caption: Caption of the story, 0-2048 characters after entities parsing.
+        :type caption: :obj:`str`, optional
+        :param parse_mode: Mode for parsing entities in the story caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
+        :type parse_mode: :obj:`str`, optional
+        :param caption_entities: A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse_mode*.
+        :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
+        :param areas: A JSON-serialized list of clickable areas to be shown on the story.
+        :type areas: :obj:`list` of :obj:`~apitele.types.StoryArea`, optional
+        :param post_to_chat_page: Pass :obj:`True` to keep the story accessible after it expires.
+        :type post_to_chat_page: :obj:`bool`, optional
+        :param protect_content: Pass :obj:`True` if the content of the story must be protected from forwarding and screenshotting.
+        :type protect_content: :obj:`bool`, optional
+        :rtype: :obj:`~apitele.types.Story`
+        '''
+        params = {
+            'business_connection_id': business_connection_id,
+            'content': content,
+            'active_period': active_period
+        }
+        if caption is not None: params['caption'] = caption
+        if parse_mode is not None: params['parse_mode'] = parse_mode
+        if caption_entities is not None: params['caption_entities'] = caption_entities
+        if areas is not None: params['areas'] = areas
+        if post_to_chat_page is not None: params['post_to_chat_page'] = post_to_chat_page
+        if protect_content is not None: params['protect_content'] = protect_content
+        result = await super().post_story(params)
+        return Story._dese(result)
+
+
     async def promote_chat_member(
         self,
         chat_id: Union[int, str],
