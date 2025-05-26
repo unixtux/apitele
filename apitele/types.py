@@ -164,6 +164,10 @@ __all__ = (
     'MessageReactionCountUpdated',
     'MessageReactionUpdated',
     'OrderInfo',
+    'OwnedGift',
+    'OwnedGifts',
+    'OwnedGiftRegular',
+    'OwnedGiftUnique',
     'PaidMedia', # Deserialized in _dese_paid_media()
     'PaidMediaInfo',
     'PaidMediaPhoto',
@@ -7141,6 +7145,203 @@ class OrderInfo(TelegramType):
         self.phone_number = phone_number
         self.email = email
         self.shipping_address = shipping_address
+
+
+class OwnedGiftRegular(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#ownedgiftregular
+
+    Describes a regular gift owned by a user or a chat.
+
+    :param gift: Information about the regular gift.
+    :type gift: :obj:`~apitele.types.Gift`
+    :param send_date: Date the gift was sent in Unix time.
+    :type send_date: :obj:`int`
+    :param owned_gift_id: Unique identifier of the gift for the bot; for gifts received on behalf of business accounts only.
+    :type owned_gift_id: :obj:`str`, optional
+    :param sender_user: Sender of the gift if it is a known user.
+    :type sender_user: :obj:`~apitele.types.User`, optional
+    :param text: Text of the message that was added to the gift.
+    :type text: :obj:`str`, optional
+    :param entities: Special entities that appear in the text.
+    :type entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
+    :param is_private: :obj:`True`, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them.
+    :type is_private: :obj:`True`, optional
+    :param is_saved: :obj:`True`, if the gift is displayed on the account's profile page; for gifts received on behalf of business accounts only.
+    :type is_saved: :obj:`True`, optional
+    :param can_be_upgraded: :obj:`True`, if the gift can be upgraded to a unique gift; for gifts received on behalf of business accounts only.
+    :type can_be_upgraded: :obj:`True`, optional
+    :param was_refunded: :obj:`True`, if the gift was refunded and isn't available anymore.
+    :type was_refunded: :obj:`True`, optional
+    :param convert_star_count: Number of Telegram Stars that can be claimed by the receiver instead of the gift; omitted if the gift cannot be converted to Telegram Stars.
+    :type convert_star_count: :obj:`int`, optional
+    :param prepaid_upgrade_star_count: Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift.
+    :type prepaid_upgrade_star_count: :obj:`int`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['gift'] = Gift._dese(res.get('gift'))
+        obj['send_date'] = res.get('send_date')
+        obj['owned_gift_id'] = res.get('owned_gift_id')
+        obj['sender_user'] = User._dese(res.get('sender_user'))
+        obj['text'] = res.get('text')
+        obj['entities'] = [MessageEntity._dese(kwargs) for kwargs in res.get('entities')] if 'entities' in res else None
+        obj['is_private'] = res.get('is_private')
+        obj['is_saved'] = res.get('is_saved')
+        obj['can_be_upgraded'] = res.get('can_be_upgraded')
+        obj['was_refunded'] = res.get('was_refunded')
+        obj['convert_star_count'] = res.get('convert_star_count')
+        obj['prepaid_upgrade_star_count'] = res.get('prepaid_upgrade_star_count')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        gift: Gift,
+        send_date: int,
+        owned_gift_id: Optional[str] = None,
+        sender_user: Optional[User] = None,
+        text: Optional[str] = None,
+        entities: Optional[list[MessageEntity]] = None,
+        is_private: Optional[Literal[True]] = None,
+        is_saved: Optional[Literal[True]] = None,
+        can_be_upgraded: Optional[Literal[True]] = None,
+        was_refunded: Optional[Literal[True]] = None,
+        convert_star_count: Optional[int] = None,
+        prepaid_upgrade_star_count: Optional[int] = None
+    ):
+        self.type = DEFAULT_OWNED_GIFT_REGULAR
+        self.gift = gift
+        self.send_date = send_date
+        self.owned_gift_id = owned_gift_id
+        self.sender_user = sender_user
+        self.text = text
+        self.entities = entities
+        self.is_private = is_private
+        self.is_saved = is_saved
+        self.can_be_upgraded = can_be_upgraded
+        self.was_refunded = was_refunded
+        self.convert_star_count = convert_star_count
+        self.prepaid_upgrade_star_count = prepaid_upgrade_star_count
+
+
+class OwnedGiftUnique(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#ownedgiftunique
+
+    Describes a unique gift received and owned by a user or a chat.
+
+    :param gift: Information about the unique gift.
+    :type gift: :obj:`~apitele.types.UniqueGift`
+    :param send_date: Date the gift was sent in Unix time.
+    :type send_date: :obj:`int`
+    :param owned_gift_id: Unique identifier of the received gift for the bot; for gifts received on behalf of business accounts only.
+    :type owned_gift_id: :obj:`str`, optional
+    :param sender_user: Sender of the gift if it is a known user.
+    :type sender_user: :obj:`~apitele.types.User`, optional
+    :param is_saved: :obj:`True`, if the gift is displayed on the account's profile page; for gifts received on behalf of business accounts only.
+    :type is_saved: :obj:`True`, optional
+    :param can_be_transferred: :obj:`True`, if the gift can be transferred to another owner; for gifts received on behalf of business accounts only.
+    :type can_be_transferred: :obj:`True`, optional
+    :param transfer_star_count: Number of Telegram Stars that must be paid to transfer the gift; omitted if the bot cannot transfer the gift.
+    :type transfer_star_count: :obj:`int`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['gift'] = UniqueGift._dese(res.get('gift'))
+        obj['send_date'] = res.get('send_date')
+        obj['owned_gift_id'] = res.get('owned_gift_id')
+        obj['sender_user'] = User._dese(res.get('sender_user'))
+        obj['is_saved'] = res.get('is_saved')
+        obj['can_be_transferred'] = res.get('can_be_transferred')
+        obj['transfer_star_count'] = res.get('transfer_star_count')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        gift: UniqueGift,
+        send_date: int,
+        owned_gift_id: Optional[str] = None,
+        sender_user: Optional[User] = None,
+        is_saved: Optional[Literal[True]] = None,
+        can_be_transferred: Optional[Literal[True]] = None,
+        transfer_star_count: Optional[int] = None
+    ):
+        self.type = DEFAULT_OWNED_GIFT_UNIQUE
+        self.gift = gift
+        self.send_date = send_date
+        self.owned_gift_id = owned_gift_id
+        self.sender_user = sender_user
+        self.is_saved = is_saved
+        self.can_be_transferred = can_be_transferred
+        self.transfer_star_count = transfer_star_count
+
+
+OwnedGift = Union[OwnedGiftRegular, OwnedGiftUnique]
+'''
+https://core.telegram.org/bots/api#ownedgift
+
+This object describes a gift received and owned by a user or a chat. Currently, it can be one of:
+
+- :obj:`~apitele.types.OwnedGiftRegular`
+- :obj:`~apitele.types.OwnedGiftUnique`
+'''
+
+def _dese_owned_gift(res: Optional[dict], /) -> Optional[OwnedGift]:
+    '''
+    Function to deserialize OwnedGift.
+    '''
+    if res is None: return None
+    obj = _check_dict(res)
+
+    type = obj.pop('type')
+
+    if type == DEFAULT_OWNED_GIFT_REGULAR:
+        return OwnedGiftRegular._dese(obj, check_dict=False)
+
+    elif type == DEFAULT_OWNED_GIFT_UNIQUE:
+        return OwnedGiftUnique._dese(obj, check_dict=False)
+    else:
+        raise ValueError(
+            'An error occurred during the deserialization'
+            f' of the type OwnedGift. Invalid type: {type!r}.'
+        )
+
+
+class OwnedGifts(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#ownedgifts
+
+    Contains the list of gifts received and owned by a user or a chat.
+
+    :param total_count: The total number of gifts owned by the user or the chat.
+    :type total_count: :obj:`int`
+    :param gifts: The list of gifts.
+    :type gifts: :obj:`list` of :obj:`~apitele.types.OwnedGift`
+    :param next_offset: Offset for the next request. If empty, then there are no more results.
+    :type next_offset: :obj:`str`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['total_count'] = res.get('total_count')
+        obj['gifts'] = [_dese_owned_gift(kwargs) for kwargs in res.get('gifts')]
+        obj['next_offset'] = res.get('next_offset')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        total_count: int,
+        gifts: list[OwnedGift],
+        next_offset: Optional[str] = None
+    ):
+        self.total_count = total_count
+        self.gifts = gifts
+        self.next_offset = next_offset
 
 
 class PaidMediaInfo(TelegramType):

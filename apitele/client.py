@@ -2531,6 +2531,58 @@ class Client(TelegramApi):
         return Gifts._dese(result)
 
 
+    async def get_business_account_gifts(
+        self,
+        business_connection_id: str,
+        exclude_unsaved: Optional[bool] = None,
+        exclude_saved: Optional[bool] = None,
+        exclude_unlimited: Optional[bool] = None,
+        exclude_limited: Optional[bool] = None,
+        exclude_unique: Optional[bool] = None,
+        sort_by_price: Optional[bool] = None,
+        offset: Optional[str] = None,
+        limit: Optional[int] = None
+    ) -> OwnedGifts:
+        '''
+        https://core.telegram.org/bots/api#getbusinessaccountgifts
+
+        Returns the gifts received and owned by a managed business account.
+        Requires the *can_view_gifts_and_stars* business bot right. Returns :obj:`~apitele.types.OwnedGifts` on success.
+
+        :param business_connection_id: Unique identifier of the business connection.
+        :type business_connection_id: :obj:`str`
+        :param exclude_unsaved: Pass :obj:`True` to exclude gifts that aren't saved to the account's profile page.
+        :type exclude_unsaved: :obj:`bool`, optional
+        :param exclude_saved: Pass :obj:`True` to exclude gifts that are saved to the account's profile page.
+        :type exclude_saved: :obj:`bool`, optional
+        :param exclude_unlimited: Pass :obj:`True` to exclude gifts that can be purchased an unlimited number of times.
+        :type exclude_unlimited: :obj:`bool`, optional
+        :param exclude_limited: Pass :obj:`True` to exclude gifts that can be purchased a limited number of times.
+        :type exclude_limited: :obj:`bool`, optional
+        :param exclude_unique: Pass :obj:`True` to exclude unique gifts.
+        :type exclude_unique: :obj:`bool`, optional
+        :param sort_by_price: Pass :obj:`True` to sort results by gift price instead of send date. Sorting is applied before pagination.
+        :type sort_by_price: :obj:`bool`, optional
+        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
+        :type offset: :obj:`str`, optional
+        :param limit: The maximum number of gifts to be returned; 1-100. Defaults to 100.
+        :type limit: :obj:`int`, optional
+        '''
+        params = {
+            'business_connection_id': business_connection_id
+        }
+        if exclude_unsaved is not None: params['exclude_unsaved'] = exclude_unsaved
+        if exclude_saved is not None: params['exclude_saved'] = exclude_saved
+        if exclude_unlimited is not None: params['exclude_unlimited'] = exclude_unlimited
+        if exclude_limited is not None: params['exclude_limited'] = exclude_limited
+        if exclude_unique is not None: params['exclude_unique'] = exclude_unique
+        if sort_by_price is not None: params['sort_by_price'] = sort_by_price
+        if offset is not None: params['offset'] = offset
+        if limit is not None: params['limit'] = limit
+        result = await super().get_business_account_gifts(params)
+        return OwnedGifts._dese(result)
+
+
     async def get_business_account_star_balance(
         self,
         business_connection_id: str
