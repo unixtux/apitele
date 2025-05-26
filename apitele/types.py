@@ -148,6 +148,7 @@ __all__ = (
     'LabeledPrice',
     'LinkPreviewOptions',
     'Location',
+    'LocationAddress',
     'LoginUrl',
     'MaskPosition',
     'MaybeInaccessibleMessage', # Deserialized in _dese_maybe_inaccessible_message()
@@ -221,6 +222,14 @@ __all__ = (
     'Sticker',
     'StickerSet',
     'Story',
+    'StoryArea',
+    'StoryAreaPosition',
+    'StoryAreaType',
+    'StoryAreaTypeLink',
+    'StoryAreaTypeLocation',
+    'StoryAreaTypeSuggestedReaction',
+    'StoryAreaTypeUniqueGift',
+    'StoryAreaTypeWeather',
     'SuccessfulPayment',
     'SwitchInlineQueryChosenChat',
     'TextQuote',
@@ -6247,6 +6256,34 @@ class Location(TelegramType):
         self.proximity_alert_radius = proximity_alert_radius
 
 
+class LocationAddress(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#locationaddress
+
+    Describes the physical address of a location.
+
+    :param country_code: The two-letter ISO 3166-1 alpha-2 country code of the country where the location is located.
+    :type country_code: :obj:`str`
+    :param state: State of the location.
+    :type state: :obj:`str`, optional
+    :param city: City of the location.
+    :type city: :obj:`str`, optional
+    :param street: Street address of the location.
+    :type street: :obj:`str`, optional
+    '''
+    def __init__(
+        self,
+        country_code: str,
+        state: Optional[str] = None,
+        city: Optional[str] = None,
+        street: Optional[str] = None
+    ):
+        self.country_code = country_code
+        self.state = state
+        self.city = city
+        self.street = street
+
+
 class LoginUrl(TelegramType):
     '''
     https://core.telegram.org/bots/api#loginurl
@@ -8943,6 +8980,171 @@ class Story(TelegramType):
         self.id = id
 
 
+class StoryArea(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#storyarea
+
+    Describes a clickable area on a story media.
+
+    :param position: Position of the area.
+    :type position: :obj:`~apitele.types.StoryAreaPosition`
+    :param type: Type of the area.
+    :type type: :obj:`~apitele.types.StoryAreaType`
+    '''
+    def __init__(
+        self,
+        position: StoryAreaPosition,
+        type: StoryAreaType
+    ):
+        self.position = position
+        self.type = type
+
+
+class StoryAreaPosition(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#storyareaposition
+
+    Describes the position of a clickable area within a story.
+
+    :param x_percentage: The abscissa of the area's center, as a percentage of the media width.
+    :type x_percentage: :obj:`float`
+    :param y_percentage: The ordinate of the area's center, as a percentage of the media height.
+    :type y_percentage: :obj:`float`
+    :param width_percentage: The width of the area's rectangle, as a percentage of the media width.
+    :type width_percentage: :obj:`float`
+    :param height_percentage: The height of the area's rectangle, as a percentage of the media height.
+    :type height_percentage: :obj:`float`
+    :param rotation_angle: The clockwise rotation angle of the rectangle, in degrees; 0-360.
+    :type rotation_angle: :obj:`float`
+    :param corner_radius_percentage: The radius of the rectangle corner rounding, as a percentage of the media width.
+    :type corner_radius_percentage: :obj:`float`
+    '''
+    def __init__(
+        self,
+        x_percentage: float,
+        y_percentage: float,
+        width_percentage: float,
+        height_percentage: float,
+        rotation_angle: float,
+        corner_radius_percentage: float
+    ):
+        self.x_percentage = x_percentage
+        self.y_percentage = y_percentage
+        self.width_percentage = width_percentage
+        self.height_percentage = height_percentage
+        self.rotation_angle = rotation_angle
+        self.corner_radius_percentage = corner_radius_percentage
+
+
+class StoryAreaTypeLink(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#storyareatypelink
+
+    Describes a story area pointing to an HTTP or tg:// link. Currently, a story can have up to 3 link areas.
+
+    :param url: HTTP or tg:// URL to be opened when the area is clicked.
+    :type url: :obj:`str`
+    '''
+    def __init__(
+        self,
+        url: str
+    ):
+        self.type = DEFAULT_STORY_AREA_TYPE_LINK
+        self.url = url
+
+
+class StoryAreaTypeLocation(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#storyareatypelocation
+
+    Describes a story area pointing to a location. Currently, a story can have up to 10 location areas.
+
+    :param latitude: Location latitude in degrees.
+    :type latitude: :obj:`float`
+    :param longitude: Location longitude in degrees.
+    :type longitude: :obj:`float`
+    :param address: Address of the location.
+    :type address: :obj:`~apitele.types.LocationAddress`, optional
+    '''
+    def __init__(
+        self,
+        latitude: float,
+        longitude: float,
+        address: Optional[LocationAddress] = None
+    ):
+        self.type = DEFAULT_STORY_AREA_TYPE_LOCATION
+        self.latitude = latitude
+        self.longitude = longitude
+        self.address = address
+
+
+class StoryAreaTypeSuggestedReaction(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#storyareatypesuggestedreaction
+
+    Describes a story area pointing to a suggested reaction. Currently, a story can have up to 5 suggested reaction areas.
+
+    :param reaction_type: Type of the reaction.
+    :type reaction_type: :obj:`~apitele.types.ReactionType`
+    :param is_dark: Pass :obj:`True` if the reaction area has a dark background.
+    :type is_dark: :obj:`bool`, optional
+    :param is_flipped: Pass :obj:`True` if reaction area corner is flipped.
+    :type is_flipped: :obj:`bool`, optional
+    '''
+    def __init__(
+        self,
+        reaction_type: ReactionType,
+        is_dark: Optional[bool] = None,
+        is_flipped: Optional[bool] = None
+    ):
+        self.type = DEFAULT_STORY_AREA_TYPE_SUGGESTED_REACTION
+        self.reaction_type = reaction_type
+        self.is_dark = is_dark
+        self.is_flipped = is_flipped
+
+
+class StoryAreaTypeUniqueGift(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#storyareatypeuniquegift
+
+    Describes a story area pointing to a unique gift. Currently, a story can have at most 1 unique gift area.
+
+    :param name: Unique name of the gift.
+    :type name: :obj:`str`
+    '''
+    def __init__(
+        self,
+        name: str
+    ):
+        self.type = DEFAULT_STORY_AREA_TYPE_UNIQUE_GIFT
+        self.name = name
+
+
+class StoryAreaTypeWeather(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#storyareatypeweather
+
+    Describes a story area containing weather information. Currently, a story can have up to 3 weather areas.
+
+    :param temperature: Temperature, in degree Celsius.
+    :type temperature: :obj:`float`
+    :param emoji: Emoji representing the weather.
+    :type emoji: :obj:`str`
+    :param background_color: A color of the area background in the ARGB format.
+    :type background_color: :obj:`int`
+    '''
+    def __init__(
+        self,
+        temperature: float,
+        emoji: str,
+        background_color: int
+    ):
+        self.type = DEFAULT_STORY_AREA_TYPE_WEATHER
+        self.temperature = temperature
+        self.emoji = emoji
+        self.background_color = background_color
+
+
 class SuccessfulPayment(TelegramType):
     '''
     https://core.telegram.org/bots/api#successfulpayment
@@ -10806,6 +11008,26 @@ def _dese_revenue_withdrawal_state(res: Optional[dict], /) -> Optional[RevenueWi
             'An error occurred during the deserialization'
             f' of the type RevenueWithdrawalState. Invalid type: {type!r}.'
         )
+
+
+StoryAreaType = Union[
+    StoryAreaTypeLocation,
+    StoryAreaTypeSuggestedReaction,
+    StoryAreaTypeLink,
+    StoryAreaTypeWeather,
+    StoryAreaTypeUniqueGift
+]
+'''
+https://core.telegram.org/bots/api#storyareatype
+
+Describes the type of a clickable area on a story. Currently, it can be one of:
+
+- :obj:`~apitele.types.StoryAreaTypeLocation`
+- :obj:`~apitele.types.StoryAreaTypeSuggestedReaction`
+- :obj:`~apitele.types.StoryAreaTypeLink`
+- :obj:`~apitele.types.StoryAreaTypeWeather`
+- :obj:`~apitele.types.StoryAreaTypeUniqueGift`
+'''
 
 
 TransactionPartner = Union[
