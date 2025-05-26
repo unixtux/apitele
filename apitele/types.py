@@ -225,6 +225,11 @@ __all__ = (
     'TransactionPartnerTelegramAds',
     'TransactionPartnerTelegramApi',
     'TransactionPartnerUser',
+#    'UniqueGift',
+    'UniqueGiftBackdrop',
+    'UniqueGiftBackdropColors',
+    'UniqueGiftModel',
+    'UniqueGiftSymbol',
     'Update',
     'User',
     'UserChatBoosts',
@@ -9061,6 +9066,143 @@ class TransactionPartnerUser(TelegramType):
         self.paid_media = paid_media
         self.paid_media_payload = paid_media_payload
         self.gift = gift
+
+
+class UniqueGiftBackdrop(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#uniquegiftbackdrop
+
+    This object describes the backdrop of a unique gift.
+
+    :param name: Name of the backdrop.
+    :type name: :obj:`str`
+    :param colors: Colors of the backdrop.
+    :type colors: :obj:`~apitele.types.UniqueGiftBackdropColors`
+    :param rarity_per_mille: The number of unique gifts that receive this backdrop for every 1000 gifts upgraded.
+    :type rarity_per_mille: :obj:`int`
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['name'] = res.get('name')
+        obj['colors'] = UniqueGiftBackdropColors._dese(res.get('colors'))
+        obj['rarity_per_mille'] = res.get('rarity_per_mille')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        name: str,
+        colors: UniqueGiftBackdropColors,
+        rarity_per_mille: int
+    ):
+        self.name = name
+        self.colors = colors
+        self.rarity_per_mille = rarity_per_mille
+
+
+class UniqueGiftBackdropColors(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#uniquegiftbackdropcolors
+
+    This object describes the colors of the backdrop of a unique gift.
+
+    :param center_color: The color in the center of the backdrop in RGB format.
+    :type center_color: :obj:`int`
+    :param edge_color: The color on the edges of the backdrop in RGB format.
+    :type edge_color: :obj:`int`
+    :param symbol_color: The color to be applied to the symbol in RGB format.
+    :type symbol_color: :obj:`int`
+    :param text_color: The color for the text on the backdrop in RGB format.
+    :type text_color: :obj:`int`
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['center_color'] = res.get('center_color')
+        obj['edge_color'] = res.get('edge_color')
+        obj['symbol_color'] = res.get('symbol_color')
+        obj['text_color'] = res.get('text_color')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        center_color: int,
+        edge_color: int,
+        symbol_color: int,
+        text_color: int
+    ):
+        self.center_color = center_color
+        self.edge_color = edge_color
+        self.symbol_color = symbol_color
+        self.text_color = text_color
+
+
+class UniqueGiftModel(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#uniquegiftmodel
+
+    This object describes the model of a unique gift.
+
+    :param name: Name of the model.
+    :type name: :obj:`str`
+    :param sticker: The sticker that represents the unique gift.
+    :type sticker: :obj:`~apitele.types.Sticker`
+    :param rarity_per_mille: The number of unique gifts that receive this model for every 1000 gifts upgraded.
+    :type rarity_per_mille: :obj:`int`
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['name'] = res.get('name')
+        obj['sticker'] = Sticker._dese(res.get('sticker'))
+        obj['rarity_per_mille'] = res.get('rarity_per_mille')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        name: str,
+        sticker: Sticker,
+        rarity_per_mille: int
+    ):
+        self.name = name
+        self.sticker = sticker
+        self.rarity_per_mille = rarity_per_mille
+
+
+class UniqueGiftSymbol(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#uniquegiftsymbol
+
+    This object describes the symbol shown on the pattern of a unique gift.
+
+    :param name: Name of the symbol.
+    :type name: :obj:`str`
+    :param sticker: The sticker that represents the unique gift.
+    :type sticker: :obj:`~apitele.types.Sticker`
+    :param rarity_per_mille: The number of unique gifts that receive this model for every 1000 gifts upgraded.
+    :type rarity_per_mille: :obj:`int`
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['name'] = res.get('name')
+        obj['sticker'] = Sticker._dese(res.get('sticker'))
+        obj['rarity_per_mille'] = res.get('rarity_per_mille')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        name: str,
+        sticker: Sticker,
+        rarity_per_mille: int
+    ):
+        self.name = name
+        self.sticker = sticker
+        self.rarity_per_mille = rarity_per_mille
 
 
 class Update(TelegramType):
