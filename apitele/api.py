@@ -878,6 +878,7 @@ class TelegramApi:
         files = _get_input_profile_photo_files(
             params,
             'photo',
+            'animation',
             types_check=InputProfilePhoto
         )
         return await self._request(method, params, files)
