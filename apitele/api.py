@@ -268,7 +268,7 @@ def _convert_input_story_content(
     /
 ) -> None:
     '''
-    Used in _get_input_profile_photo_files() to add InputProfilePhoto types to FilesDict.
+    Used in _get_input_story_content_files() to add InputProfilePhoto types to FilesDict.
     '''
     if not isinstance(media, types_check):
         available_types = ', '.join([t.__name__ for t in types_check.__args__])
