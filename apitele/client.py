@@ -6105,6 +6105,38 @@ class Client(TelegramApi):
         return await super().unpin_chat_message(params)
 
 
+    async def upgrade_gift(
+        self,
+        business_connection_id: str,
+        owned_gift_id: str,
+        keep_original_details: Optional[bool] = None,
+        star_count: Optional[int] = None
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#upgradegift
+
+        Upgrades a given regular gift to a unique gift. Requires the *can_transfer_and_upgrade_gifts* business bot right.
+        Additionally requires the *can_transfer_stars* business bot right if the upgrade is paid. Returns :obj:`True` on success.
+
+        :param business_connection_id: Unique identifier of the business connection.
+        :type business_connection_id: :obj:`str`
+        :param owned_gift_id: Unique identifier of the regular gift that should be upgraded to a unique one.
+        :type owned_gift_id: :obj:`str`
+        :param keep_original_details: Pass :obj:`True` to keep the original gift text, sender and receiver in the upgraded gift.
+        :type keep_original_details: :obj:`bool`, optional
+        :param star_count: The amount of Telegram Stars that will be paid for the upgrade from the business account balance. ``If gift.prepaid_upgrade_star_count > 0``, then pass 0, otherwise, the *can_transfer_stars* business bot right is required and ``gift.upgrade_star_count`` must be passed.
+        :type star_count: :obj:`int`, optional
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'business_connection_id': business_connection_id,
+            'owned_gift_id': owned_gift_id
+        }
+        if keep_original_details is not None: params['keep_original_details'] = keep_original_details
+        if star_count is not None: params['star_count'] = star_count
+        return await super().upgrade_gift(params)
+
+
     async def upload_sticker_file(
         self,
         user_id: int,

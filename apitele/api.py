@@ -1020,6 +1020,10 @@ class TelegramApi:
         method = 'unpinChatMessage'
         return await self._request(method, params)
 
+    async def upgrade_gift(self, params: dict):
+        method = 'upgradeGift'
+        return await self._request(method, params)
+
     async def upload_sticker_file(self, params: dict):
         method = 'uploadStickerFile'
         files = _get_files(params, 'sticker')
