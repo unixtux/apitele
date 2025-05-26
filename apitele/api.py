@@ -478,6 +478,10 @@ class TelegramApi:
         method = 'closeGeneralForumTopic'
         return await self._request(method, params)
 
+    async def convert_gift_to_stars(self, params: dict):
+        method = 'convertGiftToStars'
+        return await self._request(method, params)
+
     async def copy_message(self, params: dict):
         method = 'copyMessage'
         return await self._request(method, params)

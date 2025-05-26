@@ -1395,6 +1395,18 @@ class Client(TelegramApi):
         return await super().close_general_forum_topic(params)
 
 
+    async def convert_gift_to_stars(
+        self
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#convertgifttostars
+
+        Converts a given regular gift to Telegram Stars. Requires the *can_convert_gifts_to_stars* business bot right. Returns :obj:`True` on success.
+
+        '''
+        return await super().convert_gift_to_stars(params)
+
+
     async def copy_message(
         self,
         chat_id: Union[int, str],
