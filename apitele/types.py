@@ -131,7 +131,7 @@ __all__ = (
     'InputPaidMediaPhoto',
     'InputPaidMediaVideo',
     'InputPollOption',
-    'InputProfilePhoto',
+    'InputProfilePhoto', # No deserialization.
     'InputProfilePhotoAnimated',
     'InputProfilePhotoStatic',
     'InputSticker',
@@ -164,7 +164,7 @@ __all__ = (
     'MessageReactionCountUpdated',
     'MessageReactionUpdated',
     'OrderInfo',
-    'OwnedGift',
+    'OwnedGift', # Deserialized in _dese_owned_gift()
     'OwnedGifts',
     'OwnedGiftRegular',
     'OwnedGiftUnique',
