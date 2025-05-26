@@ -225,7 +225,7 @@ __all__ = (
     'TransactionPartnerTelegramAds',
     'TransactionPartnerTelegramApi',
     'TransactionPartnerUser',
-#    'UniqueGift',
+    'UniqueGift',
     'UniqueGiftBackdrop',
     'UniqueGiftBackdropColors',
     'UniqueGiftModel',
@@ -9066,6 +9066,54 @@ class TransactionPartnerUser(TelegramType):
         self.paid_media = paid_media
         self.paid_media_payload = paid_media_payload
         self.gift = gift
+
+
+class UniqueGift(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#uniquegift
+
+    This object describes a unique gift that was upgraded from a regular gift.
+
+    :param base_name: Human-readable name of the regular gift from which this unique gift was upgraded.
+    :type base_name: :obj:`str`
+    :param name: Unique name of the gift. This name can be used in ``https://t.me/nft/...`` links and story areas.
+    :type name: :obj:`str`
+    :param number: Unique number of the upgraded gift among gifts upgraded from the same regular gift.
+    :type number: :obj:`int`
+    :param model: Model of the gift.
+    :type model: :obj:`~apitele.types.UniqueGiftModel`
+    :param symbol: Symbol of the gift.
+    :type symbol: :obj:`~apitele.types.UniqueGiftSymbol`
+    :param backdrop: Backdrop of the gift.
+    :type backdrop: :obj:`~apitele.types.UniqueGiftBackdrop`
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['base_name'] = res.get('base_name')
+        obj['name'] = res.get('name')
+        obj['number'] = res.get('number')
+        obj['model'] = UniqueGiftModel._dese(res.get('model'))
+        obj['symbol'] = UniqueGiftSymbol._dese(res.get('symbol'))
+        obj['backdrop'] = UniqueGiftBackdrop._dese(res.get('backdrop'))
+        return cls(**obj)
+
+    def __init__(
+        self,
+        base_name: str,
+        name: str,
+        number: int,
+        model: UniqueGiftModel,
+        symbol: UniqueGiftSymbol,
+        backdrop: UniqueGiftBackdrop
+    ):
+        self.base_name = base_name
+        self.name = name
+        self.number = number
+        self.model = model
+        self.symbol = symbol
+        self.backdrop = backdrop
 
 
 class UniqueGiftBackdrop(TelegramType):
