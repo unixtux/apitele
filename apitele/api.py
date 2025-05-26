@@ -992,6 +992,10 @@ class TelegramApi:
         method = 'transferBusinessAccountStars'
         return await self._request(method, params)
 
+    async def transfer_gift(self, params: dict):
+        method = 'transferGift'
+        return await self._request(method, params)
+
     async def unban_chat_member(self, params: dict):
         method = 'unbanChatMember'
         return await self._request(method, params)

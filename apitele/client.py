@@ -5929,6 +5929,38 @@ class Client(TelegramApi):
         return await super().transfer_business_account_stars(params)
 
 
+    async def transfer_gift(
+        self,
+        business_connection_id: str,
+        owned_gift_id: str,
+        new_owner_chat_id: int,
+        star_count: Optional[int] = None
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#transfergift
+
+        Transfers an owned unique gift to another user. Requires the *can_transfer_and_upgrade_gifts* business bot right.
+        Requires *can_transfer_stars* business bot right if the transfer is paid. Returns :obj:`True` on success.
+
+        :param business_connection_id: Unique identifier of the business connection.
+        :type business_connection_id: :obj:`str`
+        :param owned_gift_id: Unique identifier of the regular gift that should be transferred.
+        :type owned_gift_id: :obj:`str`
+        :param new_owner_chat_id: Unique identifier of the chat which will own the gift. The chat must be active in the last 24 hours.
+        :type new_owner_chat_id: :obj:`int`
+        :param star_count: The amount of Telegram Stars that will be paid for the transfer from the business account balance. If positive, then the *can_transfer_stars* business bot right is required.
+        :type star_count: :obj:`int`, optional
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'business_connection_id': business_connection_id,
+            'owned_gift_id': owned_gift_id,
+            'new_owner_chat_id': new_owner_chat_id
+        }
+        if star_count is not None: params['star_count'] = star_count
+        return await super().transfer_gift(params)
+
+
     async def unban_chat_member(
         self,
         chat_id: Union[int, str],
