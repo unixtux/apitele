@@ -179,6 +179,7 @@ __all__ = (
     'PaidMediaPreview',
     'PaidMediaPurchased',
     'PaidMediaVideo',
+    'PaidMessagePriceChanged',
     'PassportData',
     'PassportElementError', # No deserialization.
     'PassportElementErrorDataField',
@@ -6663,6 +6664,8 @@ class Message(TelegramType):
     :type giveaway_winners: :obj:`~apitele.types.GiveawayWinners`, optional
     :param giveaway_completed: Service message: a giveaway without public winners was completed.
     :type giveaway_completed: :obj:`~apitele.types.GiveawayCompleted`, optional
+    :param paid_message_price_changed: Service message: the price for paid messages has changed in the chat.
+    :type paid_message_price_changed: :obj:`~apitele.types.PaidMessagePriceChanged`, optional
     :param video_chat_scheduled: Service message: video chat scheduled.
     :type video_chat_scheduled: :obj:`~apitele.types.VideoChatScheduled`, optional
     :param video_chat_started: Service message: video chat started.
@@ -6761,6 +6764,7 @@ class Message(TelegramType):
         obj['giveaway'] = Giveaway._dese(res.get('giveaway'))
         obj['giveaway_winners'] = GiveawayWinners._dese(res.get('giveaway_winners'))
         obj['giveaway_completed'] = GiveawayCompleted._dese(res.get('giveaway_completed'))
+        obj['paid_message_price_changed'] = PaidMessagePriceChanged._dese(res.get('paid_message_price_changed'))
         obj['video_chat_scheduled'] = VideoChatScheduled._dese(res.get('video_chat_scheduled'))
         obj['video_chat_started'] = VideoChatStarted._dese(res.get('video_chat_started'))
         obj['video_chat_ended'] = VideoChatEnded._dese(res.get('video_chat_ended'))
@@ -6852,6 +6856,7 @@ class Message(TelegramType):
         giveaway: Optional[Giveaway] = None,
         giveaway_winners: Optional[GiveawayWinners] = None,
         giveaway_completed: Optional[GiveawayCompleted] = None,
+        paid_message_price_changed: Optional[PaidMessagePriceChanged] = None,
         video_chat_scheduled: Optional[VideoChatScheduled] = None,
         video_chat_started: Optional[VideoChatStarted] = None,
         video_chat_ended: Optional[VideoChatEnded] = None,
@@ -6940,6 +6945,7 @@ class Message(TelegramType):
         self.giveaway = giveaway
         self.giveaway_winners = giveaway_winners
         self.giveaway_completed = giveaway_completed
+        self.paid_message_price_changed = paid_message_price_changed
         self.video_chat_scheduled = video_chat_scheduled
         self.video_chat_started = video_chat_started
         self.video_chat_ended = video_chat_ended
@@ -7607,6 +7613,29 @@ class PaidMediaVideo(TelegramType):
         video: Video
     ):
         self.video = video
+
+
+class PaidMessagePriceChanged(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#paidmessagepricechanged
+
+    Describes a service message about a change in the price of paid messages within a chat.
+
+    :param paid_message_star_count: The new number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message.
+    :type paid_message_star_count: :obj:`int`
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['paid_message_star_count'] = res.get('paid_message_star_count')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        paid_message_star_count: int
+    ):
+        self.paid_message_star_count = paid_message_star_count
 
 
 class PassportData(TelegramType):
