@@ -9516,6 +9516,8 @@ class TransactionPartnerUser(TelegramType):
 
     Describes a transaction with a user.
 
+    :param transaction_type: Type of the transaction, currently one of “invoice_payment” for payments via invoices, “paid_media_payment” for payments for paid media, “gift_purchase” for gifts sent by the bot, “premium_purchase” for Telegram Premium subscriptions gifted by the bot, “business_account_transfer” for direct transfers from managed business accounts.
+    :type transaction_type: :obj:`str`
     :param user: Information about the user.
     :type user: :obj:`~apitele.types.User`
     :param affiliate: Information about the affiliate that received a commission via this transaction. Can be available only for “invoice_payment” and “paid_media_payment” transactions.
@@ -9537,6 +9539,7 @@ class TransactionPartnerUser(TelegramType):
     @_parse_result
     def _dese(cls, res: dict):
         obj = {}
+        obj['transaction_type'] = res.get('transaction_type')
         obj['user'] = User._dese(res.get('user'))
         obj['affiliate'] = AffiliateInfo._dese(res.get('affiliate'))
         obj['invoice_payload'] = res.get('invoice_payload')
@@ -9549,6 +9552,7 @@ class TransactionPartnerUser(TelegramType):
 
     def __init__(
         self,
+        transaction_type: str,
         user: User,
         affiliate: Optional[AffiliateInfo] = None,
         invoice_payload: Optional[str] = None,
@@ -9559,6 +9563,7 @@ class TransactionPartnerUser(TelegramType):
         premium_subscription_duration: Optional[int] = None
     ):
         self.type = DEFAULT_TRANSACTION_PARTNER_USER
+        self.transaction_type = transaction_type
         self.user = user
         self.affiliate = affiliate
         self.invoice_payload = invoice_payload
