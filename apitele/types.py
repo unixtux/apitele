@@ -1890,6 +1890,8 @@ class ChatFullInfo(TelegramType):
     :type accent_color_id: :obj:`int`
     :param max_reaction_count: The maximum number of reactions that can be set on a message in the chat.
     :type max_reaction_count: :obj:`int`
+    :param accepted_gift_types: Information about types of gifts that are accepted by the chat or by the corresponding user for private chats.
+    :type accepted_gift_types: :obj:`~apitele.types.AcceptedGiftTypes`
     :param title: Title, for supergroups, channels and group chats.
     :type title: :obj:`str`, optional
     :param username: Username, for private chats, supergroups and channels if available.
@@ -1979,6 +1981,7 @@ class ChatFullInfo(TelegramType):
         obj['type'] = res.get('type')
         obj['accent_color_id'] = res.get('accent_color_id')
         obj['max_reaction_count'] = res.get('max_reaction_count')
+        obj['accepted_gift_types'] = AcceptedGiftTypes._dese(res.get('accepted_gift_types'))
         obj['title'] = res.get('title')
         obj['username'] = res.get('username')
         obj['first_name'] = res.get('first_name')
@@ -2027,6 +2030,7 @@ class ChatFullInfo(TelegramType):
         type: str,
         accent_color_id: int,
         max_reaction_count: int,
+        accepted_gift_types: AcceptedGiftTypes,
         title: Optional[str] = None,
         username: Optional[str] = None,
         first_name: Optional[str] = None,
@@ -2072,6 +2076,7 @@ class ChatFullInfo(TelegramType):
         self.type = type
         self.accent_color_id = accent_color_id
         self.max_reaction_count = max_reaction_count
+        self.accepted_gift_types = accepted_gift_types
         self.title = title
         self.username = username
         self.first_name = first_name
