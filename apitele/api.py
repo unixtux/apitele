@@ -615,6 +615,10 @@ class TelegramApi:
         method = 'deleteStickerSet'
         return await self._request(method, params)
 
+    async def delete_story(self, params: dict):
+        method = 'deleteStory'
+        return await self._request(method, params)
+
     async def edit_chat_invite_link(self, params: dict):
         method = 'editChatInviteLink'
         return await self._request(method, params)

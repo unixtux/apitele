@@ -2022,6 +2022,30 @@ class Client(TelegramApi):
         return await super().delete_sticker_set(params)
 
 
+    async def delete_story(
+        self,
+        business_connection_id: str,
+        story_id: int
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#deletestory
+
+        Deletes a story previously posted by the bot on behalf of a managed business account.
+        Requires the *can_manage_stories* business bot right. Returns :obj:`True` on success.
+
+        :param business_connection_id: Unique identifier of the business connection.
+        :type business_connection_id: :obj:`str`
+        :param story_id: Unique identifier of the story to delete.
+        :type story_id: :obj:`int`
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'business_connection_id': business_connection_id,
+            'story_id': story_id
+        }
+        return await super().delete_story(params)
+
+
     async def edit_chat_invite_link(
         self,
         chat_id: Union[int, str],
