@@ -3179,6 +3179,45 @@ class Client(TelegramApi):
         return UserProfilePhotos._dese(result)
 
 
+    async def gift_premium_subscription(
+        self,
+        user_id: int,
+        month_count: int,
+        star_count: int,
+        text: Optional[str] = None,
+        text_parse_mode: Optional[str] = None,
+        text_entities: Optional[list[MessageEntity]] = None
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#giftpremiumsubscription
+
+        Gifts a Telegram Premium subscription to the given user. Returns :obj:`True` on success.
+
+        :param user_id: Unique identifier of the target user who will receive a Telegram Premium subscription.
+        :type user_id: :obj:`int`
+        :param month_count: Number of months the Telegram Premium subscription will be active for the user; must be one of 3, 6, or 12.
+        :type month_count: :obj:`int`
+        :param star_count: Number of Telegram Stars to pay for the Telegram Premium subscription; must be 1000 for 3 months, 1500 for 6 months, and 2500 for 12 months.
+        :type star_count: :obj:`int`
+        :param text: Text that will be shown along with the service message about the subscription; 0-128 characters.
+        :type text: :obj:`str`, optional
+        :param text_parse_mode: Mode for parsing entities in the text. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details. Entities other than “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, and “custom_emoji” are ignored.
+        :type text_parse_mode: :obj:`str`, optional
+        :param text_entities: A JSON-serialized list of special entities that appear in the gift text. It can be specified instead of *text_parse_mode*. Entities other than “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, and “custom_emoji” are ignored.
+        :type text_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'user_id': user_id,
+            'month_count': month_count,
+            'star_count': star_count
+        }
+        if text is not None: params['text'] = text
+        if text_parse_mode is not None: params['text_parse_mode'] = text_parse_mode
+        if text_entities is not None: params['text_entities'] = text_entities
+        return await super().gift_premium_subscription(params)
+
+
     async def hide_general_forum_topic(
         self,
         chat_id: Union[int, str]

@@ -777,6 +777,10 @@ class TelegramApi:
         method = 'getUserProfilePhotos'
         return await self._request(method, params)
 
+    async def gift_premium_subscription(self, params: dict):
+        method = 'giftPremiumSubscription'
+        return await self._request(method, params)
+
     async def hide_general_forum_topic(self, params: dict):
         method = 'hideGeneralForumTopic'
         return await self._request(method, params)
