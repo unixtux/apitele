@@ -6546,6 +6546,8 @@ class Message(TelegramType):
     :type media_group_id: :obj:`str`, optional
     :param author_signature: Signature of the post author for messages in channels, or the custom title of an anonymous group administrator.
     :type author_signature: :obj:`str`, optional
+    :param paid_star_count: The number of Telegram Stars that were paid by the sender of the message to send it.
+    :type paid_star_count: :obj:`int`, optional
     :param text: For text messages, the actual UTF-8 text of the message.
     :type text: :obj:`str`, optional
     :param entities: For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text.
@@ -6705,6 +6707,7 @@ class Message(TelegramType):
         obj['is_from_offline'] = res.get('is_from_offline')
         obj['media_group_id'] = res.get('media_group_id')
         obj['author_signature'] = res.get('author_signature')
+        obj['paid_star_count'] = res.get('paid_star_count')
         obj['text'] = res.get('text')
         obj['entities'] = [MessageEntity._dese(kwargs) for kwargs in res.get('entities')] if 'entities' in res else None
         obj['link_preview_options'] = LinkPreviewOptions._dese(res.get('link_preview_options'))
@@ -6797,6 +6800,7 @@ class Message(TelegramType):
         is_from_offline: Optional[Literal[True]] = None,
         media_group_id: Optional[str] = None,
         author_signature: Optional[str] = None,
+        paid_star_count: Optional[int] = None,
         text: str = None,
         entities: Optional[list[MessageEntity]] = None,
         link_preview_options: Optional[LinkPreviewOptions] = None,
@@ -6886,6 +6890,7 @@ class Message(TelegramType):
         self.is_from_offline = is_from_offline
         self.media_group_id = media_group_id
         self.author_signature = author_signature
+        self.paid_star_count = paid_star_count
         self.text = text or str() # If not text, it's str() instead of None
         self.entities = entities
         self.link_preview_options = link_preview_options
