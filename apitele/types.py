@@ -9530,6 +9530,8 @@ class TransactionPartnerUser(TelegramType):
     :type paid_media_payload: :obj:`str`, optional
     :param gift: The gift sent to the user by the bot; for “gift_purchase” transactions only
     :type gift: :obj:`~apitele.types.Gift`, optional
+    :param premium_subscription_duration: Number of months the gifted Telegram Premium subscription will be active for; for “premium_purchase” transactions only.
+    :type premium_subscription_duration: :obj:`int`, optional
     '''
     @classmethod
     @_parse_result
@@ -9542,6 +9544,7 @@ class TransactionPartnerUser(TelegramType):
         obj['paid_media'] = [_dese_paid_media(kwargs) for kwargs in res.get('paid_media')] if 'paid_media' in res else None
         obj['paid_media_payload'] = res.get('paid_media_payload')
         obj['gift'] = Gift._dese(res.get('gift'))
+        obj['premium_subscription_duration'] = res.get('premium_subscription_duration')
         return cls(**obj)
 
     def __init__(
@@ -9552,7 +9555,8 @@ class TransactionPartnerUser(TelegramType):
         subscription_period: Optional[int] = None,
         paid_media: Optional[list[PaidMedia]] = None,
         paid_media_payload: Optional[str] = None,
-        gift: Optional[Gift] = None
+        gift: Optional[Gift] = None,
+        premium_subscription_duration: Optional[int] = None
     ):
         self.type = DEFAULT_TRANSACTION_PARTNER_USER
         self.user = user
@@ -9562,6 +9566,7 @@ class TransactionPartnerUser(TelegramType):
         self.paid_media = paid_media
         self.paid_media_payload = paid_media_payload
         self.gift = gift
+        self.premium_subscription_duration = premium_subscription_duration
 
 
 class UniqueGift(TelegramType):
