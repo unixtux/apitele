@@ -245,6 +245,7 @@ __all__ = (
     'UniqueGift',
     'UniqueGiftBackdrop',
     'UniqueGiftBackdropColors',
+    'UniqueGiftInfo',
     'UniqueGiftModel',
     'UniqueGiftSymbol',
     'Update',
@@ -6628,6 +6629,8 @@ class Message(TelegramType):
     :type chat_shared: :obj:`~apitele.types.ChatShared`, optional
     :param gift: Service message: a regular gift was sent or received.
     :type gift: :obj:`~apitele.types.GiftInfo`, optional
+    :param unique_gift: Service message: a unique gift was sent or received.
+    :type unique_gift: :obj:`~apitele.types.UniqueGiftInfo`, optional
     :param connected_website: The domain name of the website on which the user has logged in. `More about Telegram Login » <https://core.telegram.org/widgets/login>`_.
     :type connected_website: :obj:`str`, optional
     :param write_access_allowed: Service message: the user allowed the bot to write messages after adding it to the attachment or side menu, launching a Web App from a link, or accepting an explicit request from a Web App sent by the method `requestWriteAccess <https://core.telegram.org/bots/webapps#initializing-mini-apps>`_.
@@ -6741,6 +6744,7 @@ class Message(TelegramType):
         obj['users_shared'] = UsersShared._dese(res.get('users_shared'))
         obj['chat_shared'] = ChatShared._dese(res.get('chat_shared'))
         obj['gift'] = GiftInfo._dese(res.get('gift'))
+        obj['unique_gift'] = UniqueGiftInfo._dese(res.get('unique_gift'))
         obj['connected_website'] = res.get('connected_website')
         obj['write_access_allowed'] = WriteAccessAllowed._dese(res.get('write_access_allowed'))
         obj['passport_data'] = PassportData._dese(res.get('passport_data'))
@@ -6831,6 +6835,7 @@ class Message(TelegramType):
         users_shared: Optional[UsersShared] = None,
         chat_shared: Optional[ChatShared] = None,
         gift: Optional[GiftInfo] = None,
+        unique_gift: Optional[UniqueGiftInfo] = None,
         connected_website: Optional[str] = None,
         write_access_allowed: Optional[WriteAccessAllowed] = None,
         passport_data: Optional[PassportData] = None,
@@ -6918,6 +6923,7 @@ class Message(TelegramType):
         self.users_shared = users_shared
         self.chat_shared = chat_shared
         self.gift = gift
+        self.unique_gift = unique_gift
         self.connected_website = connected_website
         self.write_access_allowed = write_access_allowed
         self.passport_data = passport_data
@@ -9675,6 +9681,44 @@ class UniqueGiftBackdropColors(TelegramType):
         self.edge_color = edge_color
         self.symbol_color = symbol_color
         self.text_color = text_color
+
+
+class UniqueGiftInfo(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#uniquegiftinfo
+
+    Describes a service message about a unique gift that was sent or received.
+
+    :param gift: Information about the gift.
+    :type gift: :obj:`~apitele.types.UniqueGift`
+    :param origin: Origin of the gift. Currently, either “upgrade” or “transfer”.
+    :type origin: :obj:`str`
+    :param owned_gift_id: Unique identifier of the received gift for the bot; only present for gifts received on behalf of business accounts.
+    :type owned_gift_id: :obj:`str`, optional
+    :param transfer_star_count: Number of Telegram Stars that must be paid to transfer the gift; omitted if the bot cannot transfer the gift.
+    :type transfer_star_count: :obj:`int`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['gift'] = UniqueGift._dese(res.get('gift'))
+        obj['origin'] = res.get('origin')
+        obj['owned_gift_id'] = res.get('owned_gift_id')
+        obj['transfer_star_count'] = res.get('transfer_star_count')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        gift: UniqueGift,
+        origin: str,
+        owned_gift_id: Optional[str] = None,
+        transfer_star_count: Optional[int] = None
+    ):
+        self.gift = gift
+        self.origin = origin
+        self.owned_gift_id = owned_gift_id
+        self.transfer_star_count = transfer_star_count
 
 
 class UniqueGiftModel(TelegramType):
