@@ -2403,6 +2403,51 @@ class Client(TelegramApi):
         return Message._dese(result) if result is not True else True
 
 
+    async def edit_story(
+        self,
+        business_connection_id: str,
+        story_id: int,
+        content: InputStoryContent,
+        caption: Optional[str] = None,
+        parse_mode: Optional[str] = None,
+        caption_entities: Optional[list[MessageEntity]] = None,
+        areas: Optional[list[StoryArea]] = None
+    ) -> Story:
+        '''
+        https://core.telegram.org/bots/api#editstory
+
+        Edits a story previously posted by the bot on behalf of a managed business account.
+        Requires the *can_manage_stories* business bot right. Returns :obj:`~apitele.types.Story` on success.
+
+        :param business_connection_id: Unique identifier of the business connection.
+        :type business_connection_id: :obj:`str`
+        :param story_id: Unique identifier of the story to edit.
+        :type story_id: :obj:`int`
+        :param content: Content of the story.
+        :type content: :obj:`~apitele.types.InputStoryContent`
+        :param caption: Caption of the story, 0-2048 characters after entities parsing.
+        :type caption: :obj:`str`, optional
+        :param parse_mode: Mode for parsing entities in the story caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
+        :type parse_mode: :obj:`str`, optional
+        :param caption_entities: A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse_mode*.
+        :type caption_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
+        :param areas: A JSON-serialized list of clickable areas to be shown on the story.
+        :type areas: :obj:`list` of :obj:`~apitele.types.StoryArea`, optional
+        :rtype: :obj:`~apitele.types.Story`
+        '''
+        params = {
+            'business_connection_id': business_connection_id,
+            'story_id': story_id,
+            'content': content
+        }
+        if caption is not None: params['caption'] = caption
+        if parse_mode is not None: params['parse_mode'] = parse_mode
+        if caption_entities is not None: params['caption_entities'] = caption_entities
+        if areas is not None: params['areas'] = areas
+        result = await super().edit_story(params)
+        return Story._dese(result)
+
+
     async def edit_user_star_subscription(
         self,
         user_id: int,

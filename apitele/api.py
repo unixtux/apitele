@@ -652,6 +652,15 @@ class TelegramApi:
         method = 'editMessageText'
         return await self._request(method, params)
 
+    async def edit_story(self, params: dict):
+        method = 'editStory'
+        files = _get_input_story_content_files(
+            params,
+            'content',
+            types_check=InputStoryContent
+        )
+        return await self._request(method, params, files)
+
     async def edit_user_star_subscription(self, params: dict):
         method = 'editUserStarSubscription'
         return await self._request(method, params)
