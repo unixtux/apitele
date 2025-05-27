@@ -85,6 +85,7 @@ __all__ = (
     'GeneralForumTopicHidden',
     'GeneralForumTopicUnhidden',
     'Gift',
+    'GiftInfo',
     'Gifts',
     'Giveaway',
     'GiveawayCompleted',
@@ -3626,6 +3627,64 @@ class Gift(TelegramType):
         self.remaining_count = remaining_count
 
 
+class GiftInfo(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#giftinfo
+
+    Describes a service message about a regular gift that was sent or received.
+
+    :param gift: Information about the gift.
+    :type gift: :obj:`~apitele.types.Gift`
+    :param owned_gift_id: Unique identifier of the received gift for the bot; only present for gifts received on behalf of business accounts.
+    :type owned_gift_id: :obj:`str`, optional
+    :param convert_star_count: Number of Telegram Stars that can be claimed by the receiver by converting the gift; omitted if conversion to Telegram Stars is impossible.
+    :type convert_star_count: :obj:`int`, optional
+    :param prepaid_upgrade_star_count: Number of Telegram Stars that were prepaid by the sender for the ability to upgrade the gift.
+    :type prepaid_upgrade_star_count: :obj:`int`, optional
+    :param can_be_upgraded: :obj:`True`, if the gift can be upgraded to a unique gift.
+    :type can_be_upgraded: :obj:`True`, optional
+    :param text: Text of the message that was added to the gift.
+    :type text: :obj:`str`, optional
+    :param entities: Special entities that appear in the text.
+    :type entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
+    :param is_private: :obj:`True`, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them.
+    :type is_private: :obj:`True`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['gift'] = Gift._dese(res.get('gift'))
+        obj['owned_gift_id'] = res.get('owned_gift_id')
+        obj['convert_star_count'] = res.get('convert_star_count')
+        obj['prepaid_upgrade_star_count'] = res.get('prepaid_upgrade_star_count')
+        obj['can_be_upgraded'] = res.get('can_be_upgraded')
+        obj['text'] = res.get('text')
+        obj['entities'] = [MessageEntity._dese(kwargs) for kwargs in res.get('entities')] if 'entities' in res else None
+        obj['is_private'] = res.get('is_private')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        gift: Gift,
+        owned_gift_id: Optional[str] = None,
+        convert_star_count: Optional[int] = None,
+        prepaid_upgrade_star_count: Optional[int] = None,
+        can_be_upgraded: Optional[Literal[True]] = None,
+        text: Optional[str] = None,
+        entities: Optional[list[MessageEntity]] = None,
+        is_private: Optional[Literal[True]] = None
+    ):
+        self.gift = gift
+        self.owned_gift_id = owned_gift_id
+        self.convert_star_count = convert_star_count
+        self.prepaid_upgrade_star_count = prepaid_upgrade_star_count
+        self.can_be_upgraded = can_be_upgraded
+        self.text = text
+        self.entities = entities
+        self.is_private = is_private
+
+
 class Gifts(TelegramType):
     '''
     https://core.telegram.org/bots/api#gifts
@@ -6567,6 +6626,8 @@ class Message(TelegramType):
     :type users_shared: :obj:`~apitele.types.UsersShared`, optional
     :param chat_shared: Service message: a chat was shared with the bot.
     :type chat_shared: :obj:`~apitele.types.ChatShared`, optional
+    :param gift: Service message: a regular gift was sent or received.
+    :type gift: :obj:`~apitele.types.GiftInfo`, optional
     :param connected_website: The domain name of the website on which the user has logged in. `More about Telegram Login » <https://core.telegram.org/widgets/login>`_.
     :type connected_website: :obj:`str`, optional
     :param write_access_allowed: Service message: the user allowed the bot to write messages after adding it to the attachment or side menu, launching a Web App from a link, or accepting an explicit request from a Web App sent by the method `requestWriteAccess <https://core.telegram.org/bots/webapps#initializing-mini-apps>`_.
@@ -6679,6 +6740,7 @@ class Message(TelegramType):
         obj['refunded_payment'] = RefundedPayment._dese(res.get('refunded_payment'))
         obj['users_shared'] = UsersShared._dese(res.get('users_shared'))
         obj['chat_shared'] = ChatShared._dese(res.get('chat_shared'))
+        obj['gift'] = GiftInfo._dese(res.get('gift'))
         obj['connected_website'] = res.get('connected_website')
         obj['write_access_allowed'] = WriteAccessAllowed._dese(res.get('write_access_allowed'))
         obj['passport_data'] = PassportData._dese(res.get('passport_data'))
@@ -6768,6 +6830,7 @@ class Message(TelegramType):
         refunded_payment: Optional[RefundedPayment] = None,
         users_shared: Optional[UsersShared] = None,
         chat_shared: Optional[ChatShared] = None,
+        gift: Optional[GiftInfo] = None,
         connected_website: Optional[str] = None,
         write_access_allowed: Optional[WriteAccessAllowed] = None,
         passport_data: Optional[PassportData] = None,
@@ -6854,6 +6917,7 @@ class Message(TelegramType):
         self.refunded_payment = refunded_payment
         self.users_shared = users_shared
         self.chat_shared = chat_shared
+        self.gift = gift
         self.connected_website = connected_website
         self.write_access_allowed = write_access_allowed
         self.passport_data = passport_data
