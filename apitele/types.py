@@ -67,6 +67,7 @@ __all__ = (
     'ChatShared',
     'Checklist',
     'ChecklistTask',
+    'ChecklistTasksAdded',
     'ChecklistTasksDone',
     'ChosenInlineResult',
     'Contact',
@@ -2907,6 +2908,34 @@ class ChecklistTask(TelegramType):
         self.text_entities = text_entities
         self.completed_by_user = completed_by_user
         self.completion_date = completion_date
+
+
+class ChecklistTasksAdded(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#checklisttasksadded
+
+    Describes a service message about tasks added to a checklist.
+
+    :param tasks: List of tasks added to the checklist.
+    :type tasks: :obj:`` of :obj:`~apitele.types.ChecklistTask`
+    :param checklist_message: Message containing the checklist to which the tasks were added. Note that the Message object in this field will not contain the *reply_to_message* field even if it itself is a reply.
+    :type checklist_message: :obj:`~apitele.types.Message`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['tasks'] = [ChecklistTask._dese(kwargs) for kwargs in res.get('tasks')]
+        obj['checklist_message'] = Message._dese(res.get('checklist_message'))
+        return cls(**obj)
+
+    def __init__(
+        self,
+        tasks: list[ChecklistTask],
+        checklist_message: Optional[Message] = None
+    ):
+        self.tasks = tasks
+        self.checklist_message = checklist_message
 
 
 class ChecklistTasksDone(TelegramType):
@@ -6845,6 +6874,8 @@ class Message(TelegramType):
     :type chat_background_set: :obj:`~apitele.types.ChatBackground`, optional
     :param checklist_tasks_done: Service message: some tasks in a checklist were marked as done or not done.
     :type checklist_tasks_done: :obj:`~apitele.types.ChecklistTasksDone`, optional
+    :param checklist_tasks_added: Service message: tasks were added to a checklist.
+    :type checklist_tasks_added: :obj:`~apitele.types.ChecklistTasksAdded`, optional
     :param forum_topic_created: Service message: forum topic created.
     :type forum_topic_created: :obj:`~apitele.types.ForumTopicCreated`, optional
     :param forum_topic_edited: Service message: forum topic edited.
@@ -6958,6 +6989,7 @@ class Message(TelegramType):
         obj['boost_added'] = ChatBoostAdded._dese(res.get('boost_added'))
         obj['chat_background_set'] = ChatBackground._dese(res.get('chat_background_set'))
         obj['checklist_tasks_done'] = ChecklistTasksDone._dese(res.get('checklist_tasks_done'))
+        obj['checklist_tasks_added'] = ChecklistTasksAdded._dese(res.get('checklist_tasks_added'))
         obj['forum_topic_created'] = ForumTopicCreated._dese(res.get('forum_topic_created'))
         obj['forum_topic_edited'] = ForumTopicEdited._dese(res.get('forum_topic_edited'))
         obj['forum_topic_closed'] = ForumTopicClosed._dese(res.get('forum_topic_closed'))
@@ -7053,6 +7085,7 @@ class Message(TelegramType):
         boost_added: Optional[ChatBoostAdded] = None,
         chat_background_set: Optional[ChatBackground] = None,
         checklist_tasks_done: Optional[ChecklistTasksDone] = None,
+        checklist_tasks_added: Optional[ChecklistTasksAdded] = None,
         forum_topic_created: Optional[ForumTopicCreated] = None,
         forum_topic_edited: Optional[ForumTopicEdited] = None,
         forum_topic_closed: Optional[ForumTopicClosed] = None,
@@ -7145,6 +7178,7 @@ class Message(TelegramType):
         self.boost_added = boost_added
         self.chat_background_set = chat_background_set
         self.checklist_tasks_done = checklist_tasks_done
+        self.checklist_tasks_added = checklist_tasks_added
         self.forum_topic_created = forum_topic_created
         self.forum_topic_edited = forum_topic_edited
         self.forum_topic_closed = forum_topic_closed
