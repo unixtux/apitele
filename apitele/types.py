@@ -65,6 +65,8 @@ __all__ = (
     'ChatPermissions',
     'ChatPhoto',
     'ChatShared',
+    'Checklist',
+    'ChecklistTask',
     'ChosenInlineResult',
     'Contact',
     'CopyTextButton',
@@ -2818,6 +2820,92 @@ class ChatShared(TelegramType):
         self.photo = photo
 
 
+class Checklist(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#checklist
+
+    Describes a checklist.
+
+    :param title: Title of the checklist.
+    :type title: :obj:`str`
+    :param tasks: List of tasks in the checklist.
+    :type tasks: :obj:`list` of :obj:`~apitele.types.ChecklistTask`
+    :param title_entities: Special entities that appear in the checklist title.
+    :type title_entities: :obj:`list` of :obj:`MessageEntity`, optional
+    :param others_can_add_tasks: :obj:`True`, if users other than the creator of the list can add tasks to the list.
+    :type others_can_add_tasks: :obj:`True`, optional
+    :param others_can_mark_tasks_as_done: :obj:`True`, if users other than the creator of the list can mark tasks as done or not done.
+    :type others_can_mark_tasks_as_done: :obj:`True`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['title'] = res.get('title')
+        obj['tasks'] = [ChecklistTask._dese(kwargs) for kwargs in res.get('tasks')]
+        obj['title_entities'] = [MessageEntity._dese(kwargs) for kwargs in res.get('title_entities')] if 'title_entities' in res else None
+        obj['others_can_add_tasks'] = res.get('others_can_add_tasks')
+        obj['others_can_mark_tasks_as_done'] = res.get('others_can_mark_tasks_as_done')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        title: str,
+        tasks: list[ChecklistTask],
+        title_entities: Optional[list[MessageEntity]] = None,
+        others_can_add_tasks: Optional[Literal[True]] = None,
+        others_can_mark_tasks_as_done: Optional[Literal[True]] = None
+    ):
+        self.title = title
+        self.tasks = tasks
+        self.title_entities = title_entities
+        self.others_can_add_tasks = others_can_add_tasks
+        self.others_can_mark_tasks_as_done = others_can_mark_tasks_as_done
+
+
+class ChecklistTask(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#checklisttask
+
+    Describes a task in a checklist.
+
+    :param id: Unique identifier of the task.
+    :type id: :obj:`int`
+    :param text: Text of the task.
+    :type text: :obj:`str`
+    :param text_entities: Special entities that appear in the task text.
+    :type text_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
+    :param completed_by_user: User that completed the task; omitted if the task wasn't completed.
+    :type completed_by_user: :obj:`~apitele.types.User`, optional
+    :param completion_date: Point in time (Unix timestamp) when the task was completed; 0 if the task wasn't completed.
+    :type completion_date: :obj:`int`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['id'] = res.get('id')
+        obj['text'] = res.get('text')
+        obj['text_entities'] = [MessageEntity._dese(kwargs) for kwargs in res.get('text_entities')] if 'text_entities' in res else None
+        obj['completed_by_user'] = User._dese(res.get('completed_by_user'))
+        obj['completion_date'] = res.get('completion_date')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        id: int,
+        text: str,
+        text_entities: Optional[list[MessageEntity]] = None,
+        completed_by_user: Optional[User] = None,
+        completion_date: Optional[int] = None
+    ):
+        self.id = id
+        self.text = text
+        self.text_entities = text_entities
+        self.completed_by_user = completed_by_user
+        self.completion_date = completion_date
+
+
 class ChosenInlineResult(TelegramType):
     '''
     https://core.telegram.org/bots/api#choseninlineresult
@@ -3946,7 +4034,7 @@ class InaccessibleMessage(TelegramType):
 
 
 class InlineKeyboardButton(TelegramType):
-    '''
+    r'''
     https://core.telegram.org/bots/api#inlinekeyboardbutton
 
     This object represents one button of an inline keyboard.
