@@ -2229,6 +2229,42 @@ class Client(TelegramApi):
         return Message._dese(result) if result is not True else True
 
 
+    async def edit_message_checklist(
+        self,
+        business_connection_id: str,
+        chat_id: int,
+        message_id: int,
+        checklist: InputChecklist,
+        reply_markup: Optional[InlineKeyboardMarkup] = None
+    ) -> Message:
+        '''
+        https://core.telegram.org/bots/api#editmessagechecklist
+
+        Use this method to edit a checklist on behalf of a connected business account. On success, the edited :obj:`~apitele.types.Message` is returned.
+
+        :param business_connection_id: 
+        :type business_connection_id: :obj:`str`
+        :param chat_id: 
+        :type chat_id: :obj:`int`
+        :param message_id: 
+        :type message_id: :obj:`int`
+        :param checklist: 
+        :type checklist: :obj:`~apitele.types.InputChecklist`
+        :param reply_markup: 
+        :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
+        :rtype: :obj:`~apitele.types.Message`
+        '''
+        params = {
+            'business_connection_id': business_connection_id,
+            'chat_id': chat_id,
+            'message_id': message_id,
+            'checklist': checklist
+        }
+        if reply_markup is not None: params['reply_markup'] = reply_markup
+        result = await super().edit_message_checklist(params)
+        return Message._dese(result)
+
+
     async def edit_message_live_location(
         self,
         latitude: float,
@@ -3991,6 +4027,7 @@ class Client(TelegramApi):
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: A JSON-serialized object for an inline keyboard.
         :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
+        :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
             'business_connection_id': business_connection_id,

@@ -639,6 +639,10 @@ class TelegramApi:
         method = 'editMessageCaption'
         return await self._request(method, params)
 
+    async def edit_message_checklist(self, params: dict):
+        method = 'editMessageChecklist'
+        return await self._request(method, params)
+
     async def edit_message_live_location(self, params: dict):
         method = 'editMessageLiveLocation'
         return await self._request(method, params)
