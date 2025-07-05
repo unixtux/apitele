@@ -2242,15 +2242,15 @@ class Client(TelegramApi):
 
         Use this method to edit a checklist on behalf of a connected business account. On success, the edited :obj:`~apitele.types.Message` is returned.
 
-        :param business_connection_id: 
+        :param business_connection_id: Unique identifier of the business connection on behalf of which the message will be sent.
         :type business_connection_id: :obj:`str`
-        :param chat_id: 
+        :param chat_id: Unique identifier for the target chat.
         :type chat_id: :obj:`int`
-        :param message_id: 
+        :param message_id: Unique identifier for the target message.
         :type message_id: :obj:`int`
-        :param checklist: 
+        :param checklist: A JSON-serialized object for the new checklist.
         :type checklist: :obj:`~apitele.types.InputChecklist`
-        :param reply_markup: 
+        :param reply_markup: A JSON-serialized object for the new inline keyboard for the message.
         :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
         :rtype: :obj:`~apitele.types.Message`
         '''
