@@ -3077,6 +3077,18 @@ class Client(TelegramApi):
         return BotShortDescription._dese(result)
 
 
+    async def get_my_star_balance(self) -> StarAmount:
+        '''
+        https://core.telegram.org/bots/api#getmystarbalance
+
+        A method to get the current Telegram Stars balance of the bot. Requires no parameters. On success, returns a :obj:`~apitele.types.StarAmount` object.
+
+        :rtype: :obj:`~apitele.types.StarAmount`
+        '''
+        result = await super().get_my_star_balance()
+        return StarAmount._dese(result)
+
+
     async def get_star_transactions(
         self,
         offset: Optional[int] = None,
