@@ -119,6 +119,8 @@ __all__ = (
     'InlineQueryResultVideo',
     'InlineQueryResultVoice',
     'InlineQueryResultsButton',
+    'InputChecklist',
+    'InputChecklistTask',
     'InputContactMessageContent',
     'InputFile',
     'InputInvoiceMessageContent',
@@ -5391,6 +5393,72 @@ class InlineQueryResultsButton(TelegramType):
         self.text = text
         self.web_app = web_app
         self.start_parameter = start_parameter
+
+
+class InputChecklist(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#inputchecklist
+
+    Describes a checklist to create.
+
+    :param title: Title of the checklist; 1-255 characters after entities parsing.
+    :type title: :obj:`str`
+    :param tasks: List of 1-30 tasks in the checklist.
+    :type tasks: :obj:`list` of :obj:`~apitele.types.InputChecklistTask`
+    :param parse_mode: Mode for parsing entities in the title. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
+    :type parse_mode: :obj:`str`, optional
+    :param title_entities: List of special entities that appear in the title, which can be specified instead of *parse_mode*. Currently, only *bold*, *italic*, *underline*, *strikethrough*, *spoiler*, and *custom_emoji* entities are allowed.
+    :type title_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
+    :param others_can_add_tasks: Pass :obj:`True` if other users can add tasks to the checklist.
+    :type others_can_add_tasks: :obj:`bool`, optional
+    :param others_can_mark_tasks_as_done: Pass :obj:`True` if other users can mark tasks as done or not done in the checklist.
+    :type others_can_mark_tasks_as_done: :obj:`bool`, optional
+    '''
+
+    def __init__(
+        self,
+        title: str,
+        tasks: list[InputChecklistTask],
+        parse_mode: Optional[str] = None,
+        title_entities: Optional[list[MessageEntity]] = None,
+        others_can_add_tasks: Optional[bool] = None,
+        others_can_mark_tasks_as_done: Optional[bool] = None
+    ):
+        self.title = title
+        self.tasks = tasks
+        self.parse_mode = parse_mode
+        self.title_entities = title_entities
+        self.others_can_add_tasks = others_can_add_tasks
+        self.others_can_mark_tasks_as_done = others_can_mark_tasks_as_done
+
+
+class InputChecklistTask(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#inputchecklisttask
+
+    Describes a task to add to a checklist.
+
+    :param id: Unique identifier of the task; must be positive and unique among all task identifiers currently present in the checklist.
+    :type id: :obj:`int`
+    :param text: Text of the task; 1-100 characters after entities parsing.
+    :type text: :obj:`str`
+    :param parse_mode: Mode for parsing entities in the text. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
+    :type parse_mode: :obj:`str`, optional
+    :param text_entities: List of special entities that appear in the text, which can be specified instead of *parse_mode*. Currently, only *bold*, *italic*, *underline*, *strikethrough*, *spoiler*, and *custom_emoji* entities are allowed.
+    :type text_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
+    '''
+
+    def __init__(
+        self,
+        id: int,
+        text: str,
+        parse_mode: Optional[str] = None,
+        text_entities: Optional[list[MessageEntity]] = None
+    ):
+        self.id = id
+        self.text = text
+        self.parse_mode = parse_mode
+        self.text_entities = text_entities
 
 
 class InputContactMessageContent(TelegramType):
