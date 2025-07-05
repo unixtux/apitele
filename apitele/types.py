@@ -7657,6 +7657,8 @@ class OwnedGiftUnique(TelegramType):
     :type can_be_transferred: :obj:`True`, optional
     :param transfer_star_count: Number of Telegram Stars that must be paid to transfer the gift; omitted if the bot cannot transfer the gift.
     :type transfer_star_count: :obj:`int`, optional
+    :param next_transfer_date: Point in time (Unix timestamp) when the gift can be transferred. If it is in the past, then the gift can be transferred now.
+    :type next_transfer_date: :obj:`int`, optional
     '''
     @classmethod
     @_parse_result
@@ -7669,6 +7671,7 @@ class OwnedGiftUnique(TelegramType):
         obj['is_saved'] = res.get('is_saved')
         obj['can_be_transferred'] = res.get('can_be_transferred')
         obj['transfer_star_count'] = res.get('transfer_star_count')
+        obj['next_transfer_date'] = res.get('next_transfer_date')
         return cls(**obj)
 
     def __init__(
@@ -7679,7 +7682,8 @@ class OwnedGiftUnique(TelegramType):
         sender_user: Optional[User] = None,
         is_saved: Optional[Literal[True]] = None,
         can_be_transferred: Optional[Literal[True]] = None,
-        transfer_star_count: Optional[int] = None
+        transfer_star_count: Optional[int] = None,
+        next_transfer_date: Optional[int] = None
     ):
         self.type = DEFAULT_OWNED_GIFT_UNIQUE
         self.gift = gift
@@ -7689,6 +7693,7 @@ class OwnedGiftUnique(TelegramType):
         self.is_saved = is_saved
         self.can_be_transferred = can_be_transferred
         self.transfer_star_count = transfer_star_count
+        self.next_transfer_date = next_transfer_date
 
 
 class OwnedGifts(TelegramType):
@@ -9980,6 +9985,8 @@ class UniqueGiftInfo(TelegramType):
     :type owned_gift_id: :obj:`str`, optional
     :param transfer_star_count: Number of Telegram Stars that must be paid to transfer the gift; omitted if the bot cannot transfer the gift.
     :type transfer_star_count: :obj:`int`, optional
+    :param next_transfer_date: Point in time (Unix timestamp) when the gift can be transferred. If it is in the past, then the gift can be transferred now.
+    :type next_transfer_date: :obj:`int`, optional
     '''
     @classmethod
     @_parse_result
@@ -9989,6 +9996,7 @@ class UniqueGiftInfo(TelegramType):
         obj['origin'] = res.get('origin')
         obj['owned_gift_id'] = res.get('owned_gift_id')
         obj['transfer_star_count'] = res.get('transfer_star_count')
+        obj['next_transfer_date'] = res.get('next_transfer_date')
         return cls(**obj)
 
     def __init__(
@@ -9996,12 +10004,14 @@ class UniqueGiftInfo(TelegramType):
         gift: UniqueGift,
         origin: str,
         owned_gift_id: Optional[str] = None,
-        transfer_star_count: Optional[int] = None
+        transfer_star_count: Optional[int] = None,
+        next_transfer_date: Optional[int] = None
     ):
         self.gift = gift
         self.origin = origin
         self.owned_gift_id = owned_gift_id
         self.transfer_star_count = transfer_star_count
+        self.next_transfer_date = next_transfer_date
 
 
 class UniqueGiftModel(TelegramType):
