@@ -9979,8 +9979,10 @@ class UniqueGiftInfo(TelegramType):
 
     :param gift: Information about the gift.
     :type gift: :obj:`~apitele.types.UniqueGift`
-    :param origin: Origin of the gift. Currently, either “upgrade” or “transfer”.
+    :param origin: Origin of the gift. Currently, either “upgrade” for gifts upgraded from regular gifts, “transfer” for gifts transferred from other users or channels, or “resale” for gifts bought from other users.
     :type origin: :obj:`str`
+    :param last_resale_star_count: For gifts bought from other users, the price paid for the gift.
+    :type last_resale_star_count: :obj:`int`, optional
     :param owned_gift_id: Unique identifier of the received gift for the bot; only present for gifts received on behalf of business accounts.
     :type owned_gift_id: :obj:`str`, optional
     :param transfer_star_count: Number of Telegram Stars that must be paid to transfer the gift; omitted if the bot cannot transfer the gift.
@@ -9994,6 +9996,7 @@ class UniqueGiftInfo(TelegramType):
         obj = {}
         obj['gift'] = UniqueGift._dese(res.get('gift'))
         obj['origin'] = res.get('origin')
+        obj['last_resale_star_count'] = res.get('last_resale_star_count')
         obj['owned_gift_id'] = res.get('owned_gift_id')
         obj['transfer_star_count'] = res.get('transfer_star_count')
         obj['next_transfer_date'] = res.get('next_transfer_date')
@@ -10003,12 +10006,14 @@ class UniqueGiftInfo(TelegramType):
         self,
         gift: UniqueGift,
         origin: str,
+        last_resale_star_count: Optional[int] = None,
         owned_gift_id: Optional[str] = None,
         transfer_star_count: Optional[int] = None,
         next_transfer_date: Optional[int] = None
     ):
         self.gift = gift
         self.origin = origin
+        self.last_resale_star_count = last_resale_star_count
         self.owned_gift_id = owned_gift_id
         self.transfer_star_count = transfer_star_count
         self.next_transfer_date = next_transfer_date
