@@ -3240,6 +3240,8 @@ class ExternalReplyInfo(TelegramType):
     :type voice: :obj:`~apitele.types.Voice`, optional
     :param has_media_spoiler: :obj:`True`, if the message media is covered by a spoiler animation.
     :type has_media_spoiler: :obj:`True`, optional
+    :param checklist: Message is a checklist.
+    :type checklist: :obj:`~apitele.types.Checklist`, optional
     :param contact: Message is a shared contact, information about the contact.
     :type contact: :obj:`~apitele.types.Contact`, optional
     :param dice: Message is a dice with random value.
@@ -3278,6 +3280,7 @@ class ExternalReplyInfo(TelegramType):
         obj['video_note'] = VideoNote._dese(res.get('video_note'))
         obj['voice'] = Voice._dese(res.get('voice'))
         obj['has_media_spoiler'] = res.get('has_media_spoiler')
+        obj['checklist'] = Checklist._dese(res.get('checklist'))
         obj['contact'] = Contact._dese(res.get('contact'))
         obj['dice'] = Dice._dese(res.get('dice'))
         obj['game'] = Game._dese(res.get('game'))
@@ -3306,6 +3309,7 @@ class ExternalReplyInfo(TelegramType):
         video_note: Optional[VideoNote] = None,
         voice: Optional[Voice] = None,
         has_media_spoiler: Optional[Literal[True]] = None,
+        checklist: Optional[Checklist] = None,
         contact: Optional[Contact] = None,
         dice: Optional[Dice] = None,
         game: Optional[Game] = None,
@@ -3331,6 +3335,7 @@ class ExternalReplyInfo(TelegramType):
         self.video_note = video_note
         self.voice = voice
         self.has_media_spoiler = has_media_spoiler
+        self.checklist = checklist
         self.contact = contact
         self.dice = dice
         self.game = game
@@ -6740,6 +6745,8 @@ class Message(TelegramType):
     :type show_caption_above_media: :obj:`True`, optional
     :param has_media_spoiler: :obj:`True`, if the message media is covered by a spoiler animation.
     :type has_media_spoiler: :obj:`True`, optional
+    :param checklist: Message is a checklist.
+    :type checklist: :obj:`~apitele.types.Checklist`, optional
     :param contact: Message is a shared contact, information about the contact.
     :type contact: :obj:`~apitele.types.Contact`, optional
     :param dice: Message is a dice with random value.
@@ -6882,6 +6889,7 @@ class Message(TelegramType):
         obj['caption_entities'] = [MessageEntity._dese(kwargs) for kwargs in res.get('caption_entities')] if 'caption_entities' in res else None
         obj['show_caption_above_media'] = res.get('show_caption_above_media')
         obj['has_media_spoiler'] = res.get('has_media_spoiler')
+        obj['checklist'] = Checklist._dese(res.get('checklist'))
         obj['contact'] = Contact._dese(res.get('contact'))
         obj['dice'] = Dice._dese(res.get('dice'))
         obj['game'] = Game._dese(res.get('game'))
@@ -6975,6 +6983,7 @@ class Message(TelegramType):
         caption_entities: Optional[list[MessageEntity]] = None,
         show_caption_above_media: Optional[Literal[True]] = None,
         has_media_spoiler: Optional[Literal[True]] = None,
+        checklist: Optional[Checklist] = None,
         contact: Optional[Contact] = None,
         dice: Optional[Dice] = None,
         game: Optional[Game] = None,
@@ -7065,6 +7074,7 @@ class Message(TelegramType):
         self.caption_entities = caption_entities
         self.show_caption_above_media = show_caption_above_media
         self.has_media_spoiler = has_media_spoiler
+        self.checklist = checklist
         self.contact = contact
         self.dice = dice
         self.game = game
