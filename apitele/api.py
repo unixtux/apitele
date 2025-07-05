@@ -868,6 +868,10 @@ class TelegramApi:
         method = 'sendChatAction'
         return await self._request(method, params)
 
+    async def send_checklist(self, params: dict):
+        method = 'sendChecklist'
+        return await self._request(method, params)
+
     async def send_contact(self, params: dict):
         method = 'sendContact'
         return await self._request(method, params)

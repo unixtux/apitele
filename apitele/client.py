@@ -3959,6 +3959,53 @@ class Client(TelegramApi):
         return await super().send_chat_action(params)
 
 
+    async def send_checklist(
+        self,
+        business_connection_id: str,
+        chat_id: int,
+        checklist: InputChecklist,
+        disable_notification: Optional[bool] = None,
+        protect_content: Optional[bool] = None,
+        message_effect_id: Optional[str] = None,
+        reply_parameters: Optional[ReplyParameters] = None,
+        reply_markup: Optional[InlineKeyboardMarkup] = None
+    ) -> Message:
+        '''
+        https://core.telegram.org/bots/api#sendchecklist
+
+        Use this method to send a checklist on behalf of a connected business account. On success, the sent :obj:`~apitele.types.Message` is returned.
+
+        :param business_connection_id: Unique identifier of the business connection on behalf of which the message will be sent.
+        :type business_connection_id: :obj:`str`
+        :param chat_id: Unique identifier for the target chat.
+        :type chat_id: :obj:`int`
+        :param checklist: A JSON-serialized object for the checklist to send.
+        :type checklist: :obj:`~apitele.types.InputChecklist`
+        :param disable_notification: Sends the message silently. Users will receive a notification with no sound.
+        :type disable_notification: :obj:`bool`, optional
+        :param protect_content: Protects the contents of the sent message from forwarding and saving.
+        :type protect_content: :obj:`bool`, optional
+        :param message_effect_id: Unique identifier of the message effect to be added to the message.
+        :type message_effect_id: :obj:`str`, optional
+        :param reply_parameters: A JSON-serialized object for description of the message to reply to.
+        :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
+        :param reply_markup: A JSON-serialized object for an inline keyboard.
+        :type reply_markup: :obj:`~apitele.types.InlineKeyboardMarkup`, optional
+        '''
+        params = {
+            'business_connection_id': business_connection_id,
+            'chat_id': chat_id,
+            'checklist': checklist
+        }
+        if disable_notification is not None: params['disable_notification'] = disable_notification
+        if protect_content is not None: params['protect_content'] = protect_content
+        if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if reply_parameters is not None: params['reply_parameters'] = reply_parameters
+        if reply_markup is not None: params['reply_markup'] = reply_markup
+        result = await super().send_checklist(params)
+        return Message._dese(result)
+
+
     async def send_contact(
         self,
         chat_id: Union[int, str],
