@@ -67,6 +67,7 @@ __all__ = (
     'ChatShared',
     'Checklist',
     'ChecklistTask',
+    'ChecklistTasksDone',
     'ChosenInlineResult',
     'Contact',
     'CopyTextButton',
@@ -2906,6 +2907,39 @@ class ChecklistTask(TelegramType):
         self.text_entities = text_entities
         self.completed_by_user = completed_by_user
         self.completion_date = completion_date
+
+
+class ChecklistTasksDone(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#checklisttasksdone
+
+    Describes a service message about checklist tasks marked as done or not done.
+
+    :param checklist_message: Message containing the checklist whose tasks were marked as done or not done. Note that the Message object in this field will not contain the *reply_to_message* field even if it itself is a reply.
+    :type checklist_message: :obj:`~apitele.types.Message`, optional
+    :param marked_as_done_task_ids: Identifiers of the tasks that were marked as done.
+    :type marked_as_done_task_ids: :obj:`list` of :obj:`int`, optional
+    :param marked_as_not_done_task_ids: Identifiers of the tasks that were marked as not done.
+    :type marked_as_not_done_task_ids: :obj:`list` of :obj:`int`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['checklist_message'] = Message._dese(res.get('checklist_message'))
+        obj['marked_as_done_task_ids'] = res.get('marked_as_done_task_ids')
+        obj['marked_as_not_done_task_ids'] = res.get('marked_as_not_done_task_ids')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        checklist_message: Optional[Message] = None,
+        marked_as_done_task_ids: Optional[list[int]] = None,
+        marked_as_not_done_task_ids: Optional[list[int]] = None
+    ):
+        self.checklist_message = checklist_message
+        self.marked_as_done_task_ids = marked_as_done_task_ids
+        self.marked_as_not_done_task_ids = marked_as_not_done_task_ids
 
 
 class ChosenInlineResult(TelegramType):
@@ -6809,6 +6843,8 @@ class Message(TelegramType):
     :type boost_added: :obj:`~apitele.types.ChatBoostAdded`, optional
     :param chat_background_set: Service message: chat background set.
     :type chat_background_set: :obj:`~apitele.types.ChatBackground`, optional
+    :param checklist_tasks_done: Service message: some tasks in a checklist were marked as done or not done.
+    :type checklist_tasks_done: :obj:`~apitele.types.ChecklistTasksDone`, optional
     :param forum_topic_created: Service message: forum topic created.
     :type forum_topic_created: :obj:`~apitele.types.ForumTopicCreated`, optional
     :param forum_topic_edited: Service message: forum topic edited.
@@ -6921,6 +6957,7 @@ class Message(TelegramType):
         obj['proximity_alert_triggered'] = ProximityAlertTriggered._dese(res.get('proximity_alert_triggered'))
         obj['boost_added'] = ChatBoostAdded._dese(res.get('boost_added'))
         obj['chat_background_set'] = ChatBackground._dese(res.get('chat_background_set'))
+        obj['checklist_tasks_done'] = ChecklistTasksDone._dese(res.get('checklist_tasks_done'))
         obj['forum_topic_created'] = ForumTopicCreated._dese(res.get('forum_topic_created'))
         obj['forum_topic_edited'] = ForumTopicEdited._dese(res.get('forum_topic_edited'))
         obj['forum_topic_closed'] = ForumTopicClosed._dese(res.get('forum_topic_closed'))
@@ -7015,6 +7052,7 @@ class Message(TelegramType):
         proximity_alert_triggered: Optional[ProximityAlertTriggered] = None,
         boost_added: Optional[ChatBoostAdded] = None,
         chat_background_set: Optional[ChatBackground] = None,
+        checklist_tasks_done: Optional[ChecklistTasksDone] = None,
         forum_topic_created: Optional[ForumTopicCreated] = None,
         forum_topic_edited: Optional[ForumTopicEdited] = None,
         forum_topic_closed: Optional[ForumTopicClosed] = None,
@@ -7106,6 +7144,7 @@ class Message(TelegramType):
         self.proximity_alert_triggered = proximity_alert_triggered
         self.boost_added = boost_added
         self.chat_background_set = chat_background_set
+        self.checklist_tasks_done = checklist_tasks_done
         self.forum_topic_created = forum_topic_created
         self.forum_topic_edited = forum_topic_edited
         self.forum_topic_closed = forum_topic_closed
