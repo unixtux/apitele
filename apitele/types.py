@@ -73,6 +73,7 @@ __all__ = (
     'Contact',
     'CopyTextButton',
     'Dice',
+    'DirectMessagePriceChanged',
     'Document',
     'EncryptedCredentials',
     'EncryptedPassportElement',
@@ -3111,6 +3112,34 @@ class Dice(TelegramType):
     ):
         self.emoji = emoji
         self.value = value
+
+
+class DirectMessagePriceChanged(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#directmessagepricechanged
+
+    Describes a service message about a change in the price of direct messages sent to a channel chat.
+
+    :param are_direct_messages_enabled: :obj:`True`, if direct messages are enabled for the channel chat; :obj:`False` otherwise.
+    :type are_direct_messages_enabled: :obj:`bool`
+    :param direct_message_star_count: The new number of Telegram Stars that must be paid by users for each direct message sent to the channel. Does not apply to users who have been exempted by administrators. Defaults to 0.
+    :type direct_message_star_count: :obj:`int`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['are_direct_messages_enabled'] = res.get('are_direct_messages_enabled')
+        obj['direct_message_star_count'] = res.get('direct_message_star_count')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        are_direct_messages_enabled: bool,
+        direct_message_star_count: Optional[int] = None
+    ):
+        self.are_direct_messages_enabled = are_direct_messages_enabled
+        self.direct_message_star_count = direct_message_star_count
 
 
 class Document(TelegramType):
@@ -6876,6 +6905,8 @@ class Message(TelegramType):
     :type checklist_tasks_done: :obj:`~apitele.types.ChecklistTasksDone`, optional
     :param checklist_tasks_added: Service message: tasks were added to a checklist.
     :type checklist_tasks_added: :obj:`~apitele.types.ChecklistTasksAdded`, optional
+    :param direct_message_price_changed: Service message: the price for paid messages in the corresponding direct messages chat of a channel has changed.
+    :type direct_message_price_changed: :obj:`~apitele.types.DirectMessagePriceChanged`, optional
     :param forum_topic_created: Service message: forum topic created.
     :type forum_topic_created: :obj:`~apitele.types.ForumTopicCreated`, optional
     :param forum_topic_edited: Service message: forum topic edited.
@@ -6990,6 +7021,7 @@ class Message(TelegramType):
         obj['chat_background_set'] = ChatBackground._dese(res.get('chat_background_set'))
         obj['checklist_tasks_done'] = ChecklistTasksDone._dese(res.get('checklist_tasks_done'))
         obj['checklist_tasks_added'] = ChecklistTasksAdded._dese(res.get('checklist_tasks_added'))
+        obj['direct_message_price_changed'] = DirectMessagePriceChanged._dese(res.get('direct_message_price_changed'))
         obj['forum_topic_created'] = ForumTopicCreated._dese(res.get('forum_topic_created'))
         obj['forum_topic_edited'] = ForumTopicEdited._dese(res.get('forum_topic_edited'))
         obj['forum_topic_closed'] = ForumTopicClosed._dese(res.get('forum_topic_closed'))
@@ -7086,6 +7118,7 @@ class Message(TelegramType):
         chat_background_set: Optional[ChatBackground] = None,
         checklist_tasks_done: Optional[ChecklistTasksDone] = None,
         checklist_tasks_added: Optional[ChecklistTasksAdded] = None,
+        direct_message_price_changed: Optional[DirectMessagePriceChanged] = None,
         forum_topic_created: Optional[ForumTopicCreated] = None,
         forum_topic_edited: Optional[ForumTopicEdited] = None,
         forum_topic_closed: Optional[ForumTopicClosed] = None,
@@ -7179,6 +7212,7 @@ class Message(TelegramType):
         self.chat_background_set = chat_background_set
         self.checklist_tasks_done = checklist_tasks_done
         self.checklist_tasks_added = checklist_tasks_added
+        self.direct_message_price_changed = direct_message_price_changed
         self.forum_topic_created = forum_topic_created
         self.forum_topic_edited = forum_topic_edited
         self.forum_topic_closed = forum_topic_closed
