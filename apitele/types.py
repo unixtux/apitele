@@ -2917,7 +2917,7 @@ class ChecklistTasksAdded(TelegramType):
     Describes a service message about tasks added to a checklist.
 
     :param tasks: List of tasks added to the checklist.
-    :type tasks: :obj:`` of :obj:`~apitele.types.ChecklistTask`
+    :type tasks: :obj:`list` of :obj:`~apitele.types.ChecklistTask`
     :param checklist_message: Message containing the checklist to which the tasks were added. Note that the Message object in this field will not contain the *reply_to_message* field even if it itself is a reply.
     :type checklist_message: :obj:`~apitele.types.Message`, optional
     '''
@@ -4104,7 +4104,7 @@ class InaccessibleMessage(TelegramType):
 
 
 class InlineKeyboardButton(TelegramType):
-    r'''
+    '''
     https://core.telegram.org/bots/api#inlinekeyboardbutton
 
     This object represents one button of an inline keyboard.
