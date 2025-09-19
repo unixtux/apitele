@@ -74,6 +74,7 @@ __all__ = (
     'CopyTextButton',
     'Dice',
     'DirectMessagePriceChanged',
+    'DirectMessagesTopic',
     'Document',
     'EncryptedCredentials',
     'EncryptedPassportElement',
@@ -2980,6 +2981,34 @@ class DirectMessagePriceChanged(TelegramType):
     ):
         self.are_direct_messages_enabled = are_direct_messages_enabled
         self.direct_message_star_count = direct_message_star_count
+
+
+class DirectMessagesTopic(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#directmessagestopic
+
+    Describes a topic of a direct messages chat.
+
+    :param topic_id: Unique identifier of the topic. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier.
+    :type topic_id: :obj:`int`
+    :param user: Information about the user that created the topic. Currently, it is always present.
+    :type user: :obj:`~apitele.types.User`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['topic_id'] = res.get('topic_id')
+        obj['user'] = User._dese(res.get('user'))
+        return cls(**obj)
+
+    def __init__(
+        self,
+        topic_id: int,
+        user: Optional[User] = None
+    ):
+        self.topic_id = topic_id
+        self.user = user
 
 
 class Document(TelegramType):
@@ -6608,6 +6637,8 @@ class Message(TelegramType):
     :type chat: :obj:`~apitele.types.Chat`
     :param message_thread_id: Unique identifier of a message thread to which the message belongs; for supergroups only.
     :type message_thread_id: :obj:`int`, optional
+    :param direct_messages_topic: Information about the direct messages chat topic that contains the message.
+    :type direct_messages_topic: :obj:`~apitele.types.DirectMessagesTopic`, optional
     :param from_user: Sender of the message; empty for messages sent to channels. For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
     :type from_user: :obj:`~apitele.types.User`, optional
     :param sender_chat: Sender of the message, sent on behalf of a chat. For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group. For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
@@ -6797,6 +6828,7 @@ class Message(TelegramType):
         obj['date'] = res.get('date')
         obj['chat'] = Chat._dese(res.get('chat'))
         obj['message_thread_id'] = res.get('message_thread_id')
+        obj['direct_messages_topic'] = DirectMessagesTopic._dese(res.get('direct_messages_topic'))
         obj['from_user'] = User._dese(res.get('from_user'))
         obj['sender_chat'] = Chat._dese(res.get('sender_chat'))
         obj['sender_boost_count'] = res.get('sender_boost_count')
@@ -6895,6 +6927,7 @@ class Message(TelegramType):
         date: int,
         chat: Chat,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic: Optional[DirectMessagesTopic] = None,
         from_user: Optional[User] = None,
         sender_chat: Optional[Chat] = None,
         sender_boost_count: Optional[int] = None,
@@ -6990,6 +7023,7 @@ class Message(TelegramType):
         self.date = date
         self.chat = chat
         self.message_thread_id = message_thread_id
+        self.direct_messages_topic = direct_messages_topic
         self.from_user = from_user
         self.sender_chat = sender_chat
         self.sender_boost_count = sender_boost_count
