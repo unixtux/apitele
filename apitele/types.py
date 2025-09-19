@@ -248,6 +248,7 @@ __all__ = (
     'SuggestedPostPaid',
     'SuggestedPostParameters',
     'SuggestedPostPrice',
+    'SuggestedPostRefunded',
     'SwitchInlineQueryChosenChat',
     'TextQuote',
     'TransactionPartner', # Deserialized in _dese_transaction_partner()
@@ -6836,6 +6837,8 @@ class Message(TelegramType):
     :type suggested_post_declined: :obj:`~apitele.types.SuggestedPostDeclined`, optional
     :param suggested_post_paid: Service message: payment for a suggested post was received.
     :type suggested_post_paid: :obj:`~apitele.types.SuggestedPostPaid`, optional
+    :param suggested_post_refunded: Service message: payment for a suggested post was refunded.
+    :type suggested_post_refunded: :obj:`~apitele.types.SuggestedPostRefunded`, optional
     :param video_chat_scheduled: Service message: video chat scheduled.
     :type video_chat_scheduled: :obj:`~apitele.types.VideoChatScheduled`, optional
     :param video_chat_started: Service message: video chat started.
@@ -6948,6 +6951,7 @@ class Message(TelegramType):
         obj['suggested_post_approval_failed'] = SuggestedPostApprovalFailed._dese(res.get('suggested_post_approval_failed'))
         obj['suggested_post_declined'] = SuggestedPostDeclined._dese(res.get('suggested_post_declined'))
         obj['suggested_post_paid'] = SuggestedPostPaid._dese(res.get('suggested_post_paid'))
+        obj['suggested_post_refunded'] = SuggestedPostRefunded._dese(res.get('suggested_post_refunded'))
         obj['video_chat_scheduled'] = VideoChatScheduled._dese(res.get('video_chat_scheduled'))
         obj['video_chat_started'] = VideoChatStarted._dese(res.get('video_chat_started'))
         obj['video_chat_ended'] = VideoChatEnded._dese(res.get('video_chat_ended'))
@@ -7053,6 +7057,7 @@ class Message(TelegramType):
         suggested_post_approval_failed: Optional[SuggestedPostApprovalFailed] = None,
         suggested_post_declined: Optional[SuggestedPostDeclined] = None,
         suggested_post_paid: Optional[SuggestedPostPaid] = None,
+        suggested_post_refunded: Optional[SuggestedPostRefunded] = None,
         video_chat_scheduled: Optional[VideoChatScheduled] = None,
         video_chat_started: Optional[VideoChatStarted] = None,
         video_chat_ended: Optional[VideoChatEnded] = None,
@@ -7155,6 +7160,7 @@ class Message(TelegramType):
         self.suggested_post_approval_failed = suggested_post_approval_failed
         self.suggested_post_declined = suggested_post_declined
         self.suggested_post_paid = suggested_post_paid
+        self.suggested_post_refunded = suggested_post_refunded
         self.video_chat_scheduled = video_chat_scheduled
         self.video_chat_started = video_chat_started
         self.video_chat_ended = video_chat_ended
@@ -9750,6 +9756,34 @@ class SuggestedPostPrice(TelegramType):
     ):
         self.currency = currency
         self.amount = amount
+
+
+class SuggestedPostRefunded(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#suggestedpostrefunded
+
+    Describes a service message about a payment refund for a suggested post.
+
+    :param reason: Reason for the refund. Currently, one of “post_deleted” if the post was deleted within 24 hours of being posted or removed from scheduled messages without being posted, or “payment_refunded” if the payer refunded their payment.
+    :type reason: :obj:`str`
+    :param suggested_post_message: Message containing the suggested post. Note that the :obj:`~apitele.types.Message` object in this field will not contain the *reply_to_message* field even if it itself is a reply.
+    :type suggested_post_message: :obj:`~apitele.types.Message`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['reason'] = res.get('reason')
+        obj['suggested_post_message'] = Message._dese(res.get('suggested_post_message'))
+        return cls(**obj)
+
+    def __init__(
+        self,
+        reason: str,
+        suggested_post_message: Optional[Message] = None
+    ):
+        self.reason = reason
+        self.suggested_post_message = suggested_post_message
 
 
 class SwitchInlineQueryChosenChat(TelegramType):
