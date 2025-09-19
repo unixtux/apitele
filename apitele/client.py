@@ -1433,6 +1433,7 @@ class Client(TelegramApi):
         disable_notification: Optional[bool] = None,
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> MessageId:
@@ -1469,6 +1470,8 @@ class Client(TelegramApi):
         :type protect_content: :obj:`bool`, optional
         :param allow_paid_broadcast: Pass :obj:`True` to allow up to 1000 messages per second, ignoring `broadcasting limits <https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once>`_ for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance.
         :type allow_paid_broadcast: :obj:`bool`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
@@ -1490,6 +1493,7 @@ class Client(TelegramApi):
         if disable_notification is not None: params['disable_notification'] = disable_notification
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().copy_message(params)
@@ -2577,7 +2581,8 @@ class Client(TelegramApi):
         direct_messages_topic_id: Optional[int] = None,
         video_start_timestamp: Optional[int] = None,
         disable_notification: Optional[bool] = None,
-        protect_content: Optional[bool] = None
+        protect_content: Optional[bool] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None
     ) -> Message:
         '''
         https://core.telegram.org/bots/api#forwardmessage
@@ -2601,6 +2606,8 @@ class Client(TelegramApi):
         :type disable_notification: :obj:`bool`, optional
         :param protect_content: Protects the contents of the forwarded message from forwarding and saving.
         :type protect_content: :obj:`bool`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :rtype: :obj:`~apitele.types.Message`
         '''
         params = {
@@ -2613,6 +2620,7 @@ class Client(TelegramApi):
         if video_start_timestamp is not None: params['video_start_timestamp'] = video_start_timestamp
         if disable_notification is not None: params['disable_notification'] = disable_notification
         if protect_content is not None: params['protect_content'] = protect_content
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         result = await super().forward_message(params)
         return Message._dese(result)
 
@@ -3822,6 +3830,7 @@ class Client(TelegramApi):
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
         message_effect_id: Optional[str] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> Message:
@@ -3868,6 +3877,8 @@ class Client(TelegramApi):
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
@@ -3894,6 +3905,7 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
         if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_animation(params)
@@ -3918,6 +3930,7 @@ class Client(TelegramApi):
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
         message_effect_id: Optional[str] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> Message:
@@ -3961,6 +3974,8 @@ class Client(TelegramApi):
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
@@ -3985,6 +4000,7 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
         if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_audio(params)
@@ -4093,6 +4109,7 @@ class Client(TelegramApi):
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
         message_effect_id: Optional[str] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> Message:
@@ -4126,6 +4143,8 @@ class Client(TelegramApi):
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
@@ -4146,6 +4165,7 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
         if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_contact(params)
@@ -4163,6 +4183,7 @@ class Client(TelegramApi):
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
         message_effect_id: Optional[str] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> Message:
@@ -4190,6 +4211,8 @@ class Client(TelegramApi):
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
@@ -4207,6 +4230,7 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
         if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_dice(params)
@@ -4229,6 +4253,7 @@ class Client(TelegramApi):
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
         message_effect_id: Optional[str] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> Message:
@@ -4267,6 +4292,8 @@ class Client(TelegramApi):
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
@@ -4289,6 +4316,7 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
         if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_document(params)
@@ -4425,6 +4453,7 @@ class Client(TelegramApi):
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
         message_effect_id: Optional[str] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[InlineKeyboardMarkup] = None
     ) -> Message:
@@ -4490,6 +4519,8 @@ class Client(TelegramApi):
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_. If empty, one 'Pay ``total price``' button will be shown. If not empty, the first button must be a Pay button.
@@ -4526,6 +4557,7 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
         if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_invoice(params)
@@ -4548,6 +4580,7 @@ class Client(TelegramApi):
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
         message_effect_id: Optional[str] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> Message:
@@ -4585,6 +4618,8 @@ class Client(TelegramApi):
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
@@ -4607,6 +4642,7 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
         if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_location(params)
@@ -4685,6 +4721,7 @@ class Client(TelegramApi):
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
         message_effect_id: Optional[str] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> Message:
@@ -4718,6 +4755,8 @@ class Client(TelegramApi):
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
@@ -4738,6 +4777,7 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
         if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_message(params)
@@ -4760,6 +4800,7 @@ class Client(TelegramApi):
         disable_notification: Optional[bool] = None,
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> Message:
@@ -4797,6 +4838,8 @@ class Client(TelegramApi):
         :type protect_content: :obj:`bool`, optional
         :param allow_paid_broadcast: Pass :obj:`True` to allow up to 1000 messages per second, ignoring `broadcasting limits <https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once>`_ for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance.
         :type allow_paid_broadcast: :obj:`bool`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove a reply keyboard or to force a reply from the user.
@@ -4819,6 +4862,7 @@ class Client(TelegramApi):
         if disable_notification is not None: params['disable_notification'] = disable_notification
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_paid_media(params)
@@ -4841,6 +4885,7 @@ class Client(TelegramApi):
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
         message_effect_id: Optional[str] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> Message:
@@ -4878,6 +4923,8 @@ class Client(TelegramApi):
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
@@ -4900,6 +4947,7 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
         if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_photo(params)
@@ -5027,6 +5075,7 @@ class Client(TelegramApi):
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
         message_effect_id: Optional[str] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> Message:
@@ -5056,6 +5105,8 @@ class Client(TelegramApi):
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
@@ -5074,6 +5125,7 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
         if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_sticker(params)
@@ -5098,6 +5150,7 @@ class Client(TelegramApi):
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
         message_effect_id: Optional[str] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> Message:
@@ -5139,6 +5192,8 @@ class Client(TelegramApi):
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
@@ -5163,6 +5218,7 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
         if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_venue(params)
@@ -5192,6 +5248,7 @@ class Client(TelegramApi):
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
         message_effect_id: Optional[str] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> Message:
@@ -5245,6 +5302,8 @@ class Client(TelegramApi):
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
@@ -5274,6 +5333,7 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
         if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_video(params)
@@ -5294,6 +5354,7 @@ class Client(TelegramApi):
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
         message_effect_id: Optional[str] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> Message:
@@ -5328,6 +5389,8 @@ class Client(TelegramApi):
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
@@ -5348,6 +5411,7 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
         if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_video_note(params)
@@ -5369,6 +5433,7 @@ class Client(TelegramApi):
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
         message_effect_id: Optional[str] = None,
+        suggested_post_parameters: Optional[SuggestedPostParameters] = None,
         reply_parameters: Optional[ReplyParameters] = None,
         reply_markup: Optional[REPLY_MARKUP_TYPES] = None
     ) -> Message:
@@ -5407,6 +5472,8 @@ class Client(TelegramApi):
         :type allow_paid_broadcast: :obj:`bool`, optional
         :param message_effect_id: Unique identifier of the message effect to be added to the message; for private chats only.
         :type message_effect_id: :obj:`str`, optional
+        :param suggested_post_parameters: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+        :type suggested_post_parameters: :obj:`~apitele.types.SuggestedPostParameters`, optional
         :param reply_parameters: Description of the message to reply to.
         :type reply_parameters: :obj:`~apitele.types.ReplyParameters`, optional
         :param reply_markup: Additional interface options. A JSON-serialized object for an `inline keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, `custom reply keyboard <https://core.telegram.org/bots/features#keyboards>`_, instructions to remove reply keyboard or to force a reply from the user.
@@ -5428,6 +5495,7 @@ class Client(TelegramApi):
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
         if message_effect_id is not None: params['message_effect_id'] = message_effect_id
+        if suggested_post_parameters is not None: params['suggested_post_parameters'] = suggested_post_parameters
         if reply_parameters is not None: params['reply_parameters'] = reply_parameters
         if reply_markup is not None: params['reply_markup'] = reply_markup
         result = await super().send_voice(params)
@@ -6584,4 +6652,3 @@ class Client(TelegramApi):
         }
         if custom_description is not None: params['custom_description'] = custom_description
         return await super().verify_user(params)
-

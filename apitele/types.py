@@ -8994,6 +8994,34 @@ class ShippingQuery(TelegramType):
         self.shipping_address = shipping_address
 
 
+class SuggestedPostParameters(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#suggestedpostparameters
+
+    Contains parameters of a post that is being suggested by the bot.
+
+    :param price: Proposed price for the post. If the field is omitted, then the post is unpaid.
+    :type price: :obj:`~apitele.types.SuggestedPostPrice`, optional
+    :param send_date: Proposed send date of the post. If specified, then the date must be between 300 second and 2678400 seconds (30 days) in the future. If the field is omitted, then the post can be published at any time within 30 days at the sole discretion of the user who approves it.
+    :type send_date: :obj:`int`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['price'] = SuggestedPostPrice._dese(res.get('price'))
+        obj['send_date'] = res.get('send_date')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        price: Optional[SuggestedPostPrice] = None,
+        send_date: Optional[int] = None
+    ):
+        self.price = price
+        self.send_date = send_date
+
+
 class SuggestedPostPrice(TelegramType):
     '''
     https://core.telegram.org/bots/api#suggestedpostprice
