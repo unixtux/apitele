@@ -3786,6 +3786,8 @@ class Gift(TelegramType):
     :type total_count: :obj:`int`, optional
     :param remaining_count: The number of remaining gifts of this type that can be sent; for limited gifts only.
     :type remaining_count: :obj:`int`, optional
+    :param publisher_chat: Information about the chat that published the gift.
+    :type publisher_chat: :obj:`~apitele.types.Chat`, optional
     '''
     @classmethod
     @_parse_result
@@ -3797,6 +3799,7 @@ class Gift(TelegramType):
         obj['upgrade_star_count'] = res.get('upgrade_star_count')
         obj['total_count'] = res.get('total_count')
         obj['remaining_count'] = res.get('remaining_count')
+        obj['publisher_chat'] = Chat._dese(res.get('publisher_chat'))
         return cls(**obj)
 
     def __init__(
@@ -3806,7 +3809,8 @@ class Gift(TelegramType):
         star_count: int,
         upgrade_star_count: Optional[int] = None,
         total_count: Optional[int] = None,
-        remaining_count: Optional[int] = None
+        remaining_count: Optional[int] = None,
+        publisher_chat: Optional[Chat] = None
     ):
         self.id = id
         self.sticker = sticker
@@ -3814,6 +3818,7 @@ class Gift(TelegramType):
         self.upgrade_star_count = upgrade_star_count
         self.total_count = total_count
         self.remaining_count = remaining_count
+        self.publisher_chat = publisher_chat
 
 
 class GiftInfo(TelegramType):
@@ -9913,6 +9918,8 @@ class UniqueGift(TelegramType):
     :type symbol: :obj:`~apitele.types.UniqueGiftSymbol`
     :param backdrop: Backdrop of the gift.
     :type backdrop: :obj:`~apitele.types.UniqueGiftBackdrop`
+    :param publisher_chat: Information about the chat that published the gift.
+    :type publisher_chat: :obj:`~apitele.types.Chat`, optional
     '''
     @classmethod
     @_parse_result
@@ -9924,6 +9931,7 @@ class UniqueGift(TelegramType):
         obj['model'] = UniqueGiftModel._dese(res.get('model'))
         obj['symbol'] = UniqueGiftSymbol._dese(res.get('symbol'))
         obj['backdrop'] = UniqueGiftBackdrop._dese(res.get('backdrop'))
+        obj['publisher_chat'] = Chat._dese(res.get('publisher_chat'))
         return cls(**obj)
 
     def __init__(
@@ -9933,7 +9941,8 @@ class UniqueGift(TelegramType):
         number: int,
         model: UniqueGiftModel,
         symbol: UniqueGiftSymbol,
-        backdrop: UniqueGiftBackdrop
+        backdrop: UniqueGiftBackdrop,
+        publisher_chat: Optional[Chat] = None
     ):
         self.base_name = base_name
         self.name = name
@@ -9941,6 +9950,7 @@ class UniqueGift(TelegramType):
         self.model = model
         self.symbol = symbol
         self.backdrop = backdrop
+        self.publisher_chat = publisher_chat
 
 
 class UniqueGiftBackdrop(TelegramType):
