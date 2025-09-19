@@ -1276,6 +1276,34 @@ class Client(TelegramApi):
         return await super().approve_chat_join_request(params)
 
 
+    async def approve_suggested_post(
+        self,
+        chat_id: int,
+        message_id: int,
+        send_date: Optional[int] = None
+    ) -> Literal[True]:
+        '''
+        https://core.telegram.org/bots/api#approvesuggestedpost
+
+        Use this method to approve a suggested post in a direct messages chat.
+        The bot must have the 'can_post_messages' administrator right in the corresponding channel chat. Returns :obj:`True` on success.
+
+        :param chat_id: Unique identifier for the target direct messages chat.
+        :type chat_id: :obj:`int`
+        :param message_id: Identifier of a suggested post message to approve.
+        :type message_id: :obj:`int`
+        :param send_date: Point in time (Unix timestamp) when the post is expected to be published; omit if the date has already been specified when the suggested post was created. If specified, then the date must be not more than 2678400 seconds (30 days) in the future.
+        :type send_date: :obj:`int`, optional
+        :rtype: :obj:`True`
+        '''
+        params = {
+            'chat_id': chat_id,
+            'message_id': message_id
+        }
+        if send_date is not None: params['send_date'] = send_date
+        return await super().approve_suggested_post(params)
+
+
     async def ban_chat_member(
         self,
         chat_id: Union[int, str],

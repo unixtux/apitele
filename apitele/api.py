@@ -523,6 +523,10 @@ class TelegramApi:
         method = 'approveChatJoinRequest'
         return await self._request(method, params)
 
+    async def approve_suggested_post(self, params: dict):
+        method = 'approveSuggestedPost'
+        return await self._request(method, params)
+
     async def ban_chat_member(self, params: dict):
         method = 'banChatMember'
         return await self._request(method, params)
