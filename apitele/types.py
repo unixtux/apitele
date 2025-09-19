@@ -1421,6 +1421,8 @@ class ChatAdministratorRights(TelegramType):
     :type can_pin_messages: :obj:`bool`, optional
     :param can_manage_topics: :obj:`True`, if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only.
     :type can_manage_topics: :obj:`bool`, optional
+    :param can_manage_direct_messages: :obj:`True`, if the administrator can manage direct messages of the channel and decline suggested posts; for channels only.
+    :type can_manage_direct_messages: :obj:`bool`, optional
     '''
     @classmethod
     @_parse_result
@@ -1441,6 +1443,7 @@ class ChatAdministratorRights(TelegramType):
         obj['can_edit_messages'] = res.get('can_edit_messages')
         obj['can_pin_messages'] = res.get('can_pin_messages')
         obj['can_manage_topics'] = res.get('can_manage_topics')
+        obj['can_manage_direct_messages'] = res.get('can_manage_direct_messages')
         return cls(**obj)
 
     def __init__(
@@ -1459,7 +1462,8 @@ class ChatAdministratorRights(TelegramType):
         can_post_messages: Optional[bool] = None,
         can_edit_messages: Optional[bool] = None,
         can_pin_messages: Optional[bool] = None,
-        can_manage_topics: Optional[bool] = None
+        can_manage_topics: Optional[bool] = None,
+        can_manage_direct_messages: Optional[bool] = None
     ):
         self.is_anonymous = is_anonymous
         self.can_manage_chat = can_manage_chat
@@ -1476,6 +1480,7 @@ class ChatAdministratorRights(TelegramType):
         self.can_edit_messages = can_edit_messages
         self.can_pin_messages = can_pin_messages
         self.can_manage_topics = can_manage_topics
+        self.can_manage_direct_messages = can_manage_direct_messages
 
 
 class ChatBackground(TelegramType):
@@ -2151,6 +2156,8 @@ class ChatMemberAdministrator(TelegramType):
     :type can_pin_messages: :obj:`bool`, optional
     :param can_manage_topics: :obj:`True`, if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only.
     :type can_manage_topics: :obj:`bool`, optional
+    :param can_manage_direct_messages: :obj:`True`, if the administrator can manage direct messages of the channel and decline suggested posts; for channels only.
+    :type can_manage_direct_messages: :obj:`bool`, optional
     :param custom_title: Custom title for this user.
     :type custom_title: :obj:`str`, optional
     '''
@@ -2175,6 +2182,7 @@ class ChatMemberAdministrator(TelegramType):
         obj['can_edit_messages'] = res.get('can_edit_messages')
         obj['can_pin_messages'] = res.get('can_pin_messages')
         obj['can_manage_topics'] = res.get('can_manage_topics')
+        obj['can_manage_direct_messages'] = res.get('can_manage_direct_messages')
         obj['custom_title'] = res.get('custom_title')
         return cls(**obj)
 
@@ -2197,6 +2205,7 @@ class ChatMemberAdministrator(TelegramType):
         can_edit_messages: Optional[bool] = None,
         can_pin_messages: Optional[bool] = None,
         can_manage_topics: Optional[bool] = None,
+        can_manage_direct_messages: Optional[bool] = None,
         custom_title: Optional[str] = None
     ):
         self.status = DEFAULT_CHAT_MEMBER_ADMINISTRATOR
@@ -2217,6 +2226,7 @@ class ChatMemberAdministrator(TelegramType):
         self.can_edit_messages = can_edit_messages
         self.can_pin_messages = can_pin_messages
         self.can_manage_topics = can_manage_topics
+        self.can_manage_direct_messages = can_manage_direct_messages
         self.custom_title = custom_title
 
 
