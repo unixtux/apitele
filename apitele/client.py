@@ -1424,6 +1424,7 @@ class Client(TelegramApi):
         from_chat_id: Union[int, str],
         message_id: int,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         video_start_timestamp: Optional[int] = None,
         caption: Optional[str] = None,
         parse_mode: Optional[str] = None,
@@ -1450,6 +1451,8 @@ class Client(TelegramApi):
         :type message_id: :obj:`int`
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param video_start_timestamp: New start timestamp for the copied video in the message.
         :type video_start_timestamp: :obj:`int`, optional
         :param caption: New caption for media, 0-1024 characters after entities parsing. If not specified, the original caption is kept.
@@ -1478,6 +1481,7 @@ class Client(TelegramApi):
             'message_id': message_id
         }
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if video_start_timestamp is not None: params['video_start_timestamp'] = video_start_timestamp
         if caption is not None: params['caption'] = caption
         if parse_mode is not None: params['parse_mode'] = parse_mode
@@ -1498,6 +1502,7 @@ class Client(TelegramApi):
         from_chat_id: Union[int, str],
         message_ids: list[int],
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         disable_notification: Optional[bool] = None,
         protect_content: Optional[bool] = None,
         remove_caption: Optional[bool] = None
@@ -1518,6 +1523,8 @@ class Client(TelegramApi):
         :type message_ids: :obj:`list` of :obj:`int`
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the messages will be sent; required if the messages are sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param disable_notification: Sends the messages `silently <https://telegram.org/blog/channels-2-0#silent-messages>`_. Users will receive a notification with no sound.
         :type disable_notification: :obj:`bool`, optional
         :param protect_content: Protects the contents of the sent messages from forwarding and saving.
@@ -1532,6 +1539,7 @@ class Client(TelegramApi):
             'message_ids': message_ids
         }
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if disable_notification is not None: params['disable_notification'] = disable_notification
         if protect_content is not None: params['protect_content'] = protect_content
         if remove_caption is not None: params['remove_caption'] = remove_caption
@@ -2566,6 +2574,7 @@ class Client(TelegramApi):
         from_chat_id: Union[int, str],
         message_id: int,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         video_start_timestamp: Optional[int] = None,
         disable_notification: Optional[bool] = None,
         protect_content: Optional[bool] = None
@@ -2584,6 +2593,8 @@ class Client(TelegramApi):
         :type message_id: :obj:`int`
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be forwarded; required if the message is forwarded to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param video_start_timestamp: New start timestamp for the forwarded video in the message.
         :type video_start_timestamp: :obj:`int`, optional
         :param disable_notification: Sends the message `silently <https://telegram.org/blog/channels-2-0#silent-messages>`_. Users will receive a notification with no sound.
@@ -2598,6 +2609,7 @@ class Client(TelegramApi):
             'message_id': message_id
         }
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if video_start_timestamp is not None: params['video_start_timestamp'] = video_start_timestamp
         if disable_notification is not None: params['disable_notification'] = disable_notification
         if protect_content is not None: params['protect_content'] = protect_content
@@ -2611,6 +2623,7 @@ class Client(TelegramApi):
         from_chat_id: Union[int, str],
         message_ids: list[int],
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         disable_notification: Optional[bool] = None,
         protect_content: Optional[bool] = None
     ) -> list[MessageId]:
@@ -2629,6 +2642,8 @@ class Client(TelegramApi):
         :type message_ids: :obj:`list` of :obj:`int`
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the messages will be forwarded; required if the messages are forwarded to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param disable_notification: Sends the messages `silently <https://telegram.org/blog/channels-2-0#silent-messages>`_. Users will receive a notification with no sound.
         :type disable_notification: :obj:`bool`, optional
         :param protect_content: Protects the contents of the forwarded messages from forwarding and saving.
@@ -2641,6 +2656,7 @@ class Client(TelegramApi):
             'message_ids': message_ids
         }
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if disable_notification is not None: params['disable_notification'] = disable_notification
         if protect_content is not None: params['protect_content'] = protect_content
         result = await super().forward_messages(params)
@@ -3792,6 +3808,7 @@ class Client(TelegramApi):
         animation: Union[InputFile, str],
         business_connection_id: Optional[str] = None,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         duration: Optional[int] = None,
         width: Optional[int] = None,
         height: Optional[int] = None,
@@ -3823,6 +3840,8 @@ class Client(TelegramApi):
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param duration: Duration of sent animation in seconds.
         :type duration: :obj:`int`, optional
         :param width: Animation width.
@@ -3861,6 +3880,7 @@ class Client(TelegramApi):
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if duration is not None: params['duration'] = duration
         if width is not None: params['width'] = width
         if height is not None: params['height'] = height
@@ -3886,6 +3906,7 @@ class Client(TelegramApi):
         audio: Union[InputFile, str],
         business_connection_id: Optional[str] = None,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         caption: Optional[str] = None,
         parse_mode: Optional[str] = None,
         caption_entities: Optional[list[MessageEntity]] = None,
@@ -3916,6 +3937,8 @@ class Client(TelegramApi):
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param caption: Audio caption, 0-1024 characters after entities parsing.
         :type caption: :obj:`str`, optional
         :param parse_mode: Mode for parsing entities in the audio caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
@@ -3950,6 +3973,7 @@ class Client(TelegramApi):
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if caption is not None: params['caption'] = caption
         if parse_mode is not None: params['parse_mode'] = parse_mode
         if caption_entities is not None: params['caption_entities'] = caption_entities
@@ -4062,6 +4086,7 @@ class Client(TelegramApi):
         first_name: str,
         business_connection_id: Optional[str] = None,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         last_name: Optional[str] = None,
         vcard: Optional[str] = None,
         disable_notification: Optional[bool] = None,
@@ -4087,6 +4112,8 @@ class Client(TelegramApi):
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param last_name: Contact's last name.
         :type last_name: :obj:`str`, optional
         :param vcard: Additional data about the contact in the form of a `vCard <https://en.wikipedia.org/wiki/VCard>`_, 0-2048 bytes.
@@ -4112,6 +4139,7 @@ class Client(TelegramApi):
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if last_name is not None: params['last_name'] = last_name
         if vcard is not None: params['vcard'] = vcard
         if disable_notification is not None: params['disable_notification'] = disable_notification
@@ -4129,6 +4157,7 @@ class Client(TelegramApi):
         chat_id: Union[int, str],
         business_connection_id: Optional[str] = None,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         emoji: Optional[str] = None,
         disable_notification: Optional[bool] = None,
         protect_content: Optional[bool] = None,
@@ -4149,6 +4178,8 @@ class Client(TelegramApi):
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param emoji: Emoji on which the dice throw animation is based. Currently, must be one of “🎲”, “🎯”, “🏀”, “⚽”, “🎳”, or “🎰”. Dice can have values 1-6 for “🎲”, “🎯” and “🎳”, values 1-5 for “🏀” and “⚽”, and values 1-64 for “🎰”. Defaults to “🎲”.
         :type emoji: :obj:`str`, optional
         :param disable_notification: Sends the message `silently <https://telegram.org/blog/channels-2-0#silent-messages>`_. Users will receive a notification with no sound.
@@ -4170,6 +4201,7 @@ class Client(TelegramApi):
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if emoji is not None: params['emoji'] = emoji
         if disable_notification is not None: params['disable_notification'] = disable_notification
         if protect_content is not None: params['protect_content'] = protect_content
@@ -4187,6 +4219,7 @@ class Client(TelegramApi):
         document: Union[InputFile, str],
         business_connection_id: Optional[str] = None,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         thumbnail: Optional[Union[InputFile, str]] = None,
         caption: Optional[str] = None,
         parse_mode: Optional[str] = None,
@@ -4214,6 +4247,8 @@ class Client(TelegramApi):
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param thumbnail: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. `More information on Sending Files » <https://core.telegram.org/bots/api#sending-files>`_.
         :type thumbnail: :obj:`~apitele.types.InputFile` or :obj:`str`, optional
         :param caption: Document caption (may also be used when resending documents by *file_id*), 0-1024 characters after entities parsing.
@@ -4244,6 +4279,7 @@ class Client(TelegramApi):
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if thumbnail is not None: params['thumbnail'] = thumbnail
         if caption is not None: params['caption'] = caption
         if parse_mode is not None: params['parse_mode'] = parse_mode
@@ -4368,6 +4404,7 @@ class Client(TelegramApi):
         currency: str,
         prices: list[LabeledPrice],
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         provider_token: Optional[str] = None,
         max_tip_amount: Optional[int] = None,
         suggested_tip_amounts: Optional[list[int]] = None,
@@ -4411,6 +4448,8 @@ class Client(TelegramApi):
         :type prices: :obj:`list` of :obj:`~apitele.types.LabeledPrice`
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param provider_token: Payment provider token, obtained via `@BotFather <https://t.me/botfather>`_. Pass an empty string for payments in `Telegram Stars <https://t.me/BotNews/90>`_.
         :type provider_token: :obj:`str`, optional
         :param max_tip_amount: The maximum accepted amount for tips in the *smallest units* of the currency (integer, **not** float/double). For example, for a maximum tip of ``US$ 1.45`` pass ``max_tip_amount = 145``. See the *exp* parameter in `currencies.json <https://core.telegram.org/bots/payments/currencies.json>`_, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to :obj:`0`. Not supported for payments in `Telegram Stars <https://t.me/BotNews/90>`_.
@@ -4467,6 +4506,7 @@ class Client(TelegramApi):
             'prices': prices
         }
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if max_tip_amount is not None: params['max_tip_amount'] = max_tip_amount
         if suggested_tip_amounts is not None: params['suggested_tip_amounts'] = suggested_tip_amounts
         if start_parameter is not None: params['start_parameter'] = start_parameter
@@ -4499,6 +4539,7 @@ class Client(TelegramApi):
         longitude: float,
         business_connection_id: Optional[str] = None,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         horizontal_accuracy: Optional[float] = None,
         live_period: Optional[int] = None,
         heading: Optional[int] = None,
@@ -4526,6 +4567,8 @@ class Client(TelegramApi):
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param horizontal_accuracy: The radius of uncertainty for the location, measured in meters; 0-1500.
         :type horizontal_accuracy: :obj:`float`, optional
         :param live_period: Period in seconds for which the location will be updated (see `Live Locations <https://telegram.org/blog/live-locations>`_, should be between 60 and 86400.
@@ -4555,6 +4598,7 @@ class Client(TelegramApi):
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if horizontal_accuracy is not None: params['horizontal_accuracy'] = horizontal_accuracy
         if live_period is not None: params['live_period'] = live_period
         if heading is not None: params['heading'] = heading
@@ -4575,6 +4619,7 @@ class Client(TelegramApi):
         media: list[Union[InputMediaAudio, InputMediaDocument, InputMediaPhoto, InputMediaVideo]],
         business_connection_id: Optional[str] = None,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         disable_notification: Optional[bool] = None,
         protect_content: Optional[bool] = None,
         allow_paid_broadcast: Optional[bool] = None,
@@ -4596,6 +4641,8 @@ class Client(TelegramApi):
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the messages will be sent; required if the messages are sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param disable_notification: Sends messages `silently <https://telegram.org/blog/channels-2-0#silent-messages>`_. Users will receive a notification with no sound.
         :type disable_notification: :obj:`bool`, optional
         :param protect_content: Protects the contents of the sent messages from forwarding and saving.
@@ -4614,6 +4661,7 @@ class Client(TelegramApi):
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if disable_notification is not None: params['disable_notification'] = disable_notification
         if protect_content is not None: params['protect_content'] = protect_content
         if allow_paid_broadcast is not None: params['allow_paid_broadcast'] = allow_paid_broadcast
@@ -4629,6 +4677,7 @@ class Client(TelegramApi):
         text: str,
         business_connection_id: Optional[str] = None,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         parse_mode: Optional[str] = None,
         entities: Optional[list[MessageEntity]] = None,
         link_preview_options: Optional[LinkPreviewOptions] = None,
@@ -4653,6 +4702,8 @@ class Client(TelegramApi):
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param parse_mode: Mode for parsing entities in the message text. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
         :type parse_mode: :obj:`str`, optional
         :param entities: A JSON-serialized list of special entities that appear in message text, which can be specified instead of *parse_mode*.
@@ -4679,6 +4730,7 @@ class Client(TelegramApi):
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if parse_mode is not None: params['parse_mode'] = parse_mode
         if entities is not None: params['entities'] = entities
         if link_preview_options is not None: params['link_preview_options'] = link_preview_options
@@ -4698,6 +4750,8 @@ class Client(TelegramApi):
         star_count: int,
         media: list[InputPaidMedia],
         business_connection_id: Optional[str] = None,
+        message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         payload: Optional[str] = None,
         caption: Optional[str] = None,
         parse_mode: Optional[str] = None,
@@ -4723,6 +4777,10 @@ class Client(TelegramApi):
         :type media: :obj:`list` of :obj:`~apitele.types.InputPaidMedia`
         :param business_connection_id: Unique identifier of the business connection on behalf of which the message will be sent.
         :type business_connection_id: :obj:`str`, optional
+        :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
+        :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param payload: Bot-defined paid media payload, 0-128 bytes. This will not be displayed to the user, use it for your internal processes.
         :type payload: :obj:`str`, optional
         :param caption: Media caption, 0-1024 characters after entities parsing
@@ -4751,6 +4809,8 @@ class Client(TelegramApi):
             'media': media
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
+        if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if payload is not None: params['payload'] = payload
         if caption is not None: params['caption'] = caption
         if parse_mode is not None: params['parse_mode'] = parse_mode
@@ -4771,6 +4831,7 @@ class Client(TelegramApi):
         photo: Union[InputFile, str],
         business_connection_id: Optional[str] = None,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         caption: Optional[str] = None,
         parse_mode: Optional[str] = None,
         caption_entities: Optional[list[MessageEntity]] = None,
@@ -4797,6 +4858,8 @@ class Client(TelegramApi):
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param caption: Photo caption (may also be used when resending photos by *file_id*), 0-1024 characters after entities parsing.
         :type caption: :obj:`str`, optional
         :param parse_mode: Mode for parsing entities in the photo caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
@@ -4827,6 +4890,7 @@ class Client(TelegramApi):
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if caption is not None: params['caption'] = caption
         if parse_mode is not None: params['parse_mode'] = parse_mode
         if caption_entities is not None: params['caption_entities'] = caption_entities
@@ -4957,6 +5021,7 @@ class Client(TelegramApi):
         sticker: Union[InputFile, str],
         business_connection_id: Optional[str] = None,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         emoji: Optional[str] = None,
         disable_notification: Optional[bool] = None,
         protect_content: Optional[bool] = None,
@@ -4979,6 +5044,8 @@ class Client(TelegramApi):
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param emoji: Emoji associated with the sticker; only for just uploaded stickers.
         :type emoji: :obj:`str`, optional
         :param disable_notification: Sends the message `silently <https://telegram.org/blog/channels-2-0#silent-messages>`_. Users will receive a notification with no sound.
@@ -5001,6 +5068,7 @@ class Client(TelegramApi):
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if emoji is not None: params['emoji'] = emoji
         if disable_notification is not None: params['disable_notification'] = disable_notification
         if protect_content is not None: params['protect_content'] = protect_content
@@ -5021,6 +5089,7 @@ class Client(TelegramApi):
         address: str,
         business_connection_id: Optional[str] = None,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         foursquare_id: Optional[str] = None,
         foursquare_type: Optional[str] = None,
         google_place_id: Optional[str] = None,
@@ -5052,6 +5121,8 @@ class Client(TelegramApi):
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param foursquare_id: Foursquare identifier of the venue.
         :type foursquare_id: :obj:`str`, optional
         :param foursquare_type: Foursquare type of the venue, if known. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
@@ -5083,6 +5154,7 @@ class Client(TelegramApi):
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if foursquare_id is not None: params['foursquare_id'] = foursquare_id
         if foursquare_type is not None: params['foursquare_type'] = foursquare_type
         if google_place_id is not None: params['google_place_id'] = google_place_id
@@ -5103,6 +5175,7 @@ class Client(TelegramApi):
         video: Union[InputFile, str],
         business_connection_id: Optional[str] = None,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         duration: Optional[int] = None,
         width: Optional[int] = None,
         height: Optional[int] = None,
@@ -5138,6 +5211,8 @@ class Client(TelegramApi):
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param duration: Duration of sent video in seconds.
         :type duration: :obj:`int`, optional
         :param width: Video width.
@@ -5182,6 +5257,7 @@ class Client(TelegramApi):
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if duration is not None: params['duration'] = duration
         if width is not None: params['width'] = width
         if height is not None: params['height'] = height
@@ -5210,6 +5286,7 @@ class Client(TelegramApi):
         video_note: Union[InputFile, str],
         business_connection_id: Optional[str] = None,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         duration: Optional[int] = None,
         length: Optional[int] = None,
         thumbnail: Optional[Union[InputFile, str]] = None,
@@ -5235,6 +5312,8 @@ class Client(TelegramApi):
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param duration: Duration of sent video in seconds.
         :type duration: :obj:`int`, optional
         :param length: Video width and height, i.e. diameter of the video message.
@@ -5261,6 +5340,7 @@ class Client(TelegramApi):
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if duration is not None: params['duration'] = duration
         if length is not None: params['length'] = length
         if thumbnail is not None: params['thumbnail'] = thumbnail
@@ -5280,6 +5360,7 @@ class Client(TelegramApi):
         voice: Union[InputFile, str],
         business_connection_id: Optional[str] = None,
         message_thread_id: Optional[int] = None,
+        direct_messages_topic_id: Optional[int] = None,
         caption: Optional[str] = None,
         parse_mode: Optional[str] = None,
         caption_entities: Optional[list[MessageEntity]] = None,
@@ -5308,6 +5389,8 @@ class Client(TelegramApi):
         :type business_connection_id: :obj:`str`, optional
         :param message_thread_id: Unique identifier for the target message thread (topic) of the forum; for forum supergroups only.
         :type message_thread_id: :obj:`int`, optional
+        :param direct_messages_topic_id: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.
+        :type direct_messages_topic_id: :obj:`int`, optional
         :param caption: Voice message caption, 0-1024 characters after entities parsing.
         :type caption: :obj:`str`, optional
         :param parse_mode: Mode for parsing entities in the voice message caption. See `formatting options <https://core.telegram.org/bots/api#formatting-options>`_ for more details.
@@ -5336,6 +5419,7 @@ class Client(TelegramApi):
         }
         if business_connection_id is not None: params['business_connection_id'] = business_connection_id
         if message_thread_id is not None: params['message_thread_id'] = message_thread_id
+        if direct_messages_topic_id is not None: params['direct_messages_topic_id'] = direct_messages_topic_id
         if caption is not None: params['caption'] = caption
         if parse_mode is not None: params['parse_mode'] = parse_mode
         if caption_entities is not None: params['caption_entities'] = caption_entities
