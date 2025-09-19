@@ -241,6 +241,7 @@ __all__ = (
     'StoryAreaTypeUniqueGift',
     'StoryAreaTypeWeather',
     'SuccessfulPayment',
+    'SuggestedPostApproved',
     'SuggestedPostInfo',
     'SuggestedPostParameters',
     'SuggestedPostPrice',
@@ -6824,6 +6825,8 @@ class Message(TelegramType):
     :type giveaway_completed: :obj:`~apitele.types.GiveawayCompleted`, optional
     :param paid_message_price_changed: Service message: the price for paid messages has changed in the chat.
     :type paid_message_price_changed: :obj:`~apitele.types.PaidMessagePriceChanged`, optional
+    :param suggested_post_approved: Service message: a suggested post was approved.
+    :type suggested_post_approved: :obj:`~apitele.types.SuggestedPostApproved`, optional
     :param video_chat_scheduled: Service message: video chat scheduled.
     :type video_chat_scheduled: :obj:`~apitele.types.VideoChatScheduled`, optional
     :param video_chat_started: Service message: video chat started.
@@ -6932,6 +6935,7 @@ class Message(TelegramType):
         obj['giveaway_winners'] = GiveawayWinners._dese(res.get('giveaway_winners'))
         obj['giveaway_completed'] = GiveawayCompleted._dese(res.get('giveaway_completed'))
         obj['paid_message_price_changed'] = PaidMessagePriceChanged._dese(res.get('paid_message_price_changed'))
+        obj['suggested_post_approved'] = SuggestedPostApproved._dese(res.get('suggested_post_approved'))
         obj['video_chat_scheduled'] = VideoChatScheduled._dese(res.get('video_chat_scheduled'))
         obj['video_chat_started'] = VideoChatStarted._dese(res.get('video_chat_started'))
         obj['video_chat_ended'] = VideoChatEnded._dese(res.get('video_chat_ended'))
@@ -7033,6 +7037,7 @@ class Message(TelegramType):
         giveaway_winners: Optional[GiveawayWinners] = None,
         giveaway_completed: Optional[GiveawayCompleted] = None,
         paid_message_price_changed: Optional[PaidMessagePriceChanged] = None,
+        suggested_post_approved: Optional[SuggestedPostApproved] = None,
         video_chat_scheduled: Optional[VideoChatScheduled] = None,
         video_chat_started: Optional[VideoChatStarted] = None,
         video_chat_ended: Optional[VideoChatEnded] = None,
@@ -7131,6 +7136,7 @@ class Message(TelegramType):
         self.giveaway_winners = giveaway_winners
         self.giveaway_completed = giveaway_completed
         self.paid_message_price_changed = paid_message_price_changed
+        self.suggested_post_approved = suggested_post_approved
         self.video_chat_scheduled = video_chat_scheduled
         self.video_chat_started = video_chat_started
         self.video_chat_ended = video_chat_ended
@@ -9509,6 +9515,39 @@ class SuccessfulPayment(TelegramType):
         self.is_first_recurring = is_first_recurring
         self.shipping_option_id = shipping_option_id
         self.order_info = order_info
+
+
+class SuggestedPostApproved(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#suggestedpostapproved
+
+    Describes a service message about the approval of a suggested post.
+
+    :param send_date: Date when the post will be published.
+    :type send_date: :obj:`int`
+    :param suggested_post_message: Message containing the suggested post. Note that the :obj:`~apitele.types.Message` object in this field will not contain the *reply_to_message* field even if it itself is a reply.
+    :type suggested_post_message: :obj:`~apitele.types.Message`, optional
+    :param price: Amount paid for the post.
+    :type price: :obj:`~apitele.types.SuggestedPostPrice`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['send_date'] = res.get('send_date')
+        obj['suggested_post_message'] = Message._dese(res.get('suggested_post_message'))
+        obj['price'] = SuggestedPostPrice._dese(res.get('price'))
+        return cls(**obj)
+
+    def __init__(
+        self,
+        send_date: int,
+        suggested_post_message: Optional[Message] = None,
+        price: Optional[SuggestedPostPrice] = None
+    ):
+        self.send_date = send_date
+        self.suggested_post_message = suggested_post_message
+        self.price = price
 
 
 class SuggestedPostInfo(TelegramType):
