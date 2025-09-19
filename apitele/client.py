@@ -3505,7 +3505,8 @@ class Client(TelegramApi):
         can_post_messages: Optional[bool] = None,
         can_edit_messages: Optional[bool] = None,
         can_pin_messages: Optional[bool] = None,
-        can_manage_topics: Optional[bool] = None
+        can_manage_topics: Optional[bool] = None,
+        can_manage_direct_messages: Optional[bool] = None
     ) -> Literal[True]:
         '''
         https://core.telegram.org/bots/api#promotechatmember
@@ -3548,6 +3549,8 @@ class Client(TelegramApi):
         :type can_pin_messages: :obj:`bool`, optional
         :param can_manage_topics: Pass :obj:`True` if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only.
         :type can_manage_topics: :obj:`bool`, optional
+        :param can_manage_direct_messages: Pass :obj:`True` if the administrator can manage direct messages within the channel and decline suggested posts; for channels only.
+        :type can_manage_direct_messages: :obj:`bool`, optional
         :rtype: :obj:`True`
         '''
         params = {
@@ -3569,6 +3572,7 @@ class Client(TelegramApi):
         if can_edit_messages is not None: params['can_edit_messages'] = can_edit_messages
         if can_pin_messages is not None: params['can_pin_messages'] = can_pin_messages
         if can_manage_topics is not None: params['can_manage_topics'] = can_manage_topics
+        if can_manage_direct_messages is not None: params['can_manage_direct_messages'] = can_manage_direct_messages
         return await super().promote_chat_member(params)
 
 
