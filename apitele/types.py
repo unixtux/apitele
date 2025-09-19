@@ -6787,6 +6787,8 @@ class Message(TelegramType):
     :type quote: :obj:`~apitele.types.TextQuote`, optional
     :param reply_to_story: For replies to a story, the original story.
     :type reply_to_story: :obj:`~apitele.types.Story`, optional
+    :param reply_to_checklist_task_id: Identifier of the specific checklist task that is being replied to.
+    :type reply_to_checklist_task_id: :obj:`int`, optional
     :param via_bot: Bot through which the message was sent.
     :type via_bot: :obj:`~apitele.types.User`, optional
     :param edit_date: Date the message was last edited in Unix time.
@@ -6962,6 +6964,7 @@ class Message(TelegramType):
         obj['external_reply'] = ExternalReplyInfo._dese(res.get('external_reply'))
         obj['quote'] = TextQuote._dese(res.get('quote'))
         obj['reply_to_story'] = Story._dese(res.get('reply_to_story'))
+        obj['reply_to_checklist_task_id'] = res.get('reply_to_checklist_task_id')
         obj['via_bot'] = User._dese(res.get('via_bot'))
         obj['edit_date'] = res.get('edit_date')
         obj['has_protected_content'] = res.get('has_protected_content')
@@ -7059,6 +7062,7 @@ class Message(TelegramType):
         external_reply: Optional[ExternalReplyInfo] = None,
         quote: Optional[TextQuote] = None,
         reply_to_story: Optional[Story] = None,
+        reply_to_checklist_task_id: Optional[int] = None,
         via_bot: Optional[User] = None,
         edit_date: Optional[int] = None,
         has_protected_content: Optional[Literal[True]] = None,
@@ -7153,6 +7157,7 @@ class Message(TelegramType):
         self.external_reply = external_reply
         self.quote = quote
         self.reply_to_story = reply_to_story
+        self.reply_to_checklist_task_id = reply_to_checklist_task_id
         self.via_bot = via_bot
         self.edit_date = edit_date
         self.has_protected_content = has_protected_content
