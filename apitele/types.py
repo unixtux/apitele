@@ -1758,6 +1758,8 @@ class ChatFullInfo(TelegramType):
     :type business_opening_hours: :obj:`~apitele.types.BusinessOpeningHours`, optional
     :param personal_chat: For private chats, the personal channel of the user.
     :type personal_chat: :obj:`~apitele.types.Chat`, optional
+    :param parent_chat: Information about the corresponding channel chat; for direct messages chats only.
+    :type parent_chat: :obj:`~apitele.types.Chat`, optional
     :param available_reactions: List of available reactions allowed in the chat. If omitted, then all :obj:`emoji reactions <apitele.types.ReactionTypeEmoji>` are allowed.
     :type available_reactions: :obj:`list` of :obj:`~apitele.types.ReactionType`, optional
     :param background_custom_emoji_id: Custom emoji identifier of the emoji chosen by the chat for the reply header and link preview background.
@@ -1837,6 +1839,7 @@ class ChatFullInfo(TelegramType):
         obj['business_location'] = BusinessLocation._dese(res.get('business_location'))
         obj['business_opening_hours'] = BusinessOpeningHours._dese(res.get('business_opening_hours'))
         obj['personal_chat'] = Chat._dese(res.get('personal_chat'))
+        obj['parent_chat'] = Chat._dese(res.get('parent_chat'))
         obj['available_reactions'] = [_dese_reaction_type(kwargs) for kwargs in res.get('available_reactions')] if 'available_reactions' in res else None
         obj['background_custom_emoji_id'] = res.get('background_custom_emoji_id')
         obj['profile_accent_color_id'] = res.get('profile_accent_color_id')
@@ -1887,6 +1890,7 @@ class ChatFullInfo(TelegramType):
         business_location: Optional[BusinessLocation] = None,
         business_opening_hours: Optional[BusinessOpeningHours] = None,
         personal_chat: Optional[Chat] = None,
+        parent_chat: Optional[Chat] = None,
         available_reactions: Optional[list[ReactionType]] = None,
         background_custom_emoji_id: Optional[str] = None,
         profile_accent_color_id: Optional[int] = None,
@@ -1934,6 +1938,7 @@ class ChatFullInfo(TelegramType):
         self.business_location = business_location
         self.business_opening_hours = business_opening_hours
         self.personal_chat = personal_chat
+        self.parent_chat = parent_chat
         self.available_reactions = available_reactions
         self.background_custom_emoji_id = background_custom_emoji_id
         self.profile_accent_color_id = profile_accent_color_id
