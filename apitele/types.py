@@ -243,6 +243,7 @@ __all__ = (
     'SuccessfulPayment',
     'SuggestedPostApprovalFailed',
     'SuggestedPostApproved',
+    'SuggestedPostDeclined',
     'SuggestedPostInfo',
     'SuggestedPostParameters',
     'SuggestedPostPrice',
@@ -6830,6 +6831,8 @@ class Message(TelegramType):
     :type suggested_post_approved: :obj:`~apitele.types.SuggestedPostApproved`, optional
     :param suggested_post_approval_failed: Service message: approval of a suggested post has failed.
     :type suggested_post_approval_failed: :obj:`~apitele.types.SuggestedPostApprovalFailed`, optional
+    :param suggested_post_declined: Service message: a suggested post was declined.
+    :type suggested_post_declined: :obj:`~apitele.types.SuggestedPostDeclined`, optional
     :param video_chat_scheduled: Service message: video chat scheduled.
     :type video_chat_scheduled: :obj:`~apitele.types.VideoChatScheduled`, optional
     :param video_chat_started: Service message: video chat started.
@@ -6940,6 +6943,7 @@ class Message(TelegramType):
         obj['paid_message_price_changed'] = PaidMessagePriceChanged._dese(res.get('paid_message_price_changed'))
         obj['suggested_post_approved'] = SuggestedPostApproved._dese(res.get('suggested_post_approved'))
         obj['suggested_post_approval_failed'] = SuggestedPostApprovalFailed._dese(res.get('suggested_post_approval_failed'))
+        obj['suggested_post_declined'] = SuggestedPostDeclined._dese(res.get('suggested_post_declined'))
         obj['video_chat_scheduled'] = VideoChatScheduled._dese(res.get('video_chat_scheduled'))
         obj['video_chat_started'] = VideoChatStarted._dese(res.get('video_chat_started'))
         obj['video_chat_ended'] = VideoChatEnded._dese(res.get('video_chat_ended'))
@@ -7043,6 +7047,7 @@ class Message(TelegramType):
         paid_message_price_changed: Optional[PaidMessagePriceChanged] = None,
         suggested_post_approved: Optional[SuggestedPostApproved] = None,
         suggested_post_approval_failed: Optional[SuggestedPostApprovalFailed] = None,
+        suggested_post_declined: Optional[SuggestedPostDeclined] = None,
         video_chat_scheduled: Optional[VideoChatScheduled] = None,
         video_chat_started: Optional[VideoChatStarted] = None,
         video_chat_ended: Optional[VideoChatEnded] = None,
@@ -7143,6 +7148,7 @@ class Message(TelegramType):
         self.paid_message_price_changed = paid_message_price_changed
         self.suggested_post_approved = suggested_post_approved
         self.suggested_post_approval_failed = suggested_post_approval_failed
+        self.suggested_post_declined = suggested_post_declined
         self.video_chat_scheduled = video_chat_scheduled
         self.video_chat_started = video_chat_started
         self.video_chat_ended = video_chat_ended
@@ -9583,6 +9589,34 @@ class SuggestedPostApproved(TelegramType):
         self.send_date = send_date
         self.suggested_post_message = suggested_post_message
         self.price = price
+
+
+class SuggestedPostDeclined(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#suggestedpostdeclined
+
+    Describes a service message about the rejection of a suggested post.
+
+    :param suggested_post_message: Message containing the suggested post. Note that the :obj:`~apitele.types.Message` object in this field will not contain the *reply_to_message* field even if it itself is a reply.
+    :type suggested_post_message: :obj:`~apitele.types.Message`, optional
+    :param comment: Comment with which the post was declined.
+    :type comment: :obj:`str`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['suggested_post_message'] = Message._dese(res.get('suggested_post_message'))
+        obj['comment'] = res.get('comment')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        suggested_post_message: Optional[Message] = None,
+        comment: Optional[str] = None
+    ):
+        self.suggested_post_message = suggested_post_message
+        self.comment = comment
 
 
 class SuggestedPostInfo(TelegramType):
