@@ -226,6 +226,8 @@ __all__ = (
     'ShippingAddress',
     'ShippingOption',
     'ShippingQuery',
+    'SuggestedPostParameters',
+    'SuggestedPostPrice',
     'StarAmount',
     'StarTransaction',
     'StarTransactions',
@@ -8990,6 +8992,34 @@ class ShippingQuery(TelegramType):
         self.from_user = from_user
         self.invoice_payload = invoice_payload
         self.shipping_address = shipping_address
+
+
+class SuggestedPostPrice(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#suggestedpostprice
+
+    Describes the price of a suggested post.
+
+    :param currency: Currency in which the post will be paid. Currently, must be one of “XTR” for Telegram Stars or “TON” for toncoins.
+    :type currency: :obj:`str`
+    :param amount: The amount of the currency that will be paid for the post in the *smallest units* of the currency, i.e. Telegram Stars or nanotoncoins. Currently, price in Telegram Stars must be between 5 and 100000, and price in nanotoncoins must be between 10000000 and 10000000000000.
+    :type amount: :obj:`int`
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['currency'] = res.get('currency')
+        obj['amount'] = res.get('amount')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        currency: str,
+        amount: int
+    ):
+        self.currency = currency
+        self.amount = amount
 
 
 class StarAmount(TelegramType):
