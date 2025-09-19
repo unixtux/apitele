@@ -245,6 +245,7 @@ __all__ = (
     'SuggestedPostApproved',
     'SuggestedPostDeclined',
     'SuggestedPostInfo',
+    'SuggestedPostPaid',
     'SuggestedPostParameters',
     'SuggestedPostPrice',
     'SwitchInlineQueryChosenChat',
@@ -6833,6 +6834,8 @@ class Message(TelegramType):
     :type suggested_post_approval_failed: :obj:`~apitele.types.SuggestedPostApprovalFailed`, optional
     :param suggested_post_declined: Service message: a suggested post was declined.
     :type suggested_post_declined: :obj:`~apitele.types.SuggestedPostDeclined`, optional
+    :param suggested_post_paid: Service message: payment for a suggested post was received.
+    :type suggested_post_paid: :obj:`~apitele.types.SuggestedPostPaid`, optional
     :param video_chat_scheduled: Service message: video chat scheduled.
     :type video_chat_scheduled: :obj:`~apitele.types.VideoChatScheduled`, optional
     :param video_chat_started: Service message: video chat started.
@@ -6944,6 +6947,7 @@ class Message(TelegramType):
         obj['suggested_post_approved'] = SuggestedPostApproved._dese(res.get('suggested_post_approved'))
         obj['suggested_post_approval_failed'] = SuggestedPostApprovalFailed._dese(res.get('suggested_post_approval_failed'))
         obj['suggested_post_declined'] = SuggestedPostDeclined._dese(res.get('suggested_post_declined'))
+        obj['suggested_post_paid'] = SuggestedPostPaid._dese(res.get('suggested_post_paid'))
         obj['video_chat_scheduled'] = VideoChatScheduled._dese(res.get('video_chat_scheduled'))
         obj['video_chat_started'] = VideoChatStarted._dese(res.get('video_chat_started'))
         obj['video_chat_ended'] = VideoChatEnded._dese(res.get('video_chat_ended'))
@@ -7048,6 +7052,7 @@ class Message(TelegramType):
         suggested_post_approved: Optional[SuggestedPostApproved] = None,
         suggested_post_approval_failed: Optional[SuggestedPostApprovalFailed] = None,
         suggested_post_declined: Optional[SuggestedPostDeclined] = None,
+        suggested_post_paid: Optional[SuggestedPostPaid] = None,
         video_chat_scheduled: Optional[VideoChatScheduled] = None,
         video_chat_started: Optional[VideoChatStarted] = None,
         video_chat_ended: Optional[VideoChatEnded] = None,
@@ -7149,6 +7154,7 @@ class Message(TelegramType):
         self.suggested_post_approved = suggested_post_approved
         self.suggested_post_approval_failed = suggested_post_approval_failed
         self.suggested_post_declined = suggested_post_declined
+        self.suggested_post_paid = suggested_post_paid
         self.video_chat_scheduled = video_chat_scheduled
         self.video_chat_started = video_chat_started
         self.video_chat_ended = video_chat_ended
@@ -9650,6 +9656,44 @@ class SuggestedPostInfo(TelegramType):
         self.state = state
         self.price = price
         self.send_date = send_date
+
+
+class SuggestedPostPaid(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#suggestedpostpaid
+
+    Describes a service message about a successful payment for a suggested post.
+
+    :param currency: Currency in which the payment was made. Currently, one of “XTR” for Telegram Stars or “TON” for toncoins.
+    :type currency: :obj:`str`
+    :param suggested_post_message: Message containing the suggested post. Note that the :obj:`~apitele.types.Message` object in this field will not contain the *reply_to_message* field even if it itself is a reply.
+    :type suggested_post_message: :obj:`~apitele.types.Message`, optional
+    :param amount: The amount of the currency that was received by the channel in nanotoncoins; for payments in toncoins only.
+    :type amount: :obj:`int`, optional
+    :param star_amount: The amount of Telegram Stars that was received by the channel; for payments in Telegram Stars only.
+    :type star_amount: :obj:`~apitele.types.StarAmount`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['currency'] = res.get('currency')
+        obj['suggested_post_message'] = Message._dese(res.get('suggested_post_message'))
+        obj['amount'] = res.get('amount')
+        obj['star_amount'] = StarAmount._dese(res.get('star_amount'))
+        return cls(**obj)
+
+    def __init__(
+        self,
+        currency: str,
+        suggested_post_message: Optional[Message] = None,
+        amount: Optional[int] = None,
+        star_amount: Optional[StarAmount] = None
+    ):
+        self.currency = currency
+        self.suggested_post_message = suggested_post_message
+        self.amount = amount
+        self.star_amount = star_amount
 
 
 class SuggestedPostParameters(TelegramType):
