@@ -8818,6 +8818,8 @@ class ReplyParameters(TelegramType):
     :type quote_entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param quote_position: Position of the quote in the original message in UTF-16 code units.
     :type quote_position: :obj:`int`, optional
+    :param checklist_task_id: Identifier of the specific checklist task to be replied to.
+    :type checklist_task_id: :obj:`int`, optional
     '''
     def __init__(
         self,
@@ -8827,7 +8829,8 @@ class ReplyParameters(TelegramType):
         quote: Optional[str] = None,
         quote_parse_mode: Optional[str] = None,
         quote_entities: Optional[list[MessageEntity]] = None,
-        quote_position: Optional[int] = None
+        quote_position: Optional[int] = None,
+        checklist_task_id: Optional[int] = None
     ):
         self.message_id = message_id
         self.chat_id = chat_id
@@ -8836,6 +8839,7 @@ class ReplyParameters(TelegramType):
         self.quote_parse_mode = quote_parse_mode
         self.quote_entities = quote_entities
         self.quote_position = quote_position
+        self.checklist_task_id = checklist_task_id
 
 
 class ResponseParameters(TelegramType):
