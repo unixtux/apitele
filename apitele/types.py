@@ -226,8 +226,6 @@ __all__ = (
     'ShippingAddress',
     'ShippingOption',
     'ShippingQuery',
-    'SuggestedPostParameters',
-    'SuggestedPostPrice',
     'StarAmount',
     'StarTransaction',
     'StarTransactions',
@@ -243,6 +241,9 @@ __all__ = (
     'StoryAreaTypeUniqueGift',
     'StoryAreaTypeWeather',
     'SuccessfulPayment',
+    'SuggestedPostInfo',
+    'SuggestedPostParameters',
+    'SuggestedPostPrice',
     'SwitchInlineQueryChosenChat',
     'TextQuote',
     'TransactionPartner', # Deserialized in _dese_transaction_partner()
@@ -6699,6 +6700,8 @@ class Message(TelegramType):
     :type entities: :obj:`list` of :obj:`~apitele.types.MessageEntity`, optional
     :param link_preview_options: Options used for link preview generation for the message, if it is a text message and link preview options were changed.
     :type link_preview_options: :obj:`~apitele.types.LinkPreviewOptions`, optional
+    :param suggested_post_info: Information about suggested post parameters if the message is a suggested post in a channel direct messages chat. If the message is an approved or declined suggested post, then it can't be edited.
+    :type suggested_post_info: :obj:`~apitele.types.SuggestedPostInfo`, optional
     :param effect_id: Unique identifier of the message effect added to the message.
     :type effect_id: :obj:`str`, optional
     :param animation: Message is an animation, information about the animation. For backward compatibility, when this field is set, the document field will also be set.
@@ -6867,6 +6870,7 @@ class Message(TelegramType):
         obj['text'] = res.get('text')
         obj['entities'] = [MessageEntity._dese(kwargs) for kwargs in res.get('entities')] if 'entities' in res else None
         obj['link_preview_options'] = LinkPreviewOptions._dese(res.get('link_preview_options'))
+        obj['suggested_post_info'] = SuggestedPostInfo._dese(res.get('suggested_post_info'))
         obj['effect_id'] = res.get('effect_id')
         obj['animation'] = Animation._dese(res.get('animation'))
         obj['audio'] = Audio._dese(res.get('audio'))
@@ -6967,6 +6971,7 @@ class Message(TelegramType):
         text: str = None,
         entities: Optional[list[MessageEntity]] = None,
         link_preview_options: Optional[LinkPreviewOptions] = None,
+        suggested_post_info: Optional[SuggestedPostInfo] = None,
         effect_id: Optional[str] = None,
         animation: Optional[Animation] = None,
         audio: Optional[Audio] = None,
@@ -7064,6 +7069,7 @@ class Message(TelegramType):
         self.text = text or str() # If not text, it's str() instead of None
         self.entities = entities
         self.link_preview_options = link_preview_options
+        self.suggested_post_info = suggested_post_info
         self.effect_id = effect_id
         self.animation = animation
         self.audio = audio
@@ -9009,62 +9015,6 @@ class ShippingQuery(TelegramType):
         self.shipping_address = shipping_address
 
 
-class SuggestedPostParameters(TelegramType):
-    '''
-    https://core.telegram.org/bots/api#suggestedpostparameters
-
-    Contains parameters of a post that is being suggested by the bot.
-
-    :param price: Proposed price for the post. If the field is omitted, then the post is unpaid.
-    :type price: :obj:`~apitele.types.SuggestedPostPrice`, optional
-    :param send_date: Proposed send date of the post. If specified, then the date must be between 300 second and 2678400 seconds (30 days) in the future. If the field is omitted, then the post can be published at any time within 30 days at the sole discretion of the user who approves it.
-    :type send_date: :obj:`int`, optional
-    '''
-    @classmethod
-    @_parse_result
-    def _dese(cls, res: dict):
-        obj = {}
-        obj['price'] = SuggestedPostPrice._dese(res.get('price'))
-        obj['send_date'] = res.get('send_date')
-        return cls(**obj)
-
-    def __init__(
-        self,
-        price: Optional[SuggestedPostPrice] = None,
-        send_date: Optional[int] = None
-    ):
-        self.price = price
-        self.send_date = send_date
-
-
-class SuggestedPostPrice(TelegramType):
-    '''
-    https://core.telegram.org/bots/api#suggestedpostprice
-
-    Describes the price of a suggested post.
-
-    :param currency: Currency in which the post will be paid. Currently, must be one of “XTR” for Telegram Stars or “TON” for toncoins.
-    :type currency: :obj:`str`
-    :param amount: The amount of the currency that will be paid for the post in the *smallest units* of the currency, i.e. Telegram Stars or nanotoncoins. Currently, price in Telegram Stars must be between 5 and 100000, and price in nanotoncoins must be between 10000000 and 10000000000000.
-    :type amount: :obj:`int`
-    '''
-    @classmethod
-    @_parse_result
-    def _dese(cls, res: dict):
-        obj = {}
-        obj['currency'] = res.get('currency')
-        obj['amount'] = res.get('amount')
-        return cls(**obj)
-
-    def __init__(
-        self,
-        currency: str,
-        amount: int
-    ):
-        self.currency = currency
-        self.amount = amount
-
-
 class StarAmount(TelegramType):
     '''
     https://core.telegram.org/bots/api#staramount
@@ -9559,6 +9509,95 @@ class SuccessfulPayment(TelegramType):
         self.is_first_recurring = is_first_recurring
         self.shipping_option_id = shipping_option_id
         self.order_info = order_info
+
+
+class SuggestedPostInfo(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#suggestedpostinfo
+
+    Contains information about a suggested post.
+
+    :param state: State of the suggested post. Currently, it can be one of “pending”, “approved”, “declined”.
+    :type state: :obj:`str`
+    :param price: Proposed price of the post. If the field is omitted, then the post is unpaid.
+    :type price: :obj:`~apitele.types.SuggestedPostPrice`, optional
+    :param send_date: Proposed send date of the post. If the field is omitted, then the post can be published at any time within 30 days at the sole discretion of the user or administrator who approves it.
+    :type send_date: :obj:`int`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['state'] = res.get('state')
+        obj['price'] = SuggestedPostPrice._dese(res.get('price'))
+        obj['send_date'] = res.get('send_date')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        state: str,
+        price: Optional[SuggestedPostPrice] = None,
+        send_date: Optional[int] = None
+    ):
+        self.state = state
+        self.price = price
+        self.send_date = send_date
+
+
+class SuggestedPostParameters(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#suggestedpostparameters
+
+    Contains parameters of a post that is being suggested by the bot.
+
+    :param price: Proposed price for the post. If the field is omitted, then the post is unpaid.
+    :type price: :obj:`~apitele.types.SuggestedPostPrice`, optional
+    :param send_date: Proposed send date of the post. If specified, then the date must be between 300 second and 2678400 seconds (30 days) in the future. If the field is omitted, then the post can be published at any time within 30 days at the sole discretion of the user who approves it.
+    :type send_date: :obj:`int`, optional
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['price'] = SuggestedPostPrice._dese(res.get('price'))
+        obj['send_date'] = res.get('send_date')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        price: Optional[SuggestedPostPrice] = None,
+        send_date: Optional[int] = None
+    ):
+        self.price = price
+        self.send_date = send_date
+
+
+class SuggestedPostPrice(TelegramType):
+    '''
+    https://core.telegram.org/bots/api#suggestedpostprice
+
+    Describes the price of a suggested post.
+
+    :param currency: Currency in which the post will be paid. Currently, must be one of “XTR” for Telegram Stars or “TON” for toncoins.
+    :type currency: :obj:`str`
+    :param amount: The amount of the currency that will be paid for the post in the *smallest units* of the currency, i.e. Telegram Stars or nanotoncoins. Currently, price in Telegram Stars must be between 5 and 100000, and price in nanotoncoins must be between 10000000 and 10000000000000.
+    :type amount: :obj:`int`
+    '''
+    @classmethod
+    @_parse_result
+    def _dese(cls, res: dict):
+        obj = {}
+        obj['currency'] = res.get('currency')
+        obj['amount'] = res.get('amount')
+        return cls(**obj)
+
+    def __init__(
+        self,
+        currency: str,
+        amount: int
+    ):
+        self.currency = currency
+        self.amount = amount
 
 
 class SwitchInlineQueryChosenChat(TelegramType):
