@@ -583,6 +583,10 @@ class TelegramApi:
         method = 'declineChatJoinRequest'
         return await self._request(method, params)
 
+    async def decline_suggested_post(self, params: dict):
+        method = 'declineSuggestedPost'
+        return await self._request(method, params)
+
     async def delete_business_messages(self, params: dict):
         method = 'deleteBusinessMessages'
         return await self._request(method, params)
